@@ -1,0 +1,53 @@
+---
+title: "Correlation coefficient by region"
+author: "jiyun Lim"
+date: "03/30/2023"
+categories:
+  - Research
+---
+
+### 연습
+
+```{r, message=FALSE}
+library(data.table)
+library(tidyverse)
+library(recipes)
+library(corrplot)
+library(GGally)
+```
+
+```{r}
+file_path <- './data/'
+list.files(file_path)
+```
+
+```{r}
+df1 <- fread(file.path(file_path, 'prep_data.csv'))
+head(df1)
+```
+
+```{r}
+glimpse(df1)
+```
+
+## 지역별 일사량 correlation
+
+```{r}
+df1 <- subset(df1, select = -c(Datetime,hour))
+df1 %>% head()
+```
+
+```{r}
+df1 <- df1 %>% dcast(일시 + '일사(MJ/m2)' ~ 지점명)
+df1 %>% head()
+```
+
+```{r}
+num_vars <- df1 %>% select(-일시)
+weight <- cor(num_vars, use = 'pairwise.complete.obs')
+weight
+```
+
+```{r}
+corrplot(round(weight,2), method = 'number')
+```
