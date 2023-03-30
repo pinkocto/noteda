@@ -229,6 +229,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../posts/2023-03-30-correlation.html" class="sidebar-item-text sidebar-link">2023 03 30 Correlation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../posts/2023-03-29-data0.html" class="sidebar-item-text sidebar-link active">Data preprocessing</a>
   </div>
 </li>
@@ -291,6 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#제천-파주-상주-동두천-제거" id="toc-제천-파주-상주-동두천-제거" class="nav-link" data-scroll-target="#제천-파주-상주-동두천-제거">제천, 파주, 상주, 동두천 제거</a></li>
   <li><a href="#관측시간-08시-18시" id="toc-관측시간-08시-18시" class="nav-link" data-scroll-target="#관측시간-08시-18시">관측시간 08시 ~ 18시</a></li>
   </ul></li>
+  <li><a href="#테스트용-데이터-전처리" id="toc-테스트용-데이터-전처리" class="nav-link" data-scroll-target="#테스트용-데이터-전처리">테스트용 데이터 전처리</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -308,28 +314,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://github.com/pinkocto/noteda/tree/main/posts/data/prep_data.csv"><strong><em>prep_data</em></strong></a></li>
 <li><a href="https://data.kma.go.kr/data/grnd/selectAsosRltmList.do?pgmNo=36"><strong><em>Download Link (homepage)</em></strong></a></li>
 </ul>
-<blockquote class="blockquote">
-<p><strong><em><code>OBS_ASOS_TIM_data0</code></em></strong> : 2021-01-01 ~ 2021-12-31</p>
-<p><strong><em><code>OBS_ASOS_TIM_data1</code></em></strong> : 2022-01-01 ~ 2023-01-01</p>
-</blockquote>
+<table class="table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>file name</th>
+<th>description</th>
+<th style="text-align: center;">note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><em>OBS_ASOS_TIM_data0.csv</em></strong></td>
+<td>2021-01-01 ~ 2021-12-31</td>
+<td style="text-align: center;">21년 데이터셋 (1년씩 다운 가능)</td>
+</tr>
+<tr class="even">
+<td><strong><em>OBS_ASOS_TIM_data1.csv</em></strong></td>
+<td>2022-01-01 ~ 2022-12-31</td>
+<td style="text-align: center;">22년 데이터셋 (1년씩 다운 가능)</td>
+</tr>
+<tr class="odd">
+<td><strong><em><font color="red">raw.csv</font></em></strong></td>
+<td>2021-01-01 ~ 2022-12-31</td>
+<td style="text-align: center;">21~22년 데이터셋 (위의 두개 데이터 합친 것)</td>
+</tr>
+<tr class="even">
+<td><strong><em><font color="blue">prep_data.csv</font></em></strong></td>
+<td><code>raw.csv</code> 전처리한 데이터셋</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td><strong><em><font color="red">test_raw.csv</font></em></strong></td>
+<td>2023-01-01 ~ 2023-01-15</td>
+<td style="text-align: center;">2주간의 데이터셋 for test (확정x)</td>
+</tr>
+<tr class="even">
+<td><strong><em><font color="blue">prep_test.csv</font></em></strong></td>
+<td><code>test_raw.csv</code> 전처리한 데이터셋</td>
+<td style="text-align: center;">prep_data와 전처리과정 동일</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><p>2021-01-01부터 2023-01-01 약 2년간의 데이터셋</p></li>
+<li><p>2021-01-01부터 2022-12-31 약 2년간의 데이터셋</p></li>
 <li><p>00시부터 23시까지 1시간 간격으로 측정한 데이터셋 (08시부터 18시까지 관측된 데이터가 대다수)</p></li>
 <li><p>총 49개의 지점</p></li>
 </ul>
-<div class="cell" data-execution_count="105">
+<div class="cell" data-execution_count="221">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> gc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="106">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>df0 <span class="op">=</span> pd.read_csv(<span class="st">'./OBS_ASOS_TIM_data0.csv'</span>, encoding<span class="op">=</span><span class="st">'cp949'</span>) <span class="co"># 2021-01-01 ~ 2021-12-31</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>df1 <span class="op">=</span> pd.read_csv(<span class="st">'./OBS_ASOS_TIM_data1.csv'</span>, encoding<span class="op">=</span><span class="st">'cp949'</span>) <span class="co"># 2022-01-01 ~ 2023-01-01</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="228">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>df0 <span class="op">=</span> pd.read_csv(<span class="st">'./data/OBS_ASOS_TIM_data0.csv'</span>, encoding<span class="op">=</span><span class="st">'cp949'</span>) <span class="co"># 2021-01-01 ~ 2021-12-31</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>df1 <span class="op">=</span> pd.read_csv(<span class="st">'./data/OBS_ASOS_TIM_data1.csv'</span>) <span class="co"># 2022-01-01 ~ 2023-12-31</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>df2 <span class="op">=</span> pd.read_csv(<span class="st">'./data/test_raw.csv'</span>, encoding<span class="op">=</span><span class="st">'cp949'</span>) <span class="co"># 2023-01-01 ~ 2023-01-15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="107">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>df_raw <span class="op">=</span> pd.concat([df0, df1])</span>
-<span id="cb3-2"><a href="#cb3-2"></a>df_raw.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="107">
+<div class="cell" data-execution_count="229">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># # dtype 변환 및 hour변수 생성.</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># df1['일시'] = pd.to_datetime(df1['일시'])</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># df1['Datetime'] = df1['일시'].dt.date</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># df1['hour'] = df1['일시'].dt.hour</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># df1.head()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="262">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># import datetime</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># df1 = df1[df1['Datetime'] != datetime.date(2023, 1, 1)]</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co"># df1 = df1.drop(['Datetime', 'hour'], axis=1)</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># df1.to_csv('./data/OBS_ASOS_TIM_data1.csv', index=False)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="267">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>df_raw <span class="op">=</span> pd.concat([df0, df1])</span>
+<span id="cb5-2"><a href="#cb5-2"></a>df_raw.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="267">
 
 <div>
 
@@ -384,15 +446,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="160">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>df_raw.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="160">
-<pre><code>(445248, 6)</code></pre>
+<div class="cell" data-execution_count="268">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>df_raw.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="268">
+<pre><code>(444720, 4)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="109">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 2021-01-01 ~ 2023-01-01 dataset (2 years)</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co"># df_raw.to_csv('./raw.csv')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="270">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># 2021-01-01 ~ 2023-01-01 dataset (2 years)</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># df_raw.to_csv('./data/raw.csv', index=False)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="전처리-내용" class="level1">
@@ -424,12 +486,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td style="text-align: left;">지점명</td>
 <td style="text-align: left;">파주, 상주, 동두천 지점은 2021-10-12일 이전의 기록은 보유하고 있지 않음.</td>
-<td style="text-align: left;">파주, 상주, 동두천 데이터 제거</td>
+<td style="text-align: left;">파주, 상주, 동두천 데이터 제거 (약 10개월 간의 데이터가 비어있음)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">지점명</td>
 <td style="text-align: left;">충주는 2021-11-18일 이전의 기록은 보유하고 있지 않음.</td>
-<td style="text-align: left;">충주 데이터 제거</td>
+<td style="text-align: left;">충주 데이터 제거 (위와 동일)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">hour(파생)</td>
@@ -440,31 +502,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <section id="데이터-탐색-for-preprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="데이터-탐색-for-preprocessing">데이터 탐색 (for preprocessing)</h2>
-<div class="cell" data-execution_count="110">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>gc.collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="110">
-<pre><code>19</code></pre>
+<div class="cell" data-execution_count="271">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>gc.collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="271">
+<pre><code>38</code></pre>
 </div>
 </div>
 <section id="관측지점-수" class="level3">
 <h3 class="anchored" data-anchor-id="관측지점-수">관측지점 수</h3>
-<div class="cell" data-execution_count="147">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># 관측지점 수</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="bu">len</span>(df0[<span class="st">'지점'</span>].unique()), <span class="bu">len</span>(df1[<span class="st">'지점'</span>].unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="147">
+<div class="cell" data-execution_count="272">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># 관측지점 수</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="bu">len</span>(df0[<span class="st">'지점'</span>].unique()), <span class="bu">len</span>(df1[<span class="st">'지점'</span>].unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="272">
 <pre><code>(48, 49)</code></pre>
 </div>
 </div>
 <p>22년도에 관측지점이 하나 더 추가된 듯하다..</p>
-<div class="cell" data-execution_count="93">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="bu">set</span>(df1[<span class="st">'지점명'</span>].unique()) <span class="op">-</span> (<span class="bu">set</span>(df0[<span class="st">'지점명'</span>].unique()) <span class="op">&amp;</span> <span class="bu">set</span>(df1[<span class="st">'지점명'</span>].unique()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="93">
+<div class="cell" data-execution_count="273">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="bu">set</span>(df1[<span class="st">'지점명'</span>].unique()) <span class="op">-</span> (<span class="bu">set</span>(df0[<span class="st">'지점명'</span>].unique()) <span class="op">&amp;</span> <span class="bu">set</span>(df1[<span class="st">'지점명'</span>].unique()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="273">
 <pre><code>{'제천'}</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="96">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>df1[df1[<span class="st">'지점명'</span>]<span class="op">==</span><span class="st">'제천'</span>]  <span class="co"># 관측기록이 1회밖에 없다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="96">
+<div class="cell" data-execution_count="274">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>df1[df1[<span class="st">'지점명'</span>]<span class="op">==</span><span class="st">'제천'</span>]  <span class="co"># 관측기록이 1회밖에 없다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="274">
 
 <div>
 
@@ -480,10 +542,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </thead>
   <tbody>
     <tr>
-      <th>167811</th>
+      <th>167426</th>
       <td>221</td>
       <td>제천</td>
-      <td>2022-10-27 07:00</td>
+      <td>2022-10-27 07:00:00</td>
       <td>0.0</td>
     </tr>
   </tbody>
@@ -492,9 +554,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>제천에서 관측된 값이 하나밖에 없으므로 제거해주는 것이 좋을 듯 하다.</p>
-<div class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>df0[<span class="st">'지점명'</span>].unique(),  df1[<span class="st">'지점명'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="78">
+<div class="cell" data-execution_count="275">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>df0[<span class="st">'지점명'</span>].unique(),  df1[<span class="st">'지점명'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="275">
 <pre><code>(array(['북춘천', '철원', '동두천', '파주', '대관령', '춘천', '백령도', '북강릉', '강릉', '서울',
         '인천', '원주', '울릉도', '수원', '충주', '서산', '청주', '대전', '추풍령', '안동', '상주',
         '포항', '대구', '전주', '창원', '광주', '부산', '목포', '여수', '흑산도', '고창', '홍성',
@@ -510,13 +572,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="날짜형-변환-및-datetime-hour-변수-생성" class="level3">
 <h3 class="anchored" data-anchor-id="날짜형-변환-및-datetime-hour-변수-생성">날짜형 변환 및 Datetime, hour 변수 생성</h3>
-<div class="cell" data-execution_count="117">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># dtype 변환 및 hour변수 생성.</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>df_raw[<span class="st">'일시'</span>] <span class="op">=</span> pd.to_datetime(df_raw[<span class="st">'일시'</span>])</span>
-<span id="cb16-3"><a href="#cb16-3"></a>df_raw[<span class="st">'Datetime'</span>] <span class="op">=</span> df_raw[<span class="st">'일시'</span>].dt.date</span>
-<span id="cb16-4"><a href="#cb16-4"></a>df_raw[<span class="st">'hour'</span>] <span class="op">=</span> df_raw[<span class="st">'일시'</span>].dt.hour</span>
-<span id="cb16-5"><a href="#cb16-5"></a>df_raw.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="117">
+<div class="cell" data-execution_count="276">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># dtype 변환 및 hour변수 생성.</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>df_raw[<span class="st">'일시'</span>] <span class="op">=</span> pd.to_datetime(df_raw[<span class="st">'일시'</span>])</span>
+<span id="cb18-3"><a href="#cb18-3"></a>df_raw[<span class="st">'Datetime'</span>] <span class="op">=</span> df_raw[<span class="st">'일시'</span>].dt.date</span>
+<span id="cb18-4"><a href="#cb18-4"></a>df_raw[<span class="st">'hour'</span>] <span class="op">=</span> df_raw[<span class="st">'일시'</span>].dt.hour</span>
+<span id="cb18-5"><a href="#cb18-5"></a>df_raw.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="276">
 
 <div>
 
@@ -583,36 +645,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="148">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>df_raw.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="277">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>df_raw.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-Int64Index: 445248 entries, 0 to 230204
+Int64Index: 444720 entries, 0 to 229676
 Data columns (total 6 columns):
  #   Column     Non-Null Count   Dtype         
 ---  ------     --------------   -----         
- 0   지점         445248 non-null  int64         
- 1   지점명        445248 non-null  object        
- 2   일시         445248 non-null  datetime64[ns]
- 3   일사(MJ/m2)  445248 non-null  float64       
- 4   Datetime   445248 non-null  object        
- 5   hour       445248 non-null  int64         
+ 0   지점         444720 non-null  int64         
+ 1   지점명        444720 non-null  object        
+ 2   일시         444720 non-null  datetime64[ns]
+ 3   일사(MJ/m2)  444720 non-null  float64       
+ 4   Datetime   444720 non-null  object        
+ 5   hour       444720 non-null  int64         
 dtypes: datetime64[ns](1), float64(1), int64(2), object(2)
 memory usage: 23.8+ MB</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="126">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>df_raw.shape[<span class="dv">0</span>]<span class="op">/</span>df_raw[<span class="st">'지점명'</span>].nunique() <span class="co"># 지점하나당 9000개 정도의 관측치가 있음.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="126">
-<pre><code>9086.69387755102</code></pre>
+<div class="cell" data-execution_count="278">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>df_raw.shape[<span class="dv">0</span>]<span class="op">/</span>df_raw[<span class="st">'지점명'</span>].nunique() <span class="co"># 지점하나당 9000개 정도의 관측치가 있음.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="278">
+<pre><code>9075.918367346938</code></pre>
 </div>
 </div>
 </section>
 <section id="시간대별-관측치-수" class="level3">
 <h3 class="anchored" data-anchor-id="시간대별-관측치-수">시간대별 관측치 수</h3>
-<div class="cell" data-execution_count="179">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>df_raw[<span class="st">'hour'</span>].value_counts().sort_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="179">
+<div class="cell" data-execution_count="279">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>df_raw[<span class="st">'hour'</span>].value_counts().sort_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="279">
 <pre><code>0       114
 1       114
 2       114
@@ -621,17 +683,17 @@ memory usage: 23.8+ MB</code></pre>
 5       186
 6     12896
 7     23300
-8     33812
-9     33827
-10    33828
-11    33811
-12    33816
-13    33821
-14    33821
-15    33820
-16    33831
-17    33807
-18    33785
+8     33764
+9     33779
+10    33780
+11    33763
+12    33768
+13    33773
+14    33773
+15    33772
+16    33783
+17    33759
+18    33737
 19    22851
 20    13032
 21      206
@@ -644,9 +706,9 @@ Name: hour, dtype: int64</code></pre>
 </section>
 <section id="지점별-관측치-수-2021-01-01-2023-01-01" class="level3">
 <h3 class="anchored" data-anchor-id="지점별-관측치-수-2021-01-01-2023-01-01">지점별 관측치 수 (2021-01-01 ~ 2023-01-01)</h3>
-<div class="cell" data-execution_count="127">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>pd.DataFrame(df_raw[<span class="st">'지점명'</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="127">
+<div class="cell" data-execution_count="280">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>pd.DataFrame(df_raw[<span class="st">'지점명'</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="280">
 
 <div>
 
@@ -660,195 +722,195 @@ Name: hour, dtype: int64</code></pre>
   <tbody>
     <tr>
       <th>백령도</th>
-      <td>9684</td>
+      <td>9673</td>
     </tr>
     <tr>
       <th>울릉도</th>
-      <td>9619</td>
+      <td>9608</td>
     </tr>
     <tr>
       <th>창원</th>
-      <td>9606</td>
+      <td>9595</td>
     </tr>
     <tr>
       <th>의령군</th>
-      <td>9605</td>
-    </tr>
-    <tr>
-      <th>북강릉</th>
-      <td>9603</td>
-    </tr>
-    <tr>
-      <th>강진군</th>
-      <td>9602</td>
-    </tr>
-    <tr>
-      <th>제주</th>
-      <td>9602</td>
-    </tr>
-    <tr>
-      <th>대구</th>
-      <td>9602</td>
-    </tr>
-    <tr>
-      <th>목포</th>
-      <td>9598</td>
-    </tr>
-    <tr>
-      <th>북창원</th>
-      <td>9597</td>
-    </tr>
-    <tr>
-      <th>포항</th>
-      <td>9596</td>
-    </tr>
-    <tr>
-      <th>홍성</th>
-      <td>9596</td>
-    </tr>
-    <tr>
-      <th>여수</th>
-      <td>9596</td>
-    </tr>
-    <tr>
-      <th>철원</th>
-      <td>9595</td>
-    </tr>
-    <tr>
-      <th>북춘천</th>
-      <td>9595</td>
-    </tr>
-    <tr>
-      <th>함양군</th>
       <td>9594</td>
     </tr>
     <tr>
-      <th>서울</th>
-      <td>9593</td>
-    </tr>
-    <tr>
-      <th>춘천</th>
+      <th>북강릉</th>
       <td>9592</td>
     </tr>
     <tr>
-      <th>청송군</th>
-      <td>9592</td>
-    </tr>
-    <tr>
-      <th>고산</th>
-      <td>9592</td>
-    </tr>
-    <tr>
-      <th>보성군</th>
+      <th>강진군</th>
       <td>9591</td>
     </tr>
     <tr>
-      <th>경주시</th>
-      <td>9590</td>
+      <th>제주</th>
+      <td>9591</td>
     </tr>
     <tr>
-      <th>원주</th>
-      <td>9590</td>
+      <th>대구</th>
+      <td>9591</td>
     </tr>
     <tr>
-      <th>대관령</th>
-      <td>9589</td>
-    </tr>
-    <tr>
-      <th>광양시</th>
+      <th>목포</th>
       <td>9587</td>
     </tr>
     <tr>
-      <th>안동</th>
+      <th>북창원</th>
+      <td>9586</td>
+    </tr>
+    <tr>
+      <th>포항</th>
       <td>9585</td>
     </tr>
     <tr>
-      <th>김해시</th>
+      <th>홍성</th>
       <td>9585</td>
     </tr>
     <tr>
-      <th>인천</th>
+      <th>여수</th>
+      <td>9585</td>
+    </tr>
+    <tr>
+      <th>철원</th>
       <td>9584</td>
     </tr>
     <tr>
-      <th>서산</th>
+      <th>북춘천</th>
+      <td>9584</td>
+    </tr>
+    <tr>
+      <th>함양군</th>
       <td>9583</td>
     </tr>
     <tr>
-      <th>고창군</th>
+      <th>서울</th>
       <td>9582</td>
     </tr>
     <tr>
-      <th>수원</th>
+      <th>춘천</th>
       <td>9581</td>
     </tr>
     <tr>
-      <th>전주</th>
-      <td>9577</td>
+      <th>청송군</th>
+      <td>9581</td>
     </tr>
     <tr>
-      <th>순창군</th>
-      <td>9577</td>
+      <th>고산</th>
+      <td>9581</td>
     </tr>
     <tr>
-      <th>청주</th>
+      <th>보성군</th>
+      <td>9580</td>
+    </tr>
+    <tr>
+      <th>경주시</th>
+      <td>9579</td>
+    </tr>
+    <tr>
+      <th>원주</th>
+      <td>9579</td>
+    </tr>
+    <tr>
+      <th>대관령</th>
+      <td>9578</td>
+    </tr>
+    <tr>
+      <th>광양시</th>
       <td>9576</td>
     </tr>
     <tr>
-      <th>진주</th>
+      <th>안동</th>
       <td>9574</td>
     </tr>
     <tr>
-      <th>추풍령</th>
-      <td>9568</td>
+      <th>김해시</th>
+      <td>9574</td>
     </tr>
     <tr>
-      <th>영광군</th>
+      <th>인천</th>
+      <td>9573</td>
+    </tr>
+    <tr>
+      <th>서산</th>
+      <td>9572</td>
+    </tr>
+    <tr>
+      <th>고창군</th>
+      <td>9571</td>
+    </tr>
+    <tr>
+      <th>수원</th>
+      <td>9570</td>
+    </tr>
+    <tr>
+      <th>전주</th>
+      <td>9566</td>
+    </tr>
+    <tr>
+      <th>순창군</th>
+      <td>9566</td>
+    </tr>
+    <tr>
+      <th>청주</th>
       <td>9565</td>
     </tr>
     <tr>
+      <th>진주</th>
+      <td>9563</td>
+    </tr>
+    <tr>
+      <th>추풍령</th>
+      <td>9557</td>
+    </tr>
+    <tr>
+      <th>영광군</th>
+      <td>9554</td>
+    </tr>
+    <tr>
       <th>부산</th>
-      <td>9564</td>
+      <td>9553</td>
     </tr>
     <tr>
       <th>양산시</th>
-      <td>9558</td>
+      <td>9547</td>
     </tr>
     <tr>
       <th>고창</th>
-      <td>9542</td>
+      <td>9531</td>
     </tr>
     <tr>
       <th>강릉</th>
-      <td>9489</td>
+      <td>9478</td>
     </tr>
     <tr>
       <th>광주</th>
-      <td>9480</td>
+      <td>9469</td>
     </tr>
     <tr>
       <th>흑산도</th>
-      <td>9439</td>
+      <td>9428</td>
     </tr>
     <tr>
       <th>대전</th>
-      <td>9429</td>
+      <td>9418</td>
     </tr>
     <tr>
       <th>파주</th>
-      <td>6183</td>
+      <td>6172</td>
     </tr>
     <tr>
       <th>상주</th>
-      <td>6180</td>
+      <td>6169</td>
     </tr>
     <tr>
       <th>동두천</th>
-      <td>6175</td>
+      <td>6164</td>
     </tr>
     <tr>
       <th>충주</th>
-      <td>5265</td>
+      <td>5254</td>
     </tr>
     <tr>
       <th>제천</th>
@@ -859,9 +921,9 @@ Name: hour, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="149">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="dv">365</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">11</span> <span class="co"># 11시간관측을 기준으로 했을 때 지점당 관측치 개수..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="149">
+<div class="cell" data-execution_count="281">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="dv">365</span><span class="op">*</span><span class="dv">2</span><span class="op">*</span><span class="dv">11</span> <span class="co"># 11시간관측을 기준으로 했을 때 지점당 관측치 개수..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="281">
 <pre><code>8030</code></pre>
 </div>
 </div>
@@ -869,9 +931,9 @@ Name: hour, dtype: int64</code></pre>
 </section>
 <section id="파주-상주-동두천" class="level3">
 <h3 class="anchored" data-anchor-id="파주-상주-동두천">파주, 상주, 동두천</h3>
-<div class="cell" data-execution_count="130">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>df_raw.head() <span class="co">## 북춘천</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="130">
+<div class="cell" data-execution_count="282">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>df_raw.head() <span class="co">## 북춘천</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="282">
 
 <div>
 
@@ -938,9 +1000,9 @@ Name: hour, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="139">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>df_raw[df_raw[<span class="st">'지점명'</span>]<span class="op">==</span><span class="st">'파주'</span>].iloc[[<span class="dv">0</span>]] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="139">
+<div class="cell" data-execution_count="283">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>df_raw[df_raw[<span class="st">'지점명'</span>]<span class="op">==</span><span class="st">'파주'</span>].iloc[[<span class="dv">0</span>]] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="283">
 
 <div>
 
@@ -971,9 +1033,9 @@ Name: hour, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="140">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>df_raw[df_raw[<span class="st">'지점명'</span>]<span class="op">==</span><span class="st">'상주'</span>].iloc[[<span class="dv">0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="140">
+<div class="cell" data-execution_count="284">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>df_raw[df_raw[<span class="st">'지점명'</span>]<span class="op">==</span><span class="st">'상주'</span>].iloc[[<span class="dv">0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="284">
 
 <div>
 
@@ -1004,9 +1066,9 @@ Name: hour, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="141">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>df_raw[df_raw[<span class="st">'지점명'</span>]<span class="op">==</span><span class="st">'동두천'</span>].iloc[[<span class="dv">0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="141">
+<div class="cell" data-execution_count="285">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>df_raw[df_raw[<span class="st">'지점명'</span>]<span class="op">==</span><span class="st">'동두천'</span>].iloc[[<span class="dv">0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="285">
 
 <div>
 
@@ -1040,9 +1102,9 @@ Name: hour, dtype: int64</code></pre>
 </section>
 <section id="충주" class="level3">
 <h3 class="anchored" data-anchor-id="충주">충주</h3>
-<div class="cell" data-execution_count="142">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>df_raw[df_raw[<span class="st">'지점명'</span>]<span class="op">==</span><span class="st">'충주'</span>].iloc[[<span class="dv">0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="142">
+<div class="cell" data-execution_count="286">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>df_raw[df_raw[<span class="st">'지점명'</span>]<span class="op">==</span><span class="st">'충주'</span>].iloc[[<span class="dv">0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="286">
 
 <div>
 
@@ -1076,9 +1138,9 @@ Name: hour, dtype: int64</code></pre>
 </section>
 <section id="제천" class="level3">
 <h3 class="anchored" data-anchor-id="제천">제천</h3>
-<div class="cell" data-execution_count="134">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>df_raw[df_raw[<span class="st">'지점명'</span>]<span class="op">==</span><span class="st">'제천'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="134">
+<div class="cell" data-execution_count="287">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>df_raw[df_raw[<span class="st">'지점명'</span>]<span class="op">==</span><span class="st">'제천'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="287">
 
 <div>
 
@@ -1096,7 +1158,7 @@ Name: hour, dtype: int64</code></pre>
   </thead>
   <tbody>
     <tr>
-      <th>167811</th>
+      <th>167426</th>
       <td>221</td>
       <td>제천</td>
       <td>2022-10-27 07:00:00</td>
@@ -1126,15 +1188,15 @@ Name: hour, dtype: int64</code></pre>
 <h2 class="anchored" data-anchor-id="데이터-처리-및-csv파일로-내보내기">데이터 처리 및 csv파일로 내보내기</h2>
 <section id="제천-파주-상주-동두천-제거" class="level3">
 <h3 class="anchored" data-anchor-id="제천-파주-상주-동두천-제거">제천, 파주, 상주, 동두천 제거</h3>
-<div class="cell" data-execution_count="161">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>df_prep1 <span class="op">=</span> df_raw[<span class="op">~</span>df_raw[<span class="st">'지점명'</span>].<span class="bu">str</span>.contains(<span class="st">'제천|파주|상주|동두천|충주'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="288">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>df_prep1 <span class="op">=</span> df_raw[<span class="op">~</span>df_raw[<span class="st">'지점명'</span>].<span class="bu">str</span>.contains(<span class="st">'제천|파주|상주|동두천|충주'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="관측시간-08시-18시" class="level3">
 <h3 class="anchored" data-anchor-id="관측시간-08시-18시">관측시간 08시 ~ 18시</h3>
-<div class="cell" data-execution_count="174">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>df_prep1[(df_prep1[<span class="st">'hour'</span>]<span class="op">&gt;=</span><span class="dv">8</span>) <span class="op">&amp;</span> (df_prep1[<span class="st">'hour'</span>] <span class="op">&lt;=</span> <span class="dv">18</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="174">
+<div class="cell" data-execution_count="289">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>df_prep1[(df_prep1[<span class="st">'hour'</span>]<span class="op">&gt;=</span><span class="dv">8</span>) <span class="op">&amp;</span> (df_prep1[<span class="st">'hour'</span>] <span class="op">&lt;=</span> <span class="dv">18</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="289">
 
 <div>
 
@@ -1206,77 +1268,77 @@ Name: hour, dtype: int64</code></pre>
       <td>...</td>
     </tr>
     <tr>
-      <th>230200</th>
+      <th>229672</th>
       <td>283</td>
       <td>경주시</td>
-      <td>2023-01-01 14:00:00</td>
-      <td>1.62</td>
-      <td>2023-01-01</td>
+      <td>2022-12-31 14:00:00</td>
+      <td>1.82</td>
+      <td>2022-12-31</td>
       <td>14</td>
     </tr>
     <tr>
-      <th>230201</th>
+      <th>229673</th>
       <td>283</td>
       <td>경주시</td>
-      <td>2023-01-01 15:00:00</td>
-      <td>1.30</td>
-      <td>2023-01-01</td>
+      <td>2022-12-31 15:00:00</td>
+      <td>1.52</td>
+      <td>2022-12-31</td>
       <td>15</td>
     </tr>
     <tr>
-      <th>230202</th>
+      <th>229674</th>
       <td>283</td>
       <td>경주시</td>
-      <td>2023-01-01 16:00:00</td>
-      <td>0.82</td>
-      <td>2023-01-01</td>
+      <td>2022-12-31 16:00:00</td>
+      <td>0.96</td>
+      <td>2022-12-31</td>
       <td>16</td>
     </tr>
     <tr>
-      <th>230203</th>
+      <th>229675</th>
       <td>283</td>
       <td>경주시</td>
-      <td>2023-01-01 17:00:00</td>
-      <td>0.29</td>
-      <td>2023-01-01</td>
+      <td>2022-12-31 17:00:00</td>
+      <td>0.35</td>
+      <td>2022-12-31</td>
       <td>17</td>
     </tr>
     <tr>
-      <th>230204</th>
+      <th>229676</th>
       <td>283</td>
       <td>경주시</td>
-      <td>2023-01-01 18:00:00</td>
+      <td>2022-12-31 18:00:00</td>
       <td>0.01</td>
-      <td>2023-01-01</td>
+      <td>2022-12-31</td>
       <td>18</td>
     </tr>
   </tbody>
 </table>
-<p>352763 rows × 6 columns</p>
+<p>352279 rows × 6 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="178">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>df_prep1[(df_prep1[<span class="st">'hour'</span>]<span class="op">&gt;=</span><span class="dv">8</span>) <span class="op">&amp;</span> (df_prep1[<span class="st">'hour'</span>] <span class="op">&lt;=</span> <span class="dv">18</span>)][<span class="st">'hour'</span>].value_counts().sort_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="178">
-<pre><code>8     32069
-9     32082
-10    32080
-11    32064
-12    32069
-13    32072
-14    32073
-15    32072
-16    32083
-17    32061
-18    32038
+<div class="cell" data-execution_count="290">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>df_prep1[(df_prep1[<span class="st">'hour'</span>]<span class="op">&gt;=</span><span class="dv">8</span>) <span class="op">&amp;</span> (df_prep1[<span class="st">'hour'</span>] <span class="op">&lt;=</span> <span class="dv">18</span>)][<span class="st">'hour'</span>].value_counts().sort_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="290">
+<pre><code>8     32025
+9     32038
+10    32036
+11    32020
+12    32025
+13    32028
+14    32029
+15    32028
+16    32039
+17    32017
+18    31994
 Name: hour, dtype: int64</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="182">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>df_prep2 <span class="op">=</span> df_prep1[(df_prep1[<span class="st">'hour'</span>]<span class="op">&gt;=</span><span class="dv">8</span>) <span class="op">&amp;</span> (df_prep1[<span class="st">'hour'</span>] <span class="op">&lt;=</span> <span class="dv">18</span>)]</span>
-<span id="cb36-2"><a href="#cb36-2"></a>df_prep2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="182">
+<div class="cell" data-execution_count="291">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>df_prep2 <span class="op">=</span> df_prep1[(df_prep1[<span class="st">'hour'</span>]<span class="op">&gt;=</span><span class="dv">8</span>) <span class="op">&amp;</span> (df_prep1[<span class="st">'hour'</span>] <span class="op">&lt;=</span> <span class="dv">18</span>)]</span>
+<span id="cb38-2"><a href="#cb38-2"></a>df_prep2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="291">
 
 <div>
 
@@ -1343,68 +1405,244 @@ Name: hour, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="185">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>df_prep2[<span class="st">'지점명'</span>].nunique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="185">
+<div class="cell" data-execution_count="292">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>df_prep2[<span class="st">'지점명'</span>].nunique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="292">
 <pre><code>44</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="187">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>df_prep2[<span class="st">'지점명'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="187">
-<pre><code>북춘천    8041
-북강릉    8041
-철원     8041
-강진군    8041
-백령도    8040
-의령군    8040
-홍성     8040
-목포     8039
-창원     8039
-춘천     8038
-제주     8037
-원주     8037
-대구     8037
-서울     8036
-북창원    8034
-여수     8034
-함양군    8034
-대관령    8033
-포항     8032
-보성군    8032
-인천     8030
-청송군    8030
-서산     8030
-김해시    8029
-고산     8029
-경주시    8029
-수원     8025
-광양시    8023
-안동     8023
-순창군    8023
-고창군    8022
-청주     8020
-추풍령    8018
-전주     8017
-영광군    8012
-진주     8010
-부산     8000
-양산시    7998
-고창     7992
-울릉도    7985
-광주     7936
-강릉     7931
-흑산도    7907
-대전     7898
+<div class="cell" data-execution_count="293">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>df_prep2[<span class="st">'지점명'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="293">
+<pre><code>북춘천    8030
+북강릉    8030
+철원     8030
+강진군    8030
+백령도    8029
+의령군    8029
+홍성     8029
+목포     8028
+창원     8028
+춘천     8027
+제주     8026
+원주     8026
+대구     8026
+서울     8025
+북창원    8023
+여수     8023
+함양군    8023
+대관령    8022
+포항     8021
+보성군    8021
+인천     8019
+청송군    8019
+서산     8019
+김해시    8018
+고산     8018
+경주시    8018
+수원     8014
+광양시    8012
+안동     8012
+순창군    8012
+고창군    8011
+청주     8009
+추풍령    8007
+전주     8006
+영광군    8001
+진주     7999
+부산     7989
+양산시    7987
+고창     7981
+울릉도    7974
+광주     7925
+강릉     7920
+흑산도    7896
+대전     7887
 Name: 지점명, dtype: int64</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="186">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>df_prep2.to_csv(<span class="st">'./prep_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="294">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>df_prep2.to_csv(<span class="st">'./data/prep_data.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="테스트용-데이터-전처리" class="level2">
+<h2 class="anchored" data-anchor-id="테스트용-데이터-전처리">테스트용 데이터 전처리</h2>
+<div class="cell" data-execution_count="300">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># df2 = pd.read_csv('./data/test_raw.csv', encoding='cp949')</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>gc.collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="300">
+<pre><code>1258</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="301">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a><span class="co"># dtype 변환 및 hour변수 생성.</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a>df2[<span class="st">'일시'</span>] <span class="op">=</span> pd.to_datetime(df2[<span class="st">'일시'</span>])</span>
+<span id="cb46-3"><a href="#cb46-3"></a>df2[<span class="st">'Datetime'</span>] <span class="op">=</span> df2[<span class="st">'일시'</span>].dt.date</span>
+<span id="cb46-4"><a href="#cb46-4"></a>df2[<span class="st">'hour'</span>] <span class="op">=</span> df2[<span class="st">'일시'</span>].dt.hour</span>
+<span id="cb46-5"><a href="#cb46-5"></a>df2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="301">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>지점</th>
+      <th>지점명</th>
+      <th>일시</th>
+      <th>일사(MJ/m2)</th>
+      <th>Datetime</th>
+      <th>hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>93</td>
+      <td>북춘천</td>
+      <td>2023-01-01 08:00:00</td>
+      <td>0.00</td>
+      <td>2023-01-01</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>93</td>
+      <td>북춘천</td>
+      <td>2023-01-01 09:00:00</td>
+      <td>0.32</td>
+      <td>2023-01-01</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>93</td>
+      <td>북춘천</td>
+      <td>2023-01-01 10:00:00</td>
+      <td>0.90</td>
+      <td>2023-01-01</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>93</td>
+      <td>북춘천</td>
+      <td>2023-01-01 11:00:00</td>
+      <td>1.73</td>
+      <td>2023-01-01</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>93</td>
+      <td>북춘천</td>
+      <td>2023-01-01 12:00:00</td>
+      <td>1.86</td>
+      <td>2023-01-01</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="303">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>df2 <span class="op">=</span> df2[<span class="op">~</span>df2[<span class="st">'지점명'</span>].<span class="bu">str</span>.contains(<span class="st">'제천|파주|상주|동두천|충주'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="304">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>df2 <span class="op">=</span> df2[(df2[<span class="st">'hour'</span>]<span class="op">&gt;=</span><span class="dv">8</span>) <span class="op">&amp;</span> (df2[<span class="st">'hour'</span>] <span class="op">&lt;=</span> <span class="dv">18</span>)]</span>
+<span id="cb48-2"><a href="#cb48-2"></a>df2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="304">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>지점</th>
+      <th>지점명</th>
+      <th>일시</th>
+      <th>일사(MJ/m2)</th>
+      <th>Datetime</th>
+      <th>hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>93</td>
+      <td>북춘천</td>
+      <td>2023-01-01 08:00:00</td>
+      <td>0.00</td>
+      <td>2023-01-01</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>93</td>
+      <td>북춘천</td>
+      <td>2023-01-01 09:00:00</td>
+      <td>0.32</td>
+      <td>2023-01-01</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>93</td>
+      <td>북춘천</td>
+      <td>2023-01-01 10:00:00</td>
+      <td>0.90</td>
+      <td>2023-01-01</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>93</td>
+      <td>북춘천</td>
+      <td>2023-01-01 11:00:00</td>
+      <td>1.73</td>
+      <td>2023-01-01</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>93</td>
+      <td>북춘천</td>
+      <td>2023-01-01 12:00:00</td>
+      <td>1.86</td>
+      <td>2023-01-01</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="307">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>df2[<span class="st">'hour'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="307">
+<pre><code>9     660
+10    660
+11    660
+13    660
+14    660
+15    660
+12    659
+16    659
+17    659
+18    659
+8     653
+Name: hour, dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="309">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a><span class="co"># df2.to_csv('./data/prep_test.csv',index=False)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-</section>
 </section>
 </section>
 
