@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/2023-03-21-scorecard.html",
+    "href": "posts/2023-03-21-scorecard.html",
+    "title": "Scorecard",
+    "section": "",
+    "text": "import pandas as pd\n\n\ncol = ['Model', 'scaling', 'Oversampling', 'Undersampling','hyper tunning', 'train(macro F1)','test(macro F1)', 'sub score']\n\n\ndf_row = pd.DataFrame(columns = col)\ndf_row['Model'] = ['DT','et']\n# df_row['missing'] = ['X'] # 해당 데이터는 결측치 없음.\ndf_row['scaling'] = ['X', 'O']\ndf_row['Oversampling'] = ['X', 'SMOTE']\ndf_row['Undersampling'] = ['X', 'X']\ndf_row['hyper tunning'] = ['X', 'O']\ndf_row['train(macro F1)'] = [1.0, 1.0]\ndf_row['test(macro F1)'] = [0.69, 0.76]\ndf_row['sub score'] = [0.73807, 0.76054]\n\n\ndf_row\n\n\n\n\n\n  \n    \n      \n      Model\n      scaling\n      Oversampling\n      Undersampling\n      hyper tunning\n      train(macro F1)\n      test(macro F1)\n      sub score\n    \n  \n  \n    \n      0\n      DT\n      X\n      X\n      X\n      X\n      1.0\n      0.69\n      0.73807\n    \n    \n      1\n      et\n      O\n      SMOTE\n      X\n      O\n      1.0\n      0.76\n      0.76054"
+  },
+  {
+    "objectID": "posts/2023-03-23-read-list.html",
+    "href": "posts/2023-03-23-read-list.html",
+    "title": "Lists to read",
+    "section": "",
+    "text": "0. For Research\n\n시간별 기상 변화를 고려한 LSTM 기반 일사량 예측에 관한 연구\n\n\n\n1. GNN\n\nGraph Representation Learning Book\nscGCN is a graph convolutional networks algorithm for knowledge transfer in single cell omics\nhttps://wandb.ai/yashkotadia/gatedgcn-pattern/reportlist\nCt Image Denoising With Encoder-Decoder Based Graph Convolutional Networks\n\nhttps://paperswithcode.com/sota/point-cloud-segmentation-on-pointcloud-c\n\n\n2. RNN\n\nLearning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation\nLight Gated Recurrent Units for Speech Recognition"
+  },
+  {
+    "objectID": "posts/2023-03-21-resumetable.html",
+    "href": "posts/2023-03-21-resumetable.html",
+    "title": "resumetable",
+    "section": "",
+    "text": "def resumetable(df):\n    print(f'데이터셋 형상: {df.shape}')\n    summary = pd.DataFrame(df.dtypes, columns = ['데이터 타입'])\n    summary = summary.reset_index()\n    summary = summary.rename(columns = {'index':'피처'})\n    summary['결측값 개수'] = df.isnull().sum().values\n    summary['고윳값 개수'] = df.nunique().values\n    summary['첫 번째 값'] = df.loc[0].values\n    summary['두 번째 값'] = df.loc[1].values\n    summary['세 번째 값'] = df.loc[2].values\n            \n    return summary\nsummary = resumetable(train) \nsummary"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/2023-03-29-data0.html",
+    "href": "posts/2023-03-29-data0.html",
+    "title": "Dataset",
+    "section": "",
+    "text": "Data\n\nOBS_ASOS_TIM_data0 : 2021-01-01 ~ 2021-12-31\n\n\nOBS_ASOS_TIM_data1 : 2022-01-01 ~ 2023-01-01\n\n\n2021-01-01부터 2023-01-01 약 2년간의 데이터셋\n오전 8시부터 오후6시까지 1시간 간격으로 측정한 데이터셋\n\n\nimport pandas as pd\nimport numpy as np\nimport gc\n\n\ndf0 = pd.read_csv('./OBS_ASOS_TIM_data0.csv', encoding='cp949') # 2021-01-01 ~ 2021-12-31\ndf1 = pd.read_csv('./OBS_ASOS_TIM_data1.csv', encoding='cp949') # 2022-01-01 ~ 2023-01-01\n\n\ngc.collect()\n\n330\n\n\n\ndf1.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 230205 entries, 0 to 230204\nData columns (total 4 columns):\n #   Column     Non-Null Count   Dtype  \n---  ------     --------------   -----  \n 0   지점         230205 non-null  int64  \n 1   지점명        230205 non-null  object \n 2   일시         230205 non-null  object \n 3   일사(MJ/m2)  230205 non-null  float64\ndtypes: float64(1), int64(1), object(2)\nmemory usage: 7.0+ MB\n\n\n\ndf0.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 215043 entries, 0 to 215042\nData columns (total 4 columns):\n #   Column     Non-Null Count   Dtype  \n---  ------     --------------   -----  \n 0   지점         215043 non-null  int64  \n 1   지점명        215043 non-null  object \n 2   일시         215043 non-null  object \n 3   일사(MJ/m2)  215043 non-null  float64\ndtypes: float64(1), int64(1), object(2)\nmemory usage: 6.6+ MB\n\n\n\ndf1.shape\n\n(230205, 4)\n\n\n\ndf0.head()\n\n\n\n\n\n  \n    \n      \n      지점\n      지점명\n      일시\n      일사(MJ/m2)\n    \n  \n  \n    \n      0\n      93\n      북춘천\n      2021-01-01 08:00\n      0.00\n    \n    \n      1\n      93\n      북춘천\n      2021-01-01 09:00\n      0.37\n    \n    \n      2\n      93\n      북춘천\n      2021-01-01 10:00\n      0.96\n    \n    \n      3\n      93\n      북춘천\n      2021-01-01 11:00\n      1.40\n    \n    \n      4\n      93\n      북춘천\n      2021-01-01 12:00\n      1.72\n    \n  \n\n\n\n\n\nlen(df0['지점'].unique()), len(df1['지점'].unique())\n\n(48, 49)\n\n\n\ndf0['지점명'].unique(),  df1['지점명'].unique()\n\n(array(['북춘천', '철원', '동두천', '파주', '대관령', '춘천', '백령도', '북강릉', '강릉', '서울',\n        '인천', '원주', '울릉도', '수원', '충주', '서산', '청주', '대전', '추풍령', '안동', '상주',\n        '포항', '대구', '전주', '창원', '광주', '부산', '목포', '여수', '흑산도', '고창', '홍성',\n        '제주', '고산', '진주', '고창군', '영광군', '김해시', '순창군', '북창원', '양산시', '보성군',\n        '강진군', '의령군', '함양군', '광양시', '청송군', '경주시'], dtype=object),\n array(['북춘천', '철원', '동두천', '파주', '대관령', '춘천', '백령도', '북강릉', '강릉', '서울',\n        '인천', '원주', '울릉도', '수원', '충주', '서산', '청주', '대전', '추풍령', '안동', '상주',\n        '포항', '대구', '전주', '창원', '광주', '부산', '목포', '여수', '흑산도', '고창', '홍성',\n        '제주', '고산', '진주', '제천', '고창군', '영광군', '김해시', '순창군', '북창원', '양산시',\n        '보성군', '강진군', '의령군', '함양군', '광양시', '청송군', '경주시'], dtype=object))\n\n\n\ndf1.head()\n\n\n\n\n\n  \n    \n      \n      지점\n      지점명\n      일시\n      일사(MJ/m2)\n    \n  \n  \n    \n      0\n      93\n      북춘천\n      2022-01-01 08:00\n      0.00\n    \n    \n      1\n      93\n      북춘천\n      2022-01-01 09:00\n      0.38\n    \n    \n      2\n      93\n      북춘천\n      2022-01-01 10:00\n      1.02\n    \n    \n      3\n      93\n      북춘천\n      2022-01-01 11:00\n      1.43\n    \n    \n      4\n      93\n      북춘천\n      2022-01-01 12:00\n      1.73\n    \n  \n\n\n\n\n\ndf1.tail()\n\n\n\n\n\n  \n    \n      \n      지점\n      지점명\n      일시\n      일사(MJ/m2)\n    \n  \n  \n    \n      230200\n      283\n      경주시\n      2023-01-01 14:00\n      1.62\n    \n    \n      230201\n      283\n      경주시\n      2023-01-01 15:00\n      1.30\n    \n    \n      230202\n      283\n      경주시\n      2023-01-01 16:00\n      0.82\n    \n    \n      230203\n      283\n      경주시\n      2023-01-01 17:00\n      0.29\n    \n    \n      230204\n      283\n      경주시\n      2023-01-01 18:00\n      0.01\n    \n  \n\n\n\n\n\ndf1['일시'] = pd.to_datetime(df1['일시'])\ndf1['Datetime'] = df1['일시'].dt.date\ndf1['hour'] = df1['일시'].dt.hour\ndf1.head()\n\n\n\n\n\n  \n    \n      \n      지점\n      지점명\n      일시\n      일사(MJ/m2)\n      Datetime\n      hour\n    \n  \n  \n    \n      0\n      93\n      북춘천\n      2022-01-01 08:00:00\n      0.00\n      2022-01-01\n      8\n    \n    \n      1\n      93\n      북춘천\n      2022-01-01 09:00:00\n      0.38\n      2022-01-01\n      9\n    \n    \n      2\n      93\n      북춘천\n      2022-01-01 10:00:00\n      1.02\n      2022-01-01\n      10\n    \n    \n      3\n      93\n      북춘천\n      2022-01-01 11:00:00\n      1.43\n      2022-01-01\n      11\n    \n    \n      4\n      93\n      북춘천\n      2022-01-01 12:00:00\n      1.73\n      2022-01-01\n      12\n    \n  \n\n\n\n\n\ndf1['hour'].value_counts().sort_index()\n\n5        36\n6      6667\n7     12101\n8     17523\n9     17527\n10    17527\n11    17516\n12    17523\n13    17526\n14    17525\n15    17525\n16    17531\n17    17503\n18    17511\n19    11863\n20     6755\n21       46\nName: hour, dtype: int64\n\n\n\nlen(df0['지점'].unique()), len(df1['지점명'].unique())\n\n(48, 49)\n\n\n\npd.DataFrame(df1['지점명'].value_counts())\n\n\n\n\n\n  \n    \n      \n      지점명\n    \n  \n  \n    \n      백령도\n      4848\n    \n    \n      울릉도\n      4821\n    \n    \n      의령군\n      4808\n    \n    \n      강진군\n      4808\n    \n    \n      창원\n      4807\n    \n    \n      북강릉\n      4807\n    \n    \n      함양군\n      4807\n    \n    \n      경주시\n      4807\n    \n    \n      광양시\n      4806\n    \n    \n      제주\n      4806\n    \n    \n      대전\n      4806\n    \n    \n      순창군\n      4805\n    \n    \n      서산\n      4805\n    \n    \n      북춘천\n      4804\n    \n    \n      춘천\n      4804\n    \n    \n      추풍령\n      4804\n    \n    \n      목포\n      4804\n    \n    \n      전주\n      4804\n    \n    \n      철원\n      4803\n    \n    \n      청송군\n      4803\n    \n    \n      대구\n      4803\n    \n    \n      보성군\n      4802\n    \n    \n      홍성\n      4802\n    \n    \n      서울\n      4802\n    \n    \n      여수\n      4802\n    \n    \n      포항\n      4802\n    \n    \n      북창원\n      4801\n    \n    \n      충주\n      4800\n    \n    \n      고산\n      4800\n    \n    \n      파주\n      4798\n    \n    \n      원주\n      4798\n    \n    \n      수원\n      4797\n    \n    \n      동두천\n      4797\n    \n    \n      영광군\n      4796\n    \n    \n      대관령\n      4796\n    \n    \n      상주\n      4795\n    \n    \n      김해시\n      4792\n    \n    \n      고창\n      4792\n    \n    \n      고창군\n      4791\n    \n    \n      인천\n      4789\n    \n    \n      안동\n      4788\n    \n    \n      청주\n      4786\n    \n    \n      부산\n      4783\n    \n    \n      진주\n      4776\n    \n    \n      광주\n      4767\n    \n    \n      양산시\n      4767\n    \n    \n      흑산도\n      4715\n    \n    \n      강릉\n      4700\n    \n    \n      제천\n      1\n    \n  \n\n\n\n\n\n지점과 지명 동일 (49개의 지역)"
+  },
+  {
+    "objectID": "posts/2023-03-21-downcasting.html",
+    "href": "posts/2023-03-21-downcasting.html",
+    "title": "downcasting",
+    "section": "",
+    "text": "def downcast(df, verbose=True):\n    start_mem = df.memory_usage().sum() / 1024**2\n    for col in df.columns:\n        dtype_name = df[col].dtype.name\n        if dtype_name == 'object':\n            pass\n        elif dtype_name == 'bool':\n            df[col] = df[col].astype('int8')\n        elif dtype_name.startswith('int') or (df[col].round() == df[col]).all():\n            df[col] = pd.to_numeric(df[col], downcast='integer')\n        else:\n            df[col] = pd.to_numeric(df[col], downcast='float')\n    end_mem = df.memory_usage().sum() / 1024**2\n    if verbose:\n        print('{:.1f}% 압축됨'.format(100 * (start_mem - end_mem) / start_mem))\n    \n    return df\nall_df = [sales_train, shops, items, item_categories, test]\nfor df in all_df:\n    df = downcast(df)\n\nint8 (Byte) : -128~127\nint16 (integer) : -32768~32768\nint32 (integer) : -2147483648~2147483647\nint64 (integer) : very very big\nuint8 (unsigned integer) : 0~255\nuint16 (unsigned integer) : 0~65535\nuint32 (unsigned integer) : 0~4294967295\nuint64 (unsigned integer) :0~very very big\nfloat (shortand for float64)\nfloat16 (Half precision float)\nfloat32 (Single precision float)\nfloat64"
+  },
+  {
+    "objectID": "posts/2023-03-21-dv.html",
+    "href": "posts/2023-03-21-dv.html",
+    "title": "data visualization",
+    "section": "",
+    "text": "import numpy as np\nimport missingno as msno\nmsno.matrix(df, figsize=(13,6)) ## 결측값을 매트릭스 형태로 시각화\n# msno.bar(df, figsize=(13, 6)) ## bar 형태"
+  },
+  {
+    "objectID": "posts/2023-03-21-dv.html#target-distribution-비율",
+    "href": "posts/2023-03-21-dv.html#target-distribution-비율",
+    "title": "data visualization",
+    "section": "target Distribution (+비율)",
+    "text": "target Distribution (+비율)\nimport seaborn as sns\nimport matplotlib as mpl\nimport matplotlib.pyplot as plt\n\nimport matplotlib.pyplot as plt\nplt.rcParams['font.family'] = 'Malgun Gothic'  ## 한글깨짐 방지\ndef write_percent(ax, total_size):\n    for patch in ax.patches:\n        height = patch.get_height() # 도형 높이 (데이터 개수)\n        width = patch.get_width()\n        left_coord = patch.get_x()\n        percent = height/total_size*100 # target ratio\n        \n        ax.text(left_coord + width/2.0,\n                height + total_size*0.001,\n                '{:1.1f}%'.format(percent),\n                ha = 'center')\n   \nmpl.rc('font', size=15)\nplt.figure(figsize=(7,6))\n\nax = sns.countplot(x='target', data=train)\nwrite_percent(ax, len(train))\nax.set_title('Target Distribution')"
+  },
+  {
+    "objectID": "posts/2023-03-21-dv.html#그룹별-요약통계량-분포-시각화",
+    "href": "posts/2023-03-21-dv.html#그룹별-요약통계량-분포-시각화",
+    "title": "data visualization",
+    "section": "그룹별 요약통계량 분포 시각화",
+    "text": "그룹별 요약통계량 분포 시각화\nfigure, ax = plt.subplots()\nfigure.set_size_inches(11, 5)\n\n# 상품분류별 총 상품 판매량\ngroup_cat_sum = train.groupby('item_category_id').agg({'item_cnt_day':'sum'})\ngroup_cat_sum = group_cat_sum.reset_index()\n\n# 월간 판매량이 10,000개를 초과하는 상품분류만 추출\ngroup_cat_sum2 = group_cat_sum[group_cat_sum['item_cnt_day'] > 10000].sort_values(by='item_cnt_day', ascending=False)\n\n# 상품분류별 총 상품 판매량 막대 그래프\nsns.barplot(x='item_category_id', y='item_cnt_day', data=group_cat_sum2, order=group_cat_sum2['item_category_id'])\nax.set(title='Distribution of total item counts by item category id',\n       xlabel='Data block number',\n       ylabel='Total item counts')\nax.tick_params(axis='x', labelrotation=90) # x축 라벨 회전\n\n\n\n예시 그림"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "noteda",
+    "section": "",
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nMar 29, 2023\n\n\nDataset\n\n\njiyun Lim\n\n\n\n\nMar 21, 2023\n\n\nScorecard\n\n\njiyun Lim\n\n\n\n\nMar 21, 2023\n\n\ndata visualization\n\n\njiyun Lim\n\n\n\n\nMar 21, 2023\n\n\ndowncasting\n\n\njiyun Lim\n\n\n\n\n\nMar 21, 2023\n\n\nresumetable\n\n\njiyun Lim\n\n\n\n\nMar 18, 2023\n\n\nWelcome To My Blog\n\n\nTristan O’Malley\n\n\n\n\nMar 14, 2023\n\n\nLists to read\n\n\njiyun Lim\n\n\n\n\n\n\nNo matching items"
+  }
+]
