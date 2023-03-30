@@ -128,7 +128,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-sidebar docked nav-fixed">
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -145,16 +146,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../about.html">
+    <a class="nav-link active" href="../about.html" aria-current="page">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://github.com/pinkocto/noteda"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -163,12 +159,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">downcasting</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">downcasting</h1>
+      <h1 class="title d-none d-lg-block">downcasting</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Appendix</div>
               </div>
@@ -198,34 +202,97 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2023-03-29-data0.html" class="sidebar-item-text sidebar-link">Data preprocessing</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2023-03-21-dv.html" class="sidebar-item-text sidebar-link">data visualization</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2023-03-21-downcasting.html" class="sidebar-item-text sidebar-link active">downcasting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2023-03-23-read-list.html" class="sidebar-item-text sidebar-link">Lists to read</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2023-03-21-resumetable.html" class="sidebar-item-text sidebar-link">resumetable</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/2023-03-21-scorecard.html" class="sidebar-item-text sidebar-link">Scorecard</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../posts/welcome/index.html" class="sidebar-item-text sidebar-link">Welcome To My Blog</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> downcast(df, verbose<span class="op">=</span><span class="va">True</span>):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    start_mem <span class="op">=</span> df.memory_usage().<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">1024</span><span class="op">**</span><span class="dv">2</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> df.columns:</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        dtype_name <span class="op">=</span> df[col].dtype.name</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> dtype_name <span class="op">==</span> <span class="st">'object'</span>:</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">pass</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> dtype_name <span class="op">==</span> <span class="st">'bool'</span>:</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            df[col] <span class="op">=</span> df[col].astype(<span class="st">'int8'</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> dtype_name.startswith(<span class="st">'int'</span>) <span class="kw">or</span> (df[col].<span class="bu">round</span>() <span class="op">==</span> df[col]).<span class="bu">all</span>():</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            df[col] <span class="op">=</span> pd.to_numeric(df[col], downcast<span class="op">=</span><span class="st">'integer'</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            df[col] <span class="op">=</span> pd.to_numeric(df[col], downcast<span class="op">=</span><span class="st">'float'</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    end_mem <span class="op">=</span> df.memory_usage().<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">1024</span><span class="op">**</span><span class="dv">2</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> verbose:</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'</span><span class="sc">{:.1f}</span><span class="st">% 압축됨'</span>.<span class="bu">format</span>(<span class="dv">100</span> <span class="op">*</span> (start_mem <span class="op">-</span> end_mem) <span class="op">/</span> start_mem))</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>all_df <span class="op">=</span> [sales_train, shops, items, item_categories, test]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> df <span class="kw">in</span> all_df:</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> downcast(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> downcast(df, verbose<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    start_mem <span class="op">=</span> df.memory_usage().<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">1024</span><span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="cf">for</span> col <span class="kw">in</span> df.columns:</span>
+<span id="cb1-4"><a href="#cb1-4"></a>        dtype_name <span class="op">=</span> df[col].dtype.name</span>
+<span id="cb1-5"><a href="#cb1-5"></a>        <span class="cf">if</span> dtype_name <span class="op">==</span> <span class="st">'object'</span>:</span>
+<span id="cb1-6"><a href="#cb1-6"></a>            <span class="cf">pass</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>        <span class="cf">elif</span> dtype_name <span class="op">==</span> <span class="st">'bool'</span>:</span>
+<span id="cb1-8"><a href="#cb1-8"></a>            df[col] <span class="op">=</span> df[col].astype(<span class="st">'int8'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>        <span class="cf">elif</span> dtype_name.startswith(<span class="st">'int'</span>) <span class="kw">or</span> (df[col].<span class="bu">round</span>() <span class="op">==</span> df[col]).<span class="bu">all</span>():</span>
+<span id="cb1-10"><a href="#cb1-10"></a>            df[col] <span class="op">=</span> pd.to_numeric(df[col], downcast<span class="op">=</span><span class="st">'integer'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-12"><a href="#cb1-12"></a>            df[col] <span class="op">=</span> pd.to_numeric(df[col], downcast<span class="op">=</span><span class="st">'float'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    end_mem <span class="op">=</span> df.memory_usage().<span class="bu">sum</span>() <span class="op">/</span> <span class="dv">1024</span><span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="cf">if</span> verbose:</span>
+<span id="cb1-15"><a href="#cb1-15"></a>        <span class="bu">print</span>(<span class="st">'</span><span class="sc">{:.1f}</span><span class="st">% 압축됨'</span>.<span class="bu">format</span>(<span class="dv">100</span> <span class="op">*</span> (start_mem <span class="op">-</span> end_mem) <span class="op">/</span> start_mem))</span>
+<span id="cb1-16"><a href="#cb1-16"></a>    </span>
+<span id="cb1-17"><a href="#cb1-17"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>all_df <span class="op">=</span> [sales_train, shops, items, item_categories, test]</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="cf">for</span> df <span class="kw">in</span> all_df:</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    df <span class="op">=</span> downcast(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>int8 (Byte) : -128~127</li>
 <li>int16 (integer) : -32768~32768</li>
