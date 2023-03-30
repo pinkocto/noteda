@@ -2,42 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/pinkocto/noteda/about.html</loc>
-    <lastmod>2023-03-30T05:31:12.927Z</lastmod>
+    <lastmod>2023-03-30T05:55:20.616Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pinkocto/noteda/posts/2023-03-21-scorecard.html</loc>
-    <lastmod>2023-03-30T05:31:13.091Z</lastmod>
+    <lastmod>2023-03-30T05:55:20.780Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pinkocto/noteda/posts/2023-03-23-read-list.html</loc>
-    <lastmod>2023-03-30T05:31:13.251Z</lastmod>
+    <lastmod>2023-03-30T05:55:20.932Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pinkocto/noteda/posts/2023-03-21-resumetable.html</loc>
-    <lastmod>2023-03-30T05:31:13.399Z</lastmod>
+    <lastmod>2023-03-30T05:55:21.080Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pinkocto/noteda/posts/welcome/index.html</loc>
-    <lastmod>2023-03-30T05:31:13.563Z</lastmod>
+    <lastmod>2023-03-30T05:55:21.224Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pinkocto/noteda/posts/2023-03-29-data0.html</loc>
-    <lastmod>2023-03-30T05:31:13.807Z</lastmod>
+    <lastmod>2023-03-30T05:55:21.484Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pinkocto/noteda/posts/2023-03-21-downcasting.html</loc>
-    <lastmod>2023-03-30T05:31:13.951Z</lastmod>
+    <lastmod>2023-03-30T05:55:21.624Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pinkocto/noteda/posts/2023-03-30-restructure-data.html</loc>
+    <lastmod>2023-03-30T05:55:23.272Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pinkocto/noteda/posts/2023-03-21-dv.html</loc>
-    <lastmod>2023-03-30T05:31:14.111Z</lastmod>
+    <lastmod>2023-03-30T05:55:23.432Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pinkocto/noteda/posts/2023-03-30-correlation.html</loc>
-    <lastmod>2023-03-30T05:31:14.367Z</lastmod>
+    <lastmod>2023-03-30T05:55:23.700Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pinkocto/noteda/index.html</loc>
-    <lastmod>2023-03-30T05:31:14.535Z</lastmod>
+    <lastmod>2023-03-30T05:55:23.884Z</lastmod>
   </url>
 </urlset>
