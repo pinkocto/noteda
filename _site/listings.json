@@ -2,10 +2,11 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/SOLAR/2023-04-06-stgcn.html",
       "/posts/SOLAR/2023-04-06-corr.html",
       "/posts/SOLAR/2023-04-06-ept-by-region.html",
       "/posts/SOLAR/2023-04-06-stgcn-data.html",
+      "/posts/SOLAR/2023-04-06-stgcn.html",
+      "/posts/SOLAR/Untitled.html",
       "/posts/DataHandling/2023-04-06-pivot-wider-error.html",
       "/posts/DataHandling/2023-04-06-assign-r.html",
       "/posts/HousePrice/2023-04-05-hw1-feedback.html",
