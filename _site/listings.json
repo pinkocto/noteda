@@ -2,15 +2,32 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/2023-03-30-correlation.html",
-      "/posts/2023-03-30-restructure-data.html",
-      "/posts/2023-03-29-data0.html",
-      "/posts/2023-03-21-scorecard.html",
-      "/posts/2023-03-21-dv.html",
-      "/posts/2023-03-21-downcasting.html",
-      "/posts/2023-03-21-resumetable.html",
+      "/posts/SOLAR/2023-04-06-stgcn.html",
+      "/posts/SOLAR/2023-04-06-corr.html",
+      "/posts/SOLAR/2023-04-06-ept-by-region.html",
+      "/posts/SOLAR/2023-04-06-stgcn-data.html",
+      "/posts/DataHandling/2023-04-06-pivot-wider-error.html",
+      "/posts/DataHandling/2023-04-06-assign-r.html",
+      "/posts/HousePrice/2023-04-05-hw1-feedback.html",
+      "/posts/etc/2023-04-05-ppt.html",
+      "/posts/SOLAR/2023-04-04-EPT.html",
+      "/posts/HousePrice/2023-04-04-lr-hw1.html",
+      "/posts/SOLAR/2023-04-04-todolist.html",
+      "/posts/SOLAR/2023-04-03-일사량.html",
+      "/posts/DataHandling/2023-04-02-assign.html",
+      "/posts/DataHandling/2023-04-02-hanling-index.html",
+      "/posts/SOLAR/2023-03-30-correlation.html",
+      "/posts/SOLAR/2023-03-30-restructure-data.html",
+      "/posts/SOLAR/2023-03-29-data0.html",
+      "/posts/Seminar/2023-03-21-gpt3-nsmc.html",
+      "/posts/etc/2023-03-21-lib.html",
+      "/posts/etc/2023-03-21-scorecard.html",
+      "/posts/etc/2023-03-21-dv.html",
+      "/posts/etc/2023-03-21-downcasting.html",
+      "/posts/etc/2023-03-21-resumetable.html",
       "/posts/welcome/index.html",
-      "/posts/2023-03-23-read-list.html"
+      "/posts/2023-03-23-read-list.html",
+      "/posts/etc/2023-02-24-tips.html"
     ]
   }
 ]

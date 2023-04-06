@@ -1,0 +1,31 @@
+---
+title: "[R]데이터 재구조화"
+author: "jiyun Lim"
+date: "03/30/2023"
+categories:
+  - Research
+---
+
+```{r, message=FALSE}
+library(data.table)
+library(tidyverse)
+```
+
+```{r}
+file_path <- './data/'
+list.files(file_path)
+```
+
+```{r}
+df_raw <- fread(file.path(file_path, 'raw.csv'))
+head(df_raw)
+```
+
+```{r}
+df_raw <- df_raw %>% dcast(일시 + '일사(MJ/m2)' ~ 지점명)
+df_raw %>% head()
+```
+
+```{r}
+write.csv(df_raw, './data/restructuring_raw.csv', row.names = FALSE)
+```
