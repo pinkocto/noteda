@@ -309,6 +309,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/etc/2023-03-21-scorecard.html" class="sidebar-item-text sidebar-link active">Scorecard</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-02-abstract.html" class="sidebar-item-text sidebar-link">초록 작성법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-01-학회.html" class="sidebar-item-text sidebar-link">학회</a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
@@ -371,6 +381,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-stgcn-data-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-stcgn-data-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-04-04-EPT.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT</a>
   </div>
 </li>
@@ -381,7 +401,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/SOLAR/2023-04-06-stgcn-data.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Data</a>
+  <a href="../../posts/SOLAR/2023-04-07-soloar-stgcn.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-solar-class.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> WindmillOutputLargeDatasetLoader</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -406,12 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/SOLAR/2023-04-07-solar-class.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDatasetLoader</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/SOLAR/2023-04-06-windmill.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDatasetLoader</a>
+  <a href="../../posts/SOLAR/2023-04-06-windmill.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDataset 분석 (실패)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -428,7 +448,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#파이썬-버전" id="toc-파이썬-버전" class="nav-link active" data-scroll-target="#파이썬-버전">파이썬 버전</a></li>
+  <li><a href="#r버전" id="toc-r버전" class="nav-link" data-scroll-target="#r버전">R버전</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -436,6 +463,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
+<section id="파이썬-버전" class="level2">
+<h2 class="anchored" data-anchor-id="파이썬-버전">파이썬 버전</h2>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -502,8 +531,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
+</section>
+<section id="r버전" class="level2">
+<h2 class="anchored" data-anchor-id="r버전">R버전</h2>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> rpy2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="op">%</span>load_ext rpy2.ipython</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>rpy2.__version__</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>'3.5.1'</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># !pip install rpy2==3.5.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="op">%%</span>R</span>
+<span id="cb10-2"><a href="#cb10-2"></a>score <span class="op">&lt;-</span> matrix(<span class="dv">0</span>, ncol<span class="op">=</span><span class="dv">6</span>, nrow<span class="op">=</span><span class="dv">6</span>, byrow<span class="op">=</span>T)</span>
+<span id="cb10-3"><a href="#cb10-3"></a>colnames(score) <span class="op">&lt;-</span> c(<span class="st">'변수'</span>,<span class="st">'스케일링'</span>,<span class="st">'변수변환'</span>,<span class="st">'이상치제거'</span>,<span class="st">'변동사항'</span>, <span class="st">'R2'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="op">%%</span>R</span>
+<span id="cb11-2"><a href="#cb11-2"></a>score[<span class="dv">1</span>,] <span class="op">&lt;-</span> c(<span class="st">'집값, 실거주면적'</span>,<span class="st">'X'</span>,<span class="st">'X'</span>,<span class="st">'X'</span>,<span class="st">'단순선형회귀(절편O)'</span>,<span class="fl">0.5021</span>)</span>
+<span id="cb11-3"><a href="#cb11-3"></a>score[<span class="dv">2</span>,] <span class="op">&lt;-</span> c(<span class="st">'집값, 실거주면적'</span>,<span class="st">'X'</span>,<span class="st">'X'</span>,<span class="st">'X'</span>,<span class="st">'단순선형회귀(절편X)'</span>,<span class="fl">0.9186</span>)</span>
+<span id="cb11-4"><a href="#cb11-4"></a>score[<span class="dv">3</span>,] <span class="op">&lt;-</span> c(<span class="st">'집값, 실거주면적'</span>,<span class="st">'X'</span>,<span class="st">'X'</span>,<span class="st">'O'</span>,<span class="st">'단순선형회귀(절편O) + 이상치제거'</span>,<span class="fl">0.5402</span>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a>score[<span class="dv">4</span>,] <span class="op">&lt;-</span> c(<span class="st">'집값, 실거주면적'</span>,<span class="st">'X'</span>,<span class="st">'X'</span>,<span class="st">'O'</span>,<span class="st">'단순선형회귀(절편X) + 이상치제거'</span>,<span class="fl">0.9255</span>)</span>
+<span id="cb11-6"><a href="#cb11-6"></a>score[<span class="dv">5</span>,] <span class="op">&lt;-</span> c(<span class="st">'집값, 실거주면적'</span>,<span class="st">'X'</span>,<span class="st">'O'</span>,<span class="st">'O'</span>,<span class="st">'단순선형회귀(절편X) + 이상치제거'</span>,<span class="fl">0.5259</span>)</span>
+<span id="cb11-7"><a href="#cb11-7"></a>score[<span class="dv">6</span>,] <span class="op">&lt;-</span> c(<span class="st">'집값, 실거주면적'</span>,<span class="st">'X'</span>,<span class="st">'O'</span>,<span class="st">'O'</span>,<span class="st">'단순선형회귀(절편X) + 이상치제거'</span>,<span class="fl">0.9120</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="op">%%</span>R</span>
+<span id="cb12-2"><a href="#cb12-2"></a>data.frame(score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              변수 스케일링 변수변환 이상치제거
+1 집값, 실거주면적        X        X          X
+2 집값, 실거주면적        X        X          X
+3 집값, 실거주면적        X        X          O
+4 집값, 실거주면적        X        X          O
+5 집값, 실거주면적        X        O          O
+6 집값, 실거주면적        X        O          O
+                          변동사항     R2
+1              단순선형회귀(절편O) 0.5021
+2              단순선형회귀(절편X) 0.9186
+3 단순선형회귀(절편O) + 이상치제거 0.5402
+4 단순선형회귀(절편X) + 이상치제거 0.9255
+5 단순선형회귀(절편X) + 이상치제거 0.5259
+6 단순선형회귀(절편X) + 이상치제거  0.912</code></pre>
+</div>
+</div>
+<ul>
+<li>ref: <a href="https://www.askpython.com/python/examples/use-r-and-python-in-the-same-notebook">r,python 둘다쓰는법</a></li>
+<li>ref: <a href="https://gentlesark.tistory.com/26">패키지특정버전업데이트</a></li>
+<li>ref: <a href="https://stackoverflow.com/questions/75069677/rpy2-throws-a-notimplementederror-concerning-conversion-rules">rpy2에러해결</a></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

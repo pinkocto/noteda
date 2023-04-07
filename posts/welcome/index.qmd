@@ -10,3 +10,6 @@ This is the first post in a Quarto blog. Welcome!
 ![](thumbnail.jpg)
 
 Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+
+- [Save model](https://doubles-won.tistory.com/106)
+- [module and package](https://dojang.io/mod/page/view.php?id=2447)
