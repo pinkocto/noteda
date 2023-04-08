@@ -587,14 +587,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">import</span> pickle </span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'stgcn1_lag1.pickle'</span>,<span class="st">'wb'</span>) <span class="im">as</span> fw:</span>
-<span id="cb16-3"><a href="#cb16-3"></a>    pickle.dump(model, fw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># import pickle </span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="co"># with open('stgcn1_lag1.pickle','wb') as fw:</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="co">#     pickle.dump(model, fw)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="im">import</span> pickle </span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'stgcn1_lag1.pickle'</span>, <span class="st">'rb'</span>) <span class="im">as</span> f: </span>
-<span id="cb17-3"><a href="#cb17-3"></a>    model <span class="op">=</span> pickle.load(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># import pickle </span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="co"># with open('stgcn1_lag1.pickle', 'rb') as f: </span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="co">#     model = pickle.load(f)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -645,7 +645,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>yhat_train <span class="op">=</span> torch.stack([model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> train_dataset]).detach().numpy()</span>
 <span id="cb24-2"><a href="#cb24-2"></a>yhat_test <span class="op">=</span> torch.stack([model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset]).detach().numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="17">
+<div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data/solar.json'</span></span>
 <span id="cb25-2"><a href="#cb25-2"></a>data_dict <span class="op">=</span> json.loads(urllib.request.urlopen(url).read())</span>
 <span id="cb25-3"><a href="#cb25-3"></a>V <span class="op">=</span> <span class="bu">list</span>(data_dict[<span class="st">'node_ids'</span>].keys())</span>
@@ -654,11 +654,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="visualization" class="level2">
 <h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
-<div class="cell" data-execution_count="20">
+<div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb26-2"><a href="#cb26-2"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> <span class="st">'NanumGothic'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="23">
+<div class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">44</span>,<span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">50</span>))</span>
 <span id="cb27-2"><a href="#cb27-2"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">44</span>):</span>
 <span id="cb27-3"><a href="#cb27-3"></a>    ax[k].plot(f[:,k],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>)</span>
