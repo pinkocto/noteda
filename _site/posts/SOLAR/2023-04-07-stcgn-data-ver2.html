@@ -649,6 +649,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb35-2"><a href="#cb35-2"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">4</span>)</span>
 <span id="cb35-3"><a href="#cb35-3"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>data_train<span class="op">=</span>[]</span>
+<span id="cb36-2"><a href="#cb36-2"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb36-3"><a href="#cb36-3"></a>    data_train.append([time, snapshot])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>data_train[<span class="dv">0</span>][<span class="dv">1</span>].x.shape,data_train[<span class="dv">0</span>][<span class="dv">1</span>].y.shape,data_train[<span class="dv">0</span>][<span class="dv">1</span>].edge_index.shape,data_train[<span class="dv">0</span>][<span class="dv">1</span>].edge_attr.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="85">
+<pre><code>(torch.Size([44, 4]),
+ torch.Size([44]),
+ torch.Size([2, 1892]),
+ torch.Size([1892]))</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>data_test<span class="op">=</span>[]</span>
+<span id="cb39-2"><a href="#cb39-2"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset):</span>
+<span id="cb39-3"><a href="#cb39-3"></a>    data_test.append([time,snapshot])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="87">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>data_test[<span class="dv">0</span>][<span class="dv">1</span>].x.shape,data_test[<span class="dv">0</span>][<span class="dv">1</span>].y.shape,data_test[<span class="dv">0</span>][<span class="dv">1</span>].edge_index.shape,data_test[<span class="dv">0</span>][<span class="dv">1</span>].edge_attr.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="87">
+<pre><code>(torch.Size([44, 4]),
+ torch.Size([44]),
+ torch.Size([2, 1892]),
+ torch.Size([1892]))</code></pre>
+</div>
+</div>
 
 
 </section>
