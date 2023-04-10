@@ -453,12 +453,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-lstm-prac.html" class="sidebar-item-text sidebar-link">LSTM for Time Series Prediction (연습)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-04-06-windmill.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDataset 분석 (실패)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-ft.html" class="sidebar-item-text sidebar-link">푸리에 변환</a>
   </div>
 </li>
       </ul>
@@ -522,13 +532,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>scaling이 필요할까..? (우선 스케일링안된 데이터 사용)</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-03-01-todolist_files/figure-html/d82541a8-18a8-43b6-a9fc-4852bcd7c1ba-1-b986b423-00dc-4308-af29-67de915f74fa.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-07-stcgn-data-ver2.html#comparison</figcaption><p></p>
+</figure>
+</div>
 <section id="stgcn-ver.1" class="level3">
 <h3 class="anchored" data-anchor-id="stgcn-ver.1">STGCN Ver.1</h3>
 <ul>
 <li><p>지역별 correlation</p></li>
 <li><p>lag4 : <span class="math inline">\(\tt{MSE}: 0.0934\)</span> (약 1시간)</p></li>
 <li><p>position도 고려될 수 있을까?</p></li>
-<li><p>lag1,2 등 정보가 더 적을때도 STGCN ver1, ver2 성능이 비슷할까? <span class="math inline">\(\to\)</span> ver2가 더 좋으면 좋겠다…ㅎ</p></li>
+<li><p>lag1,2 등 정보가 더 적을때도 STGCN ver1이 더 좋은가?</p></li>
 </ul>
 </section>
 <section id="stgcn-ver.2" class="level3">
@@ -640,7 +656,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <ul>
 <li>ver2가 더 성능이 잘 나올줄 알았는데 뭔가 잘못했나??</li>
-<li>STGCN ver2 (EPT) 시각화 그림을 보면 위에 가위로 자른 것 같이 생김.</li>
+<li>시각화 그림을 보면 위에 가위로 자른 것 같이 생김. 일사량이 2.5이상으로 관측되면 잘 예측을 못하는 것 같음.</li>
+<li>맥시멈이 2.5인느낌. (너무 안전하게 예측하려고 하나?)</li>
 </ul>
 
 
