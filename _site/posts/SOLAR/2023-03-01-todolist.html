@@ -473,6 +473,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">Study</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex.html" class="sidebar-item-text sidebar-link">ARIMA (시간별 예측안됨)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/python_7장.html" class="sidebar-item-text sidebar-link">스타벅스 주가예측</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-ex.html" class="sidebar-item-text sidebar-link">연습장</a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -543,7 +568,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p>지역별 correlation</p></li>
 <li><p>lag4 : <span class="math inline">\(\tt{MSE}: 0.0934\)</span> (약 1시간)</p></li>
-<li><p>position도 고려될 수 있을까?</p></li>
 <li><p>lag1,2 등 정보가 더 적을때도 STGCN ver1이 더 좋은가?</p></li>
 </ul>
 </section>
@@ -560,24 +584,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>col <span class="op">=</span> [<span class="st">'Model'</span>, <span class="st">'lag'</span>, <span class="st">'scaling'</span>,<span class="st">'EPT'</span>, <span class="st">'train(MSE)'</span>,<span class="st">'test(MSE)'</span>, <span class="st">'Time(sec)'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>col <span class="op">=</span> [<span class="st">'Model'</span>, <span class="st">'lag'</span>, <span class="st">'epoch'</span>,<span class="st">'learning rate'</span>,<span class="st">'scaling'</span>,<span class="st">'EPT'</span>, <span class="st">'train(MSE)'</span>,<span class="st">'test(MSE)'</span>, <span class="st">'Time(sec)'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="53">
+<div class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>df_row <span class="op">=</span> pd.DataFrame(columns <span class="op">=</span> col)</span>
 <span id="cb3-2"><a href="#cb3-2"></a>df_row[<span class="st">'Model'</span>] <span class="op">=</span> [<span class="st">'STGCN v1'</span>,<span class="st">'STGCN v2'</span>,<span class="st">'STGCN v1'</span>, <span class="st">'STGCN v2'</span>]</span>
 <span id="cb3-3"><a href="#cb3-3"></a>df_row[<span class="st">'lag'</span>] <span class="op">=</span> [<span class="st">'lag4'</span>, <span class="st">'lag4'</span>, <span class="st">'lag1'</span>, <span class="st">'lag1'</span>]</span>
-<span id="cb3-4"><a href="#cb3-4"></a>df_row[<span class="st">'scaling'</span>] <span class="op">=</span> [<span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>]</span>
-<span id="cb3-5"><a href="#cb3-5"></a>df_row[<span class="st">'EPT'</span>] <span class="op">=</span> [<span class="st">'X'</span>, <span class="st">'O'</span>, <span class="st">'X'</span>, <span class="st">'O'</span>]</span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># df_row['Undersampling'] = ['X', 'X']</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># df_row['hyper tunning'] = ['X', 'O']</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>df_row[<span class="st">'train(MSE)'</span>] <span class="op">=</span> [<span class="fl">0.1041</span>, <span class="fl">0.1069</span>,<span class="fl">0.1695</span>, <span class="fl">0.1711</span>]</span>
-<span id="cb3-9"><a href="#cb3-9"></a>df_row[<span class="st">'test(MSE)'</span>] <span class="op">=</span> [<span class="fl">0.0934</span>, <span class="fl">0.0938</span>, <span class="fl">0.1443</span>, <span class="fl">0.1452</span>]</span>
-<span id="cb3-10"><a href="#cb3-10"></a>df_row[<span class="st">'Time(sec)'</span>] <span class="op">=</span> [<span class="st">'약 1시간 (시간측정X)'</span>,<span class="st">'약 1시간 (시간측정X)'</span>, <span class="st">'2916.28218 (약 48.60분)'</span>, <span class="st">'2888.63086 (약 48.14분)'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4"></a>df_row[<span class="st">'epoch'</span>] <span class="op">=</span> [<span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">50</span>]</span>
+<span id="cb3-5"><a href="#cb3-5"></a>df_row[<span class="st">'learning rate'</span>] <span class="op">=</span> [<span class="fl">0.01</span>, <span class="fl">0.01</span>, <span class="fl">0.01</span>, <span class="fl">0.01</span>]</span>
+<span id="cb3-6"><a href="#cb3-6"></a>df_row[<span class="st">'scaling'</span>] <span class="op">=</span> [<span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>, <span class="st">'X'</span>]</span>
+<span id="cb3-7"><a href="#cb3-7"></a>df_row[<span class="st">'EPT'</span>] <span class="op">=</span> [<span class="st">'X'</span>, <span class="st">'O'</span>, <span class="st">'X'</span>, <span class="st">'O'</span>]</span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co"># df_row['Undersampling'] = ['X', 'X']</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co"># df_row['hyper tunning'] = ['X', 'O']</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>df_row[<span class="st">'train(MSE)'</span>] <span class="op">=</span> [<span class="fl">0.1041</span>, <span class="fl">0.1069</span>,<span class="fl">0.1695</span>, <span class="fl">0.1711</span>]</span>
+<span id="cb3-11"><a href="#cb3-11"></a>df_row[<span class="st">'test(MSE)'</span>] <span class="op">=</span> [<span class="fl">0.0934</span>, <span class="fl">0.0938</span>, <span class="fl">0.1443</span>, <span class="fl">0.1452</span>]</span>
+<span id="cb3-12"><a href="#cb3-12"></a>df_row[<span class="st">'Time(sec)'</span>] <span class="op">=</span> [<span class="st">'약 1시간 (시간측정X)'</span>,<span class="st">'약 1시간 (시간측정X)'</span>, <span class="st">'2916.28218 (약 48.60분)'</span>, <span class="st">'2888.63086 (약 48.14분)'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="54">
+<div class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>df_row</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="54">
+<div class="cell-output cell-output-display" data-execution_count="62">
 
 <div>
 
@@ -587,6 +613,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th></th>
       <th>Model</th>
       <th>lag</th>
+      <th>epoch</th>
+      <th>learning rate</th>
       <th>scaling</th>
       <th>EPT</th>
       <th>train(MSE)</th>
@@ -599,6 +627,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th>0</th>
       <td>STGCN v1</td>
       <td>lag4</td>
+      <td>50</td>
+      <td>0.01</td>
       <td>X</td>
       <td>X</td>
       <td>0.1041</td>
@@ -609,6 +639,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th>1</th>
       <td>STGCN v2</td>
       <td>lag4</td>
+      <td>50</td>
+      <td>0.01</td>
       <td>X</td>
       <td>O</td>
       <td>0.1069</td>
@@ -619,6 +651,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th>2</th>
       <td>STGCN v1</td>
       <td>lag1</td>
+      <td>50</td>
+      <td>0.01</td>
       <td>X</td>
       <td>X</td>
       <td>0.1695</td>
@@ -629,6 +663,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th>3</th>
       <td>STGCN v2</td>
       <td>lag1</td>
+      <td>50</td>
+      <td>0.01</td>
       <td>X</td>
       <td>O</td>
       <td>0.1711</td>
