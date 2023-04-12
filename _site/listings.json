@@ -3,6 +3,10 @@
     "listing": "/index.html",
     "items": [
       "/posts/SOLAR/2023-04-12-데이터수정.html",
+      "/posts/SOLAR/2023-04-12-stgcn-ver1.html",
+      "/posts/SOLAR/2023-04-12-stgcn-ver1-train90.html",
+      "/posts/SOLAR/2023-04-12-stgcn-ver2-train90.html",
+      "/posts/SOLAR/2023-04-12-stgcn-ver2.html",
       "/posts/SOLAR/2023-03-01-todolist.html",
       "/posts/etc/2023-04-23-r-python-same-jupyter.html",
       "/posts/Study/2023-04-11-arima-hour-data-fill.html",
