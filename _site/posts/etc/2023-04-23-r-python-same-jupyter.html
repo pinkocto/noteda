@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="jiyun Lim">
-<meta name="dcterms.date" content="2023-03-21">
+<meta name="author" content="jiyunLim">
+<meta name="dcterms.date" content="2023-04-12">
 
-<title>noteda - resumetable</title>
+<title>noteda - R/Python jupyter</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -161,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">resumetable</h1>
+      <h1 class="quarto-secondary-nav-title">R/Python jupyter</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -172,9 +172,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">resumetable</h1>
+      <h1 class="title d-none d-lg-block">R/Python jupyter</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Appendix</div>
                 <div class="quarto-category">Tip</div>
               </div>
                   </div>
@@ -186,14 +185,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>jiyun Lim </p>
+               <p>jiyunLim </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 21, 2023</p>
+        <p class="date">April 12, 2023</p>
       </div>
     </div>
     
@@ -304,12 +303,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/etc/2023-04-23-r-python-same-jupyter.html" class="sidebar-item-text sidebar-link">R/Python jupyter</a>
+  <a href="../../posts/etc/2023-04-23-r-python-same-jupyter.html" class="sidebar-item-text sidebar-link active">R/Python jupyter</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/etc/2023-03-21-resumetable.html" class="sidebar-item-text sidebar-link active">resumetable</a>
+  <a href="../../posts/etc/2023-03-21-resumetable.html" class="sidebar-item-text sidebar-link">resumetable</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -536,7 +535,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#using-python" id="toc-using-python" class="nav-link active" data-scroll-target="#using-python"><code>-</code> using Python</a></li>
+  <li><a href="#using-r" id="toc-using-r" class="nav-link" data-scroll-target="#using-r"><code>-</code> using R</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -544,22 +550,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> resumetable(df):</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="bu">print</span>(<span class="ss">f'데이터셋 형상: </span><span class="sc">{</span>df<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a>    summary <span class="op">=</span> pd.DataFrame(df.dtypes, columns <span class="op">=</span> [<span class="st">'데이터 타입'</span>])</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    summary <span class="op">=</span> summary.reset_index()</span>
-<span id="cb1-5"><a href="#cb1-5"></a>    summary <span class="op">=</span> summary.rename(columns <span class="op">=</span> {<span class="st">'index'</span>:<span class="st">'피처'</span>})</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    summary[<span class="st">'결측값 개수'</span>] <span class="op">=</span> df.isnull().<span class="bu">sum</span>().values</span>
-<span id="cb1-7"><a href="#cb1-7"></a>    summary[<span class="st">'고윳값 개수'</span>] <span class="op">=</span> df.nunique().values</span>
-<span id="cb1-8"><a href="#cb1-8"></a>    summary[<span class="st">'첫 번째 값'</span>] <span class="op">=</span> df.loc[<span class="dv">0</span>].values</span>
-<span id="cb1-9"><a href="#cb1-9"></a>    summary[<span class="st">'두 번째 값'</span>] <span class="op">=</span> df.loc[<span class="dv">1</span>].values</span>
-<span id="cb1-10"><a href="#cb1-10"></a>    summary[<span class="st">'세 번째 값'</span>] <span class="op">=</span> df.loc[<span class="dv">2</span>].values</span>
-<span id="cb1-11"><a href="#cb1-11"></a>            </span>
-<span id="cb1-12"><a href="#cb1-12"></a>    <span class="cf">return</span> summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>summary <span class="op">=</span> resumetable(train) </span>
-<span id="cb2-2"><a href="#cb2-2"></a>summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> rpy2</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="op">%</span>load_ext rpy2.ipython </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The rpy2.ipython extension is already loaded. To reload it, use:
+  %reload_ext rpy2.ipython</code></pre>
+</div>
+</div>
+<section id="using-python" class="level2">
+<h2 class="anchored" data-anchor-id="using-python"><code>-</code> using Python</h2>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>n<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>t<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="fl">0.99</span>,n)</span>
+<span id="cb4-3"><a href="#cb4-3"></a>f_true <span class="op">=</span><span class="dv">3</span><span class="op">+</span> <span class="fl">1.5</span><span class="op">*</span>np.sin(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>t)<span class="op">+</span><span class="dv">2</span><span class="op">*</span>np.sin(<span class="dv">10</span><span class="op">*</span>np.pi<span class="op">*</span>t)</span>
+<span id="cb4-4"><a href="#cb4-4"></a>ϵ<span class="op">=</span>np.random.normal(scale<span class="op">=</span><span class="fl">0.2</span>,size<span class="op">=</span>n)</span>
+<span id="cb4-5"><a href="#cb4-5"></a>f <span class="op">=</span> f_true <span class="op">+</span> ϵ</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># t=np.linspace(0,0.99,n)</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>x1 <span class="op">=</span> np.sin(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>t)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>x2 <span class="op">=</span> np.sin(<span class="dv">10</span><span class="op">*</span>np.pi<span class="op">*</span>t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># n=100</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co"># f = f_true + ϵ</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>X<span class="op">=</span>np.ones((n,<span class="dv">3</span>))</span>
+<span id="cb6-4"><a href="#cb6-4"></a>X[:,<span class="dv">1</span>] <span class="op">=</span> x1</span>
+<span id="cb6-5"><a href="#cb6-5"></a>X[:,<span class="dv">2</span>] <span class="op">=</span> x2</span>
+<span id="cb6-6"><a href="#cb6-6"></a>X <span class="op">=</span> np.matrix(X)</span>
+<span id="cb6-7"><a href="#cb6-7"></a>y <span class="op">=</span> np.matrix(f).T <span class="co"># y는 col-vec로 선언</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>βhat <span class="op">=</span> (X.T<span class="op">*</span>X).I<span class="op">*</span>X.T<span class="op">*</span>y</span>
+<span id="cb6-9"><a href="#cb6-9"></a>βhat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>matrix([[2.99321226],
+        [1.49335619],
+        [1.99914477]])</code></pre>
+</div>
+</div>
+</section>
+<section id="using-r" class="level2">
+<h2 class="anchored" data-anchor-id="using-r"><code>-</code> using R</h2>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="op">%</span>R <span class="op">-</span>i f,x1,x2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="op">%%</span>R </span>
+<span id="cb9-2"><a href="#cb9-2"></a>lm(f<span class="op">~</span>x1<span class="op">+</span>x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = f ~ x1 + x2)
+
+Coefficients:
+(Intercept)           x1           x2  
+      2.993        1.493        1.999  
+</code></pre>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
