@@ -288,6 +288,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-11-git-error.html" class="sidebar-item-text sidebar-link">Github remote: error: this exceeds GitHub’s file size limit of 100.00 MB</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/etc/2023-02-24-tips.html" class="sidebar-item-text sidebar-link">Julia 설치 및 실행</a>
   </div>
 </li>
@@ -331,6 +336,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-5wk.html" class="sidebar-item-text sidebar-link">5wk: 측도론 (1)</a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/HousePrice/2023-04-04-lr-hw1.html" class="sidebar-item-text sidebar-link">House Price</a>
@@ -458,6 +468,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-04-06-windmill.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDataset 분석 (실패)</a>
   </div>
 </li>
@@ -483,7 +498,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Study/2023-04-10-arima-ex.html" class="sidebar-item-text sidebar-link">ARIMA (시간별 예측안됨)</a>
+  <a href="../../posts/Study/2023-04-11-arima-hour-data-fill.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SARIMA (MSE: 0.478)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex-day.html" class="sidebar-item-text sidebar-link">ARIMA (Day)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex.html" class="sidebar-item-text sidebar-link">ARIMA (시간별 예측안됨, 에러)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -494,6 +519,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/Study/2023-04-10-ex.html" class="sidebar-item-text sidebar-link">연습장</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리(수정 for ARIMA)</a>
   </div>
 </li>
       </ul>
@@ -511,6 +541,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#지역별-여러-시계열" id="toc-지역별-여러-시계열" class="nav-link active" data-scroll-target="#지역별-여러-시계열">지역별 여러 시계열</a>
   <ul class="collapse">
+  <li><a href="#수정-0412-update" id="toc-수정-0412-update" class="nav-link" data-scroll-target="#수정-0412-update">–수정 (0412 update)</a></li>
   <li><a href="#arma" id="toc-arma" class="nav-link" data-scroll-target="#arma">ARMA</a></li>
   <li><a href="#lstm" id="toc-lstm" class="nav-link" data-scroll-target="#lstm">LSTM</a></li>
   <li><a href="#gru" id="toc-gru" class="nav-link" data-scroll-target="#gru">GRU</a></li>
@@ -533,8 +564,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="지역별-여러-시계열" class="level1">
 <h1>지역별 여러 시계열</h1>
 <blockquote class="blockquote">
-<p>04/09 update</p>
+<p>04/12 update</p>
 </blockquote>
+<section id="수정-0412-update" class="level2">
+<h2 class="anchored" data-anchor-id="수정-0412-update">–수정 (0412 update)</h2>
+<ul>
+<li>데이터 중복문제</li>
+<li>데이터 기간 재설정: 6월-8월15 // 8월15 ~9월15</li>
+</ul>
+</section>
 <section id="arma" class="level2">
 <h2 class="anchored" data-anchor-id="arma">ARMA</h2>
 <p><a href="https://www.kaggle.com/code/javigallego/time-series-forecasting-tutorial#4-%7C-Time-Series-Components" class="uri">https://www.kaggle.com/code/javigallego/time-series-forecasting-tutorial#4-%7C-Time-Series-Components</a></p>

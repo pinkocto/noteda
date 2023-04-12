@@ -9,7 +9,7 @@
 <meta name="author" content="JiyunLim">
 <meta name="dcterms.date" content="2023-04-09">
 
-<title>noteda - ARIMA (시간별 예측안됨)</title>
+<title>noteda - ARIMA (시간별 예측안됨, 에러)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -164,7 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">ARIMA (시간별 예측안됨)</h1>
+      <h1 class="quarto-secondary-nav-title">ARIMA (시간별 예측안됨, 에러)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -175,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">ARIMA (시간별 예측안됨)</h1>
+      <h1 class="title d-none d-lg-block">ARIMA (시간별 예측안됨, 에러)</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">ARIMA</div>
                 <div class="quarto-category">SOLAR</div>
@@ -287,6 +287,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-11-git-error.html" class="sidebar-item-text sidebar-link">Github remote: error: this exceeds GitHub’s file size limit of 100.00 MB</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/etc/2023-02-24-tips.html" class="sidebar-item-text sidebar-link">Julia 설치 및 실행</a>
   </div>
 </li>
@@ -330,6 +335,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-5wk.html" class="sidebar-item-text sidebar-link">5wk: 측도론 (1)</a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/HousePrice/2023-04-04-lr-hw1.html" class="sidebar-item-text sidebar-link">House Price</a>
@@ -457,6 +467,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-04-06-windmill.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDataset 분석 (실패)</a>
   </div>
 </li>
@@ -482,7 +497,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Study/2023-04-10-arima-ex.html" class="sidebar-item-text sidebar-link active">ARIMA (시간별 예측안됨)</a>
+  <a href="../../posts/Study/2023-04-11-arima-hour-data-fill.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SARIMA (MSE: 0.478)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex-day.html" class="sidebar-item-text sidebar-link">ARIMA (Day)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex.html" class="sidebar-item-text sidebar-link active">ARIMA (시간별 예측안됨, 에러)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -493,6 +518,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/Study/2023-04-10-ex.html" class="sidebar-item-text sidebar-link">연습장</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리(수정 for ARIMA)</a>
   </div>
 </li>
       </ul>
@@ -520,7 +550,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<div class="cell" data-execution_count="58">
+<div class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -529,14 +559,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-6"><a href="#cb1-6"></a></span>
 <span id="cb1-7"><a href="#cb1-7"></a>mpl.rc(<span class="st">'font'</span>, family<span class="op">=</span><span class="st">'NanumGothic'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data/df_new.csv'</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>df <span class="op">=</span> pd.read_csv(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="66">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>df1 <span class="op">=</span> df.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -816,7 +846,7 @@ Name: date, dtype: object</code></pre>
 <span id="cb17-3"><a href="#cb17-3"></a>rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> <span class="dv">15</span>, <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="62">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">## 그림그리기용</span></span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">## 그림 그리기용</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a>y1 <span class="op">=</span> df_time[<span class="st">'북춘천'</span>].resample(<span class="st">'1D'</span>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="64">
@@ -862,24 +892,39 @@ Name: date, dtype: object</code></pre>
 <span id="cb25-2"><a href="#cb25-2"></a>train <span class="op">=</span> df.loc[<span class="dv">0</span>:idx].set_index(<span class="st">'date'</span>).to_period(<span class="st">'H'</span>)</span>
 <span id="cb25-3"><a href="#cb25-3"></a>test <span class="op">=</span> df.loc[idx:].set_index(<span class="st">'date'</span>).to_period(<span class="st">'H'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>train.index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="78">
+<pre><code>PeriodIndex(['2021-01-01 00:00', '2021-01-01 01:00', '2021-01-01 02:00',
+             '2021-01-01 03:00', '2021-01-01 04:00', '2021-01-01 05:00',
+             '2021-01-01 06:00', '2021-01-01 07:00', '2021-01-01 08:00',
+             '2021-01-01 09:00',
+             ...
+             '2022-05-26 16:00', '2022-05-26 17:00', '2022-05-26 18:00',
+             '2022-05-26 19:00', '2022-05-26 07:00', '2022-05-26 20:00',
+             '2022-05-26 06:00', '2022-05-26 21:00', '2022-05-26 05:00',
+             '2022-05-27 00:00'],
+            dtype='period[H]', name='date', length=12776)</code></pre>
+</div>
+</div>
 <div class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="im">import</span> itertools</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="im">import</span> itertools</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>p <span class="op">=</span> d <span class="op">=</span> q <span class="op">=</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">2</span>)</span>
-<span id="cb27-2"><a href="#cb27-2"></a>pdq <span class="op">=</span> <span class="bu">list</span>(itertools.product(p, d, q))</span>
-<span id="cb27-3"><a href="#cb27-3"></a>seasonal_pdq <span class="op">=</span> [ (x[<span class="dv">0</span>], x[<span class="dv">1</span>], x[<span class="dv">2</span>], <span class="dv">12</span>) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">list</span>(itertools.product(p, d, q))] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>p <span class="op">=</span> d <span class="op">=</span> q <span class="op">=</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">2</span>)</span>
+<span id="cb29-2"><a href="#cb29-2"></a>pdq <span class="op">=</span> <span class="bu">list</span>(itertools.product(p, d, q))</span>
+<span id="cb29-3"><a href="#cb29-3"></a>seasonal_pdq <span class="op">=</span> [ (x[<span class="dv">0</span>], x[<span class="dv">1</span>], x[<span class="dv">2</span>], <span class="dv">12</span>) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">list</span>(itertools.product(p, d, q))] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="62">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>param_list <span class="op">=</span> []</span>
-<span id="cb28-2"><a href="#cb28-2"></a>param_seasonal_list <span class="op">=</span> []</span>
-<span id="cb28-3"><a href="#cb28-3"></a>results_AIC_list <span class="op">=</span> []</span>
-<span id="cb28-4"><a href="#cb28-4"></a>results_MSE_list <span class="op">=</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>param_list <span class="op">=</span> []</span>
+<span id="cb30-2"><a href="#cb30-2"></a>param_seasonal_list <span class="op">=</span> []</span>
+<span id="cb30-3"><a href="#cb30-3"></a>results_AIC_list <span class="op">=</span> []</span>
+<span id="cb30-4"><a href="#cb30-4"></a>results_MSE_list <span class="op">=</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="63">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>y <span class="op">=</span> train[<span class="st">'북춘천'</span>]</span>
-<span id="cb29-2"><a href="#cb29-2"></a>y.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="63">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>y <span class="op">=</span> train[<span class="st">'북춘천'</span>]</span>
+<span id="cb31-2"><a href="#cb31-2"></a>y.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="82">
 <pre><code>PeriodIndex(['2021-01-01 00:00', '2021-01-01 01:00', '2021-01-01 02:00',
              '2021-01-01 03:00', '2021-01-01 04:00', '2021-01-01 05:00',
              '2021-01-01 06:00', '2021-01-01 07:00', '2021-01-01 08:00',
@@ -893,33 +938,33 @@ Name: date, dtype: object</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">### 에러.. (시간빠진부분 있어서 그런듯)</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="cf">for</span> param <span class="kw">in</span> pdq:</span>
-<span id="cb31-3"><a href="#cb31-3"></a>    <span class="cf">for</span> param_seasonal <span class="kw">in</span> seasonal_pdq:</span>
-<span id="cb31-4"><a href="#cb31-4"></a>        <span class="cf">try</span>:</span>
-<span id="cb31-5"><a href="#cb31-5"></a>            mod <span class="op">=</span> tsa.statespace.SARIMAX(y, order<span class="op">=</span>param,</span>
-<span id="cb31-6"><a href="#cb31-6"></a>                                            seasonal_order<span class="op">=</span>param_seasonal,</span>
-<span id="cb31-7"><a href="#cb31-7"></a>                                            enforce_stationarity<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb31-8"><a href="#cb31-8"></a>                                            enforce_invertibility<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb31-9"><a href="#cb31-9"></a>            results <span class="op">=</span> mod.fit()</span>
-<span id="cb31-10"><a href="#cb31-10"></a>            param_list.append(param)</span>
-<span id="cb31-11"><a href="#cb31-11"></a>            param_seasonal_list.append(param_seasonal)</span>
-<span id="cb31-12"><a href="#cb31-12"></a>            results_AIC_list.append(results.aic)</span>
-<span id="cb31-13"><a href="#cb31-13"></a>            results_MSE_list.append(results.mse)</span>
-<span id="cb31-14"><a href="#cb31-14"></a>        <span class="cf">except</span>:</span>
-<span id="cb31-15"><a href="#cb31-15"></a>            <span class="cf">continue</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="co">### 에러.. (시간빠진부분 있어서 그런듯)</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="cf">for</span> param <span class="kw">in</span> pdq:</span>
+<span id="cb33-3"><a href="#cb33-3"></a>    <span class="cf">for</span> param_seasonal <span class="kw">in</span> seasonal_pdq:</span>
+<span id="cb33-4"><a href="#cb33-4"></a>        <span class="cf">try</span>:</span>
+<span id="cb33-5"><a href="#cb33-5"></a>            mod <span class="op">=</span> tsa.statespace.SARIMAX(y, order<span class="op">=</span>param,</span>
+<span id="cb33-6"><a href="#cb33-6"></a>                                            seasonal_order<span class="op">=</span>param_seasonal,</span>
+<span id="cb33-7"><a href="#cb33-7"></a>                                            enforce_stationarity<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb33-8"><a href="#cb33-8"></a>                                            enforce_invertibility<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb33-9"><a href="#cb33-9"></a>            results <span class="op">=</span> mod.fit()</span>
+<span id="cb33-10"><a href="#cb33-10"></a>            param_list.append(param)</span>
+<span id="cb33-11"><a href="#cb33-11"></a>            param_seasonal_list.append(param_seasonal)</span>
+<span id="cb33-12"><a href="#cb33-12"></a>            results_AIC_list.append(results.aic)</span>
+<span id="cb33-13"><a href="#cb33-13"></a>            results_MSE_list.append(results.mse)</span>
+<span id="cb33-14"><a href="#cb33-14"></a>        <span class="cf">except</span>:</span>
+<span id="cb33-15"><a href="#cb33-15"></a>            <span class="cf">continue</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="93">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="bu">print</span>(<span class="bu">len</span>(param_list), <span class="bu">len</span>(param_seasonal_list), <span class="bu">len</span>(results_AIC_list))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="bu">print</span>(<span class="bu">len</span>(param_list), <span class="bu">len</span>(param_seasonal_list), <span class="bu">len</span>(results_AIC_list))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>64 64 64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>ARIMA_list <span class="op">=</span> pd.DataFrame({<span class="st">'Parameter'</span>:param_list, <span class="st">'Seasonal'</span>:param_seasonal_list, <span class="st">'AIC'</span>:results_AIC_list})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>ARIMA_list <span class="op">=</span> pd.DataFrame({<span class="st">'Parameter'</span>:param_list, <span class="st">'Seasonal'</span>:param_seasonal_list, <span class="st">'AIC'</span>:results_AIC_list})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="98">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>ARIMA_list.sort_values(by<span class="op">=</span><span class="st">'AIC'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>ARIMA_list.sort_values(by<span class="op">=</span><span class="st">'AIC'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="98">
 
 <div>
@@ -1007,13 +1052,13 @@ Name: date, dtype: object</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="102">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>mod <span class="op">=</span> tsa.statespace.SARIMAX(y1, order<span class="op">=</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>),</span>
-<span id="cb36-2"><a href="#cb36-2"></a>                                            seasonal_order<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">12</span>),</span>
-<span id="cb36-3"><a href="#cb36-3"></a>                                            enforce_stationarity<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb36-4"><a href="#cb36-4"></a>                                            enforce_invertibility<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb36-5"><a href="#cb36-5"></a></span>
-<span id="cb36-6"><a href="#cb36-6"></a>results <span class="op">=</span> mod.fit()</span>
-<span id="cb36-7"><a href="#cb36-7"></a><span class="bu">print</span>(results.summary().tables[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>mod <span class="op">=</span> tsa.statespace.SARIMAX(y1, order<span class="op">=</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>),</span>
+<span id="cb38-2"><a href="#cb38-2"></a>                                            seasonal_order<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">12</span>),</span>
+<span id="cb38-3"><a href="#cb38-3"></a>                                            enforce_stationarity<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb38-4"><a href="#cb38-4"></a>                                            enforce_invertibility<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb38-5"><a href="#cb38-5"></a></span>
+<span id="cb38-6"><a href="#cb38-6"></a>results <span class="op">=</span> mod.fit()</span>
+<span id="cb38-7"><a href="#cb38-7"></a><span class="bu">print</span>(results.summary().tables[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
@@ -1025,7 +1070,7 @@ sigma2         0.0476      0.003     18.244      0.000       0.043       0.053
 </div>
 </div>
 <div class="cell" data-execution_count="103">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="bu">print</span>(results.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="bu">print</span>(results.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                               SARIMAX Results                                
 ==============================================================================
@@ -1057,22 +1102,22 @@ Warnings:
 <section id="section" class="level2">
 <h2 class="anchored" data-anchor-id="section">–</h2>
 <div class="cell" data-execution_count="104">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="co">## MSE</span></span>
-<span id="cb40-2"><a href="#cb40-2"></a><span class="kw">def</span> mse_(real, pred):</span>
-<span id="cb40-3"><a href="#cb40-3"></a>    diff <span class="op">=</span> real <span class="op">-</span> pred</span>
-<span id="cb40-4"><a href="#cb40-4"></a>    <span class="cf">return</span> mean(diff<span class="op">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="co">## MSE</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="kw">def</span> mse_(real, pred):</span>
+<span id="cb42-3"><a href="#cb42-3"></a>    diff <span class="op">=</span> real <span class="op">-</span> pred</span>
+<span id="cb42-4"><a href="#cb42-4"></a>    <span class="cf">return</span> mean(diff<span class="op">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a><span class="co">## fitting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="co">## fitting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="135">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error <span class="im">as</span> MSE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error <span class="im">as</span> MSE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="134">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>pred_y <span class="op">=</span> results.predict(start <span class="op">=</span> <span class="st">'2022-05-27 00:00:00'</span>, end<span class="op">=</span><span class="st">'2022-12-31 05:00:00'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>pred_y <span class="op">=</span> results.predict(start <span class="op">=</span> <span class="st">'2022-05-27 00:00:00'</span>, end<span class="op">=</span><span class="st">'2022-12-31 05:00:00'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="146">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>pred_y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>pred_y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="146">
 <pre><code>2022-05-27    0.960337
 2022-05-28    0.882472
