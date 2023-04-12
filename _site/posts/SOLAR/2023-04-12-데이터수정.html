@@ -9,7 +9,7 @@
 <meta name="author" content="jiyunLim">
 <meta name="dcterms.date" content="2023-04-12">
 
-<title>noteda - [SOLAR] Dataset for STGCN ver1 수정</title>
+<title>noteda - [SOLAR] Crate Dataset (22/06~22/09/15)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -164,7 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><strong>[SOLAR]</strong> Dataset for STGCN ver1 수정</h1>
+      <h1 class="quarto-secondary-nav-title"><strong>[SOLAR]</strong> Crate Dataset (22/06~22/09/15)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -175,10 +175,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block"><strong>[SOLAR]</strong> Dataset for STGCN ver1 수정</h1>
+      <h1 class="title d-none d-lg-block"><strong>[SOLAR]</strong> Crate Dataset (22/06~22/09/15)</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Research</div>
                 <div class="quarto-category">Data</div>
+                <div class="quarto-category">SOLAR</div>
               </div>
                   </div>
   </div>
@@ -397,12 +398,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/SOLAR/2023-04-06-stgcn-data-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver1</a>
+  <a href="../../posts/SOLAR/2023-04-12-데이터수정.html" class="sidebar-item-text sidebar-link active"><strong>[SOLAR]</strong> Crate Dataset (22/06~22/09/15)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/SOLAR/2023-04-12-데이터수정.html" class="sidebar-item-text sidebar-link active"><strong>[SOLAR]</strong> Dataset for STGCN ver1 수정</a>
+  <a href="../../posts/SOLAR/2023-04-06-stgcn-data-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver1</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -545,8 +546,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">import</a></li>
   <li><a href="#solar_radiation" id="toc-solar_radiation" class="nav-link" data-scroll-target="#solar_radiation">solar_radiation</a></li>
-  <li><a href="#train-test" id="toc-train-test" class="nav-link" data-scroll-target="#train-test">train / test</a></li>
+  <li><a href="#날짜-재설정-train-test" id="toc-날짜-재설정-train-test" class="nav-link" data-scroll-target="#날짜-재설정-train-test">날짜 재설정, train / test</a></li>
   <li><a href="#weight" id="toc-weight" class="nav-link" data-scroll-target="#weight">Weight</a></li>
+  <li><a href="#ept-weight" id="toc-ept-weight" class="nav-link" data-scroll-target="#ept-weight">EPT Weight</a>
+  <ul class="collapse">
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a></li>
+  <li><a href="#ept-수행" id="toc-ept-수행" class="nav-link" data-scroll-target="#ept-수행">EPT 수행</a></li>
+  <li><a href="#yu저장" id="toc-yu저장" class="nav-link" data-scroll-target="#yu저장">yU저장</a></li>
+  <li><a href="#시각화" id="toc-시각화" class="nav-link" data-scroll-target="#시각화">시각화</a></li>
+  <li><a href="#yu-correlation" id="toc-yu-correlation" class="nav-link" data-scroll-target="#yu-correlation">yU Correlation</a></li>
+  </ul></li>
+  <li><a href="#create-stgcn-datset" id="toc-create-stgcn-datset" class="nav-link" data-scroll-target="#create-stgcn-datset">Create STGCN Datset</a>
+  <ul class="collapse">
+  <li><a href="#import-1" id="toc-import-1" class="nav-link" data-scroll-target="#import-1">import</a></li>
+  <li><a href="#stgcn-ver1" id="toc-stgcn-ver1" class="nav-link" data-scroll-target="#stgcn-ver1">STGCN Ver1</a></li>
+  <li><a href="#stgcn-ver2" id="toc-stgcn-ver2" class="nav-link" data-scroll-target="#stgcn-ver2">STGCN Ver2</a></li>
+  </ul></li>
+  <li><a href="#comparision" id="toc-comparision" class="nav-link" data-scroll-target="#comparision">Comparision</a></li>
   </ul>
 </nav>
     </div>
@@ -601,8 +617,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>solar 데이터 수정완료</li>
 </ul>
 </section>
-<section id="train-test" class="level2">
-<h2 class="anchored" data-anchor-id="train-test">train / test</h2>
+<section id="날짜-재설정-train-test" class="level2">
+<h2 class="anchored" data-anchor-id="날짜-재설정-train-test">날짜 재설정, train / test</h2>
 <div class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> gc</span>
 <span id="cb11-2"><a href="#cb11-2"></a>gc.collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -671,13 +687,1328 @@ if (outputEl) {{
 <ul>
 <li>중복되는 것 잘 처리된 듯.</li>
 </ul>
-<div class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>train.to_csv(<span class="st">'./data/train.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb22-2"><a href="#cb22-2"></a>test.to_csv(<span class="st">'./data/test.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># train = train.reset_index(drop=True)</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="co"># test = test.reset_index(drop=True)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># train.to_csv('./data/train.csv', index=False)</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="co"># test.to_csv('./data/test.csv', index=False)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># solar_radiation = pd.concat([train, test])</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="co"># solar_radiation.to_csv('./data2/solar_radiation.csv')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="weight" class="level2">
 <h2 class="anchored" data-anchor-id="weight">Weight</h2>
+<div class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="im">import</span> rpy2</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="op">%</span>load_ext rpy2.ipython </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The rpy2.ipython extension is already loaded. To reload it, use:
+  %reload_ext rpy2.ipython</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="op">%</span>R <span class="op">-</span>i train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="op">%%</span>R</span>
+<span id="cb28-2"><a href="#cb28-2"></a>library(data.table)</span>
+<span id="cb28-3"><a href="#cb28-3"></a>library(tidyverse)</span>
+<span id="cb28-4"><a href="#cb28-4"></a>library(dplyr)</span>
+<span id="cb28-5"><a href="#cb28-5"></a>library(corrplot)</span>
+<span id="cb28-6"><a href="#cb28-6"></a>library(lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="op">%%</span>R</span>
+<span id="cb29-2"><a href="#cb29-2"></a>head(train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  region solar_radiation             date
+0 북춘천               0 2022-06-01-00:00
+1 북춘천               0 2022-06-01-01:00
+2 북춘천               0 2022-06-01-02:00
+3 북춘천               0 2022-06-01-03:00
+4 북춘천               0 2022-06-01-04:00
+5 북춘천               0 2022-06-01-05:00</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="89">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="op">%%</span>R</span>
+<span id="cb31-2"><a href="#cb31-2"></a>train <span class="op">=</span> train <span class="op">|&gt;</span> mutate(date <span class="op">=</span> ymd_hm(date))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="op">%%</span>R</span>
+<span id="cb32-2"><a href="#cb32-2"></a>train <span class="op">&lt;-</span> train <span class="op">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>              group_by(region) <span class="op">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>              mutate(row <span class="op">=</span> row_number()) <span class="op">%&gt;%</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a>              tidyr::pivot_wider(names_from <span class="op">=</span> region, values_from <span class="op">=</span> solar_radiation) <span class="op">%&gt;%</span></span>
+<span id="cb32-6"><a href="#cb32-6"></a>              select(<span class="op">-</span>row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="op">%%</span>R</span>
+<span id="cb33-2"><a href="#cb33-2"></a>num_vars <span class="op">&lt;-</span> train <span class="op">%&gt;%</span> select(<span class="op">-</span>date)</span>
+<span id="cb33-3"><a href="#cb33-3"></a>weight <span class="op">&lt;-</span> cor(num_vars)</span>
+<span id="cb33-4"><a href="#cb33-4"></a>weight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          북춘천      철원    대관령      춘천    백령도    북강릉      강릉
+북춘천 1.0000000 0.9324551 0.8413954 0.9795542 0.7683023 0.8009526 0.7861866
+철원   0.9324551 1.0000000 0.7956493 0.9286610 0.7818931 0.7541274 0.7373221
+대관령 0.8413954 0.7956493 1.0000000 0.8386966 0.7188297 0.9138333 0.9137933
+춘천   0.9795542 0.9286610 0.8386966 1.0000000 0.7759241 0.8019631 0.7846640
+백령도 0.7683023 0.7818931 0.7188297 0.7759241 1.0000000 0.7061263 0.6966470
+북강릉 0.8009526 0.7541274 0.9138333 0.8019631 0.7061263 1.0000000 0.9756847
+강릉   0.7861866 0.7373221 0.9137933 0.7846640 0.6966470 0.9756847 1.0000000
+서울   0.8903725 0.8876319 0.7750668 0.8902224 0.7439507 0.7341812 0.7149580
+인천   0.8744700 0.8781875 0.7756263 0.8829605 0.8175882 0.7527663 0.7318706
+원주   0.8818392 0.8502791 0.8491816 0.8878122 0.6968532 0.8167416 0.8101265
+울릉도 0.7595506 0.7189272 0.7990941 0.7635617 0.6354091 0.7795962 0.7709971
+수원   0.8820296 0.8693470 0.8059918 0.8848755 0.7609338 0.7906997 0.7745101
+서산   0.8488350 0.8249927 0.7964682 0.8468232 0.7652919 0.7941227 0.7762608
+청주   0.8307579 0.7855263 0.8221282 0.8348436 0.6822019 0.8148382 0.8010720
+대전   0.8117429 0.7712529 0.8246968 0.8173543 0.6938830 0.8270681 0.8070489
+추풍령 0.7960143 0.7539013 0.8435533 0.8055568 0.6979995 0.8511858 0.8364496
+안동   0.8111964 0.7648565 0.8662600 0.8215898 0.6962950 0.8705724 0.8594888
+포항   0.7256428 0.6844198 0.8058277 0.7365150 0.6518686 0.8046299 0.7996858
+대구   0.7918798 0.7587116 0.8434322 0.8011658 0.6988136 0.8314655 0.8162024
+전주   0.7811925 0.7440809 0.8050267 0.7878076 0.6829282 0.8045137 0.7915923
+창원   0.7565177 0.7151796 0.7979057 0.7624217 0.6870270 0.7819169 0.7735388
+광주   0.7873227 0.7553035 0.7951151 0.7935236 0.6725768 0.7790663 0.7688906
+부산   0.7533812 0.7225822 0.7948010 0.7571069 0.6806941 0.7825222 0.7736873
+목포   0.7661873 0.7337243 0.7737296 0.7732826 0.7140119 0.7596418 0.7484550
+여수   0.7633536 0.7307870 0.7903944 0.7693580 0.7068930 0.7751322 0.7677728
+흑산도 0.6993936 0.6728543 0.6807131 0.7150437 0.6839297 0.6629199 0.6630222
+고창   0.7925044 0.7652972 0.7831101 0.8016362 0.6958330 0.7713971 0.7636234
+홍성   0.8256934 0.7969195 0.7952289 0.8291781 0.7379403 0.8018168 0.7872580
+제주   0.7091296 0.6879107 0.7389474 0.7170028 0.6848686 0.7277671 0.7267009
+고산   0.7449083 0.7306428 0.7393850 0.7508272 0.7299169 0.7236955 0.7193154
+진주   0.7489826 0.7138415 0.8013164 0.7617733 0.7116293 0.7922470 0.7843872
+고창군 0.7805575 0.7413899 0.7884387 0.7870453 0.6840555 0.7828055 0.7670954
+영광군 0.7856301 0.7575025 0.7894362 0.7931970 0.7049749 0.7766498 0.7679711
+김해시 0.7465908 0.7116206 0.7881967 0.7493537 0.6895253 0.7769105 0.7689769
+순창군 0.7943097 0.7505764 0.8160578 0.8019902 0.6802432 0.8074319 0.7920895
+북창원 0.7269668 0.6884748 0.7883019 0.7349089 0.6675491 0.7820283 0.7788529
+양산시 0.7510175 0.7133782 0.8053604 0.7556350 0.6654975 0.7957811 0.7849245
+보성군 0.7704942 0.7420699 0.7950918 0.7839360 0.7141459 0.7853251 0.7764681
+강진군 0.7566174 0.7314532 0.7653234 0.7659525 0.6981070 0.7475696 0.7393672
+의령군 0.7612855 0.7190958 0.8089384 0.7690708 0.7000047 0.8105361 0.8038976
+함양군 0.7796817 0.7394196 0.8166946 0.7869499 0.7173924 0.8155327 0.8052922
+광양시 0.7592679 0.7261431 0.7934692 0.7683094 0.7022263 0.7704416 0.7641724
+청송군 0.7907397 0.7476890 0.8596892 0.8010432 0.6748956 0.8432934 0.8330011
+경주시 0.7300684 0.6859699 0.8178307 0.7338574 0.6582473 0.8199419 0.8096752
+            서울      인천      원주    울릉도      수원      서산      청주
+북춘천 0.8903725 0.8744700 0.8818392 0.7595506 0.8820296 0.8488350 0.8307579
+철원   0.8876319 0.8781875 0.8502791 0.7189272 0.8693470 0.8249927 0.7855263
+대관령 0.7750668 0.7756263 0.8491816 0.7990941 0.8059918 0.7964682 0.8221282
+춘천   0.8902224 0.8829605 0.8878122 0.7635617 0.8848755 0.8468232 0.8348436
+백령도 0.7439507 0.8175882 0.6968532 0.6354091 0.7609338 0.7652919 0.6822019
+북강릉 0.7341812 0.7527663 0.8167416 0.7795962 0.7906997 0.7941227 0.8148382
+강릉   0.7149580 0.7318706 0.8101265 0.7709971 0.7745101 0.7762608 0.8010720
+서울   1.0000000 0.9034416 0.8584456 0.7104507 0.9177827 0.8563854 0.8173792
+인천   0.9034416 1.0000000 0.8437606 0.7519265 0.9186319 0.8938130 0.8185188
+원주   0.8584456 0.8437606 1.0000000 0.7923313 0.9010821 0.8754305 0.9010735
+울릉도 0.7104507 0.7519265 0.7923313 1.0000000 0.7714494 0.7889595 0.8108455
+수원   0.9177827 0.9186319 0.9010821 0.7714494 1.0000000 0.9122589 0.8823276
+서산   0.8563854 0.8938130 0.8754305 0.7889595 0.9122589 1.0000000 0.8851825
+청주   0.8173792 0.8185188 0.9010735 0.8108455 0.8823276 0.8851825 1.0000000
+대전   0.7954026 0.8153099 0.8866695 0.8259923 0.8755872 0.8770676 0.9460653
+추풍령 0.7457618 0.7853439 0.8518609 0.8388835 0.8163848 0.8387802 0.8844030
+안동   0.7609332 0.7874054 0.8734501 0.8522912 0.8272108 0.8508985 0.8804022
+포항   0.6901963 0.7380779 0.7922880 0.8278983 0.7547235 0.7837299 0.7927669
+대구   0.7459121 0.7782449 0.8356540 0.8370513 0.8069510 0.8263894 0.8558139
+전주   0.7642515 0.7936115 0.8562723 0.8163920 0.8369472 0.8513313 0.8930477
+창원   0.7119777 0.7725014 0.7870717 0.8173484 0.7681847 0.8075872 0.8107834
+광주   0.7629569 0.7974764 0.8364529 0.8099344 0.8232473 0.8191789 0.8362276
+부산   0.7138869 0.7669048 0.7855475 0.8278864 0.7721779 0.7986096 0.8053325
+목포   0.7357198 0.8008241 0.8086794 0.8039140 0.8053391 0.8202137 0.8271254
+여수   0.7224418 0.7838482 0.7872488 0.7859429 0.7769729 0.8076551 0.8087588
+흑산도 0.6402982 0.7277224 0.7130824 0.7063272 0.7092081 0.7222364 0.7221668
+고창   0.7777575 0.8201295 0.8482437 0.8056932 0.8431733 0.8395814 0.8624063
+홍성   0.8254348 0.8602341 0.8744583 0.7947631 0.9024237 0.9399633 0.9052226
+제주   0.6708805 0.7196343 0.7461081 0.7597712 0.7262343 0.7369349 0.7685377
+고산   0.7131687 0.7634657 0.7653086 0.7481479 0.7654535 0.7903832 0.7699712
+진주   0.7180531 0.7782956 0.7856156 0.8108397 0.7774315 0.8089461 0.8189387
+고창군 0.7606161 0.7985964 0.8342187 0.8025257 0.8305723 0.8266425 0.8603055
+영광군 0.7754790 0.8231978 0.8380360 0.8035935 0.8420618 0.8402787 0.8535021
+김해시 0.7107544 0.7617357 0.7818407 0.8168539 0.7640896 0.7930881 0.8067091
+순창군 0.7522028 0.7943400 0.8476217 0.8120839 0.8181173 0.8309264 0.8646071
+북창원 0.6942723 0.7456681 0.7737301 0.8155766 0.7573821 0.7810627 0.7932070
+양산시 0.7077062 0.7602863 0.7920598 0.8248106 0.7687923 0.7953383 0.8186250
+보성군 0.7323476 0.7953131 0.8069716 0.7931236 0.7892258 0.8111558 0.8236898
+강진군 0.7269920 0.7809981 0.7959230 0.7829792 0.7819954 0.7956073 0.8196199
+의령군 0.7214300 0.7737580 0.7990773 0.8118961 0.7835219 0.8134156 0.8193908
+함양군 0.7342408 0.7920410 0.8185744 0.8064611 0.8009412 0.8179605 0.8460731
+광양시 0.7255430 0.7768801 0.7947979 0.7909505 0.7755672 0.8122102 0.8139872
+청송군 0.7469890 0.7696582 0.8529069 0.8405379 0.8002023 0.8266329 0.8572851
+경주시 0.6839612 0.7335185 0.7844827 0.8416816 0.7522104 0.7786239 0.8099774
+            대전    추풍령      안동      포항      대구      전주      창원
+북춘천 0.8117429 0.7960143 0.8111964 0.7256428 0.7918798 0.7811925 0.7565177
+철원   0.7712529 0.7539013 0.7648565 0.6844198 0.7587116 0.7440809 0.7151796
+대관령 0.8246968 0.8435533 0.8662600 0.8058277 0.8434322 0.8050267 0.7979057
+춘천   0.8173543 0.8055568 0.8215898 0.7365150 0.8011658 0.7878076 0.7624217
+백령도 0.6938830 0.6979995 0.6962950 0.6518686 0.6988136 0.6829282 0.6870270
+북강릉 0.8270681 0.8511858 0.8705724 0.8046299 0.8314655 0.8045137 0.7819169
+강릉   0.8070489 0.8364496 0.8594888 0.7996858 0.8162024 0.7915923 0.7735388
+서울   0.7954026 0.7457618 0.7609332 0.6901963 0.7459121 0.7642515 0.7119777
+인천   0.8153099 0.7853439 0.7874054 0.7380779 0.7782449 0.7936115 0.7725014
+원주   0.8866695 0.8518609 0.8734501 0.7922880 0.8356540 0.8562723 0.7870717
+울릉도 0.8259923 0.8388835 0.8522912 0.8278983 0.8370513 0.8163920 0.8173484
+수원   0.8755872 0.8163848 0.8272108 0.7547235 0.8069510 0.8369472 0.7681847
+서산   0.8770676 0.8387802 0.8508985 0.7837299 0.8263894 0.8513313 0.8075872
+청주   0.9460653 0.8844030 0.8804022 0.7927669 0.8558139 0.8930477 0.8107834
+대전   1.0000000 0.9051969 0.8963897 0.8206232 0.8766620 0.9162440 0.8262034
+추풍령 0.9051969 1.0000000 0.9332177 0.8766116 0.9192329 0.8993273 0.8825123
+안동   0.8963897 0.9332177 1.0000000 0.8864675 0.9163065 0.8829340 0.8731629
+포항   0.8206232 0.8766116 0.8864675 1.0000000 0.8981294 0.8246486 0.8663423
+대구   0.8766620 0.9192329 0.9163065 0.8981294 1.0000000 0.8777951 0.8859490
+전주   0.9162440 0.8993273 0.8829340 0.8246486 0.8777951 1.0000000 0.8405484
+창원   0.8262034 0.8825123 0.8731629 0.8663423 0.8859490 0.8405484 1.0000000
+광주   0.8677244 0.8806658 0.8730501 0.8416918 0.8739759 0.8908651 0.8654766
+부산   0.8310058 0.8799602 0.8696335 0.8638794 0.8843102 0.8489446 0.9400507
+목포   0.8569471 0.8581555 0.8454306 0.8170333 0.8513113 0.8630528 0.8673670
+여수   0.8202697 0.8694117 0.8606069 0.8397541 0.8633614 0.8460959 0.9130218
+흑산도 0.7354413 0.7571018 0.7518644 0.7131656 0.7256126 0.7351549 0.7787853
+고창   0.8841327 0.8750561 0.8735055 0.8241180 0.8642089 0.9036888 0.8580873
+홍성   0.9042548 0.8601915 0.8690360 0.7902957 0.8475497 0.8820764 0.8193104
+제주   0.7878633 0.8164234 0.8086556 0.8126488 0.8170868 0.8174235 0.8473166
+고산   0.7825940 0.8053601 0.8043757 0.7822236 0.8134039 0.8045008 0.8471507
+진주   0.8437567 0.8921529 0.8778570 0.8791069 0.8982687 0.8609958 0.9397549
+고창군 0.8901846 0.8840486 0.8769324 0.8172666 0.8669280 0.9143162 0.8404442
+영광군 0.8803746 0.8747298 0.8746685 0.8249098 0.8628904 0.8956300 0.8538644
+김해시 0.8333760 0.8795387 0.8777225 0.8638930 0.8868820 0.8524791 0.9441381
+순창군 0.8889548 0.9052294 0.8909878 0.8524072 0.8841582 0.9104594 0.8719463
+북창원 0.8234483 0.8765764 0.8770335 0.8738155 0.8874937 0.8427517 0.9481923
+양산시 0.8396529 0.8840026 0.8815109 0.8748006 0.8961085 0.8588888 0.9245399
+보성군 0.8456575 0.8864898 0.8736437 0.8482321 0.8709818 0.8601169 0.9047818
+강진군 0.8413485 0.8648836 0.8436445 0.8153541 0.8539161 0.8628698 0.8823224
+의령군 0.8471875 0.9016696 0.8898874 0.8929157 0.9184673 0.8675363 0.9364399
+함양군 0.8731642 0.9254933 0.8950286 0.8654495 0.9174084 0.8907069 0.8919119
+광양시 0.8382006 0.8700948 0.8597472 0.8489323 0.8717704 0.8482418 0.9084509
+청송군 0.8707417 0.9206766 0.9374623 0.8976606 0.9237607 0.8639775 0.8615422
+경주시 0.8341432 0.8954423 0.8975146 0.9305404 0.9071324 0.8337050 0.8813468
+            광주      부산      목포      여수    흑산도      고창      홍성
+북춘천 0.7873227 0.7533812 0.7661873 0.7633536 0.6993936 0.7925044 0.8256934
+철원   0.7553035 0.7225822 0.7337243 0.7307870 0.6728543 0.7652972 0.7969195
+대관령 0.7951151 0.7948010 0.7737296 0.7903944 0.6807131 0.7831101 0.7952289
+춘천   0.7935236 0.7571069 0.7732826 0.7693580 0.7150437 0.8016362 0.8291781
+백령도 0.6725768 0.6806941 0.7140119 0.7068930 0.6839297 0.6958330 0.7379403
+북강릉 0.7790663 0.7825222 0.7596418 0.7751322 0.6629199 0.7713971 0.8018168
+강릉   0.7688906 0.7736873 0.7484550 0.7677728 0.6630222 0.7636234 0.7872580
+서울   0.7629569 0.7138869 0.7357198 0.7224418 0.6402982 0.7777575 0.8254348
+인천   0.7974764 0.7669048 0.8008241 0.7838482 0.7277224 0.8201295 0.8602341
+원주   0.8364529 0.7855475 0.8086794 0.7872488 0.7130824 0.8482437 0.8744583
+울릉도 0.8099344 0.8278864 0.8039140 0.7859429 0.7063272 0.8056932 0.7947631
+수원   0.8232473 0.7721779 0.8053391 0.7769729 0.7092081 0.8431733 0.9024237
+서산   0.8191789 0.7986096 0.8202137 0.8076551 0.7222364 0.8395814 0.9399633
+청주   0.8362276 0.8053325 0.8271254 0.8087588 0.7221668 0.8624063 0.9052226
+대전   0.8677244 0.8310058 0.8569471 0.8202697 0.7354413 0.8841327 0.9042548
+추풍령 0.8806658 0.8799602 0.8581555 0.8694117 0.7571018 0.8750561 0.8601915
+안동   0.8730501 0.8696335 0.8454306 0.8606069 0.7518644 0.8735055 0.8690360
+포항   0.8416918 0.8638794 0.8170333 0.8397541 0.7131656 0.8241180 0.7902957
+대구   0.8739759 0.8843102 0.8513113 0.8633614 0.7256126 0.8642089 0.8475497
+전주   0.8908651 0.8489446 0.8630528 0.8460959 0.7351549 0.9036888 0.8820764
+창원   0.8654766 0.9400507 0.8673670 0.9130218 0.7787853 0.8580873 0.8193104
+광주   1.0000000 0.8662811 0.9110081 0.8835384 0.7708545 0.9317725 0.8454437
+부산   0.8662811 1.0000000 0.8547592 0.9122591 0.7718563 0.8567057 0.8064307
+목포   0.9110081 0.8547592 1.0000000 0.8771530 0.8066237 0.9156667 0.8373956
+여수   0.8835384 0.9122591 0.8771530 1.0000000 0.7880432 0.8668393 0.8123592
+흑산도 0.7708545 0.7718563 0.8066237 0.7880432 1.0000000 0.7897982 0.7243897
+고창   0.9317725 0.8567057 0.9156667 0.8668393 0.7897982 1.0000000 0.8645012
+홍성   0.8454437 0.8064307 0.8373956 0.8123592 0.7243897 0.8645012 1.0000000
+제주   0.8389098 0.8500131 0.8583366 0.8651901 0.7764570 0.8476197 0.7577701
+고산   0.8394262 0.8437787 0.8590665 0.8730355 0.7821907 0.8369779 0.7893949
+진주   0.8802182 0.9241015 0.8799757 0.9290877 0.7820483 0.8674705 0.8215968
+고창군 0.9299782 0.8435251 0.9016680 0.8587757 0.7643243 0.9595650 0.8635911
+영광군 0.9225244 0.8451974 0.9229197 0.8684401 0.7873974 0.9668528 0.8616135
+김해시 0.8566343 0.9413610 0.8439175 0.8940024 0.7524935 0.8525176 0.8134961
+순창군 0.9367345 0.8627107 0.9000122 0.8786733 0.7606625 0.9162123 0.8602163
+북창원 0.8642426 0.9223357 0.8536178 0.8932863 0.7444008 0.8510559 0.7999140
+양산시 0.8688949 0.9399661 0.8448951 0.8910316 0.7500934 0.8548345 0.8160331
+보성군 0.9068480 0.8965864 0.9137876 0.9332811 0.8072589 0.8959504 0.8300761
+강진군 0.9057509 0.8789422 0.9185887 0.8955207 0.7868001 0.8910640 0.8274505
+의령군 0.8805880 0.9163458 0.8747732 0.9133704 0.7626229 0.8718523 0.8251108
+함양군 0.8913100 0.8830097 0.8799185 0.8925185 0.7677850 0.8902016 0.8434977
+광양시 0.8866290 0.8995939 0.8843385 0.9265798 0.7813267 0.8723510 0.8189972
+청송군 0.8567084 0.8637152 0.8320770 0.8541911 0.7166094 0.8562145 0.8399010
+경주시 0.8411881 0.8826649 0.8218488 0.8423813 0.7295972 0.8309374 0.8013453
+            제주      고산      진주    고창군    영광군    김해시    순창군
+북춘천 0.7091296 0.7449083 0.7489826 0.7805575 0.7856301 0.7465908 0.7943097
+철원   0.6879107 0.7306428 0.7138415 0.7413899 0.7575025 0.7116206 0.7505764
+대관령 0.7389474 0.7393850 0.8013164 0.7884387 0.7894362 0.7881967 0.8160578
+춘천   0.7170028 0.7508272 0.7617733 0.7870453 0.7931970 0.7493537 0.8019902
+백령도 0.6848686 0.7299169 0.7116293 0.6840555 0.7049749 0.6895253 0.6802432
+북강릉 0.7277671 0.7236955 0.7922470 0.7828055 0.7766498 0.7769105 0.8074319
+강릉   0.7267009 0.7193154 0.7843872 0.7670954 0.7679711 0.7689769 0.7920895
+서울   0.6708805 0.7131687 0.7180531 0.7606161 0.7754790 0.7107544 0.7522028
+인천   0.7196343 0.7634657 0.7782956 0.7985964 0.8231978 0.7617357 0.7943400
+원주   0.7461081 0.7653086 0.7856156 0.8342187 0.8380360 0.7818407 0.8476217
+울릉도 0.7597712 0.7481479 0.8108397 0.8025257 0.8035935 0.8168539 0.8120839
+수원   0.7262343 0.7654535 0.7774315 0.8305723 0.8420618 0.7640896 0.8181173
+서산   0.7369349 0.7903832 0.8089461 0.8266425 0.8402787 0.7930881 0.8309264
+청주   0.7685377 0.7699712 0.8189387 0.8603055 0.8535021 0.8067091 0.8646071
+대전   0.7878633 0.7825940 0.8437567 0.8901846 0.8803746 0.8333760 0.8889548
+추풍령 0.8164234 0.8053601 0.8921529 0.8840486 0.8747298 0.8795387 0.9052294
+안동   0.8086556 0.8043757 0.8778570 0.8769324 0.8746685 0.8777225 0.8909878
+포항   0.8126488 0.7822236 0.8791069 0.8172666 0.8249098 0.8638930 0.8524072
+대구   0.8170868 0.8134039 0.8982687 0.8669280 0.8628904 0.8868820 0.8841582
+전주   0.8174235 0.8045008 0.8609958 0.9143162 0.8956300 0.8524791 0.9104594
+창원   0.8473166 0.8471507 0.9397549 0.8404442 0.8538644 0.9441381 0.8719463
+광주   0.8389098 0.8394262 0.8802182 0.9299782 0.9225244 0.8566343 0.9367345
+부산   0.8500131 0.8437787 0.9241015 0.8435251 0.8451974 0.9413610 0.8627107
+목포   0.8583366 0.8590665 0.8799757 0.9016680 0.9229197 0.8439175 0.9000122
+여수   0.8651901 0.8730355 0.9290877 0.8587757 0.8684401 0.8940024 0.8786733
+흑산도 0.7764570 0.7821907 0.7820483 0.7643243 0.7873974 0.7524935 0.7606625
+고창   0.8476197 0.8369779 0.8674705 0.9595650 0.9668528 0.8525176 0.9162123
+홍성   0.7577701 0.7893949 0.8215968 0.8635911 0.8616135 0.8134961 0.8602163
+제주   1.0000000 0.9150980 0.8626319 0.8325309 0.8473773 0.8377909 0.8331779
+고산   0.9150980 1.0000000 0.8547233 0.8188369 0.8371967 0.8276814 0.8261756
+진주   0.8626319 0.8547233 1.0000000 0.8601463 0.8704198 0.9117871 0.8858196
+고창군 0.8325309 0.8188369 0.8601463 1.0000000 0.9449450 0.8390671 0.9210254
+영광군 0.8473773 0.8371967 0.8704198 0.9449450 1.0000000 0.8408795 0.9059102
+김해시 0.8377909 0.8276814 0.9117871 0.8390671 0.8408795 1.0000000 0.8548002
+순창군 0.8331779 0.8261756 0.8858196 0.9210254 0.9059102 0.8548002 1.0000000
+북창원 0.8365515 0.8271780 0.9237160 0.8416775 0.8476422 0.9467024 0.8598864
+양산시 0.8334769 0.8225911 0.9054248 0.8497796 0.8482214 0.9454422 0.8698994
+보성군 0.8695582 0.8604500 0.9229088 0.8858874 0.8957576 0.8920097 0.9058756
+강진군 0.8607902 0.8506182 0.9014361 0.8868625 0.8883946 0.8698947 0.9005197
+의령군 0.8535075 0.8465066 0.9511550 0.8599614 0.8731419 0.9158772 0.8877513
+함양군 0.8457343 0.8308656 0.9186005 0.8880126 0.8926160 0.8839439 0.9166942
+광양시 0.8455300 0.8555353 0.9387943 0.8625700 0.8690496 0.8931414 0.8978022
+청송군 0.8098152 0.7986642 0.8741628 0.8571222 0.8502198 0.8635978 0.8825241
+경주시 0.8189803 0.7838201 0.8836543 0.8337294 0.8299023 0.8931187 0.8527455
+          북창원    양산시    보성군    강진군    의령군    함양군    광양시
+북춘천 0.7269668 0.7510175 0.7704942 0.7566174 0.7612855 0.7796817 0.7592679
+철원   0.6884748 0.7133782 0.7420699 0.7314532 0.7190958 0.7394196 0.7261431
+대관령 0.7883019 0.8053604 0.7950918 0.7653234 0.8089384 0.8166946 0.7934692
+춘천   0.7349089 0.7556350 0.7839360 0.7659525 0.7690708 0.7869499 0.7683094
+백령도 0.6675491 0.6654975 0.7141459 0.6981070 0.7000047 0.7173924 0.7022263
+북강릉 0.7820283 0.7957811 0.7853251 0.7475696 0.8105361 0.8155327 0.7704416
+강릉   0.7788529 0.7849245 0.7764681 0.7393672 0.8038976 0.8052922 0.7641724
+서울   0.6942723 0.7077062 0.7323476 0.7269920 0.7214300 0.7342408 0.7255430
+인천   0.7456681 0.7602863 0.7953131 0.7809981 0.7737580 0.7920410 0.7768801
+원주   0.7737301 0.7920598 0.8069716 0.7959230 0.7990773 0.8185744 0.7947979
+울릉도 0.8155766 0.8248106 0.7931236 0.7829792 0.8118961 0.8064611 0.7909505
+수원   0.7573821 0.7687923 0.7892258 0.7819954 0.7835219 0.8009412 0.7755672
+서산   0.7810627 0.7953383 0.8111558 0.7956073 0.8134156 0.8179605 0.8122102
+청주   0.7932070 0.8186250 0.8236898 0.8196199 0.8193908 0.8460731 0.8139872
+대전   0.8234483 0.8396529 0.8456575 0.8413485 0.8471875 0.8731642 0.8382006
+추풍령 0.8765764 0.8840026 0.8864898 0.8648836 0.9016696 0.9254933 0.8700948
+안동   0.8770335 0.8815109 0.8736437 0.8436445 0.8898874 0.8950286 0.8597472
+포항   0.8738155 0.8748006 0.8482321 0.8153541 0.8929157 0.8654495 0.8489323
+대구   0.8874937 0.8961085 0.8709818 0.8539161 0.9184673 0.9174084 0.8717704
+전주   0.8427517 0.8588888 0.8601169 0.8628698 0.8675363 0.8907069 0.8482418
+창원   0.9481923 0.9245399 0.9047818 0.8823224 0.9364399 0.8919119 0.9084509
+광주   0.8642426 0.8688949 0.9068480 0.9057509 0.8805880 0.8913100 0.8866290
+부산   0.9223357 0.9399661 0.8965864 0.8789422 0.9163458 0.8830097 0.8995939
+목포   0.8536178 0.8448951 0.9137876 0.9185887 0.8747732 0.8799185 0.8843385
+여수   0.8932863 0.8910316 0.9332811 0.8955207 0.9133704 0.8925185 0.9265798
+흑산도 0.7444008 0.7500934 0.8072589 0.7868001 0.7626229 0.7677850 0.7813267
+고창   0.8510559 0.8548345 0.8959504 0.8910640 0.8718523 0.8902016 0.8723510
+홍성   0.7999140 0.8160331 0.8300761 0.8274505 0.8251108 0.8434977 0.8189972
+제주   0.8365515 0.8334769 0.8695582 0.8607902 0.8535075 0.8457343 0.8455300
+고산   0.8271780 0.8225911 0.8604500 0.8506182 0.8465066 0.8308656 0.8555353
+진주   0.9237160 0.9054248 0.9229088 0.9014361 0.9511550 0.9186005 0.9387943
+고창군 0.8416775 0.8497796 0.8858874 0.8868625 0.8599614 0.8880126 0.8625700
+영광군 0.8476422 0.8482214 0.8957576 0.8883946 0.8731419 0.8926160 0.8690496
+김해시 0.9467024 0.9454422 0.8920097 0.8698947 0.9158772 0.8839439 0.8931414
+순창군 0.8598864 0.8698994 0.9058756 0.9005197 0.8877513 0.9166942 0.8978022
+북창원 1.0000000 0.9308383 0.8916015 0.8620615 0.9229449 0.8904644 0.8949002
+양산시 0.9308383 1.0000000 0.8828348 0.8604153 0.9131405 0.8842711 0.8820246
+보성군 0.8916015 0.8828348 1.0000000 0.9349757 0.9044171 0.9078017 0.9330083
+강진군 0.8620615 0.8604153 0.9349757 1.0000000 0.8835146 0.8894260 0.9100773
+의령군 0.9229449 0.9131405 0.9044171 0.8835146 1.0000000 0.9237456 0.9156762
+함양군 0.8904644 0.8842711 0.9078017 0.8894260 0.9237456 1.0000000 0.8922293
+광양시 0.8949002 0.8820246 0.9330083 0.9100773 0.9156762 0.8922293 1.0000000
+청송군 0.8715869 0.8733397 0.8559264 0.8353581 0.8870534 0.8958706 0.8615321
+경주시 0.8952267 0.9012255 0.8513353 0.8256217 0.8981893 0.8811767 0.8530420
+          청송군    경주시
+북춘천 0.7907397 0.7300684
+철원   0.7476890 0.6859699
+대관령 0.8596892 0.8178307
+춘천   0.8010432 0.7338574
+백령도 0.6748956 0.6582473
+북강릉 0.8432934 0.8199419
+강릉   0.8330011 0.8096752
+서울   0.7469890 0.6839612
+인천   0.7696582 0.7335185
+원주   0.8529069 0.7844827
+울릉도 0.8405379 0.8416816
+수원   0.8002023 0.7522104
+서산   0.8266329 0.7786239
+청주   0.8572851 0.8099774
+대전   0.8707417 0.8341432
+추풍령 0.9206766 0.8954423
+안동   0.9374623 0.8975146
+포항   0.8976606 0.9305404
+대구   0.9237607 0.9071324
+전주   0.8639775 0.8337050
+창원   0.8615422 0.8813468
+광주   0.8567084 0.8411881
+부산   0.8637152 0.8826649
+목포   0.8320770 0.8218488
+여수   0.8541911 0.8423813
+흑산도 0.7166094 0.7295972
+고창   0.8562145 0.8309374
+홍성   0.8399010 0.8013453
+제주   0.8098152 0.8189803
+고산   0.7986642 0.7838201
+진주   0.8741628 0.8836543
+고창군 0.8571222 0.8337294
+영광군 0.8502198 0.8299023
+김해시 0.8635978 0.8931187
+순창군 0.8825241 0.8527455
+북창원 0.8715869 0.8952267
+양산시 0.8733397 0.9012255
+보성군 0.8559264 0.8513353
+강진군 0.8353581 0.8256217
+의령군 0.8870534 0.8981893
+함양군 0.8958706 0.8811767
+광양시 0.8615321 0.8530420
+청송군 1.0000000 0.9062223
+경주시 0.9062223 1.0000000</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="op">%%</span>R</span>
+<span id="cb35-2"><a href="#cb35-2"></a>write.csv(weight, <span class="st">'./data2/weight.csv'</span>, row.names<span class="op">=</span>FALSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ept-weight" class="level2">
+<h2 class="anchored" data-anchor-id="ept-weight">EPT Weight</h2>
+<div class="cell" data-execution_count="111">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>train <span class="op">=</span> pd.read_csv(<span class="st">'./data2/train.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="112">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>train.duplicated().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="112">
+<pre><code>0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="113">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a><span class="op">%</span>R <span class="op">-</span>i train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="114">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="op">%%</span>R</span>
+<span id="cb40-2"><a href="#cb40-2"></a>library(EPT)</span>
+<span id="cb40-3"><a href="#cb40-3"></a>train<span class="op">%&gt;%</span>head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  region solar_radiation             date
+0 북춘천               0 2022-06-01-00:00
+1 북춘천               0 2022-06-01-01:00
+2 북춘천               0 2022-06-01-02:00
+3 북춘천               0 2022-06-01-03:00
+4 북춘천               0 2022-06-01-04:00
+5 북춘천               0 2022-06-01-05:00</code></pre>
+</div>
+</div>
+<section id="plot" class="level3">
+<h3 class="anchored" data-anchor-id="plot">Plot</h3>
+<div class="cell" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="op">%%</span>R</span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="cf">for</span> (i <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">44</span>){</span>
+<span id="cb42-3"><a href="#cb42-3"></a>     assign(paste0(<span class="st">'data'</span>,<span class="dv">1</span>:<span class="dv">44</span>)[i],train <span class="op">|&gt;</span> <span class="bu">filter</span>(region <span class="op">==</span> unique(train$region)[i]))</span>
+<span id="cb42-4"><a href="#cb42-4"></a>     assign(paste0(<span class="st">'data'</span>,<span class="dv">1</span>:<span class="dv">44</span>)[i],<span class="bu">eval</span>(parse(text<span class="op">=</span>paste0(<span class="st">'data'</span>,i)))[order(<span class="bu">eval</span>(parse(text<span class="op">=</span>paste0(<span class="st">'data'</span>,i)))$date),])</span>
+<span id="cb42-5"><a href="#cb42-5"></a>     assign(paste0(<span class="st">'y'</span>,<span class="dv">1</span>:<span class="dv">44</span>)[i], <span class="bu">eval</span>(parse(text<span class="op">=</span>paste0(<span class="st">'data'</span>,i)))$solar_radiation)</span>
+<span id="cb42-6"><a href="#cb42-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="117">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="op">%%</span>R</span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="cf">for</span> (i <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">44</span>){</span>
+<span id="cb43-3"><a href="#cb43-3"></a>    plot(<span class="bu">eval</span>(parse(text<span class="op">=</span>paste0(<span class="st">'y'</span>,i)))[<span class="dv">1</span>:<span class="dv">500</span>], ann<span class="op">=</span>FALSE)</span>
+<span id="cb43-4"><a href="#cb43-4"></a>    lines(<span class="bu">eval</span>(parse(text<span class="op">=</span>paste0(<span class="st">'y'</span>,i))),lty<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb43-5"><a href="#cb43-5"></a>    title(main <span class="op">=</span> <span class="im">as</span>.character(unique(train$region)[i]), xlab<span class="op">=</span><span class="st">'time'</span>, ylab<span class="op">=</span><span class="st">'solar radiation'</span>)</span>
+<span id="cb43-6"><a href="#cb43-6"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-3.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-4.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-5.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-6.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-7.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-8.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-9.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-10.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-11.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-12.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-13.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-14.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-15.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-16.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-17.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-18.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-19.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-20.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-21.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-22.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-23.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-24.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-25.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-26.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-27.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-28.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-29.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-30.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-31.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-32.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-33.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-34.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-35.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-36.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-37.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-38.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-39.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-40.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-41.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-42.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-43.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-32-output-44.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="ept-수행" class="level3">
+<h3 class="anchored" data-anchor-id="ept-수행">EPT 수행</h3>
+<div class="cell" data-execution_count="120">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="op">%%</span>R</span>
+<span id="cb44-2"><a href="#cb44-2"></a>ept <span class="op">=</span> function(y){</span>
+<span id="cb44-3"><a href="#cb44-3"></a>    EpM <span class="op">=</span> eptransf(signal<span class="op">=</span>y,tau<span class="op">=</span><span class="dv">24</span>,process<span class="op">=</span>c(<span class="st">"envelope"</span>,<span class="st">"average"</span>))$EpM</span>
+<span id="cb44-4"><a href="#cb44-4"></a>    EpM<span class="op">*</span><span class="dv">2</span></span>
+<span id="cb44-5"><a href="#cb44-5"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="121">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a><span class="op">%%</span>R</span>
+<span id="cb45-2"><a href="#cb45-2"></a>library(tictoc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>R[write to console]: 
+Attaching package: ‘tictoc’
+
+
+R[write to console]: The following object is masked from ‘package:data.table’:
+
+    shift
+
+</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="123">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a><span class="op">%%</span>R</span>
+<span id="cb47-2"><a href="#cb47-2"></a>tic(<span class="st">'지역별 yU계산'</span>)</span>
+<span id="cb47-3"><a href="#cb47-3"></a><span class="cf">for</span> (i <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">44</span>){</span>
+<span id="cb47-4"><a href="#cb47-4"></a>    assign(paste0(<span class="st">'yU'</span>,<span class="dv">1</span>:<span class="dv">44</span>)[i], ept(<span class="bu">eval</span>(parse(text<span class="op">=</span>paste0(<span class="st">'y'</span>,i)))))</span>
+<span id="cb47-5"><a href="#cb47-5"></a>}</span>
+<span id="cb47-6"><a href="#cb47-6"></a>toc()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>지역별 yU계산: 33.726 sec elapsed</code></pre>
+</div>
+</div>
+</section>
+<section id="yu저장" class="level3">
+<h3 class="anchored" data-anchor-id="yu저장">yU저장</h3>
+<div class="cell" data-execution_count="128">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a><span class="op">%%</span>R</span>
+<span id="cb49-2"><a href="#cb49-2"></a>df_yU <span class="op">=</span> do.call(cbind.data.frame, mget(paste0(<span class="st">'yU'</span>, <span class="dv">1</span>:<span class="dv">44</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="131">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a><span class="op">%%</span>R</span>
+<span id="cb50-2"><a href="#cb50-2"></a>write.csv(df_yU, <span class="st">'./data2/df_yU.csv'</span>, row.names<span class="op">=</span>FALSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="시각화" class="level3">
+<h3 class="anchored" data-anchor-id="시각화">시각화</h3>
+<div class="cell" data-execution_count="125">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a><span class="op">%%</span>R</span>
+<span id="cb51-2"><a href="#cb51-2"></a><span class="cf">for</span> (i <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">44</span>){</span>
+<span id="cb51-3"><a href="#cb51-3"></a>    plot(<span class="bu">eval</span>(parse(text<span class="op">=</span>paste0(<span class="st">'y'</span>,i)))[<span class="dv">1</span>:<span class="dv">500</span>], ann<span class="op">=</span>FALSE)</span>
+<span id="cb51-4"><a href="#cb51-4"></a>    lines(<span class="bu">eval</span>(parse(text<span class="op">=</span>paste0(<span class="st">'yU'</span>,i))),col <span class="op">=</span> <span class="dv">2</span>, lty<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb51-5"><a href="#cb51-5"></a>    title(main <span class="op">=</span> <span class="im">as</span>.character(unique(train$region)[i]), xlab<span class="op">=</span><span class="st">'time'</span>, ylab<span class="op">=</span><span class="st">'solar radiation'</span>)</span>
+<span id="cb51-6"><a href="#cb51-6"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-3.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-4.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-5.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-6.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-7.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-8.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-9.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-10.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-11.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-12.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-13.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-14.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-15.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-16.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-17.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-18.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-19.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-20.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-21.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-22.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-23.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-24.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-25.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-26.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-27.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-28.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-29.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-30.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-31.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-32.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-33.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-34.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-35.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-36.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-37.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-38.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-39.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-40.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-41.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-42.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-43.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-38-output-44.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="yu-correlation" class="level3">
+<h3 class="anchored" data-anchor-id="yu-correlation">yU Correlation</h3>
+<div class="cell" data-execution_count="133">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a><span class="op">%%</span>R</span>
+<span id="cb52-2"><a href="#cb52-2"></a>yU_cor <span class="op">=</span> cor(df_yU)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="134">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a><span class="op">%%</span>R</span>
+<span id="cb53-2"><a href="#cb53-2"></a>write.csv(yU_cor, <span class="st">'./data2/yU_weight.csv'</span>, row.names<span class="op">=</span>FALSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="create-stgcn-datset" class="level2">
+<h2 class="anchored" data-anchor-id="create-stgcn-datset">Create STGCN Datset</h2>
+<section id="import-1" class="level3">
+<h3 class="anchored" data-anchor-id="import-1">import</h3>
+<div class="cell" data-execution_count="137">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb54-2"><a href="#cb54-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="145">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'./data2/solar_radiation.csv'</span>)</span>
+<span id="cb55-2"><a href="#cb55-2"></a>weight <span class="op">=</span> pd.read_csv(<span class="st">'./data2/weight.csv'</span>)</span>
+<span id="cb55-3"><a href="#cb55-3"></a>ept_weight <span class="op">=</span> pd.read_csv(<span class="st">'./data2/yU_weight.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="145">
+<pre><code>(103576, 4)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="150">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="150">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>region</th>
+      <th>solar_radiation</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>북춘천</td>
+      <td>0.0</td>
+      <td>2022-06-01-00:00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>북춘천</td>
+      <td>0.0</td>
+      <td>2022-06-01-01:00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>북춘천</td>
+      <td>0.0</td>
+      <td>2022-06-01-02:00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>북춘천</td>
+      <td>0.0</td>
+      <td>2022-06-01-03:00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>북춘천</td>
+      <td>0.0</td>
+      <td>2022-06-01-04:00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="146">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a>df.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="146">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>region</th>
+      <th>solar_radiation</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>103571</th>
+      <td>30003</td>
+      <td>경주시</td>
+      <td>0.41</td>
+      <td>2022-09-15-17:00</td>
+    </tr>
+    <tr>
+      <th>103572</th>
+      <td>30004</td>
+      <td>경주시</td>
+      <td>0.12</td>
+      <td>2022-09-15-18:00</td>
+    </tr>
+    <tr>
+      <th>103573</th>
+      <td>30005</td>
+      <td>경주시</td>
+      <td>0.01</td>
+      <td>2022-09-15-19:00</td>
+    </tr>
+    <tr>
+      <th>103574</th>
+      <td>30006</td>
+      <td>경주시</td>
+      <td>0.00</td>
+      <td>2022-09-15-20:00</td>
+    </tr>
+    <tr>
+      <th>103575</th>
+      <td>30007</td>
+      <td>경주시</td>
+      <td>0.00</td>
+      <td>2022-09-15-21:00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="148">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a>df.duplicated().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="148">
+<pre><code>0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="157">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a><span class="co"># df = df.iloc[:,1:]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="159">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a><span class="op">%</span>R <span class="op">-</span>i df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="160">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a><span class="op">%%</span>R</span>
+<span id="cb63-2"><a href="#cb63-2"></a>df <span class="op">=</span> df <span class="op">|&gt;</span> mutate(date<span class="op">=</span>ymd_hm(date))</span>
+<span id="cb63-3"><a href="#cb63-3"></a>df <span class="op">&lt;-</span> df <span class="op">%&gt;%</span></span>
+<span id="cb63-4"><a href="#cb63-4"></a>          group_by(region) <span class="op">%&gt;%</span></span>
+<span id="cb63-5"><a href="#cb63-5"></a>          mutate(row <span class="op">=</span> row_number()) <span class="op">%&gt;%</span></span>
+<span id="cb63-6"><a href="#cb63-6"></a>          tidyr::pivot_wider(names_from <span class="op">=</span> region, values_from <span class="op">=</span> solar_radiation) <span class="op">%&gt;%</span></span>
+<span id="cb63-7"><a href="#cb63-7"></a>          select(<span class="op">-</span>row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="163">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1"></a><span class="op">%%</span>R</span>
+<span id="cb64-2"><a href="#cb64-2"></a>df <span class="op">%&gt;%</span> head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 45
+  date                북춘천  철원 대관령  춘천 백령도 북강릉  강릉  서울  인천
+  &lt;dttm&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 2022-06-01 00:00:00      0     0      0     0      0      0     0     0     0
+2 2022-06-01 01:00:00      0     0      0     0      0      0     0     0     0
+3 2022-06-01 02:00:00      0     0      0     0      0      0     0     0     0
+4 2022-06-01 03:00:00      0     0      0     0      0      0     0     0     0
+5 2022-06-01 04:00:00      0     0      0     0      0      0     0     0     0
+6 2022-06-01 05:00:00      0     0      0     0      0      0     0     0     0
+# … with 35 more variables: 원주 &lt;dbl&gt;, 울릉도 &lt;dbl&gt;, 수원 &lt;dbl&gt;, 서산 &lt;dbl&gt;,
+#   청주 &lt;dbl&gt;, 대전 &lt;dbl&gt;, 추풍령 &lt;dbl&gt;, 안동 &lt;dbl&gt;, 포항 &lt;dbl&gt;, 대구 &lt;dbl&gt;,
+#   전주 &lt;dbl&gt;, 창원 &lt;dbl&gt;, 광주 &lt;dbl&gt;, 부산 &lt;dbl&gt;, 목포 &lt;dbl&gt;, 여수 &lt;dbl&gt;,
+#   흑산도 &lt;dbl&gt;, 고창 &lt;dbl&gt;, 홍성 &lt;dbl&gt;, 제주 &lt;dbl&gt;, 고산 &lt;dbl&gt;, 진주 &lt;dbl&gt;,
+#   고창군 &lt;dbl&gt;, 영광군 &lt;dbl&gt;, 김해시 &lt;dbl&gt;, 순창군 &lt;dbl&gt;, 북창원 &lt;dbl&gt;,
+#   양산시 &lt;dbl&gt;, 보성군 &lt;dbl&gt;, 강진군 &lt;dbl&gt;, 의령군 &lt;dbl&gt;, 함양군 &lt;dbl&gt;,
+#   광양시 &lt;dbl&gt;, 청송군 &lt;dbl&gt;, 경주시 &lt;dbl&gt;
+# ℹ Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="174">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1"></a><span class="op">%%</span>R</span>
+<span id="cb66-2"><a href="#cb66-2"></a>write.csv(df,<span class="st">'./data2/restructuring_data.csv'</span>, row.names<span class="op">=</span>FALSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="172">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a><span class="im">import</span> gc</span>
+<span id="cb67-2"><a href="#cb67-2"></a>gc.collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="172">
+<pre><code>2599</code></pre>
+</div>
+</div>
+</section>
+<section id="stgcn-ver1" class="level3">
+<h3 class="anchored" data-anchor-id="stgcn-ver1">STGCN Ver1</h3>
+<div class="cell" data-execution_count="184">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'./data2/restructuring_data.csv'</span>)</span>
+<span id="cb69-2"><a href="#cb69-2"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="184">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>date</th>
+      <th>북춘천</th>
+      <th>철원</th>
+      <th>대관령</th>
+      <th>춘천</th>
+      <th>백령도</th>
+      <th>북강릉</th>
+      <th>강릉</th>
+      <th>서울</th>
+      <th>인천</th>
+      <th>...</th>
+      <th>순창군</th>
+      <th>북창원</th>
+      <th>양산시</th>
+      <th>보성군</th>
+      <th>강진군</th>
+      <th>의령군</th>
+      <th>함양군</th>
+      <th>광양시</th>
+      <th>청송군</th>
+      <th>경주시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2022-06-01 00:00:00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2022-06-01 01:00:00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2022-06-01 02:00:00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2022-06-01 03:00:00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2022-06-01 04:00:00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 45 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="185">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1"></a>df2 <span class="op">=</span> df.iloc[:,<span class="dv">1</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="186">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1"></a>node_list <span class="op">=</span>(df2.columns).tolist()</span>
+<span id="cb71-2"><a href="#cb71-2"></a>node_ids <span class="op">=</span> {node : i <span class="cf">for</span> i, node <span class="kw">in</span> <span class="bu">enumerate</span>(node_list)}</span>
+<span id="cb71-3"><a href="#cb71-3"></a>node_ids</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="186">
+<pre><code>{'북춘천': 0,
+ '철원': 1,
+ '대관령': 2,
+ '춘천': 3,
+ '백령도': 4,
+ '북강릉': 5,
+ '강릉': 6,
+ '서울': 7,
+ '인천': 8,
+ '원주': 9,
+ '울릉도': 10,
+ '수원': 11,
+ '서산': 12,
+ '청주': 13,
+ '대전': 14,
+ '추풍령': 15,
+ '안동': 16,
+ '포항': 17,
+ '대구': 18,
+ '전주': 19,
+ '창원': 20,
+ '광주': 21,
+ '부산': 22,
+ '목포': 23,
+ '여수': 24,
+ '흑산도': 25,
+ '고창': 26,
+ '홍성': 27,
+ '제주': 28,
+ '고산': 29,
+ '진주': 30,
+ '고창군': 31,
+ '영광군': 32,
+ '김해시': 33,
+ '순창군': 34,
+ '북창원': 35,
+ '양산시': 36,
+ '보성군': 37,
+ '강진군': 38,
+ '의령군': 39,
+ '함양군': 40,
+ '광양시': 41,
+ '청송군': 42,
+ '경주시': 43}</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="187">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1"></a>edges <span class="op">=</span> []    </span>
+<span id="cb73-2"><a href="#cb73-2"></a> </span>
+<span id="cb73-3"><a href="#cb73-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">44</span>):</span>
+<span id="cb73-4"><a href="#cb73-4"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">44</span>):</span>
+<span id="cb73-5"><a href="#cb73-5"></a>        <span class="cf">if</span> i <span class="op">!=</span> j:</span>
+<span id="cb73-6"><a href="#cb73-6"></a>            edges.append([i,j]) </span>
+<span id="cb73-7"><a href="#cb73-7"></a><span class="co"># print(edges)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="225">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1"></a>weights <span class="op">=</span> []    </span>
+<span id="cb74-2"><a href="#cb74-2"></a> </span>
+<span id="cb74-3"><a href="#cb74-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">44</span>):</span>
+<span id="cb74-4"><a href="#cb74-4"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">44</span>):</span>
+<span id="cb74-5"><a href="#cb74-5"></a>        <span class="cf">if</span> i <span class="op">!=</span> j:</span>
+<span id="cb74-6"><a href="#cb74-6"></a>            weights.append(weight.iloc[i,j]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="226">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1"></a>np.array(weights).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="226">
+<pre><code>(1892,)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="227">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1"></a><span class="bu">len</span>(df[<span class="st">'date'</span>]) <span class="co"># time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="227">
+<pre><code>2354</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="195">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1"></a>FX <span class="op">=</span> []    </span>
+<span id="cb79-2"><a href="#cb79-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2354</span>):</span>
+<span id="cb79-3"><a href="#cb79-3"></a>    FX.append(<span class="bu">list</span>(df2.iloc[i,:])) </span>
+<span id="cb79-4"><a href="#cb79-4"></a><span class="co">#FX</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="230">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1"></a>np.array(FX).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="230">
+<pre><code>(2354, 44)</code></pre>
+</div>
+</div>
+<p><code>-</code> weights, edges, node_ids, FX</p>
+<div class="cell" data-execution_count="231">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1"></a>data_dict <span class="op">=</span> {<span class="st">'edges'</span>:edges, <span class="st">'node_ids'</span>:node_ids, <span class="st">'weights'</span>:weights, <span class="st">'FX'</span>:FX}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="232">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1"></a>data_dict.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="232">
+<pre><code>dict_keys(['edges', 'node_ids', 'weights', 'FX'])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="233">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1"></a>file_path <span class="op">=</span> <span class="st">'./data2/stgcn_data1.json'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="234">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1"></a><span class="cf">with</span> <span class="bu">open</span>(file_path, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb86-2"><a href="#cb86-2"></a>    json.dump(data_dict, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="235">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1"></a><span class="cf">with</span> <span class="bu">open</span>(file_path, <span class="st">'r'</span>) <span class="im">as</span> f:</span>
+<span id="cb87-2"><a href="#cb87-2"></a>    test <span class="op">=</span> json.load(f, encoding<span class="op">=</span><span class="st">'cp949'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="236">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1"></a><span class="im">import</span> gc</span>
+<span id="cb88-2"><a href="#cb88-2"></a>gc.collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="236">
+<pre><code>478</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="239">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1"></a>np.array(data_dict[<span class="st">'weights'</span>]).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="239">
+<pre><code>0.8219681077476771</code></pre>
+</div>
+</div>
+</section>
+<section id="stgcn-ver2" class="level3">
+<h3 class="anchored" data-anchor-id="stgcn-ver2">STGCN Ver2</h3>
+<div class="cell" data-execution_count="209">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1"></a><span class="co"># ept_weight</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="218">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1"></a>ept_weights <span class="op">=</span> []    </span>
+<span id="cb93-2"><a href="#cb93-2"></a> </span>
+<span id="cb93-3"><a href="#cb93-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">44</span>):</span>
+<span id="cb93-4"><a href="#cb93-4"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">44</span>):</span>
+<span id="cb93-5"><a href="#cb93-5"></a>        <span class="cf">if</span> i <span class="op">!=</span> j:</span>
+<span id="cb93-6"><a href="#cb93-6"></a>            ept_weights.append(ept_weight.iloc[i,j]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="229">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1"></a>np.mean(weights), np.mean(ept_weights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="229">
+<pre><code>(0.8219681077476771, 0.5169148477886164)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="242">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1"></a>data_dict2 <span class="op">=</span> data_dict.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="244">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1"></a>data_dict2[<span class="st">'weights'</span>] <span class="op">=</span> ept_weights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="245">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1"></a>data_dict2[<span class="st">'weights'</span>][:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="245">
+<pre><code>[0.907927740795389,
+ 0.753186806078073,
+ 0.967586720050605,
+ 0.501379102625285,
+ 0.540227617256133,
+ 0.529185554166601,
+ 0.798735545675966,
+ 0.772408710532103,
+ 0.70807809817889,
+ 0.405231743243313]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="246">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1"></a>np.array(data_dict2[<span class="st">'weights'</span>]).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="246">
+<pre><code>0.5169148477886164</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="247">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1"></a>file_path <span class="op">=</span> <span class="st">'./data2/stgcn_data2.json'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="248">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1"></a><span class="co"># with open(file_path, 'w') as f:</span></span>
+<span id="cb103-2"><a href="#cb103-2"></a><span class="co">#     json.dump(data_dict2, f)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="249">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1"></a><span class="co"># with open(file_path, 'r') as f:</span></span>
+<span id="cb104-2"><a href="#cb104-2"></a><span class="co">#     test2 = json.load(f, encoding='cp949')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="comparision" class="level2">
+<h2 class="anchored" data-anchor-id="comparision">Comparision</h2>
+<div class="cell" data-execution_count="241">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1"></a>plt.hist(np.array(weights), alpha <span class="op">=</span> <span class="fl">0.5</span>, label <span class="op">=</span> <span class="st">'weights'</span>)</span>
+<span id="cb105-2"><a href="#cb105-2"></a>plt.hist(np.array(ept_weights), alpha <span class="op">=</span> <span class="fl">0.5</span>, label <span class="op">=</span> <span class="st">'EPT weights'</span>)</span>
+<span id="cb105-3"><a href="#cb105-3"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="241">
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f8b479ab880&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-데이터수정_files/figure-html/cell-78-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>모듈 수정</li>
+</ul>
 
 
 </section>

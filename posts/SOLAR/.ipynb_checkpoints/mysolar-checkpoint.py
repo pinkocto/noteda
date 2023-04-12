@@ -14,7 +14,7 @@ class SolarDatasetLoader(object):
         self._read_web_data()
 
     def _read_web_data(self):
-        url = "https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data/solar.json"
+        url = "https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data2/stgcn_data1.json"
         self._dataset = json.loads(urllib.request.urlopen(url).read().decode())
 
     def _get_edges(self):
@@ -63,7 +63,7 @@ class SolarEPTDatasetLoader(object):
         self._read_web_data()
 
     def _read_web_data(self):
-        url = "https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data/solar2.json"
+        url = "https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data2/stgcn_data2.json"
         self._dataset = json.loads(urllib.request.urlopen(url).read().decode())
 
     def _get_edges(self):
