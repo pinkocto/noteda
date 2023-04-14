@@ -535,6 +535,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-13-windmill-스몰버전.html" class="sidebar-item-text sidebar-link">WindmillOutput (Small)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/Study/python_7장.html" class="sidebar-item-text sidebar-link">스타벅스 주가예측</a>
   </div>
 </li>
@@ -564,6 +569,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">import</a></li>
   <li><a href="#learn" id="toc-learn" class="nav-link" data-scroll-target="#learn">Learn</a></li>
   <li><a href="#모델평가" id="toc-모델평가" class="nav-link" data-scroll-target="#모델평가">모델평가</a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
   </ul>
 </nav>
     </div>
@@ -637,64 +643,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="learn" class="level2">
 <h2 class="anchored" data-anchor-id="learn">Learn</h2>
-<div class="cell" data-execution_count="12">
+<div class="cell" data-execution_count="133">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">4</span>, filters<span class="op">=</span><span class="dv">32</span>)</span>
 <span id="cb8-2"><a href="#cb8-2"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
-<span id="cb8-3"><a href="#cb8-3"></a>model.train()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>RecurrentGCN(
-  (recurrent): GConvGRU(
-    (conv_x_z): ChebConv(4, 32, K=2, normalization=sym)
-    (conv_h_z): ChebConv(32, 32, K=2, normalization=sym)
-    (conv_x_r): ChebConv(4, 32, K=2, normalization=sym)
-    (conv_h_r): ChebConv(32, 32, K=2, normalization=sym)
-    (conv_x_h): ChebConv(4, 32, K=2, normalization=sym)
-    (conv_h_h): ChebConv(32, 32, K=2, normalization=sym)
-  )
-  (linear): Linear(in_features=32, out_features=1, bias=True)
-)</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>start <span class="op">=</span> time.time()</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="cf">for</span> epoch <span class="kw">in</span> tqdm(<span class="bu">range</span>(<span class="dv">50</span>)):</span>
-<span id="cb10-3"><a href="#cb10-3"></a>    <span class="cf">for</span> t, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
-<span id="cb10-4"><a href="#cb10-4"></a>        yt_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
-<span id="cb10-5"><a href="#cb10-5"></a>        cost <span class="op">=</span> torch.mean((yt_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb10-6"><a href="#cb10-6"></a>        cost.backward()</span>
-<span id="cb10-7"><a href="#cb10-7"></a>        optimizer.step()</span>
-<span id="cb10-8"><a href="#cb10-8"></a>        optimizer.zero_grad()</span>
-<span id="cb10-9"><a href="#cb10-9"></a>end <span class="op">=</span> time.time()</span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>end<span class="op">-</span>start<span class="sc">:.5f}</span><span class="ss"> sec"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3"></a>model.train()</span>
+<span id="cb8-4"><a href="#cb8-4"></a></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="cf">for</span> epoch <span class="kw">in</span> tqdm(<span class="bu">range</span>(<span class="dv">50</span>)):</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="cf">for</span> t, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb8-7"><a href="#cb8-7"></a>        yt_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb8-8"><a href="#cb8-8"></a>        cost <span class="op">=</span> torch.mean((yt_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb8-9"><a href="#cb8-9"></a>        cost.backward()</span>
+<span id="cb8-10"><a href="#cb8-10"></a>        optimizer.step()</span>
+<span id="cb8-11"><a href="#cb8-11"></a>        optimizer.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 50/50 [04:31&lt;00:00,  5.43s/it]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>271.29201 sec</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code></code></pre>
+<pre><code>100%|██████████| 50/50 [04:33&lt;00:00,  5.48s/it]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="bu">print</span>(<span class="fl">271.29201</span><span class="op">/</span><span class="dv">60</span>, <span class="st">'분'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="bu">print</span>(<span class="fl">271.29201</span><span class="op">/</span><span class="dv">60</span>, <span class="st">'분'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>4.5215335 분</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># import pickle </span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="co"># with open('./model/stgcn1_lag4_new.pickle','wb') as fw:</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="co">#     pickle.dump(model, fw)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># import pickle </span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co"># with open('./model/stgcn1_lag4_new.pickle','wb') as fw:</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co">#     pickle.dump(model, fw)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># import pickle </span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="co"># with open('./model/stgcn1_lag4_new.pickle', 'rb') as f: </span></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="co">#     model = pickle.load(f)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># import pickle </span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="co"># with open('./model/stgcn1_lag4_new.pickle', 'rb') as f: </span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="co">#     model = pickle.load(f)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell" data-execution_count="130">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="130">
 <pre><code>RecurrentGCN(
   (recurrent): GConvGRU(
     (conv_x_z): ChebConv(4, 32, K=2, normalization=sym)
@@ -712,31 +695,132 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="모델평가" class="level2">
 <h2 class="anchored" data-anchor-id="모델평가">모델평가</h2>
 <p><code>-</code> train</p>
-<div class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>model.<span class="bu">eval</span>()</span>
-<span id="cb20-2"><a href="#cb20-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
-<span id="cb20-4"><a href="#cb20-4"></a>    y_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
-<span id="cb20-5"><a href="#cb20-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb20-6"><a href="#cb20-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb20-7"><a href="#cb20-7"></a>cost <span class="op">=</span> cost.item()</span>
-<span id="cb20-8"><a href="#cb20-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>MSE: 0.2102</li>
+</ul>
+<div class="cell" data-execution_count="134">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb16-2"><a href="#cb16-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb16-4"><a href="#cb16-4"></a>    y_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb16-5"><a href="#cb16-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb16-6"><a href="#cb16-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb16-7"><a href="#cb16-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MSE: 0.2102</code></pre>
+<pre><code>MSE: 0.2048</code></pre>
 </div>
 </div>
 <p><code>-</code> test</p>
-<div class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>model.<span class="bu">eval</span>()</span>
-<span id="cb22-2"><a href="#cb22-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset):</span>
-<span id="cb22-4"><a href="#cb22-4"></a>    y_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
-<span id="cb22-5"><a href="#cb22-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb22-6"><a href="#cb22-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb22-7"><a href="#cb22-7"></a>cost <span class="op">=</span> cost.item()</span>
-<span id="cb22-8"><a href="#cb22-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>MSE: 0.1899</li>
+</ul>
+<div class="cell" data-execution_count="135">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb18-2"><a href="#cb18-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset):</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    y_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb18-6"><a href="#cb18-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb18-7"><a href="#cb18-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MSE: 0.1899</code></pre>
+<pre><code>MSE: 0.1868</code></pre>
+</div>
+</div>
+</section>
+<section id="visualization" class="level2">
+<h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data2/stgcn_data1.json'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>data_dict <span class="op">=</span> json.loads(urllib.request.urlopen(url).read())</span>
+<span id="cb21-2"><a href="#cb21-2"></a>V <span class="op">=</span> <span class="bu">list</span>(data_dict[<span class="st">'node_ids'</span>].keys())</span>
+<span id="cb21-3"><a href="#cb21-3"></a>f <span class="op">=</span> np.array(data_dict[<span class="st">"FX"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>yhat_train <span class="op">=</span> torch.stack([model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> train_dataset]).detach().numpy()</span>
+<span id="cb22-2"><a href="#cb22-2"></a>yhat_test <span class="op">=</span> torch.stack([model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset]).detach().numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="148">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>f.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="148">
+<pre><code>(2354, 44)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="149">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="dv">705</span> <span class="op">+</span> <span class="dv">1645</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="149">
+<pre><code>2350</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>yhat_test.shape, yhat_train.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<pre><code>((705, 44, 1), (1645, 44, 1))</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb29-2"><a href="#cb29-2"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> <span class="st">'NanumGothic'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="157">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">44</span>,<span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">50</span>))</span>
+<span id="cb30-2"><a href="#cb30-2"></a>lag<span class="op">=</span> <span class="dv">0</span> </span>
+<span id="cb30-3"><a href="#cb30-3"></a>T <span class="op">=</span> <span class="dv">100</span> </span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">44</span>):</span>
+<span id="cb30-5"><a href="#cb30-5"></a>    ax[k].plot(np.array(train_dataset.targets)[lag:(lag<span class="op">+</span>T),k],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>)</span>
+<span id="cb30-6"><a href="#cb30-6"></a>    ax[k].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[k]))</span>
+<span id="cb30-7"><a href="#cb30-7"></a>    ax[k].plot(yhat_train[:T,k],label<span class="op">=</span><span class="st">'predicted (tr)'</span>)</span>
+<span id="cb30-8"><a href="#cb30-8"></a><span class="co">#    ax[k].plot(range(yhat_train.shape[0],yhat_train.shape[0]+yhat_test.shape[0]),yhat_test[:,k],label='predicted (test)')</span></span>
+<span id="cb30-9"><a href="#cb30-9"></a>    ax[k].legend()</span>
+<span id="cb30-10"><a href="#cb30-10"></a>fig.tight_layout()</span>
+<span id="cb30-11"><a href="#cb30-11"></a></span>
+<span id="cb30-12"><a href="#cb30-12"></a><span class="co"># plt.savefig('stgcn-ver2-lag4-vis.png')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-stgcn-ver1_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="138">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>np.array(dataset.features).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="138">
+<pre><code>(2350, 44, 4)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="139">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>np.array(dataset.targets).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="139">
+<pre><code>(2350, 44)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="152">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>np.array(train_dataset.targets).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="152">
+<pre><code>(1645, 44)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="153">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>np.array(test_dataset.targets).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="153">
+<pre><code>(705, 44)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="154">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">44</span>,<span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">50</span>))</span>
+<span id="cb39-2"><a href="#cb39-2"></a>lag<span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb39-3"><a href="#cb39-3"></a>T <span class="op">=</span> <span class="dv">100</span> </span>
+<span id="cb39-4"><a href="#cb39-4"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">44</span>):</span>
+<span id="cb39-5"><a href="#cb39-5"></a>    ax[k].plot(np.array(test_dataset.targets)[lag:(lag<span class="op">+</span>T),k],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>)</span>
+<span id="cb39-6"><a href="#cb39-6"></a>    ax[k].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[k]))</span>
+<span id="cb39-7"><a href="#cb39-7"></a>    ax[k].plot(yhat_test[:T,k],label<span class="op">=</span><span class="st">'predicted (test)'</span>)</span>
+<span id="cb39-8"><a href="#cb39-8"></a><span class="co">#    ax[k].plot(range(yhat_train.shape[0],yhat_train.shape[0]+yhat_test.shape[0]),yhat_test[:,k],label='predicted (test)')</span></span>
+<span id="cb39-9"><a href="#cb39-9"></a>    ax[k].legend()</span>
+<span id="cb39-10"><a href="#cb39-10"></a>fig.tight_layout()</span>
+<span id="cb39-11"><a href="#cb39-11"></a></span>
+<span id="cb39-12"><a href="#cb39-12"></a><span class="co"># plt.savefig('stgcn-ver2-lag4-vis.png')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-12-stgcn-ver1_files/figure-html/cell-27-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 
