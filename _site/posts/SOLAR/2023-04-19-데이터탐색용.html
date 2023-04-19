@@ -398,6 +398,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-데이터수정3.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (0815/0910) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-04-12-데이터수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (22/06~22/09/15)</a>
   </div>
 </li>
@@ -438,6 +443,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver1--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (+N) (MSE: 0.1705) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-train비율조정-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (MSE: 0.1216)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-04-12-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (MSE: 0.1899)</a>
   </div>
 </li>
@@ -459,6 +474,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-04-15-stgcn-ver1-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 수정본 (MSE: 0.1674)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-train비율조정-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (+N) (MSE: 0.1679)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -504,6 +524,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-04-07-yu.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> yU</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-19-가중치스케일링.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 가중치 스케일링</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -613,17 +638,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> urllib</span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="6">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'./data2/restructuring_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>df_ <span class="op">=</span> pd.read_csv(<span class="st">'./data3/restructuring_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>df_.shape[<span class="dv">0</span>]<span class="op">*</span><span class="fl">0.756</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>489.888</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="dv">407</span><span class="op">/</span><span class="dv">648</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<pre><code>0.6280864197530864</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>df_.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>(648, 45)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>df_.iloc[<span class="dv">407</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<pre><code>date    2022-08-31 23:00:00
+북춘천                     0.0
+철원                      0.0
+대관령                     0.0
+춘천                      0.0
+백령도                     0.0
+북강릉                     0.0
+강릉                      0.0
+서울                      0.0
+인천                      0.0
+원주                      0.0
+울릉도                     0.0
+수원                      0.0
+서산                      0.0
+청주                      0.0
+대전                      0.0
+추풍령                     0.0
+안동                      0.0
+포항                      0.0
+대구                      0.0
+전주                      0.0
+창원                      0.0
+광주                      0.0
+부산                      0.0
+목포                      0.0
+여수                      0.0
+흑산도                     0.0
+고창                      0.0
+홍성                      0.0
+제주                      0.0
+고산                      0.0
+진주                      0.0
+고창군                     0.0
+영광군                     0.0
+김해시                     0.0
+순창군                     0.0
+북창원                     0.0
+양산시                     0.0
+보성군                     0.0
+강진군                     0.0
+의령군                     0.0
+함양군                     0.0
+광양시                     0.0
+청송군                     0.0
+경주시                     0.0
+Name: 407, dtype: object</code></pre>
+</div>
+</div>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>(2568, 45)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 
 <div>
@@ -783,8 +880,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="bu">print</span>(<span class="st">'train'</span>, df.iloc[<span class="dv">0</span>][<span class="st">'date'</span>], <span class="st">'~'</span>, df.iloc[<span class="dv">1793</span>][<span class="st">'date'</span>])</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="bu">print</span>(<span class="st">'test'</span>,  df.iloc[<span class="dv">1794</span>][<span class="st">'date'</span>], <span class="st">'~'</span>, df.iloc[<span class="op">-</span><span class="dv">1</span>][<span class="st">'date'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="bu">print</span>(<span class="st">'train'</span>, df.iloc[<span class="dv">0</span>][<span class="st">'date'</span>], <span class="st">'~'</span>, df.iloc[<span class="dv">1793</span>][<span class="st">'date'</span>])</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="bu">print</span>(<span class="st">'test'</span>,  df.iloc[<span class="dv">1794</span>][<span class="st">'date'</span>], <span class="st">'~'</span>, df.iloc[<span class="op">-</span><span class="dv">1</span>][<span class="st">'date'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>train 2022-06-01 00:00:00 ~ 2022-08-14 17:00:00
 test 2022-08-14 18:00:00 ~ 2022-09-15 23:00:00</code></pre>
