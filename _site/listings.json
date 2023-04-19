@@ -2,6 +2,12 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/SOLAR/2023-04-19-데이터탐색용.html",
+      "/posts/SOLAR/2023-04-17-정규화-stgcn-ver1-.html",
+      "/posts/SOLAR/2023-04-17-정규화-stgcn-ver2.html",
+      "/posts/SOLAR/2023-04-15-stgcn-ver1-수정본.html",
+      "/posts/SOLAR/2023-04-15-stgcn-ver2-수정본.html",
+      "/posts/SOLAR/2023-04-14-데이터수정2.html",
       "/posts/SOLAR/2023-04-12-데이터수정.html",
       "/posts/SOLAR/2023-04-12-stgcn-ver1.html",
       "/posts/SOLAR/2023-04-12-stgcn-ver1-train90.html",

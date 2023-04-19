@@ -3,7 +3,7 @@ import urllib
 import numpy as np
 from torch_geometric_temporal.signal.static_graph_temporal_signal import StaticGraphTemporalSignal
 
-class SolarDatasetLoader(object):
+class NormalSolarDatasetLoader(object):
     """Hourly solar radiation of observatories from South Korean  for 2 years. 
     Vertices represent 44 cities and the weighted edges represent the strength of the relationship. 
     The target variable allows regression operations. 
@@ -58,7 +58,7 @@ class SolarDatasetLoader(object):
         return dataset
     
     
-class SolarEPTDatasetLoader(object):
+class NormalSolarEPTDatasetLoader(object):
     """Hourly solar radiation of observatories from South Korean  for 2 years. 
     Vertices represent 44 cities and the weighted edges represent the strength of the relationship. 
     The target variable allows regression operations. 
