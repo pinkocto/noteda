@@ -10,12 +10,13 @@ class SolarDatasetLoader(object):
     (The weight is the correlation coefficient of solar radiation by region.)
     """
 
-    def __init__(self):
+    def __init__(self, url):
+        self.url = url
         self._read_web_data()
 
     def _read_web_data(self):
-        url = "https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data3/stgcn_data1.json"
-        self._dataset = json.loads(urllib.request.urlopen(url).read().decode())
+       # url = "https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data3/stgcn_data1.json"
+        self._dataset = json.loads(urllib.request.urlopen(self.url).read().decode())
 
     def _get_edges(self):
         self._edges = np.array(self._dataset["edges"]).T

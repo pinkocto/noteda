@@ -1,0 +1,5 @@
+dataset,method,lags,nof_filters,epoch,mse,calculation_time
+<torch_geometric_temporal.signal.static_graph_temporal_signal.StaticGraphTemporalSignal object at 0x7fb790ce8b50>,STGCN,2,32,3,0.2179495245218277,17.522770404815674
+<torch_geometric_temporal.signal.static_graph_temporal_signal.StaticGraphTemporalSignal object at 0x7fb790ce8b50>,STGCN,4,32,3,0.21088434755802155,17.728105306625366
+<torch_geometric_temporal.signal.static_graph_temporal_signal.StaticGraphTemporalSignal object at 0x7fb790ce8b50>,STGCN,2,32,3,0.20984476804733276,17.583988428115845
+<torch_geometric_temporal.signal.static_graph_temporal_signal.StaticGraphTemporalSignal object at 0x7fb790ce8b50>,STGCN,4,32,3,0.21598482131958008,17.795775413513184

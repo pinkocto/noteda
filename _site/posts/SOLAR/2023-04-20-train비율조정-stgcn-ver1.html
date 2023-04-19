@@ -435,12 +435,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver1-.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (+N) (MSE: 0.1705)</a>
+  <a href="../../posts/SOLAR/2023-04-21-정규화-stgcn-ver1--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (+N +S) (MSE: 0.1705) – guebin</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver1--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (+N) (MSE: 0.1705) – guebin</a>
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver1-.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (+N) (MSE: 0.1705)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -471,6 +471,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-04-15-stgcn-ver1-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 수정본 (MSE: 0.1674)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-21-정규화-stgcn-ver2--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (+N +S) (MSE: 0.1705) – guebin</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -621,7 +626,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#full" id="toc-full" class="nav-link active" data-scroll-target="#full">0815/0910 full</a></li>
+  <li><a href="#logn-term-short-term" id="toc-logn-term-short-term" class="nav-link active" data-scroll-target="#logn-term-short-term">Logn term, Short term</a></li>
+  <li><a href="#full" id="toc-full" class="nav-link" data-scroll-target="#full">0815/0910 full</a></li>
   <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">import</a></li>
   <li><a href="#learn" id="toc-learn" class="nav-link" data-scroll-target="#learn">Learn</a></li>
   <li><a href="#모델평가" id="toc-모델평가" class="nav-link" data-scroll-target="#모델평가">모델평가</a></li>
@@ -639,6 +645,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
+<section id="logn-term-short-term" class="level2">
+<h2 class="anchored" data-anchor-id="logn-term-short-term">Logn term, Short term</h2>
+</section>
 <section id="full" class="level2">
 <h2 class="anchored" data-anchor-id="full">0815/0910 full</h2>
 <p>train: 08월 학습, 9월 10일간 test</p>
@@ -652,7 +661,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> urllib</span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 일반적인 모듈 </span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
@@ -671,7 +680,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-16"><a href="#cb2-16"></a><span class="im">from</span> torch_geometric_temporal.nn.recurrent <span class="im">import</span> GConvGRU</span>
 <span id="cb2-17"><a href="#cb2-17"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="27">
+<div class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">class</span> RecurrentGCN(torch.nn.Module):</span>
 <span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, node_features, filters):</span>
 <span id="cb3-3"><a href="#cb3-3"></a>        <span class="bu">super</span>(RecurrentGCN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
@@ -684,21 +693,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-10"><a href="#cb3-10"></a>        h <span class="op">=</span> <span class="va">self</span>.linear(h)</span>
 <span id="cb3-11"><a href="#cb3-11"></a>        <span class="cf">return</span> h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="28">
+<div class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> mysolar2 <span class="im">import</span> NormalSolarDatasetLoader</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="31">
+<div class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>loader <span class="op">=</span> NormalSolarDatasetLoader()</span>
 <span id="cb5-2"><a href="#cb5-2"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">4</span>)</span>
 <span id="cb5-3"><a href="#cb5-3"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.756</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="36">
+<div class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="dv">31</span><span class="op">/</span>(<span class="dv">31</span><span class="op">+</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="55">
 <pre><code>0.7560975609756098</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="26">
+<div class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="bu">print</span>(np.array(train_dataset.targets).shape)</span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="bu">print</span>(np.array(test_dataset.targets).shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -706,14 +715,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 (158, 44)</code></pre>
 </div>
 </div>
-<ul>
-<li>train 2022-06-01 00:00:00 ~ 2022-08-14 17:00:00</li>
-<li>test 2022-08-14 18:00:00 ~ 2022-09-15 23:00:00</li>
-</ul>
 </section>
 <section id="learn" class="level2">
 <h2 class="anchored" data-anchor-id="learn">Learn</h2>
-<div class="cell" data-execution_count="15">
+<div class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">4</span>, filters<span class="op">=</span><span class="dv">32</span>)</span>
 <span id="cb10-2"><a href="#cb10-2"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
 <span id="cb10-3"><a href="#cb10-3"></a>model.train()</span>
@@ -726,22 +731,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-10"><a href="#cb10-10"></a>        optimizer.step()</span>
 <span id="cb10-11"><a href="#cb10-11"></a>        optimizer.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 50/50 [02:23&lt;00:00,  2.87s/it]</code></pre>
+<pre><code>100%|██████████| 50/50 [01:46&lt;00:00,  2.14s/it]</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="18">
+<div class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">import</span> pickle </span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'./model4/normal_stgcn1_lag4_new.pickle'</span>,<span class="st">'wb'</span>) <span class="im">as</span> fw:</span>
 <span id="cb12-3"><a href="#cb12-3"></a>    pickle.dump(model, fw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="19">
+<div class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">import</span> pickle </span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'./model4/normal_stgcn1_lag4_new.pickle'</span>, <span class="st">'rb'</span>) <span class="im">as</span> f: </span>
 <span id="cb13-3"><a href="#cb13-3"></a>    model <span class="op">=</span> pickle.load(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="20">
+<div class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="60">
 <pre><code>RecurrentGCN(
   (recurrent): GConvGRU(
     (conv_x_z): ChebConv(4, 32, K=2, normalization=sym)
@@ -762,7 +767,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>MSE: 0.2102 (before normalize)</li>
 </ul>
-<div class="cell" data-execution_count="21">
+<div class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>model.<span class="bu">eval</span>()</span>
 <span id="cb16-2"><a href="#cb16-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb16-3"><a href="#cb16-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
@@ -772,14 +777,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-7"><a href="#cb16-7"></a>cost <span class="op">=</span> cost.item()</span>
 <span id="cb16-8"><a href="#cb16-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MSE: 0.2153</code></pre>
+<pre><code>MSE: 0.2122</code></pre>
 </div>
 </div>
 <p><code>-</code> test</p>
 <ul>
 <li>MSE: 0.1899 (before normalize)</li>
 </ul>
-<div class="cell" data-execution_count="22">
+<div class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>model.<span class="bu">eval</span>()</span>
 <span id="cb18-2"><a href="#cb18-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb18-3"><a href="#cb18-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset):</span>
@@ -789,49 +794,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-7"><a href="#cb18-7"></a>cost <span class="op">=</span> cost.item()</span>
 <span id="cb18-8"><a href="#cb18-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MSE: 0.1216</code></pre>
+<pre><code>MSE: 0.1124</code></pre>
 </div>
 </div>
 </section>
 <section id="visualization" class="level2">
 <h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data2/stgcn_data1.json'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data3/stgcn_data1.json'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="17">
+<div class="cell" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>data_dict <span class="op">=</span> json.loads(urllib.request.urlopen(url).read())</span>
 <span id="cb21-2"><a href="#cb21-2"></a>V <span class="op">=</span> <span class="bu">list</span>(data_dict[<span class="st">'node_ids'</span>].keys())</span>
 <span id="cb21-3"><a href="#cb21-3"></a>f <span class="op">=</span> np.array(data_dict[<span class="st">"FX"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="18">
+<div class="cell" data-execution_count="65">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>yhat_train <span class="op">=</span> torch.stack([model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> train_dataset]).detach().numpy()</span>
 <span id="cb22-2"><a href="#cb22-2"></a>yhat_test <span class="op">=</span> torch.stack([model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset]).detach().numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="22">
+<div class="cell" data-execution_count="66">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>f.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
-<pre><code>(2568, 44)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="66">
+<pre><code>(648, 44)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="23">
+<div class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>yhat_test.shape[<span class="dv">0</span>] <span class="op">+</span>  yhat_train.shape[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
-<pre><code>2564</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="67">
+<pre><code>644</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="21">
+<div class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>yhat_test.shape, yhat_train.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
-<pre><code>((770, 44, 1), (1794, 44, 1))</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="68">
+<pre><code>((158, 44, 1), (486, 44, 1))</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="24">
+<div class="cell" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb29-2"><a href="#cb29-2"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> <span class="st">'NanumGothic'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="train" class="level3">
 <h3 class="anchored" data-anchor-id="train">train</h3>
-<div class="cell" data-execution_count="27">
+<div class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">44</span>,<span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">50</span>))</span>
 <span id="cb30-2"><a href="#cb30-2"></a>lag<span class="op">=</span> <span class="dv">0</span> </span>
 <span id="cb30-3"><a href="#cb30-3"></a>T <span class="op">=</span> <span class="dv">100</span> </span>
@@ -848,10 +853,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2023-04-20-train비율조정-stgcn-ver1_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="138">
+<div class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>np.array(dataset.features).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="138">
-<pre><code>(2350, 44, 4)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="71">
+<pre><code>(644, 44, 4)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="139">
@@ -875,7 +880,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="test" class="level3">
 <h3 class="anchored" data-anchor-id="test">test</h3>
-<div class="cell" data-execution_count="28">
+<div class="cell" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">44</span>,<span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">50</span>))</span>
 <span id="cb39-2"><a href="#cb39-2"></a>lag<span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb39-3"><a href="#cb39-3"></a>T <span class="op">=</span> <span class="dv">100</span> </span>
