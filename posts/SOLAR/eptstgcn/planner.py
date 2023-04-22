@@ -11,17 +11,20 @@ from .utils import *
 class PLNR():
     def __init__(self,plans,loader,dataset_name=None,simulation_results=None):
         self.plans = plans
-        col = ['dataset', 'method', 'lags', 'nof_filters', 'epoch', 'mse','calculation_time']
+        # col = ['dataset', 'method', 'lags', 'nof_filters', 'epoch', 'mse','calculation_time']
+        col = ['dataset', 'method', 'lags', 'nof_filters', 'epoch', 'mse(train)','mse(test)','calculation_time']
         self.loader = loader
         self.dataset_name = dataset_name
         self.simulation_results = pd.DataFrame(columns=col) if simulation_results is None else simulation_results 
-    def record(self,method,lags,nof_filters,epoch,mse,calculation_time):
+    def record(self,method,lags,nof_filters,epoch,mse_tr, mse_test, calculation_time):
         dct = {'dataset': self.dataset_name,
                'method': method, 
                'lags': lags,
                'nof_filters': nof_filters,
                'epoch': epoch,
-               'mse': mse,
+               # 'mse': mse,
+               'mse(train)': mse_tr,
+               'mse(test)': mse_test,
                'calculation_time': calculation_time
               }
         simulation_result_new = pd.Series(dct).to_frame().transpose()
@@ -65,8 +68,11 @@ class PLNR_STGCN(PLNR):
                 t2 = time.time()
                 evtor = Evaluator(lrnr,train_dataset,test_dataset)
                 evtor.calculate_mse()
-                mse = evtor.mse['test']['total']
+                # mse = evtor.mse['test']['total']
+                mse_tr = evtor.mse['train']['total']
+                mse_test = evtor.mse['test']['total']
                 calculation_time = t2-t1
-                self.record(method,lags,nof_filters,epoch,mse,calculation_time)
+                # self.record(method,lags,nof_filters,epoch,mse,calculation_time)
+                self.record(method, lags, nof_filters, epoch, mse_tr, mse_test, calculation_time)
             print('{}/{} is done'.format(_+1,self.plans['max_iteration']))
         self.save()

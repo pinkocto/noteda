@@ -61,7 +61,8 @@ class StgcnLearner:
                 cost.backward()
                 self.optimizer.step()
                 self.optimizer.zero_grad()
-            print('{}/{}'.format(e+1,epoch),end='\r')
+            # print('{}/{}'.format(e+1,epoch),end='\r')
+            print('{}/{}'.format(e,epoch),end='\r')
         # recording HP
         self.nof_filters = filters
         self.epochs = epoch+1
