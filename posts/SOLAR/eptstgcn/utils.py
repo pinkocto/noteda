@@ -110,7 +110,7 @@ class DatasetLoader(object):
         edge_weights = np.array(self._dataset["weights"]).T
         scaled_edge_weights = minmaxscaler(edge_weights)
         self._edge_weights = scaled_edge_weights
-
+    """
     def _get_targets_and_features(self):
         stacked_target = np.stack(self._dataset["FX"])
         standardized_target = (stacked_target - np.mean(stacked_target, axis=0)) / (
@@ -124,10 +124,21 @@ class DatasetLoader(object):
             standardized_target[i + self.lags, :].T
             for i in range(standardized_target.shape[0] - self.lags)
         ]
+        """
+    def _get_targets_and_features(self):
+        stacked_target = np.array(self._dataset["FX"])
+        self.features = [
+            stacked_target[i : i + self.lags, :].T
+            for i in range(stacked_target.shape[0] - self.lags)
+        ]
+        self.targets = [
+            stacked_target[i + self.lags, :].T
+            for i in range(stacked_target.shape[0] - self.lags)
+        ]
+
 
     def get_dataset(self, lags: int = 4) -> StaticGraphTemporalSignal:
         """Returning the Solar radiation Output data iterator.
-
         Args types:
             * **lags** *(int)* - The number of time lags.
         Return types:
@@ -347,6 +358,3 @@ class Evaluator():
         fig.suptitle(_title, y=0.999)
         fig.tight_layout()
         return fig
-    
-
-    

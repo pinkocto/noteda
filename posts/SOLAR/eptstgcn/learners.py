@@ -61,18 +61,48 @@ class StgcnLearner:
                 cost.backward()
                 self.optimizer.step()
                 self.optimizer.zero_grad()
-            # print('{}/{}'.format(e+1,epoch),end='\r')
-            print('{}/{}'.format(e,epoch),end='\r')
+            print('{}/{}'.format(e+1,epoch),end='\r')
         # recording HP
         self.nof_filters = filters
-        self.epochs = epoch+1
+        # self.epochs = epoch+1
+        self.epochs = epoch
     def __call__(self,dataset):
         X = torch.tensor(dataset.features).float()
         y = torch.tensor(dataset.targets).float()
         yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr) for snapshot in dataset]).detach().squeeze().float()
         return {'X':X, 'y':y, 'yhat':yhat} 
     
-        
+
+    
+class NormalStgcnLearner:
+    def __init__(self,train_dataset,dataset_name = None):
+        self.train_dataset = train_dataset
+        self.lags = torch.tensor(train_dataset.features).shape[-1]
+        self.dataset_name = str(train_dataset) if dataset_name is None else dataset_name
+        self.method = 'STGCN'
+    def learn(self,filters=32,epoch=50):
+        self.model = RecurrentGCN(node_features=self.lags, filters=filters)
+        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
+        self.model.train()
+        for e in range(epoch):
+            for t, snapshot in enumerate(self.train_dataset):
+                yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)
+                cost = torch.mean((yt_hat-snapshot.y)**2)
+                cost.backward()
+                self.optimizer.step()
+                self.optimizer.zero_grad()
+            print('{}/{}'.format(e+1,epoch),end='\r')
+        # recording HP
+        self.nof_filters = filters
+        # self.epochs = epoch+1
+        self.epochs = epoch
+    def __call__(self,dataset):
+        X = torch.tensor(dataset.features).float()
+        y = torch.tensor(dataset.targets).float()
+        yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr) for snapshot in dataset]).detach().squeeze().float()
+        return {'X':X, 'y':y, 'yhat':yhat} 
+
+    
 # class EPTStgcnLearner(StgcnLearner):
 #     def __init__(self,train_dataset,dataset_name = None):
 #         super().__init__(train_dataset)
