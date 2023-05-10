@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="jiyunLim">
+<meta name="dcterms.date" content="2023-03-21">
+
+<title>noteda - Few-shot learning using GPT3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">noteda</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/pinkocto/noteda"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Few-shot learning using GPT3</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Few-shot learning using GPT3</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">seminar</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>jiyunLim </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 21, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/2023-03-23-read-list.html" class="sidebar-item-text sidebar-link">Lists to read</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/welcome/index.html" class="sidebar-item-text sidebar-link">Welcome To My Blog</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">DataHandling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-assign.html" class="sidebar-item-text sidebar-link">[Python] 새로운 열 할당(.assign) 및 특정 열 선택</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-hanling-index.html" class="sidebar-item-text sidebar-link">[Python] 중첩인덱스 깨는 법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-pivot-wider-error.html" class="sidebar-item-text sidebar-link">[R] pivot_wider Error</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-assign-r.html" class="sidebar-item-text sidebar-link">[R] 문자열을 변수명으로 &amp; assign</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Etc</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-05-08-에러모음.html" class="sidebar-item-text sidebar-link"><strong>에러 모음</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-dv.html" class="sidebar-item-text sidebar-link">data visualization</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-downcasting.html" class="sidebar-item-text sidebar-link">downcasting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-11-git-error.html" class="sidebar-item-text sidebar-link">Github remote: error: this exceeds GitHub’s file size limit of 100.00 MB</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-02-24-tips.html" class="sidebar-item-text sidebar-link">Julia 설치 및 실행</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-lib.html" class="sidebar-item-text sidebar-link">Libraries for DA</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-05-ppt.html" class="sidebar-item-text sidebar-link">ppt 폰트</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-23-r-python-same-jupyter.html" class="sidebar-item-text sidebar-link">R/Python jupyter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-resumetable.html" class="sidebar-item-text sidebar-link">resumetable</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-scorecard.html" class="sidebar-item-text sidebar-link">Scorecard</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-01-연구생신규등록.html" class="sidebar-item-text sidebar-link">연구참여 확약서</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-02-abstract.html" class="sidebar-item-text sidebar-link">초록 작성법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-20-학회.html" class="sidebar-item-text sidebar-link">학회</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">HousePrice</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-26-lr-회귀진단.html" class="sidebar-item-text sidebar-link">04. 가변수(Indicator Variable) 실습</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-5wk.html" class="sidebar-item-text sidebar-link">5wk: 측도론 (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-11-6wk.html" class="sidebar-item-text sidebar-link">6wk: 측도론 (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-18-7wk.html" class="sidebar-item-text sidebar-link">7wk: 측도론 (3)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-25-8wk.html" class="sidebar-item-text sidebar-link">8wk: 측도론 (4)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-20-ts-이산형확률분포.html" class="sidebar-item-text sidebar-link">Discrete Probability Distribution (추가중)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-04-lr-hw1-project.html" class="sidebar-item-text sidebar-link">House Price</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-lr-hw1-feedback.html" class="sidebar-item-text sidebar-link">House Price feedback</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-03-30-lr-hw1.html" class="sidebar-item-text sidebar-link">HW1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-18-mlr-보스턴집값.html" class="sidebar-item-text sidebar-link">MLR prac1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-11-TS-hw4.html" class="sidebar-item-text sidebar-link">TS HW4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-19-TS-hw5.html" class="sidebar-item-text sidebar-link">TS HW5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-05-02-TS-hw6.html" class="sidebar-item-text sidebar-link">TS HW6</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-05-03-lr-변수선택실습.html" class="sidebar-item-text sidebar-link">변수선택 실습</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-05-03-mlr-회귀진단.html" class="sidebar-item-text sidebar-link">회귀진단</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Seminar</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Seminar/2023-03-21-gpt3-nsmc.html" class="sidebar-item-text sidebar-link active">Few-shot learning using GPT3</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">SOLAR</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-correlation.html" class="sidebar-item-text sidebar-link">[R]Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-restructure-data.html" class="sidebar-item-text sidebar-link">[R]데이터 재구조화</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-07-정리.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR] 0508 정리중</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-06-정리중.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-24-정규화제거-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (-N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (+N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-corr.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-데이터수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (22/06~22/09/15)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-14-데이터수정2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (data2: 22/06~22/09/15) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-데이터수정3.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Create Dataset (data3: 0815/0910) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-stgcn-data-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-stcgn-data-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-04-EPT.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-ept-by-region.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-10-lstm.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> LSTM</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver1--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (+N +S) (MSE: 0.1864) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-스케일링-stgcn-ver1-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-25-s-stgcn-ver1-100에폭--이게진짜.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-28-s-stgcn-ver1-100에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-26-s-stgcn-ver1-150에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 150epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-27-s-stgcn-ver1-50에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 50epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-03-s-stgcn-ver1-시뮬레이션-10iter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-29-s-stgcn-ver1-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-02-s-stgcn-ver1-정규화-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver1-.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N) (MSE: 0.1705)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (Full: 08/15~09/10 data3) (MSE: 0.1523)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (MSE: 0.1899)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver1-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 90% (MSE: 0.1206)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-soloar-stgcn-ver1-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-soloar-stgcn-ver1-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-15-stgcn-ver1-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 수정본 (MSE: 0.1674)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver2--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (+N +S) (MSE: 0.1801) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-스케일링-stgcn-ver2-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-25-s-stgcn-ver2-100에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 100 epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-26-s-stgcn-ver2-150에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 150 epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-27-s-stgcn-ver2-50에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 50 epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-29-s-stgcn-ver2-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-03-s-stgcn-ver2-시뮬레이션-10iter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-02-s-stgcn-ver2-정규화-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N) (MSE: 0.1834)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (Full: 08/15~09/10 data3) (MSE: 0.1927)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver2-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (MSE: 0.2019)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 90% (MSE: 0.1635)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-solar-stgcn-ver2-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-08-solar-stgcn-ver2-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-15-stgcn-ver2-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 수정본 (MSE: 0.2000)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-01-todolist.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> To do list</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-solar-class.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> WindmillOutputLargeDatasetLoader</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-yu.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> yU</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-19-데이터탐색용.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 데이터 탐색용</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-03-시뮬결과.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 시뮬레이션 결과정리 1-iter (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-시각화코드수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 연습용 (시각화 코드 수정)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-01-차원조사.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 차원조사</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2099.html" class="sidebar-item-text sidebar-link">2099</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-stgcn.html" class="sidebar-item-text sidebar-link">ChikenpoxDataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-29-data0.html" class="sidebar-item-text sidebar-link">Data preprocessing</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-lstm-prac.html" class="sidebar-item-text sidebar-link">LSTM for Time Series Prediction (연습)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-windmill.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDataset 분석 (실패)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-ft.html" class="sidebar-item-text sidebar-link">푸리에 변환</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">Study</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-24-베르누이.html" class="sidebar-item-text sidebar-link">[SC2022] 포아송분포, 지수분포</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-03-05-기하학적딥러닝-survey-review.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> A Comprehensive Survey on Geometric Deep Learning (+++)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-06-ept-논문리뷰.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> Ensemble patch transformation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-07-stgcn논문리뷰.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> Spatio-Temporal Graph Convolutional Networks (+++)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-11-arima-hour-data-fill.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SARIMA (MSE: 0.478)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex-day.html" class="sidebar-item-text sidebar-link">ARIMA (Day)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex.html" class="sidebar-item-text sidebar-link">ARIMA (시간별 예측안됨, 에러)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-08-gcrn리뷰.html" class="sidebar-item-text sidebar-link">GCRN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-21-gcn-이해용정리.html" class="sidebar-item-text sidebar-link">Graph Convolutional Network (이해용)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/python-midterm.html" class="sidebar-item-text sidebar-link">Python Midterm</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-13-windmill-스몰버전.html" class="sidebar-item-text sidebar-link">WindmillOutput (Small)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/python_7장.html" class="sidebar-item-text sidebar-link">스타벅스 주가예측</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-ex.html" class="sidebar-item-text sidebar-link">연습장</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리(수정 for ARIMA)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-21-STGCN-tutorial1.html" class="sidebar-item-text sidebar-link">튜토리얼 따라가기1</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#nsmc---naver-sentiment-movie-corpus" id="toc-nsmc---naver-sentiment-movie-corpus" class="nav-link active" data-scroll-target="#nsmc---naver-sentiment-movie-corpus">NSMC - NAVER Sentiment Movie Corpus</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="nsmc---naver-sentiment-movie-corpus" class="level1">
+<h1>NSMC - NAVER Sentiment Movie Corpus</h1>
+<blockquote class="blockquote">
+<p>gpt3 백본모델로 KoAlpaca를 활용하여 인컨텍스트 퓨삿러닝을 통해 네이버 영화 리뷰 데이터(NSMC - NAVER Sentiment Movie Corpus) 분류문제를 풀어보자.</p>
+</blockquote>
+<p>참고로 <code>KoAlpaca</code> 는 한국어로 인스트럭션 데이터를 한국어 오픈소스 gpt3 모델인 polyglot-ko에 파인튜닝한 모델입니다.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># !pip install transformers</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># !pip install accelerate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="op">!</span>mkdir <span class="op">-</span>p data_in<span class="op">/</span>KOR<span class="op">/</span>naver_movie</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="op">!</span>wget https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>NLP<span class="op">-</span>kr<span class="op">/</span>tensorflow<span class="op">-</span>ml<span class="op">-</span>nlp<span class="op">-</span>tf2<span class="op">/</span>master<span class="op">/</span><span class="fl">7.</span><span class="er">PRETRAIN_METHOD</span><span class="op">/</span>data_in<span class="op">/</span>KOR<span class="op">/</span>naver_movie<span class="op">/</span>ratings_train.txt <span class="op">\</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>              <span class="op">-</span>O data_in<span class="op">/</span>KOR<span class="op">/</span>naver_movie<span class="op">/</span>ratings_train.txt</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="op">!</span>wget https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>NLP<span class="op">-</span>kr<span class="op">/</span>tensorflow<span class="op">-</span>ml<span class="op">-</span>nlp<span class="op">-</span>tf2<span class="op">/</span>master<span class="op">/</span><span class="fl">7.</span><span class="er">PRETRAIN_METHOD</span><span class="op">/</span>data_in<span class="op">/</span>KOR<span class="op">/</span>naver_movie<span class="op">/</span>ratings_test.txt <span class="op">\</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>              <span class="op">-</span>O data_in<span class="op">/</span>KOR<span class="op">/</span>naver_movie<span class="op">/</span>ratings_test.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--2023-04-02 21:25:32--  https://raw.githubusercontent.com/NLP-kr/tensorflow-ml-nlp-tf2/master/7.PRETRAIN_METHOD/data_in/KOR/naver_movie/ratings_train.txt
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.110.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 14628807 (14M) [text/plain]
+Saving to: ‘data_in/KOR/naver_movie/ratings_train.txt’
+
+data_in/KOR/naver_m 100%[===================&gt;]  13.95M  --.-KB/s    in 0.1s    
+
+2023-04-02 21:25:34 (97.0 MB/s) - ‘data_in/KOR/naver_movie/ratings_train.txt’ saved [14628807/14628807]
+
+--2023-04-02 21:25:34--  https://raw.githubusercontent.com/NLP-kr/tensorflow-ml-nlp-tf2/master/7.PRETRAIN_METHOD/data_in/KOR/naver_movie/ratings_test.txt
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.111.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 4893335 (4.7M) [text/plain]
+Saving to: ‘data_in/KOR/naver_movie/ratings_test.txt’
+
+data_in/KOR/naver_m 100%[===================&gt;]   4.67M  --.-KB/s    in 0.06s   
+
+2023-04-02 21:25:34 (78.6 MB/s) - ‘data_in/KOR/naver_movie/ratings_test.txt’ saved [4893335/4893335]
+</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> os</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="im">import</span> torch</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="im">import</span> re</span>
+<span id="cb4-9"><a href="#cb4-9"></a></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="im">import</span> random</span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="im">from</span> random <span class="im">import</span> sample</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># torch.cuda.is_available()</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># os.environ["CUDA_VISIBLE_DEVICES"]="1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>SEED_NUM <span class="op">=</span> <span class="dv">1234</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>random.seed(SEED_NUM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(<span class="st">"EleutherAI/polyglot-ko-5.8b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>cls_model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(<span class="st">"beomi/KoAlpaca-Polyglot"</span>,</span>
+<span id="cb8-2"><a href="#cb8-2"></a>                                                 torch_dtype<span class="op">=</span>torch.float16,</span>
+<span id="cb8-3"><a href="#cb8-3"></a>                                                 device_map<span class="op">=</span><span class="st">'sequential'</span>,</span>
+<span id="cb8-4"><a href="#cb8-4"></a>                                                 low_cpu_mem_usage<span class="op">=</span><span class="va">True</span>).cuda()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████| 3/3 [00:08&lt;00:00,  2.69s/it]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>cls_model.config.max_length <span class="op">=</span> <span class="dv">2048</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>cls_model.config.pad_token_id <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># 데이터 전처리 준비</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>DATA_IN_PATH <span class="op">=</span> <span class="st">'./data_in/KOR'</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>DATA_OUT_PATH <span class="op">=</span> <span class="st">'./data_out/KOR'</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a>DATA_TRAIN_PATH <span class="op">=</span> os.path.join(DATA_IN_PATH, <span class="st">'naver_movie'</span>, <span class="st">'ratings_train.txt'</span>)</span>
+<span id="cb11-6"><a href="#cb11-6"></a>DATA_TEST_PATH <span class="op">=</span> os.path.join(DATA_IN_PATH, <span class="st">'naver_movie'</span>, <span class="st">'ratings_test.txt'</span>)</span>
+<span id="cb11-7"><a href="#cb11-7"></a></span>
+<span id="cb11-8"><a href="#cb11-8"></a>train_data <span class="op">=</span> pd.read_csv(DATA_TRAIN_PATH, header <span class="op">=</span> <span class="dv">0</span>, delimiter <span class="op">=</span> <span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, quoting <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb11-9"><a href="#cb11-9"></a>train_data <span class="op">=</span> train_data.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="bu">print</span>(<span class="st">'데이터 positive 라벨: '</span>, <span class="st">'긍정'</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="bu">print</span>(<span class="st">'데이터 negative 라벨: '</span>, <span class="st">'부정'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>데이터 positive 라벨:  긍정
+데이터 negative 라벨:  부정</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="bu">print</span>(<span class="st">'학습 예시 케이스 구조: '</span>, <span class="st">'문장: 오늘 기분이 좋아</span><span class="ch">\n</span><span class="st">감정: 긍정</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>학습 예시 케이스 구조:  문장: 오늘 기분이 좋아
+감정: 긍정
+</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="bu">print</span>(<span class="st">'gpt3 최대 토큰 길이: '</span>, cls_model.config.max_position_embeddings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>gpt3 최대 토큰 길이:  2048</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>sent_lens <span class="op">=</span> [<span class="bu">len</span>(tokenizer(s).input_ids) <span class="cf">for</span> s <span class="kw">in</span> tqdm(train_data[<span class="st">'document'</span>])]</span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="bu">print</span>(<span class="st">'Few shot 케이스 토큰 평균 길이: '</span>, np.mean(sent_lens))</span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="bu">print</span>(<span class="st">'Few shot 케이스 토큰 최대 길이: '</span>, np.<span class="bu">max</span>(sent_lens))</span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="bu">print</span>(<span class="st">'Few shot 케이스 토큰 길이 표준편차: '</span>,np.std(sent_lens))</span>
+<span id="cb18-6"><a href="#cb18-6"></a><span class="bu">print</span>(<span class="st">'Few shot 케이스 토큰 길이 80 퍼센타일: '</span>,np.percentile(sent_lens, <span class="dv">80</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|████████████████████████████████████████████████████████████████████████████████████████| 149995/149995 [00:07&lt;00:00, 21048.91it/s]</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Few shot 케이스 토큰 평균 길이:  20.22912763758792
+Few shot 케이스 토큰 최대 길이:  280
+Few shot 케이스 토큰 길이 표준편차:  16.48828728915166
+Few shot 케이스 토큰 길이 80 퍼센타일:  27.0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>train_fewshot_data <span class="op">=</span> []</span>
+<span id="cb21-2"><a href="#cb21-2"></a></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="cf">for</span> train_sent, train_label <span class="kw">in</span> tqdm(train_data[[<span class="st">'document'</span>, <span class="st">'label'</span>]].values):</span>
+<span id="cb21-4"><a href="#cb21-4"></a>    tokens <span class="op">=</span> tokenizer(train_sent).input_ids</span>
+<span id="cb21-5"><a href="#cb21-5"></a></span>
+<span id="cb21-6"><a href="#cb21-6"></a>    <span class="cf">if</span> <span class="bu">len</span>(tokens) <span class="op">&lt;=</span> <span class="dv">25</span>:</span>
+<span id="cb21-7"><a href="#cb21-7"></a>        train_fewshot_data.append((train_sent, train_label))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|████████████████████████████████████████████████████████████████████████████████████████| 149995/149995 [00:07&lt;00:00, 20502.42it/s]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>test_data <span class="op">=</span> pd.read_csv(DATA_TEST_PATH, header<span class="op">=</span><span class="dv">0</span>, delimiter<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, quoting<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb23-2"><a href="#cb23-2"></a>test_data <span class="op">=</span> test_data.dropna()</span>
+<span id="cb23-3"><a href="#cb23-3"></a>test_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="71">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>id</th>
+      <th>document</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6270596</td>
+      <td>굳 ㅋ</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>9274899</td>
+      <td>GDNTOPCLASSINTHECLUB</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>8544678</td>
+      <td>뭐야 이 평점들은.... 나쁘진 않지만 10점 짜리는 더더욱 아니잖아</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6825595</td>
+      <td>지루하지는 않은데 완전 막장임... 돈주고 보기에는....</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>6723715</td>
+      <td>3D만 아니었어도 별 다섯 개 줬을텐데.. 왜 3D로 나와서 제 심기를 불편하게 하죠??</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># 평가 데이터 수</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>sample_size <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a></span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="co"># 평가에서 활용할 few-shot 예제를 묶음으로 저장</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a>train_fewshot_samples <span class="op">=</span> []</span>
+<span id="cb24-6"><a href="#cb24-6"></a></span>
+<span id="cb24-7"><a href="#cb24-7"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(sample_size):</span>
+<span id="cb24-8"><a href="#cb24-8"></a>    <span class="co"># few-shot 예제를 10개씩 묶음</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a>    fewshot_examples <span class="op">=</span> sample(train_fewshot_data, <span class="dv">10</span>)</span>
+<span id="cb24-10"><a href="#cb24-10"></a>    train_fewshot_samples.append(fewshot_examples)</span>
+<span id="cb24-11"><a href="#cb24-11"></a></span>
+<span id="cb24-12"><a href="#cb24-12"></a><span class="cf">if</span> sample_size <span class="op">&lt;</span> <span class="bu">len</span>(test_data[<span class="st">'id'</span>]):</span>
+<span id="cb24-13"><a href="#cb24-13"></a>    test_data <span class="op">=</span> test_data.sample(sample_size, random_state<span class="op">=</span>SEED_NUM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>train_fewshot_samples[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="76">
+<pre><code>[('레전드.', 1),
+ ('보고 있으면 어느새 영화에 빠져들어 있다. 마지막 장면을 생각하면 아직도 가슴이 찡하다.', 1),
+ ('오즈의 영역을 넘어 마술의 경지에 이르는 허우.', 1),
+ ("'스트레스 해소용 영화' 로써만 강추..", 0),
+ ('볼만햇다 액션영화가 아닌데 아쉽다', 1),
+ ('귀여운 기니피그가 나오는... 디즈니 영화. 디즈니 디즈니 디즈니', 0),
+ ('햄릿! 돈은 있는데.. 정말 매너리즘에 빠진 최악의 중국 영화', 0),
+ ('영화도 좋지만 책도 꼭 읽어보세요ㅎㅎ', 1),
+ ('많은 생각이 떠돌게 되는 영화...', 1),
+ ('개봉일을 잡았다는게 신기한 싸구려 영화.. 싼맛에 수입한거겠지?', 0)]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">def</span> build_prompt_text(sent):</span>
+<span id="cb27-2"><a href="#cb27-2"></a>    <span class="cf">return</span> <span class="st">"문장: "</span> <span class="op">+</span> sent <span class="op">+</span> <span class="st">'</span><span class="ch">\n</span><span class="st">감정:'</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a></span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="kw">def</span> clean_text(sent):</span>
+<span id="cb27-5"><a href="#cb27-5"></a>    sent_clean <span class="op">=</span> re.sub(<span class="st">"[^가-힣ㄱ-ㅎㅏ-ㅣ</span><span class="ch">\\</span><span class="st">s]"</span>, <span class="st">""</span>, sent)</span>
+<span id="cb27-6"><a href="#cb27-6"></a>    <span class="cf">return</span> sent_clean</span>
+<span id="cb27-7"><a href="#cb27-7"></a></span>
+<span id="cb27-8"><a href="#cb27-8"></a><span class="kw">def</span> generate_fewshot_example(data, with_label<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb27-9"><a href="#cb27-9"></a>    example_text, example_label <span class="op">=</span> data</span>
+<span id="cb27-10"><a href="#cb27-10"></a>    <span class="co"># 텍스트 전처리</span></span>
+<span id="cb27-11"><a href="#cb27-11"></a>    cleaned_example_text <span class="op">=</span> clean_text(example_text)</span>
+<span id="cb27-12"><a href="#cb27-12"></a>    <span class="co"># Prompt 형식 구성</span></span>
+<span id="cb27-13"><a href="#cb27-13"></a>    fewshot_example_text <span class="op">=</span> build_prompt_text(cleaned_example_text)</span>
+<span id="cb27-14"><a href="#cb27-14"></a>    <span class="co"># Label 추가</span></span>
+<span id="cb27-15"><a href="#cb27-15"></a>    <span class="cf">if</span> with_label:</span>
+<span id="cb27-16"><a href="#cb27-16"></a>      fewshot_example_text <span class="op">+=</span> <span class="st">' 긍정'</span> <span class="cf">if</span> example_label <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">' 부정'</span> <span class="op">+</span> <span class="st">'</span><span class="ch">\n</span><span class="st">'</span></span>
+<span id="cb27-17"><a href="#cb27-17"></a>    </span>
+<span id="cb27-18"><a href="#cb27-18"></a>    <span class="cf">return</span> fewshot_example_text</span>
+<span id="cb27-19"><a href="#cb27-19"></a></span>
+<span id="cb27-20"><a href="#cb27-20"></a><span class="kw">def</span> predict_by_generation(prompt_text):</span>
+<span id="cb27-21"><a href="#cb27-21"></a>    <span class="co"># 토큰화 및 인덱싱</span></span>
+<span id="cb27-22"><a href="#cb27-22"></a>    tokens <span class="op">=</span> tokenizer(prompt_text, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb27-23"><a href="#cb27-23"></a>    token_ids, attn_mask <span class="op">=</span> tokens.input_ids.cuda(), tokens.attention_mask.cuda()</span>
+<span id="cb27-24"><a href="#cb27-24"></a>    <span class="co"># 텍스트 생성</span></span>
+<span id="cb27-25"><a href="#cb27-25"></a>    gen_tokens <span class="op">=</span> cls_model.generate(input_ids<span class="op">=</span>token_ids, attention_mask<span class="op">=</span>attn_mask,</span>
+<span id="cb27-26"><a href="#cb27-26"></a>                                    max_new_tokens<span class="op">=</span><span class="dv">1</span>, pad_token_id<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb27-27"><a href="#cb27-27"></a>    <span class="co"># 인덱스 복호화</span></span>
+<span id="cb27-28"><a href="#cb27-28"></a>    pred <span class="op">=</span> tokenizer.batch_decode(gen_tokens[:, <span class="op">-</span><span class="dv">1</span>])[<span class="dv">0</span>].strip()</span>
+<span id="cb27-29"><a href="#cb27-29"></a>    </span>
+<span id="cb27-30"><a href="#cb27-30"></a>    <span class="cf">return</span> pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>test_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="74">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>id</th>
+      <th>document</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6270596</td>
+      <td>굳 ㅋ</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>9274899</td>
+      <td>GDNTOPCLASSINTHECLUB</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>8544678</td>
+      <td>뭐야 이 평점들은.... 나쁘진 않지만 10점 짜리는 더더욱 아니잖아</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6825595</td>
+      <td>지루하지는 않은데 완전 막장임... 돈주고 보기에는....</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>6723715</td>
+      <td>3D만 아니었어도 별 다섯 개 줬을텐데.. 왜 3D로 나와서 제 심기를 불편하게 하죠??</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>49995</th>
+      <td>4608761</td>
+      <td>오랜만에 평점 로긴했네ㅋㅋ 킹왕짱 쌈뽕한 영화를 만났습니다 강렬하게 육쾌함</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>49996</th>
+      <td>5308387</td>
+      <td>의지 박약들이나 하는거다 탈영은 일단 주인공 김대희 닮았고 이등병 찐따 OOOO</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>49997</th>
+      <td>9072549</td>
+      <td>그림도 좋고 완성도도 높았지만... 보는 내내 불안하게 만든다</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>49998</th>
+      <td>5802125</td>
+      <td>절대 봐서는 안 될 영화.. 재미도 없고 기분만 잡치고.. 한 세트장에서 다 해먹네</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>49999</th>
+      <td>6070594</td>
+      <td>마무리는 또 왜이래</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>49997 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>real_labels <span class="op">=</span> []</span>
+<span id="cb29-2"><a href="#cb29-2"></a>pred_tokens <span class="op">=</span> []</span>
+<span id="cb29-3"><a href="#cb29-3"></a></span>
+<span id="cb29-4"><a href="#cb29-4"></a>total_len <span class="op">=</span> <span class="bu">len</span>(test_data[[<span class="st">'document'</span>,<span class="st">'label'</span>]].values)</span>
+<span id="cb29-5"><a href="#cb29-5"></a></span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="cf">for</span> i, row <span class="kw">in</span> tqdm(<span class="bu">enumerate</span>(test_data[[<span class="st">'document'</span>,<span class="st">'label'</span>]].values), total<span class="op">=</span>total_len):</span>
+<span id="cb29-7"><a href="#cb29-7"></a>    prompt_text <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a></span>
+<span id="cb29-9"><a href="#cb29-9"></a>    <span class="cf">for</span> ex <span class="kw">in</span> train_fewshot_samples[i]:</span>
+<span id="cb29-10"><a href="#cb29-10"></a>        prompt_text <span class="op">+=</span> generate_fewshot_example(ex)</span>
+<span id="cb29-11"><a href="#cb29-11"></a></span>
+<span id="cb29-12"><a href="#cb29-12"></a>    prompt_text <span class="op">+=</span> generate_fewshot_example(row, with_label<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb29-13"><a href="#cb29-13"></a></span>
+<span id="cb29-14"><a href="#cb29-14"></a>    pred <span class="op">=</span> predict_by_generation(prompt_text)</span>
+<span id="cb29-15"><a href="#cb29-15"></a></span>
+<span id="cb29-16"><a href="#cb29-16"></a>    pred_tokens.append(pred)</span>
+<span id="cb29-17"><a href="#cb29-17"></a>    real_labels.append(<span class="st">'긍정'</span> <span class="cf">if</span> row[<span class="dv">1</span>] <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">'부정'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 500/500 [00:30&lt;00:00, 16.16it/s]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>accuracy_match <span class="op">=</span> [p <span class="op">==</span> t <span class="cf">for</span> p, t <span class="kw">in</span> <span class="bu">zip</span>(pred_tokens, real_labels)]</span>
+<span id="cb31-2"><a href="#cb31-2"></a>accuracy <span class="op">=</span> <span class="bu">len</span>([m <span class="cf">for</span> m <span class="kw">in</span> accuracy_match <span class="cf">if</span> m]) <span class="op">/</span> <span class="bu">len</span>(real_labels)</span>
+<span id="cb31-3"><a href="#cb31-3"></a></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="bu">print</span>(accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.762</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw">def</span> build_prompt_text(sent):</span>
+<span id="cb33-2"><a href="#cb33-2"></a>    <span class="cf">return</span> <span class="st">'다음 문장은 긍정일까요 부정일까요?</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> sent <span class="op">+</span> <span class="st">'</span><span class="ch">\n</span><span class="st">정답:'</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a></span>
+<span id="cb33-4"><a href="#cb33-4"></a>real_labels <span class="op">=</span> []</span>
+<span id="cb33-5"><a href="#cb33-5"></a>pred_tokens <span class="op">=</span> []</span>
+<span id="cb33-6"><a href="#cb33-6"></a></span>
+<span id="cb33-7"><a href="#cb33-7"></a>total_len <span class="op">=</span> <span class="bu">len</span>(test_data[[<span class="st">'document'</span>,<span class="st">'label'</span>]].values)</span>
+<span id="cb33-8"><a href="#cb33-8"></a></span>
+<span id="cb33-9"><a href="#cb33-9"></a><span class="cf">for</span> i, row <span class="kw">in</span> tqdm(<span class="bu">enumerate</span>(test_data[[<span class="st">'document'</span>,<span class="st">'label'</span>]].values), total<span class="op">=</span>total_len):</span>
+<span id="cb33-10"><a href="#cb33-10"></a>    prompt_text <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb33-11"><a href="#cb33-11"></a></span>
+<span id="cb33-12"><a href="#cb33-12"></a>    <span class="cf">for</span> ex <span class="kw">in</span> train_fewshot_samples[i]:</span>
+<span id="cb33-13"><a href="#cb33-13"></a>        prompt_text <span class="op">+=</span> generate_fewshot_example(ex)</span>
+<span id="cb33-14"><a href="#cb33-14"></a></span>
+<span id="cb33-15"><a href="#cb33-15"></a>    prompt_text <span class="op">+=</span> generate_fewshot_example(row, with_label<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb33-16"><a href="#cb33-16"></a></span>
+<span id="cb33-17"><a href="#cb33-17"></a>    pred <span class="op">=</span> predict_by_generation(prompt_text)</span>
+<span id="cb33-18"><a href="#cb33-18"></a></span>
+<span id="cb33-19"><a href="#cb33-19"></a>    pred_tokens.append(pred)</span>
+<span id="cb33-20"><a href="#cb33-20"></a>    real_labels.append(<span class="st">'긍정'</span> <span class="cf">if</span> row[<span class="dv">1</span>] <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">'부정'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 500/500 [00:39&lt;00:00, 12.80it/s]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>accuracy_match <span class="op">=</span> [p <span class="op">==</span> t <span class="cf">for</span> p, t <span class="kw">in</span> <span class="bu">zip</span>(pred_tokens, real_labels)]</span>
+<span id="cb35-2"><a href="#cb35-2"></a>accuracy <span class="op">=</span> <span class="bu">len</span>([m <span class="cf">for</span> m <span class="kw">in</span> accuracy_match <span class="cf">if</span> m]) <span class="op">/</span> <span class="bu">len</span>(real_labels)</span>
+<span id="cb35-3"><a href="#cb35-3"></a></span>
+<span id="cb35-4"><a href="#cb35-4"></a><span class="bu">print</span>(accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.744</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
