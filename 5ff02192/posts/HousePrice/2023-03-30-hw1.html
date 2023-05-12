@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="jiyun Lim">
+<meta name="dcterms.date" content="2023-03-13">
+
+<title>noteda - HW1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">noteda</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/pinkocto/noteda"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">HW1</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">HW1</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Applied LR</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>jiyun Lim </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 13, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/2023-03-23-read-list.html" class="sidebar-item-text sidebar-link">Lists to read</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/welcome/index.html" class="sidebar-item-text sidebar-link">Welcome To My Blog</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">DataHandling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-assign.html" class="sidebar-item-text sidebar-link">[Python] 새로운 열 할당(.assign) 및 특정 열 선택</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-hanling-index.html" class="sidebar-item-text sidebar-link">[Python] 중첩인덱스 깨는 법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-pivot-wider-error.html" class="sidebar-item-text sidebar-link">[R] pivot_wider Error</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-assign-r.html" class="sidebar-item-text sidebar-link">[R] 문자열을 변수명으로 &amp; assign</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Etc</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-dv.html" class="sidebar-item-text sidebar-link">data visualization</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-downcasting.html" class="sidebar-item-text sidebar-link">downcasting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-11-git-error.html" class="sidebar-item-text sidebar-link">Github remote: error: this exceeds GitHub’s file size limit of 100.00 MB</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-02-24-tips.html" class="sidebar-item-text sidebar-link">Julia 설치 및 실행</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-lib.html" class="sidebar-item-text sidebar-link">Libraries for DA</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-05-ppt.html" class="sidebar-item-text sidebar-link">ppt 폰트</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-23-r-python-same-jupyter.html" class="sidebar-item-text sidebar-link">R/Python jupyter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-resumetable.html" class="sidebar-item-text sidebar-link">resumetable</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-scorecard.html" class="sidebar-item-text sidebar-link">Scorecard</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-02-abstract.html" class="sidebar-item-text sidebar-link">초록 작성법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-01-학회.html" class="sidebar-item-text sidebar-link">학회</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">HousePrice</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-5wk.html" class="sidebar-item-text sidebar-link">5wk: 측도론 (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-04-lr-hw1.html" class="sidebar-item-text sidebar-link">House Price</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-hw1-feedback.html" class="sidebar-item-text sidebar-link">House Price feedback</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-03-30-hw1.html" class="sidebar-item-text sidebar-link active">HW1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-18-mlr-보스턴집값.html" class="sidebar-item-text sidebar-link">MLR prac1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-19-lr-hw2.html" class="sidebar-item-text sidebar-link">MLR_hw2</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">Seminar</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Seminar/2023-03-21-gpt3-nsmc.html" class="sidebar-item-text sidebar-link">Few-shot learning using GPT3</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">SOLAR</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-correlation.html" class="sidebar-item-text sidebar-link">[R]Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-restructure-data.html" class="sidebar-item-text sidebar-link">[R]데이터 재구조화</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-24-정규화제거-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (-N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-corr.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-데이터수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (22/06~22/09/15)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-14-데이터수정2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (data2: 22/06~22/09/15) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-데이터수정3.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Create Dataset (data3: 0815/0910) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-stgcn-data-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-stcgn-data-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-04-EPT.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-ept-by-region.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-10-lstm.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> LSTM</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver1--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (+N +S) (MSE: 0.1864) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-스케일링-stgcn-ver1-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver1-.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N) (MSE: 0.1705)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (Full: 08/15~09/10 data3) (MSE: 0.1523)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (MSE: 0.1899)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver1-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 90% (MSE: 0.1206)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-soloar-stgcn-ver1-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-soloar-stgcn-ver1-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-15-stgcn-ver1-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 수정본 (MSE: 0.1674)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver2--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (+N +S) (MSE: 0.1801) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-스케일링-stgcn-ver2-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N) (MSE: 0.1834)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (Full: 08/15~09/10 data3) (MSE: 0.1927)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver2-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (MSE: 0.2019)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 90% (MSE: 0.1635)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-solar-stgcn-ver2-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-08-solar-stgcn-ver2-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-15-stgcn-ver2-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 수정본 (MSE: 0.2000)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-01-todolist.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> To do list</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-solar-class.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> WindmillOutputLargeDatasetLoader</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-yu.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> yU</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-19-데이터탐색용.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 데이터 탐색용</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-시각화코드수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 연습용 (시각화 코드 수정)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-stgcn.html" class="sidebar-item-text sidebar-link">ChikenpoxDataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-29-data0.html" class="sidebar-item-text sidebar-link">Data preprocessing</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-lstm-prac.html" class="sidebar-item-text sidebar-link">LSTM for Time Series Prediction (연습)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-windmill.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDataset 분석 (실패)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-ft.html" class="sidebar-item-text sidebar-link">푸리에 변환</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">Study</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-11-arima-hour-data-fill.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SARIMA (MSE: 0.478)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex-day.html" class="sidebar-item-text sidebar-link">ARIMA (Day)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex.html" class="sidebar-item-text sidebar-link">ARIMA (시간별 예측안됨, 에러)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-13-windmill-스몰버전.html" class="sidebar-item-text sidebar-link">WindmillOutput (Small)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/python_7장.html" class="sidebar-item-text sidebar-link">스타벅스 주가예측</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-ex.html" class="sidebar-item-text sidebar-link">연습장</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리(수정 for ARIMA)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#q1." id="toc-q1." class="nav-link active" data-scroll-target="#q1.">Q1.</a>
+  <ul class="collapse">
+  <li><a href="#오차제곱합을-정의하고-beta_1의-최소제곱추정량-hatbeta_1을-구하여라." id="toc-오차제곱합을-정의하고-beta_1의-최소제곱추정량-hatbeta_1을-구하여라." class="nav-link" data-scroll-target="#오차제곱합을-정의하고-beta_1의-최소제곱추정량-hatbeta_1을-구하여라.">(1) 오차제곱합을 정의하고 <span class="math inline">\(\beta_1\)</span>의 최소제곱추정량 (<span class="math inline">\(\hat{\beta}_1\)</span>)을 구하여라.</a></li>
+  <li><a href="#ehatbeta_1을-구하여라." id="toc-ehatbeta_1을-구하여라." class="nav-link" data-scroll-target="#ehatbeta_1을-구하여라.">(2) <span class="math inline">\(E(\hat{\beta}_1\)</span>)을 구하여라.</a></li>
+  <li><a href="#varhatbeta_1을-구하여라." id="toc-varhatbeta_1을-구하여라." class="nav-link" data-scroll-target="#varhatbeta_1을-구하여라.">(3) <span class="math inline">\(Var(\hat{\beta}_1)\)</span>을 구하여라.</a></li>
+  <li><a href="#제곱합에-대한-분산분석표를-작성하여라." id="toc-제곱합에-대한-분산분석표를-작성하여라." class="nav-link" data-scroll-target="#제곱합에-대한-분산분석표를-작성하여라.">(4) 제곱합에 대한 분산분석표를 작성하여라.</a></li>
+  <li><a href="#회귀모형의-유의성-검정을-하기위한-가설을-설정하고-검정통계량을-제시하여라." id="toc-회귀모형의-유의성-검정을-하기위한-가설을-설정하고-검정통계량을-제시하여라." class="nav-link" data-scroll-target="#회귀모형의-유의성-검정을-하기위한-가설을-설정하고-검정통계량을-제시하여라.">(5) 회귀모형의 유의성 검정을 하기위한 가설을 설정하고, 검정통계량을 제시하여라.</a></li>
+  <li><a href="#위의-가설에-대해-유의수준-alpha에서-검정하는-방법을-기술하여라." id="toc-위의-가설에-대해-유의수준-alpha에서-검정하는-방법을-기술하여라." class="nav-link" data-scroll-target="#위의-가설에-대해-유의수준-alpha에서-검정하는-방법을-기술하여라.">(6) 위의 가설에 대해, 유의수준 <span class="math inline">\(\alpha\)</span>에서 검정하는 방법을 기술하여라.</a></li>
+  <li><a href="#다음의-가설에-대한-검정통계량을-제시하고-유의수준-alpha에서-가설-검정하는-방법을-기술하여라." id="toc-다음의-가설에-대한-검정통계량을-제시하고-유의수준-alpha에서-가설-검정하는-방법을-기술하여라." class="nav-link" data-scroll-target="#다음의-가설에-대한-검정통계량을-제시하고-유의수준-alpha에서-가설-검정하는-방법을-기술하여라.">(7) 다음의 가설에 대한 검정통계량을 제시하고, 유의수준 <span class="math inline">\(\alpha\)</span>에서 가설 검정하는 방법을 기술하여라.</a></li>
+  </ul></li>
+  <li><a href="#q2." id="toc-q2." class="nav-link" data-scroll-target="#q2.">Q2.</a>
+  <ul class="collapse">
+  <li><a href="#이-데이터의-산점도를-그리고-두-변수-사이의-관계를-설명하시오." id="toc-이-데이터의-산점도를-그리고-두-변수-사이의-관계를-설명하시오." class="nav-link" data-scroll-target="#이-데이터의-산점도를-그리고-두-변수-사이의-관계를-설명하시오.">(1) 이 데이터의 산점도를 그리고 두 변수 사이의 관계를 설명하시오.</a></li>
+  <li><a href="#최소제곱법의-의한-회귀직선을-적합시키고-모형-적합-결과를-설명하시오." id="toc-최소제곱법의-의한-회귀직선을-적합시키고-모형-적합-결과를-설명하시오." class="nav-link" data-scroll-target="#최소제곱법의-의한-회귀직선을-적합시키고-모형-적합-결과를-설명하시오.">(2) 최소제곱법의 의한 회귀직선을 적합시키고, 모형 적합 결과를 설명하시오.</a></li>
+  <li><a href="#데이터의-산점도를-그리고-추정한-회귀직선을-1에서-그린-산점도-위에-그리시오." id="toc-데이터의-산점도를-그리고-추정한-회귀직선을-1에서-그린-산점도-위에-그리시오." class="nav-link" data-scroll-target="#데이터의-산점도를-그리고-추정한-회귀직선을-1에서-그린-산점도-위에-그리시오.">(3) 데이터의 산점도를 그리고 추정한 회귀직선을 (1)에서 그린 산점도 위에 그리시오.</a></li>
+  <li><a href="#분산분석표를-작성하고-회귀직선의-유의-여부를-검정하시오." id="toc-분산분석표를-작성하고-회귀직선의-유의-여부를-검정하시오." class="nav-link" data-scroll-target="#분산분석표를-작성하고-회귀직선의-유의-여부를-검정하시오.">(4) 분산분석표를 작성하고 회귀직선의 유의 여부를 검정하시오.</a></li>
+  <li><a href="#결정계수와-상관계수를-구하고-이-둘의-관계를-설명하시오." id="toc-결정계수와-상관계수를-구하고-이-둘의-관계를-설명하시오." class="nav-link" data-scroll-target="#결정계수와-상관계수를-구하고-이-둘의-관계를-설명하시오.">(5) 결정계수와 상관계수를 구하고 이 둘의 관계를 설명하시오.</a></li>
+  <li><a href="#beta_0-beta_1에-대한-개별-회귀계수의-유의성-검정을-수행하시오." id="toc-beta_0-beta_1에-대한-개별-회귀계수의-유의성-검정을-수행하시오." class="nav-link" data-scroll-target="#beta_0-beta_1에-대한-개별-회귀계수의-유의성-검정을-수행하시오.">(6) <span class="math inline">\(\beta_0, \beta_1\)</span>에 대한 개별 회귀계수의 유의성 검정을 수행하시오.</a></li>
+  <li><a href="#beta_0-beta_1에-대한-90-신뢰구간을-구하시오." id="toc-beta_0-beta_1에-대한-90-신뢰구간을-구하시오." class="nav-link" data-scroll-target="#beta_0-beta_1에-대한-90-신뢰구간을-구하시오.">(7) <span class="math inline">\(\beta_0, \beta_1\)</span>에 대한 <span class="math inline">\(90\%\)</span> 신뢰구간을 구하시오.</a></li>
+  <li><a href="#속도가-18.5textmpg인-차량의-평균-제동거리를-예측하고-95-신뢰구간을-구하시오." id="toc-속도가-18.5textmpg인-차량의-평균-제동거리를-예측하고-95-신뢰구간을-구하시오." class="nav-link" data-scroll-target="#속도가-18.5textmpg인-차량의-평균-제동거리를-예측하고-95-신뢰구간을-구하시오.">(8) 속도가 <span class="math inline">\(18.5\text{mpg}\)</span>인 차량의 평균 제동거리를 예측하고, <span class="math inline">\(95\%\)</span> 신뢰구간을 구하시오.</a></li>
+  <li><a href="#속도가-18.5textmpg인-차량의-개별-제동거리를-예측하고-95-신뢰구간을-구하시오." id="toc-속도가-18.5textmpg인-차량의-개별-제동거리를-예측하고-95-신뢰구간을-구하시오." class="nav-link" data-scroll-target="#속도가-18.5textmpg인-차량의-개별-제동거리를-예측하고-95-신뢰구간을-구하시오.">(9) 속도가 <span class="math inline">\(18.5\text{mpg}\)</span>인 차량의 개별 제동거리를 예측하고, <span class="math inline">\(95\%\)</span> 신뢰구간을 구하시오.</a></li>
+  <li><a href="#원점을-지나는-회귀직선을-구하시오." id="toc-원점을-지나는-회귀직선을-구하시오." class="nav-link" data-scroll-target="#원점을-지나는-회귀직선을-구하시오.">(10) 원점을 지나는 회귀직선을 구하시오.</a></li>
+  <li><a href="#위-회귀직선에서-회귀계수기울기의-90-신뢰구간을-구하시오." id="toc-위-회귀직선에서-회귀계수기울기의-90-신뢰구간을-구하시오." class="nav-link" data-scroll-target="#위-회귀직선에서-회귀계수기울기의-90-신뢰구간을-구하시오.">(11) 위 회귀직선에서 회귀계수(기울기)의 <span class="math inline">\(90\%\)</span> 신뢰구간을 구하시오.</a></li>
+  <li><a href="#원점을-지나는-회귀직선에-대한-분산분석표를-작성하고-회귀직선의-유의-여부를-검정하시오." id="toc-원점을-지나는-회귀직선에-대한-분산분석표를-작성하고-회귀직선의-유의-여부를-검정하시오." class="nav-link" data-scroll-target="#원점을-지나는-회귀직선에-대한-분산분석표를-작성하고-회귀직선의-유의-여부를-검정하시오.">(12) 원점을 지나는 회귀직선에 대한 분산분석표를 작성하고, 회귀직선의 유의 여부를 검정하시오.</a></li>
+  <li><a href="#원점을-지나는-회귀직선의-결정계수를-구하시오." id="toc-원점을-지나는-회귀직선의-결정계수를-구하시오." class="nav-link" data-scroll-target="#원점을-지나는-회귀직선의-결정계수를-구하시오.">(13) 원점을 지나는 회귀직선의 결정계수를 구하시오.</a></li>
+  <li><a href="#원점을-포함한-회귀직선과-포함하지-않은-회귀직선의-결과를-비교하여라." id="toc-원점을-포함한-회귀직선과-포함하지-않은-회귀직선의-결과를-비교하여라." class="nav-link" data-scroll-target="#원점을-포함한-회귀직선과-포함하지-않은-회귀직선의-결과를-비교하여라.">(14) 원점을 포함한 회귀직선과 포함하지 않은 회귀직선의 결과를 비교하여라.</a></li>
+  <li><a href="#잔차에-대한-산점도를-그리고-결과를-설명하여라." id="toc-잔차에-대한-산점도를-그리고-결과를-설명하여라." class="nav-link" data-scroll-target="#잔차에-대한-산점도를-그리고-결과를-설명하여라.">(15) 잔차에 대한 산점도를 그리고, 결과를 설명하여라.</a></li>
+  <li><a href="#잔차에-대한-등분산성-검정을-수행하시오." id="toc-잔차에-대한-등분산성-검정을-수행하시오." class="nav-link" data-scroll-target="#잔차에-대한-등분산성-검정을-수행하시오.">(16) 잔차에 대한 등분산성 검정을 수행하시오.</a></li>
+  <li><a href="#잔차에-대한-독립성-검정을-수행하시오." id="toc-잔차에-대한-독립성-검정을-수행하시오." class="nav-link" data-scroll-target="#잔차에-대한-독립성-검정을-수행하시오.">(18) 잔차에 대한 독립성 검정을 수행하시오.</a></li>
+  </ul></li>
+  <li><a href="#q3." id="toc-q3." class="nav-link" data-scroll-target="#q3.">Q3.</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="q1." class="level2">
+<h2 class="anchored" data-anchor-id="q1.">Q1.</h2>
+<p>원점을 지나는 회귀모형은 다음과 같이 정의할 수 있다.</p>
+<p><span class="math display">\[y_i = \beta_1x_i + \epsilon_i, \quad \epsilon_i \overset{iid}{\sim} N(0,\sigma^2), \quad i=1,\dots, n\]</span></p>
+<section id="오차제곱합을-정의하고-beta_1의-최소제곱추정량-hatbeta_1을-구하여라." class="level3">
+<h3 class="anchored" data-anchor-id="오차제곱합을-정의하고-beta_1의-최소제곱추정량-hatbeta_1을-구하여라.">(1) 오차제곱합을 정의하고 <span class="math inline">\(\beta_1\)</span>의 최소제곱추정량 (<span class="math inline">\(\hat{\beta}_1\)</span>)을 구하여라.</h3>
+<p>오차제곱합은 다음과 같이 정의할 수 있다.</p>
+<p><span class="math display">\[SSE = \sum_{i=1}^n\epsilon_i^2 = \sum_{i=1}^n(y_i-\beta_1x_i)^2\]</span></p>
+<p>오차제곱합을 최소로 하는 <span class="math inline">\(\beta_1\)</span>의 값을 추정값 <span class="math inline">\(\hat{\beta}_1\)</span>으로 하는 방법을 최소제곱법(method of least squares)이라고 한다. 오차제곱합 <span class="math inline">\(S\)</span>를 최소화 시키는 <span class="math inline">\(\beta_1\)</span>를 구하기 위하여 <span class="math inline">\(S\)</span>를 <span class="math inline">\(\beta_1\)</span>에 대하여 편미분하여 그 값을 <span class="math inline">\(0\)</span>으로 만드는 <span class="math inline">\(\hat{\beta}_0, \hat{\beta}_1\)</span>으로 대치하여 정리하면 다음과 같다.</p>
+<p><span class="math display">\[\begin{align*}\frac{\partial{S}}{\partial{\beta}_0} &amp;= -2\sum_{i=1}^nx_i(y_i-\beta_1x_i) = 0 \\
+&amp;\Rightarrow \sum_{i=1}^nx_iy_i - \hat{\beta}_1\sum_{i=1}^nx_i^2 = 0 \\
+&amp;\Rightarrow \hat{\beta}_1 = \frac{\sum_{i=1}^nx_iy_i}{\sum_{i=1}^nx_i^2}\end{align*}\]</span></p>
+</section>
+<section id="ehatbeta_1을-구하여라." class="level3">
+<h3 class="anchored" data-anchor-id="ehatbeta_1을-구하여라.">(2) <span class="math inline">\(E(\hat{\beta}_1\)</span>)을 구하여라.</h3>
+<p><span class="math inline">\(\hat{\beta}_1\)</span>은 관측값 <span class="math inline">\(y_i\)</span>에 대한 선형추정량이다. (<span class="math inline">\(\to\)</span>기댓값과 분산을 쉽게 유도)</p>
+<p><span class="math inline">\(\hat{\beta}_1\)</span>을 <span class="math inline">\(y_i\)</span>의 선형결합 꼴로 만들어주기 위하여 <span class="math inline">\(\hat{\beta}_1 = \frac{\sum_{i=1}^nx_iy_i}{\sum_{i=1}^nx_i^2}\)</span>에서 <span class="math inline">\(\frac{x_i}{\sum_{i=1}^n x_i^2}\)</span>를 <span class="math inline">\(a_i\)</span>로 두자.</p>
+<p><span class="math display">\[\begin{align*}E(\hat{\beta}_1) &amp;= E\left(\frac{\sum_{i=1}^nx_iy_i}{\sum_{i=1}^nx_i^2}\right) \\
+&amp;= E\left(\sum_{i=1}^na_iy_i\right),\quad a_i = \frac{x_i}{\sum_{i=1}^n x_i^2} \\
+&amp;= \sum_{i=1}^na_iE(y_i) , \quad  y_i \sim N(\beta_1x_i, \sigma^2)\\
+&amp;= \beta_1\sum_{i=1}^na_ix_i = \beta_1\sum_{i=1}^n\frac{x_i}{\sum_{i=1}^n x_i^2}x_i\\
+&amp;= \beta_1\frac{\sum_{i=1}^nx_i^2}{\sum_{i=1}^n x_i^2} = \beta_1\end{align*}\]</span></p>
+</section>
+<section id="varhatbeta_1을-구하여라." class="level3">
+<h3 class="anchored" data-anchor-id="varhatbeta_1을-구하여라.">(3) <span class="math inline">\(Var(\hat{\beta}_1)\)</span>을 구하여라.</h3>
+<p><span class="math display">\[\begin{align*}Var(\hat{\beta}_1) &amp;= Var\left(\sum_{i=1}^na_iy_i\right) \\
+&amp;= \sum_{i=1}^na_i^2Var(y_i) \\
+&amp;= \frac{\sum_{i=1}^nx_i^2}{\left[\sum_{i=1}^nx_i^2\right]^2}\sigma^2, \quad y_i\sim N(\beta_1x_i, \sigma^2) \\
+&amp;= \frac{\sigma^2}{\sum_{i=1}^n x_i^2}\end{align*}\]</span></p>
+</section>
+<section id="제곱합에-대한-분산분석표를-작성하여라." class="level3">
+<h3 class="anchored" data-anchor-id="제곱합에-대한-분산분석표를-작성하여라.">(4) 제곱합에 대한 분산분석표를 작성하여라.</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-03-30-hw1_files/figure-html/f8577a0b-96c7-4955-8420-bd18bb5bae4d-1-be284e4e-7a5a-43c2-81f6-1ca57d87e696.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">분산분석표</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="회귀모형의-유의성-검정을-하기위한-가설을-설정하고-검정통계량을-제시하여라." class="level3">
+<h3 class="anchored" data-anchor-id="회귀모형의-유의성-검정을-하기위한-가설을-설정하고-검정통계량을-제시하여라.">(5) 회귀모형의 유의성 검정을 하기위한 가설을 설정하고, 검정통계량을 제시하여라.</h3>
+<p><code>-</code> 회귀직선의 유의성 검정 (F-test)</p>
+<p><strong><em>가설</em></strong></p>
+<ul>
+<li><span class="math inline">\(H_0: \beta_1 = 0\)</span> (적합된 회귀모형은 유의하지 않다.)</li>
+<li><span class="math inline">\(H_1: \beta_1 \neq 0\)</span> (적합된 회귀모형은 유의하다.)</li>
+</ul>
+<p><strong><em>검정통계량</em></strong> - <span class="math inline">\(F = \frac{SSR/1}{SSE/(n-1)} = \frac{MSR}{MSE} \sim_{H_0} F(1, n-1)\)</span></p>
+</section>
+<section id="위의-가설에-대해-유의수준-alpha에서-검정하는-방법을-기술하여라." class="level3">
+<h3 class="anchored" data-anchor-id="위의-가설에-대해-유의수준-alpha에서-검정하는-방법을-기술하여라.">(6) 위의 가설에 대해, 유의수준 <span class="math inline">\(\alpha\)</span>에서 검정하는 방법을 기술하여라.</h3>
+<p><strong><em>1. 기각역(critical region)</em></strong></p>
+<p><span class="math inline">\(F_0 \geq F_{\alpha}(1, n-1)\)</span> 이면 귀무가설을 기각할 수 있다. 즉, 적합된 회귀선이 유의하다고 할 수 있다.</p>
+<p><strong><em>2. 유의확률(p-value)</em></strong></p>
+<p><span class="math inline">\(P(F\geq F_0) &lt; \alpha\)</span> 이면 귀무가설을 기각할 수 있다. 즉, 적합된 회귀선이 유의하다고 할 수 있다.</p>
+</section>
+<section id="다음의-가설에-대한-검정통계량을-제시하고-유의수준-alpha에서-가설-검정하는-방법을-기술하여라." class="level3">
+<h3 class="anchored" data-anchor-id="다음의-가설에-대한-검정통계량을-제시하고-유의수준-alpha에서-가설-검정하는-방법을-기술하여라.">(7) 다음의 가설에 대한 검정통계량을 제시하고, 유의수준 <span class="math inline">\(\alpha\)</span>에서 가설 검정하는 방법을 기술하여라.</h3>
+<p><span class="math display">\[H_0: \beta_1 = 0 \text{ vs. } H_1: \beta_1 &gt; 0\]</span></p>
+<p><code>-</code> 회귀계수에 대한 유의성 검정</p>
+<p><strong><em>1. 기각역(critical region)</em></strong></p>
+<p>검정통계량: <span class="math inline">\(T = \frac{\hat{\beta}_1-0}{\sqrt{Var(\hat{\beta}_1)}}\sim_{H_0} t(n-1), \quad \text{관측값: } t\)</span></p>
+<p><span class="math inline">\(\begin{align*}T = \frac{\hat{\beta}_1-0}{\sqrt{Var(\hat{\beta}_1)}} = \frac{\hat{\beta}_1}{\sqrt{\frac{\sigma^2}{\sum_{i=1}^n x_i^2}}} = \frac{\hat{\beta}_1}{\frac{\sigma}{\sqrt{\sum_{i=1}^n x_i^2}}} = \frac{\hat{\beta}_1}{\frac{\hat{\sigma}}{\sqrt{\sum_{i=1}^n x_i^2}}} = \frac{\hat{\beta}_1}{\sqrt{\frac{MSE}{\sum_{i=1}^n x_i^2}}}\end{align*}\)</span></p>
+<p><strong><em>1. 기각역(critical region)</em></strong></p>
+<p><span class="math inline">\(t \geq t_{\alpha}(n-1)\)</span> 이면(기각역에 포함되면) 귀무가설을 기각할 수 있다. 즉, 회귀계수는 유의하다고 할 수 있다.</p>
+<p><strong><em>2. 유의확률(p-value)</em></strong></p>
+<p>유의확률 <span class="math inline">\(P(T\geq t)\)</span>가 주어진 유의수준 <span class="math inline">\(\alpha\)</span> 보다 작으면 귀무가설을 기각할 수 있다.</p>
+</section>
+</section>
+<section id="q2." class="level2">
+<h2 class="anchored" data-anchor-id="q2.">Q2.</h2>
+<p><code>cars.csv</code> 데이터를 이용하여 회귀모형을 적합하려고 한다. 이는 자동차의 속도(mph)에 따른 제동거리(ft)를 조사한 데이터이다. 다음 물음에 답하여라. (R을 이용하여 풀이) (검정에서는 유의수준 <span class="math inline">\(\alpha=0.05\)</span> 사용)</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(lmtest) <span class="do">## bptest, dwtest</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'./data/cars.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">head</span>(cars)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">dim</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A data.frame: 6 × 2</caption>
+<thead>
+    <tr><th></th><th scope="col">speed</th><th scope="col">dist</th></tr>
+    <tr><th></th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">1</th><td>4</td><td> 2</td></tr>
+    <tr><th scope="row">2</th><td>4</td><td>10</td></tr>
+    <tr><th scope="row">3</th><td>7</td><td> 4</td></tr>
+    <tr><th scope="row">4</th><td>7</td><td>22</td></tr>
+    <tr><th scope="row">5</th><td>8</td><td>16</td></tr>
+    <tr><th scope="row">6</th><td>9</td><td>10</td></tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>50</li><li>2</li></ol>
+</div>
+</div>
+<section id="이-데이터의-산점도를-그리고-두-변수-사이의-관계를-설명하시오." class="level3">
+<h3 class="anchored" data-anchor-id="이-데이터의-산점도를-그리고-두-변수-사이의-관계를-설명하시오.">(1) 이 데이터의 산점도를 그리고 두 변수 사이의 관계를 설명하시오.</h3>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(speed, dist)) <span class="sc">+</span> </span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">'darkorange'</span>) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="fu">xlab</span>(<span class="st">'속도'</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">'제동거리'</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-03-30-hw1_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>자동차의 속도와 제동거리와 양의 상관이 있는 것으로 보인다. (자동차 속도가 증가하면 제동거리가 증가하는 패턴을 보인다.)</li>
+</ul>
+</section>
+<section id="최소제곱법의-의한-회귀직선을-적합시키고-모형-적합-결과를-설명하시오." class="level3">
+<h3 class="anchored" data-anchor-id="최소제곱법의-의한-회귀직선을-적합시키고-모형-적합-결과를-설명하시오.">(2) 최소제곱법의 의한 회귀직선을 적합시키고, 모형 적합 결과를 설명하시오.</h3>
+<p><span class="math display">\[\widehat{\text{dist}} = 3.932\times \text{speed} - 17.579\]</span></p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist<span class="sc">~</span>speed, cars)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>model1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+Call:
+lm(formula = dist ~ speed, data = cars)
+
+Coefficients:
+(Intercept)        speed  
+    -17.579        3.932  </code></pre>
+</div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+Call:
+lm(formula = dist ~ speed, data = cars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-29.069  -9.525  -2.272   9.215  43.201 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+speed         3.9324     0.4155   9.464 1.49e-12 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 15.38 on 48 degrees of freedom
+Multiple R-squared:  0.6511,    Adjusted R-squared:  0.6438 
+F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+</div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># ls(summary(model1))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">cat</span>(<span class="st">'기각치 F(1,48;0.05): '</span>, <span class="fu">qf</span>(<span class="fl">0.95</span>, <span class="dv">1</span>, <span class="dv">48</span>), <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>) <span class="do">## F(0.05)</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">cat</span>(<span class="st">'F0: '</span> , <span class="fu">summary</span>(model1)<span class="sc">$</span>fstatistic[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>기각치 F(1,48;0.05):  4.042652 
+F0:  89.56711</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(F_0 &gt; F(1, 48 ;0.05)\)</span> 이므로 회귀모형은 유의하지 않다는 귀무가설을 기각할 수 있다. 따라서 적합된 회귀모형은 유의하다고 판단한다.</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">pf</span>(<span class="fl">89.57</span>, <span class="dv">1</span>, <span class="dv">48</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="do">## p-value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+1.48907673149885e-12
+</div>
+</div>
+<p><strong><em>summary</em></strong> - speed가 <span class="math inline">\(1\tt{mph}\)</span> 증가할수록 dist가 <span class="math inline">\(3.9324\tt{ft}\)</span>만큼 증가하는 경향이 있다. - 적합된 회귀선은 전체 변동 중 <span class="math inline">\(65.11\%\)</span> 를 설명한다. - <span class="math inline">\(F\)</span>의 기각치는 <span class="math inline">\(4.04\)</span>인데 <span class="math inline">\(F_0=89.567\)</span>이므로 적합된 회귀직선은 매우 유의함을 알 수 있다. - speed의 회귀계수 역시 <span class="math inline">\(t-value\)</span> 에 대응하는 <span class="math inline">\(p-value&lt;0.05\)</span> 이므로 유의함을 알 수 있다.</p>
+</section>
+<section id="데이터의-산점도를-그리고-추정한-회귀직선을-1에서-그린-산점도-위에-그리시오." class="level3">
+<h3 class="anchored" data-anchor-id="데이터의-산점도를-그리고-추정한-회귀직선을-1에서-그린-산점도-위에-그리시오.">(3) 데이터의 산점도를 그리고 추정한 회귀직선을 (1)에서 그린 산점도 위에 그리시오.</h3>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x=</span>speed, <span class="at">y=</span>dist)) <span class="sc">+</span> </span>
+<span id="cb12-2"><a href="#cb12-2"></a>    <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">'darkorange'</span>) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>    <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">'lm'</span>, <span class="at">se=</span>F) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>    <span class="fu">xlab</span>(<span class="st">'속도'</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">'제동거리'</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>    <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-03-30-hw1_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="분산분석표를-작성하고-회귀직선의-유의-여부를-검정하시오." class="level3">
+<h3 class="anchored" data-anchor-id="분산분석표를-작성하고-회귀직선의-유의-여부를-검정하시오.">(4) 분산분석표를 작성하고 회귀직선의 유의 여부를 검정하시오.</h3>
+<p><span class="math inline">\(H_0: \beta_1 = 0 \text{ (회귀모형이 유의하지 않다.) } \text{ vs. } H_1: \beta_1 \neq 0 \text{ (회귀모형이 유의하다.) }\)</span></p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">anova</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A anova: 2 × 5</caption>
+<thead>
+    <tr><th></th><th scope="col">Df</th><th scope="col">Sum Sq</th><th scope="col">Mean Sq</th><th scope="col">F value</th><th scope="col">Pr(&gt;F)</th></tr>
+    <tr><th></th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">speed</th><td> 1</td><td>21185.46</td><td>21185.4589</td><td>89.56711</td><td>1.489836e-12</td></tr>
+    <tr><th scope="row">Residuals</th><td>48</td><td>11353.52</td><td>  236.5317</td><td>      NA</td><td>          NA</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>유의수준 <span class="math inline">\(5\%\)</span> 하에서 F-통계량에 대응되는 p-value가 <span class="math inline">\(1.489836e-12\)</span>로 유의수준 <span class="math inline">\(0.05\)</span> 보다 작으므로 귀무가설을 기각할 수 있다. 따라서 적합된 회귀모형은 유의하다고 판단한다.</p>
+</section>
+<section id="결정계수와-상관계수를-구하고-이-둘의-관계를-설명하시오." class="level3">
+<h3 class="anchored" data-anchor-id="결정계수와-상관계수를-구하고-이-둘의-관계를-설명하시오.">(5) 결정계수와 상관계수를 구하고 이 둘의 관계를 설명하시오.</h3>
+<p>단순선형회귀일 때는 표본상관계수의 제곱이 결정계수와 같다. 즉, <span class="math inline">\(r^2 = R^2\)</span></p>
+<p>$R^2 = = = 0.6511 = r_{xy}^2 $</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>a <span class="ot">&lt;-</span> <span class="fu">summary</span>(model1)</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">ls</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>'adj.r.squared'</li><li>'aliased'</li><li>'call'</li><li>'coefficients'</li><li>'cov.unscaled'</li><li>'df'</li><li>'fstatistic'</li><li>'r.squared'</li><li>'residuals'</li><li>'sigma'</li><li>'terms'</li></ol>
+</div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">cat</span>(<span class="st">'상관계수의 제곱 (r2): '</span>, <span class="fu">cor</span>(cars<span class="sc">$</span>speed, cars<span class="sc">$</span>dist)<span class="sc">**</span><span class="dv">2</span>, <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">cat</span>(<span class="st">'결정계수 (R2): '</span>, a<span class="sc">$</span>r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>상관계수의 제곱 (r2):  0.6510794 
+결정계수 (R2):  0.6510794</code></pre>
+</div>
+</div>
+</section>
+<section id="beta_0-beta_1에-대한-개별-회귀계수의-유의성-검정을-수행하시오." class="level3">
+<h3 class="anchored" data-anchor-id="beta_0-beta_1에-대한-개별-회귀계수의-유의성-검정을-수행하시오.">(6) <span class="math inline">\(\beta_0, \beta_1\)</span>에 대한 개별 회귀계수의 유의성 검정을 수행하시오.</h3>
+<ul>
+<li><p><span class="math inline">\(H_0: \beta_1 = 0 \text{ vs. } H_1: \beta_1 \neq 0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \beta_0 = 0 \text{ vs. } H_1: \beta_0 \neq 0\)</span></p></li>
+</ul>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># a = summary(model1)</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>a<span class="sc">$</span>coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 2 × 4 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope="col">Estimate</th><th scope="col">Std. Error</th><th scope="col">t value</th><th scope="col">Pr(&gt;|t|)</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">(Intercept)</th><td>-17.579095</td><td>6.7584402</td><td>-2.601058</td><td>1.231882e-02</td></tr>
+    <tr><th scope="row">speed</th><td>  3.932409</td><td>0.4155128</td><td> 9.463990</td><td>1.489836e-12</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>유의수준 <span class="math inline">\(5\%\)</span> 하에서 각각의 회귀계수 <span class="math inline">\(\beta_0, \beta_1\)</span>의 <span class="math inline">\(t-\)</span>통계량에 대응하는 p-value가 모두 유의수준 <span class="math inline">\(0.05\)</span>보다 작으므로 귀무가설을 기각할 수 있다. 따라서 회귀계수 <span class="math inline">\(\beta_0, \beta_1\)</span>은 유의하다고 할 수 없다.</p>
+</section>
+<section id="beta_0-beta_1에-대한-90-신뢰구간을-구하시오." class="level3">
+<h3 class="anchored" data-anchor-id="beta_0-beta_1에-대한-90-신뢰구간을-구하시오.">(7) <span class="math inline">\(\beta_0, \beta_1\)</span>에 대한 <span class="math inline">\(90\%\)</span> 신뢰구간을 구하시오.</h3>
+<p><span class="math display">\[\hat{\beta}_1 \pm t_{\alpha/2}(n-2) * se(\hat{\beta}_1)\]</span></p>
+<p><code>-</code> 함수 이용</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">confint</span>(model1, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope="col">5 %</th><th scope="col">95 %</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">(Intercept)</th><td>-28.914514</td><td>-6.243676</td></tr>
+    <tr><th scope="row">speed</th><td>  3.235501</td><td> 4.629317</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><code>-</code> 직접 계산</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">coef</span>(model1) <span class="sc">-</span> <span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="dv">48</span>, <span class="at">lower.tail=</span><span class="cn">FALSE</span>)<span class="sc">*</span><span class="fu">summary</span>(model1)<span class="sc">$</span>coef[,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class="dl-inline"><dt>(Intercept)</dt><dd>-28.9145142706524</dd><dt>speed</dt><dd>3.23550067631595</dd></dl>
+</div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">coef</span>(model1) <span class="sc">+</span> <span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="dv">48</span>, <span class="at">lower.tail=</span><span class="cn">FALSE</span>)<span class="sc">*</span><span class="fu">summary</span>(model1)<span class="sc">$</span>coef[,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class="dl-inline"><dt>(Intercept)</dt><dd>-6.24367551036937</dd><dt>speed</dt><dd>4.62931684193222</dd></dl>
+</div>
+</div>
+</section>
+<section id="속도가-18.5textmpg인-차량의-평균-제동거리를-예측하고-95-신뢰구간을-구하시오." class="level3">
+<h3 class="anchored" data-anchor-id="속도가-18.5textmpg인-차량의-평균-제동거리를-예측하고-95-신뢰구간을-구하시오.">(8) 속도가 <span class="math inline">\(18.5\text{mpg}\)</span>인 차량의 평균 제동거리를 예측하고, <span class="math inline">\(95\%\)</span> 신뢰구간을 구하시오.</h3>
+<p><span class="math inline">\(\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 * 18.5\)</span></p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>model1<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">+</span> model1<span class="sc">$</span>coefficients[<span class="dv">2</span>]<span class="sc">*</span><span class="fl">18.5</span> <span class="do">## point estimate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<strong>(Intercept):</strong> 55.1704671532847
+</div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>new_spd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">speed=</span><span class="fl">18.5</span>)</span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">predict</span>(model1,</span>
+<span id="cb23-3"><a href="#cb23-3"></a>        <span class="at">newdata =</span> new_spd,</span>
+<span id="cb23-4"><a href="#cb23-4"></a>        <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">"confidence"</span>), <span class="do">## 구간추정, confidence option (평균반응)</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>        <span class="at">level =</span> <span class="fl">0.95</span>) <span class="do">## 평균반응</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 1 × 3 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope="col">fit</th><th scope="col">lwr</th><th scope="col">upr</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">1</th><td>55.17047</td><td>50.08797</td><td>60.25296</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="속도가-18.5textmpg인-차량의-개별-제동거리를-예측하고-95-신뢰구간을-구하시오." class="level3">
+<h3 class="anchored" data-anchor-id="속도가-18.5textmpg인-차량의-개별-제동거리를-예측하고-95-신뢰구간을-구하시오.">(9) 속도가 <span class="math inline">\(18.5\text{mpg}\)</span>인 차량의 개별 제동거리를 예측하고, <span class="math inline">\(95\%\)</span> 신뢰구간을 구하시오.</h3>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">predict</span>(model1,</span>
+<span id="cb24-2"><a href="#cb24-2"></a>        <span class="at">newdata =</span> new_spd,</span>
+<span id="cb24-3"><a href="#cb24-3"></a>        <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">'prediction'</span>), <span class="do">## prediction option (개별 y)</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a>        <span class="at">level =</span> <span class="fl">0.95</span>) <span class="do">## 개별 y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 1 × 3 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope="col">fit</th><th scope="col">lwr</th><th scope="col">upr</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">1</th><td>55.17047</td><td>23.83284</td><td>86.5081</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li>신뢰구간이 동일한 <span class="math inline">\(95\%\)</span> 임에도 불구하고 평균 제동거리의 신뢰구간에 비해 개별 제동거리의 신뢰구간 폭이 증가한 것을 볼 수 있다. 불확실성이 증가했기 때문에 이러한 결과가 나왔다고 할 수 있다.</li>
+</ul>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="102">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>dt_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="at">speed =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>),</span>
+<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">predict</span>(model1,</span>
+<span id="cb25-4"><a href="#cb25-4"></a>          <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">speed=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)),</span>
+<span id="cb25-5"><a href="#cb25-5"></a>          <span class="at">interval=</span><span class="st">'confidence'</span>, <span class="at">level =</span> <span class="fl">0.95</span>),</span>
+<span id="cb25-6"><a href="#cb25-6"></a>  <span class="fu">predict</span>(model1,</span>
+<span id="cb25-7"><a href="#cb25-7"></a>          <span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">speed=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)),</span>
+<span id="cb25-8"><a href="#cb25-8"></a>          <span class="at">interval=</span><span class="st">'prediction'</span>,<span class="at">level =</span> <span class="fl">0.95</span>)[,<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb25-9"><a href="#cb25-9"></a></span>
+<span id="cb25-10"><a href="#cb25-10"></a><span class="fu">names</span>(dt_pred)[<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'plwr'</span>, <span class="st">'pupr'</span>) <span class="do">## 개별 y에 대한 신뢰구간</span></span>
+<span id="cb25-11"><a href="#cb25-11"></a>dt_pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A data.frame: 50 × 6</caption>
+<thead>
+    <tr><th></th><th scope="col">speed</th><th scope="col">fit</th><th scope="col">lwr</th><th scope="col">upr</th><th scope="col">plwr</th><th scope="col">pupr</th></tr>
+    <tr><th></th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">1</th><td> 1</td><td>-13.646686</td><td>-26.447265</td><td> -0.846107</td><td>-47.114135</td><td> 19.82076</td></tr>
+    <tr><th scope="row">2</th><td> 2</td><td> -9.714277</td><td>-21.733068</td><td>  2.304513</td><td>-42.890574</td><td> 23.46202</td></tr>
+    <tr><th scope="row">3</th><td> 3</td><td> -5.781869</td><td>-17.026591</td><td>  5.462853</td><td>-38.685654</td><td> 27.12192</td></tr>
+    <tr><th scope="row">4</th><td> 4</td><td> -1.849460</td><td>-12.329543</td><td>  8.630624</td><td>-34.499842</td><td> 30.80092</td></tr>
+    <tr><th scope="row">5</th><td> 5</td><td>  2.082949</td><td> -7.644150</td><td> 11.810048</td><td>-30.333587</td><td> 34.49948</td></tr>
+    <tr><th scope="row">6</th><td> 6</td><td>  6.015358</td><td> -2.973341</td><td> 15.004056</td><td>-26.187314</td><td> 38.21803</td></tr>
+    <tr><th scope="row">7</th><td> 7</td><td>  9.947766</td><td>  1.678977</td><td> 18.216556</td><td>-22.061423</td><td> 41.95696</td></tr>
+    <tr><th scope="row">8</th><td> 8</td><td> 13.880175</td><td>  6.307527</td><td> 21.452823</td><td>-17.956287</td><td> 45.71664</td></tr>
+    <tr><th scope="row">9</th><td> 9</td><td> 17.812584</td><td> 10.905120</td><td> 24.720047</td><td>-13.872245</td><td> 49.49741</td></tr>
+    <tr><th scope="row">10</th><td>10</td><td> 21.744993</td><td> 15.461917</td><td> 28.028068</td><td> -9.809601</td><td> 53.29959</td></tr>
+    <tr><th scope="row">11</th><td>11</td><td> 25.677401</td><td> 19.964525</td><td> 31.390278</td><td> -5.768620</td><td> 57.12342</td></tr>
+    <tr><th scope="row">12</th><td>12</td><td> 29.609810</td><td> 24.395138</td><td> 34.824483</td><td> -1.749529</td><td> 60.96915</td></tr>
+    <tr><th scope="row">13</th><td>13</td><td> 33.542219</td><td> 28.731336</td><td> 38.353102</td><td>  2.247492</td><td> 64.83695</td></tr>
+    <tr><th scope="row">14</th><td>14</td><td> 37.474628</td><td> 32.947783</td><td> 42.001472</td><td>  6.222305</td><td> 68.72695</td></tr>
+    <tr><th scope="row">15</th><td>15</td><td> 41.407036</td><td> 37.021152</td><td> 45.792921</td><td> 10.174821</td><td> 72.63925</td></tr>
+    <tr><th scope="row">16</th><td>16</td><td> 45.339445</td><td> 40.937676</td><td> 49.741215</td><td> 14.104995</td><td> 76.57390</td></tr>
+    <tr><th scope="row">17</th><td>17</td><td> 49.271854</td><td> 44.698988</td><td> 53.844720</td><td> 18.012832</td><td> 80.53088</td></tr>
+    <tr><th scope="row">18</th><td>18</td><td> 53.204263</td><td> 48.321378</td><td> 58.087148</td><td> 21.898386</td><td> 84.51014</td></tr>
+    <tr><th scope="row">19</th><td>19</td><td> 57.136672</td><td> 51.829133</td><td> 62.444210</td><td> 25.761756</td><td> 88.51159</td></tr>
+    <tr><th scope="row">20</th><td>20</td><td> 61.069080</td><td> 55.247285</td><td> 66.890875</td><td> 29.603089</td><td> 92.53507</td></tr>
+    <tr><th scope="row">21</th><td>21</td><td> 65.001489</td><td> 58.597384</td><td> 71.405594</td><td> 33.422574</td><td> 96.58040</td></tr>
+    <tr><th scope="row">22</th><td>22</td><td> 68.933898</td><td> 61.896301</td><td> 75.971494</td><td> 37.220445</td><td>100.64735</td></tr>
+    <tr><th scope="row">23</th><td>23</td><td> 72.866307</td><td> 65.156644</td><td> 80.575970</td><td> 40.996976</td><td>104.73564</td></tr>
+    <tr><th scope="row">24</th><td>24</td><td> 76.798715</td><td> 68.387653</td><td> 85.209778</td><td> 44.752478</td><td>108.84495</td></tr>
+    <tr><th scope="row">25</th><td>25</td><td> 80.731124</td><td> 71.596083</td><td> 89.866166</td><td> 48.487298</td><td>112.97495</td></tr>
+    <tr><th scope="row">26</th><td>26</td><td> 84.663533</td><td> 74.786898</td><td> 94.540168</td><td> 52.201813</td><td>117.12525</td></tr>
+    <tr><th scope="row">27</th><td>27</td><td> 88.595942</td><td> 77.963783</td><td> 99.228100</td><td> 55.896429</td><td>121.29545</td></tr>
+    <tr><th scope="row">28</th><td>28</td><td> 92.528350</td><td> 81.129508</td><td>103.927193</td><td> 59.571576</td><td>125.48512</td></tr>
+    <tr><th scope="row">29</th><td>29</td><td> 96.460759</td><td> 84.286181</td><td>108.635337</td><td> 63.227708</td><td>129.69381</td></tr>
+    <tr><th scope="row">30</th><td>30</td><td>100.393168</td><td> 87.435427</td><td>113.350908</td><td> 66.865293</td><td>133.92104</td></tr>
+    <tr><th scope="row">31</th><td>31</td><td>104.325577</td><td> 90.578517</td><td>118.072636</td><td> 70.484817</td><td>138.16634</td></tr>
+    <tr><th scope="row">32</th><td>32</td><td>108.257985</td><td> 93.716452</td><td>122.799519</td><td> 74.086776</td><td>142.42919</td></tr>
+    <tr><th scope="row">33</th><td>33</td><td>112.190394</td><td> 96.850033</td><td>127.530756</td><td> 77.671674</td><td>146.70911</td></tr>
+    <tr><th scope="row">34</th><td>34</td><td>116.122803</td><td> 99.979906</td><td>132.265699</td><td> 81.240021</td><td>151.00558</td></tr>
+    <tr><th scope="row">35</th><td>35</td><td>120.055212</td><td>103.106599</td><td>137.003824</td><td> 84.792330</td><td>155.31809</td></tr>
+    <tr><th scope="row">36</th><td>36</td><td>123.987620</td><td>106.230544</td><td>141.744697</td><td> 88.329114</td><td>159.64613</td></tr>
+    <tr><th scope="row">37</th><td>37</td><td>127.920029</td><td>109.352101</td><td>146.487958</td><td> 91.850883</td><td>163.98918</td></tr>
+    <tr><th scope="row">38</th><td>38</td><td>131.852438</td><td>112.471568</td><td>151.233308</td><td> 95.358144</td><td>168.34673</td></tr>
+    <tr><th scope="row">39</th><td>39</td><td>135.784847</td><td>115.589198</td><td>155.980495</td><td> 98.851399</td><td>172.71829</td></tr>
+    <tr><th scope="row">40</th><td>40</td><td>139.717255</td><td>118.705205</td><td>160.729306</td><td>102.331141</td><td>177.10337</td></tr>
+    <tr><th scope="row">41</th><td>41</td><td>143.649664</td><td>121.819771</td><td>165.479557</td><td>105.797854</td><td>181.50147</td></tr>
+    <tr><th scope="row">42</th><td>42</td><td>147.582073</td><td>124.933053</td><td>170.231093</td><td>109.252014</td><td>185.91213</td></tr>
+    <tr><th scope="row">43</th><td>43</td><td>151.514482</td><td>128.045184</td><td>174.983780</td><td>112.694084</td><td>190.33488</td></tr>
+    <tr><th scope="row">44</th><td>44</td><td>155.446891</td><td>131.156281</td><td>179.737500</td><td>116.124517</td><td>194.76926</td></tr>
+    <tr><th scope="row">45</th><td>45</td><td>159.379299</td><td>134.266446</td><td>184.492153</td><td>119.543753</td><td>199.21485</td></tr>
+    <tr><th scope="row">46</th><td>46</td><td>163.311708</td><td>137.375767</td><td>189.247649</td><td>122.952219</td><td>203.67120</td></tr>
+    <tr><th scope="row">47</th><td>47</td><td>167.244117</td><td>140.484322</td><td>194.003912</td><td>126.350328</td><td>208.13791</td></tr>
+    <tr><th scope="row">48</th><td>48</td><td>171.176526</td><td>143.592180</td><td>198.760871</td><td>129.738482</td><td>212.61457</td></tr>
+    <tr><th scope="row">49</th><td>49</td><td>175.108934</td><td>146.699401</td><td>203.518468</td><td>133.117067</td><td>217.10080</td></tr>
+    <tr><th scope="row">50</th><td>50</td><td>179.041343</td><td>149.806040</td><td>208.276646</td><td>136.486457</td><td>221.59623</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="원점을-지나는-회귀직선을-구하시오." class="level3">
+<h3 class="anchored" data-anchor-id="원점을-지나는-회귀직선을-구하시오.">(10) 원점을 지나는 회귀직선을 구하시오.</h3>
+<p><span class="math display">\[\widehat{\text{dist}} = 2.9091\times \text{speed}\]</span></p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist<span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> speed, cars)</span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">summary</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+Call:
+lm(formula = dist ~ 0 + speed, data = cars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-26.183 -12.637  -5.455   4.590  50.181 
+
+Coefficients:
+      Estimate Std. Error t value Pr(&gt;|t|)    
+speed   2.9091     0.1414   20.58   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 16.26 on 49 degrees of freedom
+Multiple R-squared:  0.8963,    Adjusted R-squared:  0.8942 
+F-statistic: 423.5 on 1 and 49 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="위-회귀직선에서-회귀계수기울기의-90-신뢰구간을-구하시오." class="level3">
+<h3 class="anchored" data-anchor-id="위-회귀직선에서-회귀계수기울기의-90-신뢰구간을-구하시오.">(11) 위 회귀직선에서 회귀계수(기울기)의 <span class="math inline">\(90\%\)</span> 신뢰구간을 구하시오.</h3>
+<p><code>-</code> 함수이용</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">confint</span>(model2, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 1 × 2 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope="col">5 %</th><th scope="col">95 %</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">speed</th><td>2.67212</td><td>3.146144</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><code>-</code> 직접계산</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>b <span class="ot">=</span> <span class="fu">summary</span>(model2)</span>
+<span id="cb29-2"><a href="#cb29-2"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+Call:
+lm(formula = dist ~ 0 + speed, data = cars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-26.183 -12.637  -5.455   4.590  50.181 
+
+Coefficients:
+      Estimate Std. Error t value Pr(&gt;|t|)    
+speed   2.9091     0.1414   20.58   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 16.26 on 49 degrees of freedom
+Multiple R-squared:  0.8963,    Adjusted R-squared:  0.8942 
+F-statistic: 423.5 on 1 and 49 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="126">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">coef</span>(model2) <span class="sc">-</span> <span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="dv">49</span>, <span class="at">lower.tail=</span><span class="cn">FALSE</span>)<span class="sc">*</span>b<span class="sc">$</span>coef[,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<strong>speed:</strong> 2.67212042854855
+</div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="127">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">coef</span>(model2) <span class="sc">+</span> <span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="dv">49</span>, <span class="at">lower.tail=</span><span class="cn">FALSE</span>)<span class="sc">*</span>b<span class="sc">$</span>coef[,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<strong>speed:</strong> 3.14614385932565
+</div>
+</div>
+</section>
+<section id="원점을-지나는-회귀직선에-대한-분산분석표를-작성하고-회귀직선의-유의-여부를-검정하시오." class="level3">
+<h3 class="anchored" data-anchor-id="원점을-지나는-회귀직선에-대한-분산분석표를-작성하고-회귀직선의-유의-여부를-검정하시오.">(12) 원점을 지나는 회귀직선에 대한 분산분석표를 작성하고, 회귀직선의 유의 여부를 검정하시오.</h3>
+<p><span class="math inline">\(H_0: \beta_1 = 0 \text{ vs. }H_1: \beta_0 \neq 0\)</span></p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="128">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">anova</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A anova: 2 × 5</caption>
+<thead>
+    <tr><th></th><th scope="col">Df</th><th scope="col">Sum Sq</th><th scope="col">Mean Sq</th><th scope="col">F value</th><th scope="col">Pr(&gt;F)</th></tr>
+    <tr><th></th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">speed</th><td> 1</td><td>111949.22</td><td>111949.2232</td><td>423.4682</td><td>9.227817e-26</td></tr>
+    <tr><th scope="row">Residuals</th><td>49</td><td> 12953.78</td><td>   264.3628</td><td>      NA</td><td>          NA</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">cat</span>(<span class="st">'기각치 F(0.05): '</span>, <span class="fu">qf</span>(<span class="fl">0.95</span>, <span class="dv">1</span>, <span class="dv">49</span>),<span class="st">'</span><span class="sc">\n</span><span class="st">'</span>) </span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="fu">cat</span>(<span class="st">'F0: '</span>, <span class="fu">summary</span>(model2)<span class="sc">$</span>fstatistic[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>기각치 F(0.05):  4.038393 
+F0:  423.4682</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(F_0 &gt; F(1,49;0.05)\)</span></p>
+<ul>
+<li><p><span class="math inline">\(F\)</span>의 기각치는 <span class="math inline">\(4.038\)</span>인데 <span class="math inline">\(F_0=423.4682\)</span>이므로 적합된 회귀직선은 매우 유의함을 알 수 있다.</p></li>
+<li><p>유의수준 <span class="math inline">\(5\%\)</span>하에서 F-통계량에 대응하는 <span class="math inline">\(p-value=9.227817e-26\)</span>로 유의수준 <span class="math inline">\(5\%\)</span> 보다 작으므로 귀무가설을 기각할 수 있다. 따라서 회귀모형은 유의하다고 할 수 있다.</p></li>
+</ul>
+</section>
+<section id="원점을-지나는-회귀직선의-결정계수를-구하시오." class="level3">
+<h3 class="anchored" data-anchor-id="원점을-지나는-회귀직선의-결정계수를-구하시오.">(13) 원점을 지나는 회귀직선의 결정계수를 구하시오.</h3>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="133">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>b<span class="sc">$</span>r.squared</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+0.896289305805206
+</div>
+</div>
+</section>
+<section id="원점을-포함한-회귀직선과-포함하지-않은-회귀직선의-결과를-비교하여라." class="level3">
+<h3 class="anchored" data-anchor-id="원점을-포함한-회귀직선과-포함하지-않은-회귀직선의-결과를-비교하여라.">(14) 원점을 포함한 회귀직선과 포함하지 않은 회귀직선의 결과를 비교하여라.</h3>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="134">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+Call:
+lm(formula = dist ~ speed, data = cars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-29.069  -9.525  -2.272   9.215  43.201 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+speed         3.9324     0.4155   9.464 1.49e-12 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 15.38 on 48 degrees of freedom
+Multiple R-squared:  0.6511,    Adjusted R-squared:  0.6438 
+F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+</div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="135">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">summary</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+Call:
+lm(formula = dist ~ 0 + speed, data = cars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-26.183 -12.637  -5.455   4.590  50.181 
+
+Coefficients:
+      Estimate Std. Error t value Pr(&gt;|t|)    
+speed   2.9091     0.1414   20.58   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 16.26 on 49 degrees of freedom
+Multiple R-squared:  0.8963,    Adjusted R-squared:  0.8942 
+F-statistic: 423.5 on 1 and 49 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="136">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">anova</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A anova: 2 × 5</caption>
+<thead>
+    <tr><th></th><th scope="col">Df</th><th scope="col">Sum Sq</th><th scope="col">Mean Sq</th><th scope="col">F value</th><th scope="col">Pr(&gt;F)</th></tr>
+    <tr><th></th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">speed</th><td> 1</td><td>21185.46</td><td>21185.4589</td><td>89.56711</td><td>1.489836e-12</td></tr>
+    <tr><th scope="row">Residuals</th><td>48</td><td>11353.52</td><td>  236.5317</td><td>      NA</td><td>          NA</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="137">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">anova</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A anova: 2 × 5</caption>
+<thead>
+    <tr><th></th><th scope="col">Df</th><th scope="col">Sum Sq</th><th scope="col">Mean Sq</th><th scope="col">F value</th><th scope="col">Pr(&gt;F)</th></tr>
+    <tr><th></th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">speed</th><td> 1</td><td>111949.22</td><td>111949.2232</td><td>423.4682</td><td>9.227817e-26</td></tr>
+    <tr><th scope="row">Residuals</th><td>49</td><td> 12953.78</td><td>   264.3628</td><td>      NA</td><td>          NA</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li>R-squared, Adjusted R-squared 모두 model2가 더 크므로 model2가 더 좋은 것 같다. 즉, 절편이 없는(원점을 지나는) 회귀모형이 더 좋은 것 같다.</li>
+</ul>
+</section>
+<section id="잔차에-대한-산점도를-그리고-결과를-설명하여라." class="level3">
+<h3 class="anchored" data-anchor-id="잔차에-대한-산점도를-그리고-결과를-설명하여라.">(15) 잔차에 대한 산점도를 그리고, 결과를 설명하여라.</h3>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="139">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="do">## Model1 residual plot</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(model1),<span class="fu">resid</span>(model1), <span class="at">col =</span> <span class="st">'grey'</span>, <span class="at">pch=</span><span class="dv">16</span>, </span>
+<span id="cb44-3"><a href="#cb44-3"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(<span class="fu">hat</span>(y)),</span>
+<span id="cb44-4"><a href="#cb44-4"></a>     <span class="at">ylab =</span> <span class="st">"Residual"</span>,</span>
+<span id="cb44-5"><a href="#cb44-5"></a>     <span class="at">main =</span> <span class="st">"Residual plot in Model1"</span>)</span>
+<span id="cb44-6"><a href="#cb44-6"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">col=</span><span class="st">'darkorange'</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-03-30-hw1_files/figure-html/cell-35-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><p><span class="math inline">\(\text{resiaul}=0\)</span>을 기준으로 위<span class="math inline">\(\cdot\)</span>아래가 대칭적으로 잘 퍼져있는 것 처럼 보인다. (<span class="math inline">\(\hat{y}\)</span>가 커질수록 조금 증가하는 것 같기도 하지만 추후 검정을 통해 확인) <span class="math inline">\(\to\)</span> 등분산, 선형성</p></li>
+<li><p>잔차의 산점도에 별다른 패턴이 보이지 않는 것 같다. <span class="math inline">\(\to\)</span> 독립성</p></li>
+</ul>
+</section>
+<section id="잔차에-대한-등분산성-검정을-수행하시오." class="level3">
+<h3 class="anchored" data-anchor-id="잔차에-대한-등분산성-검정을-수행하시오.">(16) 잔차에 대한 등분산성 검정을 수행하시오.</h3>
+<p><code>-</code> Breusch-Pegan Teset</p>
+<p><span class="math inline">\(H_0\)</span>: 등분산 vs.&nbsp;<span class="math inline">\(H_1\)</span>: 이분산 (Heteroscedasticity)</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="145">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">bptest</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  model1
+BP = 3.2149, df = 1, p-value = 0.07297</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(p-value = 0.07297\)</span>로 유의수준 <span class="math inline">\(0.05\)</span> 보다 크므로 귀무가설을 기각할 수 없다. 따라서 유의수준 <span class="math inline">\(5\%\)</span>하에서 잔차들이 등분산성을 만족한다.</p>
+<ol start="17" type="1">
+<li>잔차에 대한 히스토그램, QQ plot을 그리고, 정규성 검정을 수행하여라.</li>
+</ol>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="146">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="do">## 잔차의 QQ plot</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a><span class="fu">qqnorm</span>(cars<span class="sc">$</span>resid, <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb47-3"><a href="#cb47-3"></a><span class="fu">qqline</span>(cars<span class="sc">$</span>resid, <span class="at">col =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-03-30-hw1_files/figure-html/cell-37-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>잔차의 QQPlot을 보면 45도선 기준으로 오른쪽 꼬리부분의 점들이 선에서 많이 벗어나 있는 것을 확인할 수 있다.</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="153">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">hist</span>(cars<span class="sc">$</span>resid,</span>
+<span id="cb48-2"><a href="#cb48-2"></a>     <span class="at">xlab =</span> <span class="st">"Residuals"</span>,</span>
+<span id="cb48-3"><a href="#cb48-3"></a>     <span class="at">main =</span> <span class="st">"Histogram of Residuals, model1"</span>,</span>
+<span id="cb48-4"><a href="#cb48-4"></a>     <span class="at">col =</span> <span class="st">"darkgreen"</span>,</span>
+<span id="cb48-5"><a href="#cb48-5"></a>     <span class="at">border =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-03-30-hw1_files/figure-html/cell-38-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>잔차들의 히스토그램을 봤을 때 약간 오른쪽으로 꼬리가 긴 skewed된 그래프이다.</li>
+</ul>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="147">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="do">## Shapiro-Wilk Test</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a><span class="do">## H0 : normal distribution  vs. H1 : not H0</span></span>
+<span id="cb49-3"><a href="#cb49-3"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(model1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  resid(model1)
+W = 0.94509, p-value = 0.02152</code></pre>
+</div>
+</div>
+<p>Shapiro-Wilk 정규성 검정 결과 <span class="math inline">\(p-value=0.02152\)</span>로 유의수준 <span class="math inline">\(0.05\)</span> 보다 작으므로 유의수준 <span class="math inline">\(5\%\)</span>하에서 귀무가설을 기각할 수 있다. 따라서 잔차는 정규성을 만족한다고 판단한다.</p>
+</section>
+<section id="잔차에-대한-독립성-검정을-수행하시오." class="level3">
+<h3 class="anchored" data-anchor-id="잔차에-대한-독립성-검정을-수행하시오.">(18) 잔차에 대한 독립성 검정을 수행하시오.</h3>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;r&quot;}" data-execution_count="150">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="co"># 독립성검정 : DW test</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a><span class="fu">dwtest</span>(model1, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)  <span class="co">#H0 : uncorrelated vs H1 : rho != 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+    Durbin-Watson test
+
+data:  model1
+DW = 1.6762, p-value = 0.1904
+alternative hypothesis: true autocorrelation is not 0</code></pre>
+</div>
+</div>
+<p>잔차의 독립성을 검정하는 Durbin-Watson 검정 결과 <span class="math inline">\(p-value = 0.1904\)</span>로 유의수준 <span class="math inline">\(5\%\)</span> 보다 크므로 귀무가설을 기각할 수 없다.</p>
+</section>
+</section>
+<section id="q3." class="level1">
+<h1>Q3.</h1>
+<p>원하는 데이터를 이용하여 단순선형회귀모형을 적합하여라. (발표)</p>
+<ul>
+<li>발표는 5~10분</li>
+<li>최소 50개 이상의 데이터 사용</li>
+<li>발표 자료를 위 과제와 별도로 작성</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

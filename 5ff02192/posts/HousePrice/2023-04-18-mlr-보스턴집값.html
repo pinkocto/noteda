@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="JiyunLim">
+<meta name="dcterms.date" content="2023-04-18">
+
+<title>noteda - MLR prac1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">noteda</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/pinkocto/noteda"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">MLR prac1</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">MLR prac1</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>JiyunLim </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 18, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/2023-03-23-read-list.html" class="sidebar-item-text sidebar-link">Lists to read</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/welcome/index.html" class="sidebar-item-text sidebar-link">Welcome To My Blog</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">DataHandling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-assign.html" class="sidebar-item-text sidebar-link">[Python] 새로운 열 할당(.assign) 및 특정 열 선택</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-hanling-index.html" class="sidebar-item-text sidebar-link">[Python] 중첩인덱스 깨는 법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-pivot-wider-error.html" class="sidebar-item-text sidebar-link">[R] pivot_wider Error</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-assign-r.html" class="sidebar-item-text sidebar-link">[R] 문자열을 변수명으로 &amp; assign</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Etc</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-05-08-에러모음.html" class="sidebar-item-text sidebar-link"><strong>에러 모음</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-dv.html" class="sidebar-item-text sidebar-link">data visualization</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-downcasting.html" class="sidebar-item-text sidebar-link">downcasting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-11-git-error.html" class="sidebar-item-text sidebar-link">Github remote: error: this exceeds GitHub’s file size limit of 100.00 MB</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-02-24-tips.html" class="sidebar-item-text sidebar-link">Julia 설치 및 실행</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-lib.html" class="sidebar-item-text sidebar-link">Libraries for DA</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-05-ppt.html" class="sidebar-item-text sidebar-link">ppt 폰트</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-23-r-python-same-jupyter.html" class="sidebar-item-text sidebar-link">R/Python jupyter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-resumetable.html" class="sidebar-item-text sidebar-link">resumetable</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-scorecard.html" class="sidebar-item-text sidebar-link">Scorecard</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-01-연구생신규등록.html" class="sidebar-item-text sidebar-link">연구참여 확약서</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-02-abstract.html" class="sidebar-item-text sidebar-link">초록 작성법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-20-학회.html" class="sidebar-item-text sidebar-link">학회</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">HousePrice</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-26-lr-회귀진단.html" class="sidebar-item-text sidebar-link">04. 가변수(Indicator Variable) 실습</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-5wk.html" class="sidebar-item-text sidebar-link">5wk: 측도론 (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-11-6wk.html" class="sidebar-item-text sidebar-link">6wk: 측도론 (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-18-7wk.html" class="sidebar-item-text sidebar-link">7wk: 측도론 (3)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-25-8wk.html" class="sidebar-item-text sidebar-link">8wk: 측도론 (4)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-05-11-ch11-variable-selection.html" class="sidebar-item-text sidebar-link">CH11. VARIABLE SELECTION</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-20-ts-이산형확률분포.html" class="sidebar-item-text sidebar-link">Discrete Probability Distribution (추가중)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-04-lr-hw1-project.html" class="sidebar-item-text sidebar-link">House Price</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-lr-hw1-feedback.html" class="sidebar-item-text sidebar-link">House Price feedback</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-03-30-lr-hw1.html" class="sidebar-item-text sidebar-link">HW1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-18-mlr-보스턴집값.html" class="sidebar-item-text sidebar-link active">MLR prac1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-11-TS-hw4.html" class="sidebar-item-text sidebar-link">TS HW4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-19-TS-hw5.html" class="sidebar-item-text sidebar-link">TS HW5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-05-02-TS-hw6.html" class="sidebar-item-text sidebar-link">TS HW6</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-05-03-lr-변수선택실습.html" class="sidebar-item-text sidebar-link">변수선택 실습</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-05-03-변수선택실습.html" class="sidebar-item-text sidebar-link">변수선택 실습</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-05-12-lr-변수선택추가실습.html" class="sidebar-item-text sidebar-link">변수선택 추가 실습</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-05-03-mlr-회귀진단.html" class="sidebar-item-text sidebar-link">회귀진단</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">Seminar</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Seminar/2023-03-21-gpt3-nsmc.html" class="sidebar-item-text sidebar-link">Few-shot learning using GPT3</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">SOLAR</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-correlation.html" class="sidebar-item-text sidebar-link">[R]Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-restructure-data.html" class="sidebar-item-text sidebar-link">[R]데이터 재구조화</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-07-정리.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR] 0508 정리중</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-06-정리중.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-24-정규화제거-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (-N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (+N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-corr.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-데이터수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (22/06~22/09/15)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-14-데이터수정2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (data2: 22/06~22/09/15) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-데이터수정3.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Create Dataset (data3: 0815/0910) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-stgcn-data-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-stcgn-data-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-04-EPT.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-ept-by-region.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-10-lstm.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> LSTM</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver1--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (+N +S) (MSE: 0.1864) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-스케일링-stgcn-ver1-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-25-s-stgcn-ver1-100에폭--이게진짜.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-28-s-stgcn-ver1-100에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-26-s-stgcn-ver1-150에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 150epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-27-s-stgcn-ver1-50에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 50epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-03-s-stgcn-ver1-시뮬레이션-10iter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-29-s-stgcn-ver1-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-02-s-stgcn-ver1-정규화-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver1-.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N) (MSE: 0.1705)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (Full: 08/15~09/10 data3) (MSE: 0.1523)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (MSE: 0.1899)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver1-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 90% (MSE: 0.1206)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-soloar-stgcn-ver1-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-soloar-stgcn-ver1-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-15-stgcn-ver1-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 수정본 (MSE: 0.1674)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver2--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (+N +S) (MSE: 0.1801) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-스케일링-stgcn-ver2-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-25-s-stgcn-ver2-100에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 100 epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-26-s-stgcn-ver2-150에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 150 epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-27-s-stgcn-ver2-50에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 50 epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-29-s-stgcn-ver2-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-03-s-stgcn-ver2-시뮬레이션-10iter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-02-s-stgcn-ver2-정규화-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N) (MSE: 0.1834)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (Full: 08/15~09/10 data3) (MSE: 0.1927)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver2-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (MSE: 0.2019)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 90% (MSE: 0.1635)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-solar-stgcn-ver2-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-08-solar-stgcn-ver2-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-15-stgcn-ver2-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 수정본 (MSE: 0.2000)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-01-todolist.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> To do list</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-solar-class.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> WindmillOutputLargeDatasetLoader</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-yu.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> yU</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-19-데이터탐색용.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 데이터 탐색용</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-03-시뮬결과.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 시뮬레이션 결과정리 1-iter (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-시각화코드수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 연습용 (시각화 코드 수정)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-01-차원조사.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 차원조사</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2099.html" class="sidebar-item-text sidebar-link">2099</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-stgcn.html" class="sidebar-item-text sidebar-link">ChikenpoxDataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-29-data0.html" class="sidebar-item-text sidebar-link">Data preprocessing</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-lstm-prac.html" class="sidebar-item-text sidebar-link">LSTM for Time Series Prediction (연습)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-windmill.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDataset 분석 (실패)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-ft.html" class="sidebar-item-text sidebar-link">푸리에 변환</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">Study</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-24-베르누이.html" class="sidebar-item-text sidebar-link">[SC2022] 포아송분포, 지수분포</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-03-05-기하학적딥러닝-survey-review.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> A Comprehensive Survey on Geometric Deep Learning (+++)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-06-ept-논문리뷰.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> Ensemble patch transformation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-07-stgcn논문리뷰.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> Spatio-Temporal Graph Convolutional Networks (+++)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-11-arima-hour-data-fill.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SARIMA (MSE: 0.478)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex-day.html" class="sidebar-item-text sidebar-link">ARIMA (Day)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex.html" class="sidebar-item-text sidebar-link">ARIMA (시간별 예측안됨, 에러)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-08-gcrn리뷰.html" class="sidebar-item-text sidebar-link">GCRN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-21-gcn-이해용정리.html" class="sidebar-item-text sidebar-link">Graph Convolutional Network (이해용)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/python-midterm.html" class="sidebar-item-text sidebar-link">Python Midterm</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-13-windmill-스몰버전.html" class="sidebar-item-text sidebar-link">WindmillOutput (Small)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/python_7장.html" class="sidebar-item-text sidebar-link">스타벅스 주가예측</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-ex.html" class="sidebar-item-text sidebar-link">연습장</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리(수정 for ARIMA)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-21-STGCN-tutorial1.html" class="sidebar-item-text sidebar-link">튜토리얼 따라가기1</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">Import</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data Description</a></li>
+  <li><a href="#회귀모형-적합" id="toc-회귀모형-적합" class="nav-link" data-scroll-target="#회귀모형-적합">회귀모형 적합</a>
+  <ul class="collapse">
+  <li><a href="#matrix" id="toc-matrix" class="nav-link" data-scroll-target="#matrix">matrix</a></li>
+  <li><a href="#분산분석-회귀직선의-유의성-검정" id="toc-분산분석-회귀직선의-유의성-검정" class="nav-link" data-scroll-target="#분산분석-회귀직선의-유의성-검정">분산분석 : 회귀직선의 유의성 검정</a></li>
+  <li><a href="#beta-의-신뢰구간" id="toc-beta-의-신뢰구간" class="nav-link" data-scroll-target="#beta-의-신뢰구간"><span class="math inline">\(\beta\)</span> 의 신뢰구간</a></li>
+  <li><a href="#평균반응-개별-y-추정" id="toc-평균반응-개별-y-추정" class="nav-link" data-scroll-target="#평균반응-개별-y-추정">평균반응, 개별 y 추정</a></li>
+  </ul></li>
+  <li><a href="#절편을-포함하지-않는-회귀직선-원점을-지나는-회귀직선" id="toc-절편을-포함하지-않는-회귀직선-원점을-지나는-회귀직선" class="nav-link" data-scroll-target="#절편을-포함하지-않는-회귀직선-원점을-지나는-회귀직선">절편을 포함하지 않는 회귀직선 (원점을 지나는 회귀직선)</a>
+  <ul class="collapse">
+  <li><a href="#잔차분석" id="toc-잔차분석" class="nav-link" data-scroll-target="#잔차분석">잔차분석</a>
+  <ul class="collapse">
+  <li><a href="#epsilon-선형성-등분산성-정규성-독립성" id="toc-epsilon-선형성-등분산성-정규성-독립성" class="nav-link" data-scroll-target="#epsilon-선형성-등분산성-정규성-독립성"><span class="math inline">\(\epsilon\)</span> : 선형성, 등분산성, 정규성, 독립성</a></li>
+  <li><a href="#등분산성" id="toc-등분산성" class="nav-link" data-scroll-target="#등분산성">등분산성</a></li>
+  </ul></li>
+  <li><a href="#잔차의-qq-plot" id="toc-잔차의-qq-plot" class="nav-link" data-scroll-target="#잔차의-qq-plot">잔차의 QQ plot</a></li>
+  <li><a href="#shapiro-wilk-test" id="toc-shapiro-wilk-test" class="nav-link" data-scroll-target="#shapiro-wilk-test">Shapiro-Wilk Test</a></li>
+  <li><a href="#독립성검정-dw-test" id="toc-독립성검정-dw-test" class="nav-link" data-scroll-target="#독립성검정-dw-test">독립성검정 : DW test</a></li>
+  </ul></li>
+  <li><a href="#가설검정-fm-vs.-rm" id="toc-가설검정-fm-vs.-rm" class="nav-link" data-scroll-target="#가설검정-fm-vs.-rm">가설검정: FM vs.&nbsp;RM</a>
+  <ul class="collapse">
+  <li><a href="#가설-설정" id="toc-가설-설정" class="nav-link" data-scroll-target="#가설-설정">가설 설정</a></li>
+  <li><a href="#f-fracsse_rm---sse_fmrsse_fmn-p-1-fracsse_fm---sse_rmrsse_fmn-p-1" id="toc-f-fracsse_rm---sse_fmrsse_fmn-p-1-fracsse_fm---sse_rmrsse_fmn-p-1" class="nav-link" data-scroll-target="#f-fracsse_rm---sse_fmrsse_fmn-p-1-fracsse_fm---sse_rmrsse_fmn-p-1"><span class="math inline">\(F = \frac{(SSE_{RM} - SSE_{FM})/r}{SSE_{FM}/(n-p-1)} = \frac{(SSE_{FM} - SSE_{RM})/r}{SSE_{FM}/(n-p-1)}\)</span></a></li>
+  <li><a href="#기각역-f_0.05p-qn-p-1" id="toc-기각역-f_0.05p-qn-p-1" class="nav-link" data-scroll-target="#기각역-f_0.05p-qn-p-1">기각역 <span class="math inline">\(F_{0.05}(p-q,n-p-1)\)</span></a></li>
+  </ul></li>
+  <li><a href="#general-linear-hypothesis" id="toc-general-linear-hypothesis" class="nav-link" data-scroll-target="#general-linear-hypothesis">General linear hypothesis</a>
+  <ul class="collapse">
+  <li><a href="#h0-tbeta-c" id="toc-h0-tbeta-c" class="nav-link" data-scroll-target="#h0-tbeta-c"><span class="math inline">\(H0 : T\beta = c\)</span></a>
+  <ul class="collapse">
+  <li><a href="#h_0-beta_1-1" id="toc-h_0-beta_1-1" class="nav-link" data-scroll-target="#h_0-beta_1-1"><span class="math inline">\(H_0 : \beta_1 = 1\)</span></a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="import" class="level1">
+<h1>Import</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(lmtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: zoo</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'zoo'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric</code></pre>
+</div>
+</div>
+</section>
+<section id="data" class="level1">
+<h1>Data</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># 보스턴 집값 데이터 이 데이터는 보스턴 근교 지역의 집값 및 다른 정보를 포함한다.</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># MASS 패키지를 설치하면 데이터를 로딩할 수 있다.</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">data</span>(Boston)</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">head</span>(Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat
+1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3 396.90  4.98
+2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8 396.90  9.14
+3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8 392.83  4.03
+4 0.03237  0  2.18    0 0.458 6.998 45.8 6.0622   3 222    18.7 394.63  2.94
+5 0.06905  0  2.18    0 0.458 7.147 54.2 6.0622   3 222    18.7 396.90  5.33
+6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21
+  medv
+1 24.0
+2 21.6
+3 34.7
+4 33.4
+5 36.2
+6 28.7</code></pre>
+</div>
+</div>
+</section>
+<section id="data-description" class="level1">
+<h1>Data Description</h1>
+<blockquote class="blockquote">
+<p>B보스턴 근교 506개 지역에 대한 범죄율 (crim)등 14개의 변수로 구성 • crim : 범죄율 • zn: 25,000평방비트 기준 거지주 비율 • indus: 비소매업종 점유 구역 비율 • chas: 찰스강 인접 여부 (1=인접, 0=비인접) • nox: 일산화질소 농도 (천만개 당) • rm: 거주지의 평균 방 갯수 <strong><em>• age: 1940년 이전에 건축된 주택의 비율 • dis: 보스턴 5대 사업지구와의 거리 • rad: 고속도로 진입용이성 정도 • tax: 재산세율 (10,000달러 당) • ptratio: 학생 대 교사 비율 • black: 1000(B − 0.63)2, B: 아프리카계 미국인 비율 • lstat : 저소득층 비율</em></strong> * • medv: 주택가격의 중앙값 (단위:1,000달러 당)</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">pairs</span>(Boston[,<span class="fu">which</span>(<span class="fu">names</span>(Boston) <span class="sc">%in%</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>                      <span class="fu">c</span>(<span class="st">'medv'</span>, <span class="st">'rm'</span>, <span class="st">'lstat'</span>))], </span>
+<span id="cb7-3"><a href="#cb7-3"></a>      <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">'darkorange'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="2023-04-18-mlr-보스턴집값_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># pairs(Boston, pch=16, col='darkorange')</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">cor</span>(Boston[,<span class="fu">which</span>(<span class="fu">names</span>(Boston) <span class="sc">%in%</span> </span>
+<span id="cb8-3"><a href="#cb8-3"></a>                    <span class="fu">c</span>(<span class="st">'medv'</span>, <span class="st">'rm'</span>, <span class="st">'lstat'</span>))])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              rm      lstat       medv
+rm     1.0000000 -0.6138083  0.6953599
+lstat -0.6138083  1.0000000 -0.7376627
+medv   0.6953599 -0.7376627  1.0000000</code></pre>
+</div>
+</div>
+</section>
+<section id="회귀모형-적합" class="level1">
+<h1>회귀모형 적합</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>fit_Boston<span class="ot">&lt;-</span><span class="fu">lm</span>(medv<span class="sc">~</span>rm<span class="sc">+</span>lstat, <span class="at">data=</span>Boston)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">summary</span>(fit_Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = medv ~ rm + lstat, data = Boston)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-18.076  -3.516  -1.010   1.909  28.131 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -1.35827    3.17283  -0.428    0.669    
+rm           5.09479    0.44447  11.463   &lt;2e-16 ***
+lstat       -0.64236    0.04373 -14.689   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5.54 on 503 degrees of freedom
+Multiple R-squared:  0.6386,    Adjusted R-squared:  0.6371 
+F-statistic: 444.3 on 2 and 503 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="mlr_boston_prac.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<section id="matrix" class="level2">
+<h2 class="anchored" data-anchor-id="matrix">matrix</h2>
+<p><span class="math display">\[\bf{y} = \bf{X}\bf{\beta} + \bf{\epsilon} \Rightarrow \hat{\bf{\beta}}=(\bf{X}^\top X)^{-1}\bf{X}^\top \bf{y}\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>n <span class="ot">=</span> <span class="fu">nrow</span>(Boston)</span>
+<span id="cb12-2"><a href="#cb12-2"></a>X <span class="ot">=</span> <span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>,n), Boston<span class="sc">$</span>rm, Boston<span class="sc">$</span>lstat)</span>
+<span id="cb12-3"><a href="#cb12-3"></a>y <span class="ot">=</span> Boston<span class="sc">$</span>medv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>beta_hat <span class="ot">=</span> <span class="fu">solve</span>(<span class="fu">t</span>(X)<span class="sc">%*%</span>X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y <span class="co"># 행렬곱 (%*%)</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>beta_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           [,1]
+[1,] -1.3582728
+[2,]  5.0947880
+[3,] -0.6423583</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">coef</span>(fit_Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)          rm       lstat 
+ -1.3582728   5.0947880  -0.6423583 </code></pre>
+</div>
+</div>
+<ul>
+<li><code>lm</code>을 이용해서 하나 행렬을 이용해서 하나 동일한 결과를 얻음을 확인할 수 있다.</li>
+</ul>
+<p><span class="math display">\[\hat{y} = \bf{X}\hat{\bf{\beta}}\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>y_hat <span class="ot">=</span> X <span class="sc">%*%</span> beta_hat</span>
+<span id="cb17-2"><a href="#cb17-2"></a>y_hat[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="co"># 상위 5개의 값 확인.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 28.94101 25.48421 32.65907 32.40652 31.63041</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">fitted</span>(fit_Boston)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1        2        3        4        5 
+28.94101 25.48421 32.65907 32.40652 31.63041 </code></pre>
+</div>
+</div>
+<ul>
+<li><span class="math inline">\(\hat{y}\)</span>도 마찬가지로 동일한 결과를 얻음을 확인할 수 있다.</li>
+</ul>
+<p><span class="math display">\[SSE = \sum(y_i - \hat{y}_i)^2,\quad RMSE = \sqrt\frac{SSE}{n-p-1} = \hat{\sigma}\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>sse <span class="ot">&lt;-</span> <span class="fu">sum</span>((y <span class="sc">-</span> y_hat)<span class="sc">^</span><span class="dv">2</span>) <span class="do">##SSE</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">sqrt</span>(sse<span class="sc">/</span>(n<span class="dv">-2-1</span>)) <span class="do">##RMSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.540257</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">summary</span>(fit_Boston)<span class="sc">$</span>sigma</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.540257</code></pre>
+</div>
+</div>
+<section id="section" class="level62">
+<p class="heading"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>dt <span class="ot">&lt;-</span> Boston[,<span class="fu">which</span>(<span class="fu">names</span>(Boston) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'medv'</span>, <span class="st">'rm'</span>, <span class="st">'lstat'</span>))]</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">head</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     rm lstat medv
+1 6.575  4.98 24.0
+2 6.421  9.14 21.6
+3 7.185  4.03 34.7
+4 6.998  2.94 33.4
+5 7.147  5.33 36.2
+6 6.430  5.21 28.7</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>fit_Boston<span class="ot">&lt;-</span><span class="fu">lm</span>(medv<span class="sc">~</span>., <span class="at">data=</span>dt)</span>
+<span id="cb27-2"><a href="#cb27-2"></a>fit_Boston<span class="ot">&lt;-</span><span class="fu">lm</span>(medv<span class="sc">~</span>rm<span class="sc">+</span>lstat, <span class="at">data=</span>dt)</span>
+<span id="cb27-3"><a href="#cb27-3"></a></span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="fu">summary</span>(fit_Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = medv ~ rm + lstat, data = dt)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-18.076  -3.516  -1.010   1.909  28.131 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -1.35827    3.17283  -0.428    0.669    
+rm           5.09479    0.44447  11.463   &lt;2e-16 ***
+lstat       -0.64236    0.04373 -14.689   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5.54 on 503 degrees of freedom
+Multiple R-squared:  0.6386,    Adjusted R-squared:  0.6371 
+F-statistic: 444.3 on 2 and 503 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="do">## hat y = -1.3583 + 5.0948*rm - 0.6424*lstat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="분산분석-회귀직선의-유의성-검정" class="level2">
+<h2 class="anchored" data-anchor-id="분산분석-회귀직선의-유의성-검정">분산분석 : 회귀직선의 유의성 검정</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">anova</span>(fit_Boston) <span class="do">## Full model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: medv
+           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+rm          1 20654.4 20654.4  672.90 &lt; 2.2e-16 ***
+lstat       1  6622.6  6622.6  215.76 &lt; 2.2e-16 ***
+Residuals 503 15439.3    30.7                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[H_0 : \beta_1=\beta_2=0 \text{ vs. } H_1:not \space H_0\]</span></p>
+<ul>
+<li><span class="math inline">\(H_0\)</span> : 귀무가설, null hypothesis, 영가설 모두 동일한 표현이다.</li>
+</ul>
+</div>
+</div>
+<p><span class="math inline">\(H_0: y = \beta_0 \cdot 1\)</span> <span class="math inline">\(H_1: y = \beta_0 \cdot 1 + \beta_1 x_1 + \beta_2 x_2\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>null_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>dt)  <span class="co"># H0</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>fit_Boston <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv<span class="sc">~</span>., <span class="at">data=</span>dt)  <span class="co"># H1</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a></span>
+<span id="cb32-4"><a href="#cb32-4"></a><span class="fu">anova</span>(null_model, fit_Boston) <span class="do">## null 가설 선택? 설명변수 다쓴 모델 선택?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: medv ~ 1
+Model 2: medv ~ rm + lstat
+  Res.Df   RSS Df Sum of Sq      F    Pr(&gt;F)    
+1    505 42716                                  
+2    503 15439  2     27277 444.33 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<ul>
+<li>Model1은 절편만 쓴 것이고, Model2는 설명변수 2개모두 다 쓴 것이다.</li>
+<li>RSS와 SSR은 다름을 주의하자.</li>
+<li><span class="math inline">\(H_0\)</span> 에 가정된 모형을 선택할지 <span class="math inline">\(H_1\)</span> 에 가정된 모형을 선택할지 F통계량 확인.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="mlr_boston_prac_anova.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="beta-의-신뢰구간" class="level2">
+<h2 class="anchored" data-anchor-id="beta-의-신뢰구간"><span class="math inline">\(\beta\)</span> 의 신뢰구간</h2>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\beta_i\)</span> 의 <span class="math inline">\(100(1-\alpha)\%\)</span> <span class="math inline">\(\text{CI}\)</span></p>
+<ul>
+<li><span class="math inline">\(\hat{\beta}_i \pm t_{\alpha/2}(n-p-1) \cdot \hat{\text{s.e}}(\hat{\beta}_i)\)</span></li>
+</ul>
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\beta_i\)</span> 의 covariance-variance matrix</p>
+<p><span class="math inline">\(Var(\beta) = (\bf{X}^\top \bf{X})^{-1} \cdot \sigma^2 = \begin{bmatrix} Var(\beta_0) &amp; Cov(\beta_0, \beta_1) &amp; Cov(\beta_0, \beta_2) \\ Cov(\beta_0, \beta_1) &amp; Var(\beta_1) &amp; Cov(\beta_1, \beta_2) \\ Cov(\beta_0, \beta_2) &amp; Cov(\beta_1, \beta_2) &amp; Var(\beta_2) \end{bmatrix}\)</span></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># variance-covariance matrix</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="fu">vcov</span>(fit_Boston)  <span class="do">##var(hat beta) = (X^TX)^-1 \sigma^2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            (Intercept)          rm        lstat
+(Intercept) 10.06683612 -1.39248641 -0.099178133
+rm          -1.39248641  0.19754958  0.011930670
+lstat       -0.09917813  0.01193067  0.001912441</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">confint</span>(fit_Boston, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 2.5 %     97.5 %
+(Intercept) -7.5919003  4.8753547
+rm           4.2215504  5.9680255
+lstat       -0.7282772 -0.5564395</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">coef</span>(fit_Boston) <span class="sc">+</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">503</span>) <span class="sc">*</span> <span class="fu">summary</span>(fit_Boston)<span class="sc">$</span>coef[,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)          rm       lstat 
+  4.8753547   5.9680255  -0.5564395 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">coef</span>(fit_Boston) <span class="sc">-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">503</span>) <span class="sc">*</span> <span class="fu">summary</span>(fit_Boston)<span class="sc">$</span>coef[,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)          rm       lstat 
+ -7.5919003   4.2215504  -0.7282772 </code></pre>
+</div>
+</div>
+<ul>
+<li><p><span class="math inline">\(n=506, p =2 \to df = 503\)</span></p></li>
+<li><p><code>summary(fit_Boston)$coef[,2]</code> : covariance를 이용한 표준오차. (summary의 2번째 열의 리턴값.)</p></li>
+</ul>
+</section>
+<section id="평균반응-개별-y-추정" class="level2">
+<h2 class="anchored" data-anchor-id="평균반응-개별-y-추정">평균반응, 개별 y 추정</h2>
+<p><span class="math inline">\(E(Y|x_0)\)</span> , <span class="math inline">\(y=E(Y|x_0) + \epsilon\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>new_dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">rm=</span><span class="dv">7</span>, <span class="at">lstat=</span><span class="dv">10</span>)</span>
+<span id="cb42-2"><a href="#cb42-2"></a>new_dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  rm lstat
+1  7    10</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># hat y0 = -1.3583 + 5.0948*7 - 0.6424*10</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="fu">predict</span>(fit_Boston, <span class="at">newdata =</span> new_dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1 
+27.88166 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">10</span>)<span class="sc">%*%</span>beta_hat <span class="co"># 절편주의!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         [,1]
+[1,] 27.88166</code></pre>
+</div>
+</div>
+<ul>
+<li><span class="math inline">\(\hat{y}_0 = x_0^\top \beta = \begin{bmatrix} 1 &amp; 7 &amp; 10\end{bmatrix} \begin{bmatrix} \hat{\beta}_0 \\ \hat{\beta}_1 \\ \hat{\beta}_2\end{bmatrix}\)</span></li>
+<li><span class="math inline">\(x_0 = \begin{bmatrix} 1 \\ 7 \\ 10\end{bmatrix}\)</span></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">predict</span>(fit_Boston, </span>
+<span id="cb48-2"><a href="#cb48-2"></a>        <span class="at">newdata =</span> new_dt,</span>
+<span id="cb48-3"><a href="#cb48-3"></a>        <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">"confidence"</span>), </span>
+<span id="cb48-4"><a href="#cb48-4"></a>        <span class="at">level =</span> <span class="fl">0.95</span>)  <span class="do">##평균반응</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit      lwr      upr
+1 27.88166 27.17347 28.58985</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="fu">predict</span>(fit_Boston, <span class="at">newdata =</span> new_dt, </span>
+<span id="cb50-2"><a href="#cb50-2"></a>        <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">"prediction"</span>), </span>
+<span id="cb50-3"><a href="#cb50-3"></a>        <span class="at">level =</span> <span class="fl">0.95</span>)  <span class="do">## 개별 y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit      lwr      upr
+1 27.88166 16.97375 38.78957</code></pre>
+</div>
+</div>
+<ul>
+<li>fit값은 동일하나 구간이 넓어진 것을 확인할 수 있다.</li>
+</ul>
+</section>
+</section>
+<section id="절편을-포함하지-않는-회귀직선-원점을-지나는-회귀직선" class="level1">
+<h1>절편을 포함하지 않는 회귀직선 (원점을 지나는 회귀직선)</h1>
+<p><span class="math inline">\(Model: y = \beta_1 x_1 + \beta_2x_2 + \epsilon\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>fit_Boston0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> rm <span class="sc">+</span> lstat, dt) <span class="co"># 절편이 없는 모형.</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a><span class="fu">summary</span>(fit_Boston0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = medv ~ 0 + rm + lstat, data = dt)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-17.714  -3.498  -1.075   1.877  27.750 
+
+Coefficients:
+      Estimate Std. Error t value Pr(&gt;|t|)    
+rm     4.90691    0.07019   69.91   &lt;2e-16 ***
+lstat -0.65574    0.03056  -21.46   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5.536 on 504 degrees of freedom
+Multiple R-squared:  0.9485,    Adjusted R-squared:  0.9482 
+F-statistic:  4637 on 2 and 504 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">summary</span>(fit_Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = medv ~ ., data = dt)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-18.076  -3.516  -1.010   1.909  28.131 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -1.35827    3.17283  -0.428    0.669    
+rm           5.09479    0.44447  11.463   &lt;2e-16 ***
+lstat       -0.64236    0.04373 -14.689   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5.54 on 503 degrees of freedom
+Multiple R-squared:  0.6386,    Adjusted R-squared:  0.6371 
+F-statistic: 444.3 on 2 and 503 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<ul>
+<li><p><span class="math inline">\(R^2\)</span> 값만 보면 <span class="math inline">\(63\% \to 94\%\)</span> 로 올라갔으니까 절편이 없는 모형 선택? 해야겠다고 생각할 수 있다.</p></li>
+<li><p><span class="math inline">\(R^2 = \frac{SSR}{SST} = \frac{\sum(\hat{y}_i - \bar{y})^2}{\sum(y_i-\bar{y})^2}\)</span></p></li>
+<li><p>즉, <span class="math inline">\(R^2\)</span> 는 설명변수 없이 (<span class="math inline">\(y\)</span> 의) 평균만 써서 예측하는 것과 설명변수를 2개를 썻을 때 얼마나 달라지는지 비교하는 것이다.</p></li>
+<li><p>절편이 없는 모형에서 <span class="math inline">\(R^2\)</span> 평균이 기준이 아니라 <span class="math inline">\(0\)</span> 으로부터 (원점)으로부터 얼마나 떨어져 있는 가를 뜻한다. (<span class="math inline">\(R^2 = \frac{\sum(\hat{y}_i - 0)^2}{\sum(y_i-0)^2}\)</span>)</p></li>
+<li><p>절편이 있느냐 없느냐에 따라 <span class="math inline">\(R^2\)</span> 의 설명이 조금 달라진다.</p></li>
+<li><p>따라서 절편이 있다 vs.&nbsp;없다. 를 선택할 때 <span class="math inline">\(R^2\)</span>를 기준으로 하기는 에매하다. <span class="math inline">\(\to\)</span> MSE 혹은 RMSE(<span class="math inline">\(=\hat{\sigma}\)</span>) 를 평가척도로 사용하자.</p></li>
+<li><p>따라서 RMSE 값을 비교해보면 두 모델은 별로 큰 차이가 없다. (절편자체가 별로 유의하지 않았음.)</p></li>
+<li><p>이 경우에는 절편을 빼도 될 것 같다.</p></li>
+</ul>
+<section id="잔차분석" class="level2">
+<h2 class="anchored" data-anchor-id="잔차분석">잔차분석</h2>
+<section id="epsilon-선형성-등분산성-정규성-독립성" class="level3">
+<h3 class="anchored" data-anchor-id="epsilon-선형성-등분산성-정규성-독립성"><span class="math inline">\(\epsilon\)</span> : 선형성, 등분산성, 정규성, 독립성</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>yhat <span class="ot">&lt;-</span> <span class="fu">fitted</span>(fit_Boston)</span>
+<span id="cb56-2"><a href="#cb56-2"></a>res <span class="ot">&lt;-</span> <span class="fu">resid</span>(fit_Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">plot</span>(res <span class="sc">~</span> yhat,<span class="at">pch=</span><span class="dv">16</span>, <span class="at">ylab =</span> <span class="st">'Residual'</span>)</span>
+<span id="cb57-2"><a href="#cb57-2"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">'grey'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="2023-04-18-mlr-보스턴집값_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>잔차그림만 봤을 때는 판단하기 좀 에매하다.</li>
+<li>선형성 좀 에매하다.</li>
+<li>U자패턴이 나오는 이유는 제곱항을 추가하는 것보다는 오차의 독립성 문제..(제곱항을 추가했을 때 성능이 별로 좋아지지 않음.)</li>
+</ul>
+</section>
+<section id="등분산성" class="level3">
+<h3 class="anchored" data-anchor-id="등분산성">등분산성</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="do">## H0 : 등분산  vs.  H1 : 이분산 (Heteroscedasticity)</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a><span class="fu">bptest</span>(fit_Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  fit_Boston
+BP = 1.5297, df = 2, p-value = 0.4654</code></pre>
+</div>
+</div>
+<ul>
+<li>등분산이라고 할 수 있다.</li>
+</ul>
+</section>
+</section>
+<section id="잔차의-qq-plot" class="level2">
+<h2 class="anchored" data-anchor-id="잔차의-qq-plot">잔차의 QQ plot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb60-2"><a href="#cb60-2"></a><span class="fu">qqnorm</span>(res, <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb60-3"><a href="#cb60-3"></a><span class="fu">qqline</span>(res, <span class="at">col =</span> <span class="dv">2</span>)</span>
+<span id="cb60-4"><a href="#cb60-4"></a></span>
+<span id="cb60-5"><a href="#cb60-5"></a><span class="fu">hist</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="2023-04-18-mlr-보스턴집값_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="shapiro-wilk-test" class="level2">
+<h2 class="anchored" data-anchor-id="shapiro-wilk-test">Shapiro-Wilk Test</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="do">## H0 : normal distribution  vs. H1 : not H0</span></span>
+<span id="cb62-2"><a href="#cb62-2"></a><span class="fu">shapiro.test</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  res
+W = 0.9098, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<ul>
+<li>이상치제거해보면 괜찮을 것 같다.</li>
+</ul>
+</section>
+<section id="독립성검정-dw-test" class="level2">
+<h2 class="anchored" data-anchor-id="독립성검정-dw-test">독립성검정 : DW test</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="fu">dwtest</span>(fit_Boston, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)  <span class="co">#H0 : uncorrelated vs H1 : rho != 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Durbin-Watson test
+
+data:  fit_Boston
+DW = 0.83421, p-value &lt; 2.2e-16
+alternative hypothesis: true autocorrelation is not 0</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="가설검정-fm-vs.-rm" class="level1">
+<h1>가설검정: FM vs.&nbsp;RM</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>reduced_model <span class="ot">=</span> <span class="fu">lm</span>(medv <span class="sc">~</span> rm<span class="sc">+</span>lstat, <span class="at">data =</span> Boston) <span class="co"># 2개의 설명변수 (q=2)</span></span>
+<span id="cb66-2"><a href="#cb66-2"></a>full_model <span class="ot">=</span> <span class="fu">lm</span>(medv <span class="sc">~</span> ., <span class="at">data=</span>Boston) <span class="co"># 13개의 설명변수 (q=13)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="fu">summary</span>(full_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = medv ~ ., data = Boston)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-15.595  -2.730  -0.518   1.777  26.199 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  3.646e+01  5.103e+00   7.144 3.28e-12 ***
+crim        -1.080e-01  3.286e-02  -3.287 0.001087 ** 
+zn           4.642e-02  1.373e-02   3.382 0.000778 ***
+indus        2.056e-02  6.150e-02   0.334 0.738288    
+chas         2.687e+00  8.616e-01   3.118 0.001925 ** 
+nox         -1.777e+01  3.820e+00  -4.651 4.25e-06 ***
+rm           3.810e+00  4.179e-01   9.116  &lt; 2e-16 ***
+age          6.922e-04  1.321e-02   0.052 0.958229    
+dis         -1.476e+00  1.995e-01  -7.398 6.01e-13 ***
+rad          3.060e-01  6.635e-02   4.613 5.07e-06 ***
+tax         -1.233e-02  3.760e-03  -3.280 0.001112 ** 
+ptratio     -9.527e-01  1.308e-01  -7.283 1.31e-12 ***
+black        9.312e-03  2.686e-03   3.467 0.000573 ***
+lstat       -5.248e-01  5.072e-02 -10.347  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4.745 on 492 degrees of freedom
+Multiple R-squared:  0.7406,    Adjusted R-squared:  0.7338 
+F-statistic: 108.1 on 13 and 492 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="fu">summary</span>(reduced_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = medv ~ rm + lstat, data = Boston)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-18.076  -3.516  -1.010   1.909  28.131 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -1.35827    3.17283  -0.428    0.669    
+rm           5.09479    0.44447  11.463   &lt;2e-16 ***
+lstat       -0.64236    0.04373 -14.689   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5.54 on 503 degrees of freedom
+Multiple R-squared:  0.6386,    Adjusted R-squared:  0.6371 
+F-statistic: 444.3 on 2 and 503 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<ul>
+<li>Full model의 RMSE가 훨씬 줄어들었으며, <span class="math inline">\(adj-R^2\)</span> 도 커졌다. (좋아짐.)</li>
+<li>그렇다면 Full모델을 쓸지 Reduced model을 쓸지 가설검정을 해보자.</li>
+</ul>
+<section id="가설-설정" class="level3">
+<h3 class="anchored" data-anchor-id="가설-설정">가설 설정</h3>
+<p><span class="math inline">\(H_0: \beta_1 = \dots = \beta_5 = \beta_7 = \dots \beta_{12} = 0 \quad (RM)\)</span></p>
+<p><span class="math inline">\(H_1: \text{not } H_0\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">anova</span>(reduced_model, full_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: medv ~ rm + lstat
+Model 2: medv ~ crim + zn + indus + chas + nox + rm + age + dis + rad + 
+    tax + ptratio + black + lstat
+  Res.Df   RSS Df Sum of Sq      F    Pr(&gt;F)    
+1    503 15439                                  
+2    492 11079 11    4360.5 17.604 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="mlr_boston_prac_full_reduced.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="f-fracsse_rm---sse_fmrsse_fmn-p-1-fracsse_fm---sse_rmrsse_fmn-p-1" class="level3">
+<h3 class="anchored" data-anchor-id="f-fracsse_rm---sse_fmrsse_fmn-p-1-fracsse_fm---sse_rmrsse_fmn-p-1"><span class="math inline">\(F = \frac{(SSE_{RM} - SSE_{FM})/r}{SSE_{FM}/(n-p-1)} = \frac{(SSE_{FM} - SSE_{RM})/r}{SSE_{FM}/(n-p-1)}\)</span></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a>p <span class="ot">&lt;-</span> full_model<span class="sc">$</span>rank<span class="dv">-1</span> </span>
+<span id="cb73-2"><a href="#cb73-2"></a>q <span class="ot">&lt;-</span> reduced_model<span class="sc">$</span>rank<span class="dv">-1</span> </span>
+<span id="cb73-3"><a href="#cb73-3"></a>SSE_FM <span class="ot">&lt;-</span> <span class="fu">anova</span>(full_model)<span class="sc">$</span>Sum[p<span class="sc">+</span><span class="dv">1</span>] <span class="co">#SSE_FM </span></span>
+<span id="cb73-4"><a href="#cb73-4"></a>SSE_RM <span class="ot">&lt;-</span> <span class="fu">anova</span>(reduced_model)<span class="sc">$</span>Sum[q<span class="sc">+</span><span class="dv">1</span>] <span class="co">#SSE_RM</span></span>
+<span id="cb73-5"><a href="#cb73-5"></a></span>
+<span id="cb73-6"><a href="#cb73-6"></a>F0 <span class="ot">&lt;-</span> ((SSE_RM<span class="sc">-</span>SSE_FM)<span class="sc">/</span>(p<span class="sc">-</span>q))<span class="sc">/</span>(SSE_FM<span class="sc">/</span>(<span class="fu">nrow</span>(Boston)<span class="sc">-</span>p<span class="dv">-1</span>)) </span>
+<span id="cb73-7"><a href="#cb73-7"></a>F0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 17.60431</code></pre>
+</div>
+</div>
+</section>
+<section id="기각역-f_0.05p-qn-p-1" class="level3">
+<h3 class="anchored" data-anchor-id="기각역-f_0.05p-qn-p-1">기각역 <span class="math inline">\(F_{0.05}(p-q,n-p-1)\)</span></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="fu">qf</span>(<span class="fl">0.95</span>,p<span class="sc">-</span>q,<span class="fu">nrow</span>(Boston)<span class="sc">-</span>p<span class="dv">-1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.808117</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a><span class="co"># p-value </span></span>
+<span id="cb77-2"><a href="#cb77-2"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pf</span>(F0, p<span class="sc">-</span>q,<span class="fu">nrow</span>(Boston)<span class="sc">-</span>p<span class="dv">-1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<section id="section-1" class="level33">
+<p class="heading"></p>
+<p><span class="math inline">\(H_0: \beta_{indus} = \beta_{age} = 0\)</span></p>
+<p><span class="math inline">\(H_1: \text{not } H_0\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a>reduced_model <span class="ot">=</span> <span class="fu">lm</span>(medv <span class="sc">~</span> .<span class="sc">-</span>age<span class="sc">-</span>indus, <span class="at">data =</span> Boston) <span class="co"># q=11, r=2</span></span>
+<span id="cb79-2"><a href="#cb79-2"></a>full_model <span class="ot">=</span> <span class="fu">lm</span>(medv <span class="sc">~</span> ., <span class="at">data=</span>Boston) <span class="co"># p=13</span></span>
+<span id="cb79-3"><a href="#cb79-3"></a></span>
+<span id="cb79-4"><a href="#cb79-4"></a><span class="fu">anova</span>(reduced_model, full_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: medv ~ (crim + zn + indus + chas + nox + rm + age + dis + rad + 
+    tax + ptratio + black + lstat) - age - indus
+Model 2: medv ~ crim + zn + indus + chas + nox + rm + age + dis + rad + 
+    tax + ptratio + black + lstat
+  Res.Df   RSS Df Sum of Sq      F Pr(&gt;F)
+1    494 11081                           
+2    492 11079  2    2.5794 0.0573 0.9443</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="mlr_boston_prac_f_dist.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<section id="section-2" class="level60">
+<p class="heading"></p>
+</section>
+</section>
+</section>
+</section>
+<section id="general-linear-hypothesis" class="level1">
+<h1>General linear hypothesis</h1>
+<blockquote class="blockquote">
+<p>판매량 광고비 데이터.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a>x1<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">12</span>,<span class="dv">6</span>,<span class="dv">10</span>,<span class="dv">6</span>,<span class="dv">9</span>) </span>
+<span id="cb81-2"><a href="#cb81-2"></a>x2<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">8</span>,<span class="dv">13</span>,<span class="dv">5</span>,<span class="dv">12</span>) </span>
+<span id="cb81-3"><a href="#cb81-3"></a>y<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">20</span>,<span class="dv">22</span>,<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">30</span>,<span class="dv">18</span>,<span class="dv">25</span>,<span class="dv">10</span>,<span class="dv">20</span>) </span>
+<span id="cb81-4"><a href="#cb81-4"></a>fit<span class="ot">&lt;-</span><span class="fu">lm</span>(y<span class="sc">~</span>x1<span class="sc">+</span>x2) <span class="do">##FM </span></span>
+<span id="cb81-5"><a href="#cb81-5"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x1 + x2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.4575 -1.9100  0.3314  0.6388  3.2628 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept)  -0.6507     2.9075  -0.224   0.8293  
+x1            1.5515     0.6462   2.401   0.0474 *
+x2            0.7599     0.3968   1.915   0.0970 .
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.278 on 7 degrees of freedom
+Multiple R-squared:  0.9014,    Adjusted R-squared:  0.8732 
+F-statistic:    32 on 2 and 7 DF,  p-value: 0.0003011</code></pre>
+</div>
+</div>
+<section id="h0-tbeta-c" class="level2">
+<h2 class="anchored" data-anchor-id="h0-tbeta-c"><span class="math inline">\(H0 : T\beta = c\)</span></h2>
+<section id="h_0-beta_1-1" class="level3">
+<h3 class="anchored" data-anchor-id="h_0-beta_1-1"><span class="math inline">\(H_0 : \beta_1 = 1\)</span></h3>
+<p>즉, <span class="math inline">\(H_0: \beta_1 = 1\)</span> 이라는 것은 다음과 같다.</p>
+<p><span class="math inline">\(y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon\)</span></p>
+<p><span class="math inline">\(H_0: y = \beta_0 + x_1 + \beta_2x_2 + \epsilon \\ \Rightarrow y-x_1 = \beta_0 + \beta_2x_2 + \epsilon \\ \Rightarrow z = \beta_0 + \beta_2x_2 + \epsilon\)</span></p>
+<p>위와 같이 변수변환을 하게 되면 결국 단순선형회귀가 된다.</p>
+<blockquote class="blockquote">
+<p>개별회귀계수 유의성 검정인 t검정 해도 됩니다. <span class="math inline">\(\big(t_0 = \frac{\hat{\beta}_1-1}{\hat{\text{s.e}(\hat{\beta}_1)}}\big)\)</span></p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a><span class="fu">library</span>(car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1"></a><span class="co">#H_0 : beta_1 = 1</span></span>
+<span id="cb84-2"><a href="#cb84-2"></a><span class="fu">linearHypothesis</span>(fit, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+x1 = 1
+
+Model 1: restricted model
+Model 2: y ~ x1 + x2
+
+  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+1      8 40.105                           
+2      7 36.326  1    3.7788 0.7282 0.4217</code></pre>
+</div>
+</div>
+<ul>
+<li>귀무가설을 기각할 수 없다.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1"></a><span class="co">#b1-b2=0 =&gt; (0,1,-1) *beta </span></span>
+<span id="cb86-2"><a href="#cb86-2"></a><span class="co">#H_0 : beta_1 = beta2</span></span>
+<span id="cb86-3"><a href="#cb86-3"></a><span class="fu">linearHypothesis</span>(fit, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>), <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+x1 - x2 = 0
+
+Model 1: restricted model
+Model 2: y ~ x1 + x2
+
+  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+1      8 39.535                           
+2      7 36.326  1     3.209 0.6184 0.4574</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1"></a><span class="co">#H_0 : beta_1 = beta2 + 1</span></span>
+<span id="cb88-2"><a href="#cb88-2"></a><span class="fu">linearHypothesis</span>(fit, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>), <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+x1 - x2 = 1
+
+Model 1: restricted model
+Model 2: y ~ x1 + x2
+
+  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+1      8 36.549                           
+2      7 36.326  1   0.22253 0.0429 0.8418</code></pre>
+</div>
+</div>
+<ul>
+<li>데이터 수가 적기 때문에 통계량 값 자체가 작아질 수 밖에 없다. (웬만하면 기각못함.)</li>
+<li>표준오차가 작으려면 데이터 수가 많아야한다.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1"></a><span class="co">#H_0 : beta_1 = beta2 + 5</span></span>
+<span id="cb90-2"><a href="#cb90-2"></a><span class="fu">linearHypothesis</span>(fit, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>), <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+x1 - x2 = 5
+
+Model 1: restricted model
+Model 2: y ~ x1 + x2
+
+  Res.Df     RSS Df Sum of Sq     F   Pr(&gt;F)   
+1      8 127.035                               
+2      7  36.326  1    90.709 17.48 0.004133 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>또는 다음의 방법으로 검정을 수행할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a><span class="do">##H_0 : beta_1 = beta2 + 1</span></span>
+<span id="cb92-2"><a href="#cb92-2"></a><span class="co">#y=b0 + b1x1 + b2x2 + e = b0+x1 + b2(x1+x2)+e</span></span>
+<span id="cb92-3"><a href="#cb92-3"></a><span class="co">#y-x1 = b0+b2(x1+x2)+e :   RM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1"></a>y1 <span class="ot">&lt;-</span> y<span class="sc">-</span>x1</span>
+<span id="cb93-2"><a href="#cb93-2"></a>z1 <span class="ot">&lt;-</span> x1 <span class="sc">+</span> x2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y1<span class="sc">~</span>z1)</span>
+<span id="cb94-2"><a href="#cb94-2"></a><span class="fu">summary</span>(fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y1 ~ z1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.5054 -1.9294  0.4236  0.6821  3.4473 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -1.0014     2.2175  -0.452 0.663574    
+z1            0.6824     0.1242   5.493 0.000578 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.137 on 8 degrees of freedom
+Multiple R-squared:  0.7904,    Adjusted R-squared:  0.7642 
+F-statistic: 30.17 on 1 and 8 DF,  p-value: 0.0005785</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1"></a><span class="fu">anova</span>(fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: y1
+          Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+z1         1 137.851 137.851  30.174 0.0005785 ***
+Residuals  8  36.549   4.569                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1"></a><span class="fu">anova</span>(fit)  <span class="do">##FM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: y
+          Df  Sum Sq Mean Sq F value  Pr(&gt;F)    
+x1         1 313.043 313.043 60.3231 0.00011 ***
+x2         1  19.030  19.030  3.6671 0.09704 .  
+Residuals  7  36.326   5.189                    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1"></a><span class="fu">anova</span>(fit2)  <span class="co">#RM</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: y1
+          Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+z1         1 137.851 137.851  30.174 0.0005785 ***
+Residuals  8  36.549   4.569                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1"></a><span class="co"># F = {(SSE_RM - SSE_FM)/r} / {SSE_FM/(n-p-1)}</span></span>
+<span id="cb102-2"><a href="#cb102-2"></a>p <span class="ot">&lt;-</span> fit<span class="sc">$</span>rank<span class="dv">-1</span></span>
+<span id="cb102-3"><a href="#cb102-3"></a>q <span class="ot">&lt;-</span> fit2<span class="sc">$</span>rank<span class="dv">-1</span></span>
+<span id="cb102-4"><a href="#cb102-4"></a>SSE_FM <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit)<span class="sc">$</span>Sum[p<span class="sc">+</span><span class="dv">1</span>] <span class="co">#SSE_FM</span></span>
+<span id="cb102-5"><a href="#cb102-5"></a>SSE_RM <span class="ot">&lt;-</span> <span class="fu">anova</span>(fit2)<span class="sc">$</span>Sum[q<span class="sc">+</span><span class="dv">1</span>]  <span class="co">#SSE_RM</span></span>
+<span id="cb102-6"><a href="#cb102-6"></a></span>
+<span id="cb102-7"><a href="#cb102-7"></a>F0 <span class="ot">&lt;-</span> ((SSE_RM<span class="sc">-</span>SSE_FM)<span class="sc">/</span>(p<span class="sc">-</span>q))<span class="sc">/</span>(SSE_FM<span class="sc">/</span>(<span class="fu">length</span>(y)<span class="sc">-</span>p<span class="dv">-1</span>))</span>
+<span id="cb102-8"><a href="#cb102-8"></a>F0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.04288074</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1"></a><span class="co">#기각역 F_{0.05}(p-q,n-p-1)</span></span>
+<span id="cb104-2"><a href="#cb104-2"></a><span class="fu">qf</span>(<span class="fl">0.95</span>,p<span class="sc">-</span>q,<span class="fu">length</span>(y)<span class="sc">-</span>p<span class="dv">-1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.591448</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1"></a><span class="co"># p-value</span></span>
+<span id="cb106-2"><a href="#cb106-2"></a><span class="fu">pf</span>(F0, p<span class="sc">-</span>q,<span class="fu">length</span>(y)<span class="sc">-</span>p<span class="dv">-1</span>,<span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.841845</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
