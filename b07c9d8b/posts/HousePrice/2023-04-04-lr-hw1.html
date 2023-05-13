@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="jiyunLim">
+<meta name="dcterms.date" content="2023-04-04">
+
+<title>noteda - House Price</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">noteda</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/pinkocto/noteda"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">House Price</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">House Price</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Linear Regression</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>jiyunLim </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 4, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/2023-03-23-read-list.html" class="sidebar-item-text sidebar-link">Lists to read</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/welcome/index.html" class="sidebar-item-text sidebar-link">Welcome To My Blog</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">DataHandling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-assign.html" class="sidebar-item-text sidebar-link">[Python] 새로운 열 할당(.assign) 및 특정 열 선택</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-hanling-index.html" class="sidebar-item-text sidebar-link">[Python] 중첩인덱스 깨는 법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-pivot-wider-error.html" class="sidebar-item-text sidebar-link">[R] pivot_wider Error</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-assign-r.html" class="sidebar-item-text sidebar-link">[R] 문자열을 변수명으로 &amp; assign</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Etc</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-dv.html" class="sidebar-item-text sidebar-link">data visualization</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-downcasting.html" class="sidebar-item-text sidebar-link">downcasting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-11-git-error.html" class="sidebar-item-text sidebar-link">Github remote: error: this exceeds GitHub’s file size limit of 100.00 MB</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-02-24-tips.html" class="sidebar-item-text sidebar-link">Julia 설치 및 실행</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-lib.html" class="sidebar-item-text sidebar-link">Libraries for DA</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-05-ppt.html" class="sidebar-item-text sidebar-link">ppt 폰트</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-23-r-python-same-jupyter.html" class="sidebar-item-text sidebar-link">R/Python jupyter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-resumetable.html" class="sidebar-item-text sidebar-link">resumetable</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-scorecard.html" class="sidebar-item-text sidebar-link">Scorecard</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-02-abstract.html" class="sidebar-item-text sidebar-link">초록 작성법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-01-학회.html" class="sidebar-item-text sidebar-link">학회</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">HousePrice</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-5wk.html" class="sidebar-item-text sidebar-link">5wk: 측도론 (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-04-lr-hw1.html" class="sidebar-item-text sidebar-link active">House Price</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-hw1-feedback.html" class="sidebar-item-text sidebar-link">House Price feedback</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-03-30-hw1.html" class="sidebar-item-text sidebar-link">HW1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-18-mlr-보스턴집값.html" class="sidebar-item-text sidebar-link">MLR prac1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-19-lr-hw2.html" class="sidebar-item-text sidebar-link">MLR_hw2</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">Seminar</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Seminar/2023-03-21-gpt3-nsmc.html" class="sidebar-item-text sidebar-link">Few-shot learning using GPT3</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">SOLAR</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-correlation.html" class="sidebar-item-text sidebar-link">[R]Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-restructure-data.html" class="sidebar-item-text sidebar-link">[R]데이터 재구조화</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-24-정규화제거-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (-N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-corr.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-데이터수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (22/06~22/09/15)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-14-데이터수정2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (data2: 22/06~22/09/15) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-데이터수정3.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Create Dataset (data3: 0815/0910) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-stgcn-data-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-stcgn-data-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-04-EPT.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-ept-by-region.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-10-lstm.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> LSTM</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver1--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (+N +S) (MSE: 0.1864) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-스케일링-stgcn-ver1-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver1-.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N) (MSE: 0.1705)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (Full: 08/15~09/10 data3) (MSE: 0.1523)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (MSE: 0.1899)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver1-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 90% (MSE: 0.1206)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-soloar-stgcn-ver1-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-soloar-stgcn-ver1-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-15-stgcn-ver1-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 수정본 (MSE: 0.1674)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver2--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (+N +S) (MSE: 0.1801) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-스케일링-stgcn-ver2-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N) (MSE: 0.1834)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (Full: 08/15~09/10 data3) (MSE: 0.1927)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver2-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (MSE: 0.2019)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 90% (MSE: 0.1635)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-solar-stgcn-ver2-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-08-solar-stgcn-ver2-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-15-stgcn-ver2-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 수정본 (MSE: 0.2000)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-01-todolist.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> To do list</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-solar-class.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> WindmillOutputLargeDatasetLoader</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-yu.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> yU</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-19-데이터탐색용.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 데이터 탐색용</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-시각화코드수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 연습용 (시각화 코드 수정)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-stgcn.html" class="sidebar-item-text sidebar-link">ChikenpoxDataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-29-data0.html" class="sidebar-item-text sidebar-link">Data preprocessing</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-lstm-prac.html" class="sidebar-item-text sidebar-link">LSTM for Time Series Prediction (연습)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-windmill.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDataset 분석 (실패)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-ft.html" class="sidebar-item-text sidebar-link">푸리에 변환</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">Study</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-11-arima-hour-data-fill.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SARIMA (MSE: 0.478)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex-day.html" class="sidebar-item-text sidebar-link">ARIMA (Day)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex.html" class="sidebar-item-text sidebar-link">ARIMA (시간별 예측안됨, 에러)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-13-windmill-스몰버전.html" class="sidebar-item-text sidebar-link">WindmillOutput (Small)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/python_7장.html" class="sidebar-item-text sidebar-link">스타벅스 주가예측</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-ex.html" class="sidebar-item-text sidebar-link">연습장</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리(수정 for ARIMA)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#simple-linear-regresson" id="toc-simple-linear-regresson" class="nav-link active" data-scroll-target="#simple-linear-regresson">Simple Linear Regresson</a></li>
+  <li><a href="#데이터-불러오기" id="toc-데이터-불러오기" class="nav-link" data-scroll-target="#데이터-불러오기">데이터 불러오기</a></li>
+  <li><a href="#data-fields" id="toc-data-fields" class="nav-link" data-scroll-target="#data-fields">Data fields</a></li>
+  <li><a href="#탐색" id="toc-탐색" class="nav-link" data-scroll-target="#탐색">탐색</a>
+  <ul class="collapse">
+  <li><a href="#overallqual" id="toc-overallqual" class="nav-link" data-scroll-target="#overallqual">OverallQual</a></li>
+  <li><a href="#grlivarea" id="toc-grlivarea" class="nav-link" data-scroll-target="#grlivarea">GrLivArea</a></li>
+  </ul></li>
+  <li><a href="#단순-선형회귀모형" id="toc-단순-선형회귀모형" class="nav-link" data-scroll-target="#단순-선형회귀모형">단순 선형회귀모형</a>
+  <ul class="collapse">
+  <li><a href="#적합1" id="toc-적합1" class="nav-link" data-scroll-target="#적합1">적합1</a></li>
+  <li><a href="#잔차분석1" id="toc-잔차분석1" class="nav-link" data-scroll-target="#잔차분석1">잔차분석1</a></li>
+  <li><a href="#적합2-절편이-없는-회귀모형" id="toc-적합2-절편이-없는-회귀모형" class="nav-link" data-scroll-target="#적합2-절편이-없는-회귀모형">적합2: 절편이 없는 회귀모형</a></li>
+  </ul></li>
+  <li><a href="#두-회귀모형-비교" id="toc-두-회귀모형-비교" class="nav-link" data-scroll-target="#두-회귀모형-비교">두 회귀모형 비교</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="simple-linear-regresson" class="level2">
+<h2 class="anchored" data-anchor-id="simple-linear-regresson">Simple Linear Regresson</h2>
+<blockquote class="blockquote">
+<p><a href="https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/overview"><strong>Data Link</strong></a></p>
+</blockquote>
+<ul>
+<li>Lotarea : 대지면적</li>
+<li>GrLivArea: 지상 생활권 면적 (sqft)</li>
+<li>SlaePrice: 집 값 (dollar)</li>
+</ul>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">options</span>(<span class="at">warn=</span><span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(lmtest) <span class="do">## bptest, dwtest</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(<span class="st">"gridExtra"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">library</span>(ggrepel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="데이터-불러오기" class="level2">
+<h2 class="anchored" data-anchor-id="데이터-불러오기">데이터 불러오기</h2>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'./house_price/train.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A data.frame: 6 × 81</caption>
+<thead>
+    <tr><th></th><th scope="col">Id</th><th scope="col">MSSubClass</th><th scope="col">MSZoning</th><th scope="col">LotFrontage</th><th scope="col">LotArea</th><th scope="col">Street</th><th scope="col">Alley</th><th scope="col">LotShape</th><th scope="col">LandContour</th><th scope="col">Utilities</th><th scope="col">⋯</th><th scope="col">PoolArea</th><th scope="col">PoolQC</th><th scope="col">Fence</th><th scope="col">MiscFeature</th><th scope="col">MiscVal</th><th scope="col">MoSold</th><th scope="col">YrSold</th><th scope="col">SaleType</th><th scope="col">SaleCondition</th><th scope="col">SalePrice</th></tr>
+    <tr><th></th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">⋯</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">1</th><td>1</td><td>60</td><td>RL</td><td>65</td><td> 8450</td><td>Pave</td><td>NA</td><td>Reg</td><td>Lvl</td><td>AllPub</td><td>⋯</td><td>0</td><td>NA</td><td>NA   </td><td>NA  </td><td>  0</td><td> 2</td><td>2008</td><td>WD</td><td>Normal </td><td>208500</td></tr>
+    <tr><th scope="row">2</th><td>2</td><td>20</td><td>RL</td><td>80</td><td> 9600</td><td>Pave</td><td>NA</td><td>Reg</td><td>Lvl</td><td>AllPub</td><td>⋯</td><td>0</td><td>NA</td><td>NA   </td><td>NA  </td><td>  0</td><td> 5</td><td>2007</td><td>WD</td><td>Normal </td><td>181500</td></tr>
+    <tr><th scope="row">3</th><td>3</td><td>60</td><td>RL</td><td>68</td><td>11250</td><td>Pave</td><td>NA</td><td>IR1</td><td>Lvl</td><td>AllPub</td><td>⋯</td><td>0</td><td>NA</td><td>NA   </td><td>NA  </td><td>  0</td><td> 9</td><td>2008</td><td>WD</td><td>Normal </td><td>223500</td></tr>
+    <tr><th scope="row">4</th><td>4</td><td>70</td><td>RL</td><td>60</td><td> 9550</td><td>Pave</td><td>NA</td><td>IR1</td><td>Lvl</td><td>AllPub</td><td>⋯</td><td>0</td><td>NA</td><td>NA   </td><td>NA  </td><td>  0</td><td> 2</td><td>2006</td><td>WD</td><td>Abnorml</td><td>140000</td></tr>
+    <tr><th scope="row">5</th><td>5</td><td>60</td><td>RL</td><td>84</td><td>14260</td><td>Pave</td><td>NA</td><td>IR1</td><td>Lvl</td><td>AllPub</td><td>⋯</td><td>0</td><td>NA</td><td>NA   </td><td>NA  </td><td>  0</td><td>12</td><td>2008</td><td>WD</td><td>Normal </td><td>250000</td></tr>
+    <tr><th scope="row">6</th><td>6</td><td>50</td><td>RL</td><td>85</td><td>14115</td><td>Pave</td><td>NA</td><td>IR1</td><td>Lvl</td><td>AllPub</td><td>⋯</td><td>0</td><td>NA</td><td>MnPrv</td><td>Shed</td><td>700</td><td>10</td><td>2009</td><td>WD</td><td>Normal </td><td>143000</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   1460 obs. of  81 variables:
+ $ Id           : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ MSSubClass   : int  60 20 60 70 60 50 20 60 50 190 ...
+ $ MSZoning     : chr  "RL" "RL" "RL" "RL" ...
+ $ LotFrontage  : int  65 80 68 60 84 85 75 NA 51 50 ...
+ $ LotArea      : int  8450 9600 11250 9550 14260 14115 10084 10382 6120 7420 ...
+ $ Street       : chr  "Pave" "Pave" "Pave" "Pave" ...
+ $ Alley        : chr  NA NA NA NA ...
+ $ LotShape     : chr  "Reg" "Reg" "IR1" "IR1" ...
+ $ LandContour  : chr  "Lvl" "Lvl" "Lvl" "Lvl" ...
+ $ Utilities    : chr  "AllPub" "AllPub" "AllPub" "AllPub" ...
+ $ LotConfig    : chr  "Inside" "FR2" "Inside" "Corner" ...
+ $ LandSlope    : chr  "Gtl" "Gtl" "Gtl" "Gtl" ...
+ $ Neighborhood : chr  "CollgCr" "Veenker" "CollgCr" "Crawfor" ...
+ $ Condition1   : chr  "Norm" "Feedr" "Norm" "Norm" ...
+ $ Condition2   : chr  "Norm" "Norm" "Norm" "Norm" ...
+ $ BldgType     : chr  "1Fam" "1Fam" "1Fam" "1Fam" ...
+ $ HouseStyle   : chr  "2Story" "1Story" "2Story" "2Story" ...
+ $ OverallQual  : int  7 6 7 7 8 5 8 7 7 5 ...
+ $ OverallCond  : int  5 8 5 5 5 5 5 6 5 6 ...
+ $ YearBuilt    : int  2003 1976 2001 1915 2000 1993 2004 1973 1931 1939 ...
+ $ YearRemodAdd : int  2003 1976 2002 1970 2000 1995 2005 1973 1950 1950 ...
+ $ RoofStyle    : chr  "Gable" "Gable" "Gable" "Gable" ...
+ $ RoofMatl     : chr  "CompShg" "CompShg" "CompShg" "CompShg" ...
+ $ Exterior1st  : chr  "VinylSd" "MetalSd" "VinylSd" "Wd Sdng" ...
+ $ Exterior2nd  : chr  "VinylSd" "MetalSd" "VinylSd" "Wd Shng" ...
+ $ MasVnrType   : chr  "BrkFace" "None" "BrkFace" "None" ...
+ $ MasVnrArea   : int  196 0 162 0 350 0 186 240 0 0 ...
+ $ ExterQual    : chr  "Gd" "TA" "Gd" "TA" ...
+ $ ExterCond    : chr  "TA" "TA" "TA" "TA" ...
+ $ Foundation   : chr  "PConc" "CBlock" "PConc" "BrkTil" ...
+ $ BsmtQual     : chr  "Gd" "Gd" "Gd" "TA" ...
+ $ BsmtCond     : chr  "TA" "TA" "TA" "Gd" ...
+ $ BsmtExposure : chr  "No" "Gd" "Mn" "No" ...
+ $ BsmtFinType1 : chr  "GLQ" "ALQ" "GLQ" "ALQ" ...
+ $ BsmtFinSF1   : int  706 978 486 216 655 732 1369 859 0 851 ...
+ $ BsmtFinType2 : chr  "Unf" "Unf" "Unf" "Unf" ...
+ $ BsmtFinSF2   : int  0 0 0 0 0 0 0 32 0 0 ...
+ $ BsmtUnfSF    : int  150 284 434 540 490 64 317 216 952 140 ...
+ $ TotalBsmtSF  : int  856 1262 920 756 1145 796 1686 1107 952 991 ...
+ $ Heating      : chr  "GasA" "GasA" "GasA" "GasA" ...
+ $ HeatingQC    : chr  "Ex" "Ex" "Ex" "Gd" ...
+ $ CentralAir   : chr  "Y" "Y" "Y" "Y" ...
+ $ Electrical   : chr  "SBrkr" "SBrkr" "SBrkr" "SBrkr" ...
+ $ X1stFlrSF    : int  856 1262 920 961 1145 796 1694 1107 1022 1077 ...
+ $ X2ndFlrSF    : int  854 0 866 756 1053 566 0 983 752 0 ...
+ $ LowQualFinSF : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ GrLivArea    : int  1710 1262 1786 1717 2198 1362 1694 2090 1774 1077 ...
+ $ BsmtFullBath : int  1 0 1 1 1 1 1 1 0 1 ...
+ $ BsmtHalfBath : int  0 1 0 0 0 0 0 0 0 0 ...
+ $ FullBath     : int  2 2 2 1 2 1 2 2 2 1 ...
+ $ HalfBath     : int  1 0 1 0 1 1 0 1 0 0 ...
+ $ BedroomAbvGr : int  3 3 3 3 4 1 3 3 2 2 ...
+ $ KitchenAbvGr : int  1 1 1 1 1 1 1 1 2 2 ...
+ $ KitchenQual  : chr  "Gd" "TA" "Gd" "Gd" ...
+ $ TotRmsAbvGrd : int  8 6 6 7 9 5 7 7 8 5 ...
+ $ Functional   : chr  "Typ" "Typ" "Typ" "Typ" ...
+ $ Fireplaces   : int  0 1 1 1 1 0 1 2 2 2 ...
+ $ FireplaceQu  : chr  NA "TA" "TA" "Gd" ...
+ $ GarageType   : chr  "Attchd" "Attchd" "Attchd" "Detchd" ...
+ $ GarageYrBlt  : int  2003 1976 2001 1998 2000 1993 2004 1973 1931 1939 ...
+ $ GarageFinish : chr  "RFn" "RFn" "RFn" "Unf" ...
+ $ GarageCars   : int  2 2 2 3 3 2 2 2 2 1 ...
+ $ GarageArea   : int  548 460 608 642 836 480 636 484 468 205 ...
+ $ GarageQual   : chr  "TA" "TA" "TA" "TA" ...
+ $ GarageCond   : chr  "TA" "TA" "TA" "TA" ...
+ $ PavedDrive   : chr  "Y" "Y" "Y" "Y" ...
+ $ WoodDeckSF   : int  0 298 0 0 192 40 255 235 90 0 ...
+ $ OpenPorchSF  : int  61 0 42 35 84 30 57 204 0 4 ...
+ $ EnclosedPorch: int  0 0 0 272 0 0 0 228 205 0 ...
+ $ X3SsnPorch   : int  0 0 0 0 0 320 0 0 0 0 ...
+ $ ScreenPorch  : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ PoolArea     : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ PoolQC       : chr  NA NA NA NA ...
+ $ Fence        : chr  NA NA NA NA ...
+ $ MiscFeature  : chr  NA NA NA NA ...
+ $ MiscVal      : int  0 0 0 0 0 700 0 350 0 0 ...
+ $ MoSold       : int  2 5 9 2 12 10 8 11 4 1 ...
+ $ YrSold       : int  2008 2007 2008 2006 2008 2009 2007 2009 2008 2008 ...
+ $ SaleType     : chr  "WD" "WD" "WD" "WD" ...
+ $ SaleCondition: chr  "Normal" "Normal" "Normal" "Abnorml" ...
+ $ SalePrice    : int  208500 181500 223500 140000 250000 143000 307000 200000 129900 118000 ...</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">str</span>(df[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">81</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   1460 obs. of  11 variables:
+ $ Id         : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ MSSubClass : int  60 20 60 70 60 50 20 60 50 190 ...
+ $ MSZoning   : chr  "RL" "RL" "RL" "RL" ...
+ $ LotFrontage: int  65 80 68 60 84 85 75 NA 51 50 ...
+ $ LotArea    : int  8450 9600 11250 9550 14260 14115 10084 10382 6120 7420 ...
+ $ Street     : chr  "Pave" "Pave" "Pave" "Pave" ...
+ $ Alley      : chr  NA NA NA NA ...
+ $ LotShape   : chr  "Reg" "Reg" "IR1" "IR1" ...
+ $ LandContour: chr  "Lvl" "Lvl" "Lvl" "Lvl" ...
+ $ Utilities  : chr  "AllPub" "AllPub" "AllPub" "AllPub" ...
+ $ SalePrice  : int  208500 181500 223500 140000 250000 143000 307000 200000 129900 118000 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="data-fields" class="level2">
+<h2 class="anchored" data-anchor-id="data-fields">Data fields</h2>
+<p>Here’s a brief version of what you’ll find in the data description file.</p>
+<table class="table">
+<colgroup>
+<col style="width: 54%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>SalePrice</strong></td>
+<td>the property’s sale price in dollars. This is the target variable that you’re trying to predict.</td>
+</tr>
+<tr class="even">
+<td>MSSubClass</td>
+<td>The building class</td>
+</tr>
+<tr class="odd">
+<td>MSZoning</td>
+<td>The general zoning classification</td>
+</tr>
+<tr class="even">
+<td>LotFrontage:</td>
+<td>Linear feet of street connected to property</td>
+</tr>
+<tr class="odd">
+<td>LotArea</td>
+<td>Lot size in square feet</td>
+</tr>
+<tr class="even">
+<td>Street:</td>
+<td>Type of road access</td>
+</tr>
+<tr class="odd">
+<td>Alley:</td>
+<td>Type of alley access</td>
+</tr>
+<tr class="even">
+<td>LotShape:</td>
+<td>General shape of property</td>
+</tr>
+<tr class="odd">
+<td>LandContour:</td>
+<td>Flatness of the property</td>
+</tr>
+<tr class="even">
+<td>Utilities:</td>
+<td>Type of utilities available</td>
+</tr>
+<tr class="odd">
+<td>LotConfig:</td>
+<td>Lot configuration</td>
+</tr>
+<tr class="even">
+<td>LandSlope:</td>
+<td>Slope of property</td>
+</tr>
+<tr class="odd">
+<td>Neighborhood:</td>
+<td>Physical locations within Ames city limits</td>
+</tr>
+<tr class="even">
+<td>Condition1:</td>
+<td>Proximity to main road or railroad</td>
+</tr>
+<tr class="odd">
+<td>Condition2:</td>
+<td>Proximity to main road or railroad (if a second is present)</td>
+</tr>
+<tr class="even">
+<td>BldgType:</td>
+<td>Type of dwelling</td>
+</tr>
+<tr class="odd">
+<td>HouseStyle:</td>
+<td>Style of dwelling</td>
+</tr>
+<tr class="even">
+<td>OverallQual:</td>
+<td>Overall material and finish quality</td>
+</tr>
+<tr class="odd">
+<td>OverallCond:</td>
+<td>Overall condition rating</td>
+</tr>
+<tr class="even">
+<td>YearBuilt:</td>
+<td>Original construction date</td>
+</tr>
+<tr class="odd">
+<td>YearRemodAdd:</td>
+<td>Remodel date</td>
+</tr>
+<tr class="even">
+<td>RoofStyle:</td>
+<td>Type of roof</td>
+</tr>
+<tr class="odd">
+<td>RoofMatl:</td>
+<td>Roof material</td>
+</tr>
+<tr class="even">
+<td>Exterior1st:</td>
+<td>Exterior covering on house</td>
+</tr>
+<tr class="odd">
+<td>Exterior2nd:</td>
+<td>Exterior covering on house (if more than one material)</td>
+</tr>
+<tr class="even">
+<td>MasVnrType:</td>
+<td>Masonry veneer type</td>
+</tr>
+<tr class="odd">
+<td>MasVnrArea:</td>
+<td>Masonry veneer area in square feet</td>
+</tr>
+<tr class="even">
+<td>ExterQual:</td>
+<td>Exterior material quality</td>
+</tr>
+<tr class="odd">
+<td>ExterCond:</td>
+<td>Present condition of the material on the exterior</td>
+</tr>
+<tr class="even">
+<td>Foundation:</td>
+<td>Type of foundation</td>
+</tr>
+<tr class="odd">
+<td>BsmtQual:</td>
+<td>Height of the basement</td>
+</tr>
+<tr class="even">
+<td>BsmtCond:</td>
+<td>General condition of the basement</td>
+</tr>
+<tr class="odd">
+<td>BsmtExposure:</td>
+<td>Walkout or garden level basement walls</td>
+</tr>
+<tr class="even">
+<td>BsmtFinType1:</td>
+<td>Quality of basement finished area</td>
+</tr>
+<tr class="odd">
+<td>BsmtFinSF1:</td>
+<td>Type 1 finished square feet</td>
+</tr>
+<tr class="even">
+<td>BsmtFinType2:</td>
+<td>Quality of second finished area (if present)</td>
+</tr>
+<tr class="odd">
+<td>BsmtFinSF2:</td>
+<td>Type 2 finished square feet</td>
+</tr>
+<tr class="even">
+<td>BsmtUnfSF:</td>
+<td>Unfinished square feet of basement area</td>
+</tr>
+<tr class="odd">
+<td>TotalBsmtSF:</td>
+<td>Total square feet of basement area</td>
+</tr>
+<tr class="even">
+<td>Heating:</td>
+<td>Type of heating</td>
+</tr>
+<tr class="odd">
+<td>HeatingQC:</td>
+<td>Heating quality and condition</td>
+</tr>
+<tr class="even">
+<td>CentralAir:</td>
+<td>Central air conditioning</td>
+</tr>
+<tr class="odd">
+<td>Electrical:</td>
+<td>Electrical system</td>
+</tr>
+<tr class="even">
+<td>1stFlrSF:</td>
+<td>First Floor square feet</td>
+</tr>
+<tr class="odd">
+<td>2ndFlrSF:</td>
+<td>Second floor square feet</td>
+</tr>
+<tr class="even">
+<td>LowQualFinSF:</td>
+<td>Low quality finished square feet (all floors)</td>
+</tr>
+<tr class="odd">
+<td><strong>GrLivArea</strong></td>
+<td>Above grade (ground) living area square feet</td>
+</tr>
+<tr class="even">
+<td>BsmtFullBath:</td>
+<td>Basement full bathrooms</td>
+</tr>
+<tr class="odd">
+<td>BsmtHalfBath:</td>
+<td>Basement half bathrooms</td>
+</tr>
+<tr class="even">
+<td>FullBath:</td>
+<td>Full bathrooms above grade</td>
+</tr>
+<tr class="odd">
+<td>HalfBath:</td>
+<td>Half baths above grade</td>
+</tr>
+<tr class="even">
+<td>Bedroom:</td>
+<td>Number of bedrooms above basement level</td>
+</tr>
+<tr class="odd">
+<td>Kitchen:</td>
+<td>Number of kitchens</td>
+</tr>
+<tr class="even">
+<td>KitchenQual:</td>
+<td>Kitchen quality</td>
+</tr>
+<tr class="odd">
+<td>TotRmsAbvGrd:</td>
+<td>Total rooms above grade (does not include bathrooms)</td>
+</tr>
+<tr class="even">
+<td>Functional:</td>
+<td>Home functionality rating</td>
+</tr>
+<tr class="odd">
+<td>Fireplaces:</td>
+<td>Number of fireplaces</td>
+</tr>
+<tr class="even">
+<td>FireplaceQu:</td>
+<td>Fireplace quality</td>
+</tr>
+<tr class="odd">
+<td>GarageType:</td>
+<td>Garage location</td>
+</tr>
+<tr class="even">
+<td>GarageYrBlt:</td>
+<td>Year garage was built</td>
+</tr>
+<tr class="odd">
+<td>GarageFinish:</td>
+<td>Interior finish of the garage</td>
+</tr>
+<tr class="even">
+<td>GarageCars:</td>
+<td>Size of garage in car capacity</td>
+</tr>
+<tr class="odd">
+<td>GarageArea:</td>
+<td>Size of garage in square feet</td>
+</tr>
+<tr class="even">
+<td>GarageQual:</td>
+<td>Garage quality</td>
+</tr>
+<tr class="odd">
+<td>GarageCond:</td>
+<td>Garage condition</td>
+</tr>
+<tr class="even">
+<td>PavedDrive:</td>
+<td>Paved driveway</td>
+</tr>
+<tr class="odd">
+<td>WoodDeckSF:</td>
+<td>Wood deck area in square feet</td>
+</tr>
+<tr class="even">
+<td>OpenPorchSF:</td>
+<td>Open porch area in square feet</td>
+</tr>
+<tr class="odd">
+<td>EnclosedPorch:</td>
+<td>Enclosed porch area in square feet</td>
+</tr>
+<tr class="even">
+<td>3SsnPorch:</td>
+<td>Three season porch area in square feet</td>
+</tr>
+<tr class="odd">
+<td>ScreenPorch:</td>
+<td>Screen porch area in square feet</td>
+</tr>
+<tr class="even">
+<td>PoolArea:</td>
+<td>Pool area in square feet</td>
+</tr>
+<tr class="odd">
+<td>PoolQC:</td>
+<td>Pool quality</td>
+</tr>
+<tr class="even">
+<td>Fence:</td>
+<td>Fence quality</td>
+</tr>
+<tr class="odd">
+<td>MiscFeature:</td>
+<td>Miscellaneous feature not covered in other categories</td>
+</tr>
+<tr class="even">
+<td>MiscVal:</td>
+<td>Value of miscellaneous feature</td>
+</tr>
+<tr class="odd">
+<td>MoSold:</td>
+<td>Month Sold</td>
+</tr>
+<tr class="even">
+<td>YrSold:</td>
+<td>Year Sold</td>
+</tr>
+<tr class="odd">
+<td>SaleType:</td>
+<td>Type of sale</td>
+</tr>
+<tr class="even">
+<td>SaleCondition:</td>
+<td>Condition of sale</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="탐색" class="level2">
+<h2 class="anchored" data-anchor-id="탐색">탐색</h2>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">dim</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>1460</li><li>81</li></ol>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">is.na</span>(df) <span class="sc">%&gt;%</span> <span class="fu">colSums</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class="dl-inline"><dt>Id</dt><dd>0</dd><dt>MSSubClass</dt><dd>0</dd><dt>MSZoning</dt><dd>0</dd><dt>LotFrontage</dt><dd>259</dd><dt>LotArea</dt><dd>0</dd><dt>Street</dt><dd>0</dd><dt>Alley</dt><dd>1369</dd><dt>LotShape</dt><dd>0</dd><dt>LandContour</dt><dd>0</dd><dt>Utilities</dt><dd>0</dd><dt>LotConfig</dt><dd>0</dd><dt>LandSlope</dt><dd>0</dd><dt>Neighborhood</dt><dd>0</dd><dt>Condition1</dt><dd>0</dd><dt>Condition2</dt><dd>0</dd><dt>BldgType</dt><dd>0</dd><dt>HouseStyle</dt><dd>0</dd><dt>OverallQual</dt><dd>0</dd><dt>OverallCond</dt><dd>0</dd><dt>YearBuilt</dt><dd>0</dd><dt>YearRemodAdd</dt><dd>0</dd><dt>RoofStyle</dt><dd>0</dd><dt>RoofMatl</dt><dd>0</dd><dt>Exterior1st</dt><dd>0</dd><dt>Exterior2nd</dt><dd>0</dd><dt>MasVnrType</dt><dd>8</dd><dt>MasVnrArea</dt><dd>8</dd><dt>ExterQual</dt><dd>0</dd><dt>ExterCond</dt><dd>0</dd><dt>Foundation</dt><dd>0</dd><dt>BsmtQual</dt><dd>37</dd><dt>BsmtCond</dt><dd>37</dd><dt>BsmtExposure</dt><dd>38</dd><dt>BsmtFinType1</dt><dd>37</dd><dt>BsmtFinSF1</dt><dd>0</dd><dt>BsmtFinType2</dt><dd>38</dd><dt>BsmtFinSF2</dt><dd>0</dd><dt>BsmtUnfSF</dt><dd>0</dd><dt>TotalBsmtSF</dt><dd>0</dd><dt>Heating</dt><dd>0</dd><dt>HeatingQC</dt><dd>0</dd><dt>CentralAir</dt><dd>0</dd><dt>Electrical</dt><dd>1</dd><dt>X1stFlrSF</dt><dd>0</dd><dt>X2ndFlrSF</dt><dd>0</dd><dt>LowQualFinSF</dt><dd>0</dd><dt>GrLivArea</dt><dd>0</dd><dt>BsmtFullBath</dt><dd>0</dd><dt>BsmtHalfBath</dt><dd>0</dd><dt>FullBath</dt><dd>0</dd><dt>HalfBath</dt><dd>0</dd><dt>BedroomAbvGr</dt><dd>0</dd><dt>KitchenAbvGr</dt><dd>0</dd><dt>KitchenQual</dt><dd>0</dd><dt>TotRmsAbvGrd</dt><dd>0</dd><dt>Functional</dt><dd>0</dd><dt>Fireplaces</dt><dd>0</dd><dt>FireplaceQu</dt><dd>690</dd><dt>GarageType</dt><dd>81</dd><dt>GarageYrBlt</dt><dd>81</dd><dt>GarageFinish</dt><dd>81</dd><dt>GarageCars</dt><dd>0</dd><dt>GarageArea</dt><dd>0</dd><dt>GarageQual</dt><dd>81</dd><dt>GarageCond</dt><dd>81</dd><dt>PavedDrive</dt><dd>0</dd><dt>WoodDeckSF</dt><dd>0</dd><dt>OpenPorchSF</dt><dd>0</dd><dt>EnclosedPorch</dt><dd>0</dd><dt>X3SsnPorch</dt><dd>0</dd><dt>ScreenPorch</dt><dd>0</dd><dt>PoolArea</dt><dd>0</dd><dt>PoolQC</dt><dd>1453</dd><dt>Fence</dt><dd>1179</dd><dt>MiscFeature</dt><dd>1406</dd><dt>MiscVal</dt><dd>0</dd><dt>MoSold</dt><dd>0</dd><dt>YrSold</dt><dd>0</dd><dt>SaleType</dt><dd>0</dd><dt>SaleCondition</dt><dd>0</dd><dt>SalePrice</dt><dd>0</dd></dl>
+</div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>numeric_vars <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">sapply</span>(df, is.numeric)) <span class="co"># index vector numeric variables</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>numeric_var_names <span class="ot">&lt;-</span> <span class="fu">names</span>(numeric_vars) </span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">cat</span>(<span class="st">'There are'</span>, <span class="fu">length</span>(numeric_vars), <span class="st">'numeric variables'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>There are 38 numeric variables</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>numeric_data <span class="ot">&lt;-</span> df[, numeric_vars]</span>
+<span id="cb11-2"><a href="#cb11-2"></a>cor_numeric <span class="ot">&lt;-</span> <span class="fu">cor</span>(numeric_data, <span class="at">use=</span><span class="st">"pairwise.complete.obs"</span>) <span class="co">#correlations of all numeric variables</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co">#sort on decreasing correlations with SalePrice</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>cor_sorted <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">sort</span>(cor_numeric[,<span class="st">'SalePrice'</span>], <span class="at">decreasing =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb11-6"><a href="#cb11-6"></a></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="co">#select only high corelations</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>CorHigh <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">which</span>(<span class="fu">apply</span>(cor_sorted, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">abs</span>(x)<span class="sc">&gt;</span><span class="fl">0.5</span>))) </span>
+<span id="cb11-9"><a href="#cb11-9"></a>cor_numVar <span class="ot">&lt;-</span> cor_numVar[CorHigh, CorHigh]</span>
+<span id="cb11-10"><a href="#cb11-10"></a></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="fu">corrplot.mixed</span>(cor_numVar, <span class="at">tl.col=</span><span class="st">"black"</span>, <span class="at">tl.pos =</span> <span class="st">"lt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-04-lr-hw1_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>OverallQual</code>과 <code>GrLivArea</code>가 <code>SalesPrice</code>와 강한 양의 상관을 보인다.</p>
+<p>다음은 SalePrice와 상관관계가 높은 변수들이다. - OverallQual : 집의 전체적인 원자재 및 마감재에 대한 평가 - GrLivArea : 지상 생활권 면적(제곱 피트) - GarageCars : 주차 공간 - GarageArea : 차고 면적(제곱 피트) - TotalBsmtSf : 지하 공간 면적(제곱 피트) - X1stFlrSF : 1층 면적(제곱 피트) - FullBath : 풀옵션 화장실 개수 - TotRmsAbvGrd : 방의 개수 (화장실이 포함되지 않은 방.) - YearBuilt : 건설 연도 - YearRemodAdd : 리모델링 연도(YearBuilt와 동일하면, 리모델링을 하지 않은 집.)</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">head</span>(cor_sorted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 6 × 1 of type dbl</caption>
+<tbody>
+    <tr><th scope="row">SalePrice</th><td>1.0000000</td></tr>
+    <tr><th scope="row">OverallQual</th><td>0.7909816</td></tr>
+    <tr><th scope="row">GrLivArea</th><td>0.7086245</td></tr>
+    <tr><th scope="row">GarageCars</th><td>0.6404092</td></tr>
+    <tr><th scope="row">GarageArea</th><td>0.6234314</td></tr>
+    <tr><th scope="row">TotalBsmtSF</th><td>0.6135806</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="overallqual" class="level3">
+<h3 class="anchored" data-anchor-id="overallqual">OverallQual</h3>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>df[<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>SalePrice),], <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(OverallQual), <span class="at">y=</span>SalePrice))<span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>        <span class="fu">geom_boxplot</span>(<span class="at">col=</span><span class="st">'blue'</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x=</span><span class="st">'Overall Quality'</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>        <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">800000</span>, <span class="at">by=</span><span class="dv">100000</span>), <span class="at">labels =</span> comma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-04-lr-hw1_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>원자재/마감재에 대한 Qaulity가 높을수록 집 값은 증가하는 경향이 나타남.</p>
+</section>
+<section id="grlivarea" class="level3">
+<h3 class="anchored" data-anchor-id="grlivarea">GrLivArea</h3>
+<div class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df[<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>SalePrice), ], </span>
+<span id="cb14-2"><a href="#cb14-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> GrLivArea, <span class="at">y =</span> SalePrice)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">geom_point</span>(<span class="at">col=</span><span class="st">'orange'</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="co">#geom_smooth(method = "lm", se = F, color = "steelblue") +</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">800000</span>, <span class="at">by=</span><span class="dv">100000</span>), <span class="at">labels =</span> comma)</span>
+<span id="cb14-6"><a href="#cb14-6"></a>  <span class="co">#geom_text_repel(aes(label = ifelse(df$GrLivArea[!is.na(df$SalePrice)] &gt; 4500,</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>                                     <span class="co"># rownames(df), '')))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-04-lr-hw1_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df[<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>SalePrice), ], </span>
+<span id="cb15-2"><a href="#cb15-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> GrLivArea, <span class="at">y =</span> SalePrice)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_point</span>(<span class="at">col=</span><span class="st">'orange'</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">800000</span>, <span class="at">by=</span><span class="dv">100000</span>), <span class="at">labels =</span> comma) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>GrLivArea[<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>SalePrice)] <span class="sc">&gt;</span> <span class="dv">4500</span>,</span>
+<span id="cb15-7"><a href="#cb15-7"></a>                                     <span class="fu">rownames</span>(df), <span class="st">''</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-04-lr-hw1_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="단순-선형회귀모형" class="level2">
+<h2 class="anchored" data-anchor-id="단순-선형회귀모형">단순 선형회귀모형</h2>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>df1 <span class="ot">&lt;-</span> df[<span class="fu">c</span>(<span class="st">'SalePrice'</span>,<span class="st">'GrLivArea'</span>)]</span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">head</span>(df1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A data.frame: 6 × 2</caption>
+<thead>
+    <tr><th></th><th scope="col">SalePrice</th><th scope="col">GrLivArea</th></tr>
+    <tr><th></th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">1</th><td>208500</td><td>1710</td></tr>
+    <tr><th scope="row">2</th><td>181500</td><td>1262</td></tr>
+    <tr><th scope="row">3</th><td>223500</td><td>1786</td></tr>
+    <tr><th scope="row">4</th><td>140000</td><td>1717</td></tr>
+    <tr><th scope="row">5</th><td>250000</td><td>2198</td></tr>
+    <tr><th scope="row">6</th><td>143000</td><td>1362</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df1)) <span class="co"># 결측값 없음</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class="dl-inline"><dt>SalePrice</dt><dd>0</dd><dt>GrLivArea</dt><dd>0</dd></dl>
+</div>
+</div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">summary</span>(df[<span class="fu">c</span>(<span class="st">'SalePrice'</span>, <span class="st">'GrLivArea'</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>   SalePrice        GrLivArea   
+ Min.   : 34900   Min.   : 334  
+ 1st Qu.:129975   1st Qu.:1130  
+ Median :163000   Median :1464  
+ Mean   :180921   Mean   :1515  
+ 3rd Qu.:214000   3rd Qu.:1777  
+ Max.   :755000   Max.   :5642  </code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>df, <span class="fu">aes</span>(<span class="at">x=</span>SalePrice)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>        <span class="fu">geom_histogram</span>(<span class="at">fill=</span><span class="st">'darkgreen'</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a>        <span class="co"># scale_x_continuous(breaks= seq(0, 800000, by=100000), labels = comma)</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>df, <span class="fu">aes</span>(<span class="at">x=</span>GrLivArea)) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>        <span class="fu">geom_histogram</span>(<span class="at">fill=</span><span class="st">'darkgreen'</span>)</span>
+<span id="cb21-6"><a href="#cb21-6"></a></span>
+<span id="cb21-7"><a href="#cb21-7"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-04-lr-hw1_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>오른쪽으로 skewed 되어 있음. (후에 변수변환 고려.)</li>
+</ul>
+<section id="적합1" class="level3">
+<h3 class="anchored" data-anchor-id="적합1">적합1</h3>
+<p><span class="math display">\[\widehat{\text{SalePrice}} = \text{GrLivArea}\times 107.
+1 + 18569 \]</span></p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(SalePrice <span class="sc">~</span> GrLivArea, df1)</span>
+<span id="cb23-2"><a href="#cb23-2"></a>model1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+Call:
+lm(formula = SalePrice ~ GrLivArea, data = df1)
+
+Coefficients:
+(Intercept)    GrLivArea  
+    18569.0        107.1  </code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+Call:
+lm(formula = SalePrice ~ GrLivArea, data = df1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-462999  -29800   -1124   21957  339832 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 18569.026   4480.755   4.144 3.61e-05 ***
+GrLivArea     107.130      2.794  38.348  &lt; 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 56070 on 1458 degrees of freedom
+Multiple R-squared:  0.5021,    Adjusted R-squared:  0.5018 
+F-statistic:  1471 on 1 and 1458 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<section id="회귀모형의-유의성-검정" class="level4">
+<h4 class="anchored" data-anchor-id="회귀모형의-유의성-검정">회귀모형의 유의성 검정</h4>
+<blockquote class="blockquote">
+<p><span class="math inline">\(H_0 : \beta_1 = 0 \text{ vs. } \beta_1 \neq 0\)</span></p>
+</blockquote>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">anova</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A anova: 2 × 5</caption>
+<thead>
+    <tr><th></th><th scope="col">Df</th><th scope="col">Sum Sq</th><th scope="col">Mean Sq</th><th scope="col">F value</th><th scope="col">Pr(&gt;F)</th></tr>
+    <tr><th></th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">GrLivArea</th><td>   1</td><td>4.623740e+12</td><td>4.62374e+12</td><td>1470.585</td><td>4.518034e-223</td></tr>
+    <tr><th scope="row">Residuals</th><td>1458</td><td>4.584171e+12</td><td>3.14415e+09</td><td>      NA</td><td>           NA</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">cat</span>(<span class="st">'기각치 F(1,1458;0.05): '</span>, <span class="fu">qf</span>(<span class="fl">0.95</span>, <span class="dv">1</span>, <span class="dv">48</span>), <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>) <span class="do">## F(0.05)</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">cat</span>(<span class="st">'F0: '</span> , <span class="fu">summary</span>(model1)<span class="sc">$</span>fstatistic[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>기각치 F(1,1458;0.05):  4.042652 
+F0:  1470.585</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(F_0 &gt; F(1, 1458 ;0.05)\)</span> 이므로 회귀모형은 유의하지 않다는 귀무가설을 기각할 수 있다. 따라서 적합된 회귀모형은 유의하다고 판단한다.</p>
+</section>
+<section id="회귀계수의-유의성-검정" class="level4">
+<h4 class="anchored" data-anchor-id="회귀계수의-유의성-검정">회귀계수의 유의성 검정</h4>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+Call:
+lm(formula = SalePrice ~ GrLivArea, data = df1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-462999  -29800   -1124   21957  339832 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 18569.026   4480.755   4.144 3.61e-05 ***
+GrLivArea     107.130      2.794  38.348  &lt; 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 56070 on 1458 degrees of freedom
+Multiple R-squared:  0.5021,    Adjusted R-squared:  0.5018 
+F-statistic:  1471 on 1 and 1458 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">summary</span>(model1)<span class="sc">$</span>coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 2 × 4 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope="col">Estimate</th><th scope="col">Std. Error</th><th scope="col">t value</th><th scope="col">Pr(&gt;|t|)</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">(Intercept)</th><td>18569.0259</td><td>4480.754549</td><td> 4.144174</td><td> 3.606554e-05</td></tr>
+    <tr><th scope="row">GrLivArea</th><td>  107.1304</td><td>   2.793621</td><td>38.348207</td><td>4.518034e-223</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">1458</span>)</span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">1458</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+1.96159238529673
+</div>
+<div class="cell-output cell-output-display">
+-1.96159238529673
+</div>
+</div>
+<ul>
+<li>유의수준 <span class="math inline">\(5\%\)</span> 기각역 : <span class="math inline">\(|t| \geq 1.96\)</span></li>
+<li>따라서 유의수준 <span class="math inline">\(5\%\)</span>하에서 회귀계수가 유의하지 않다는 귀무가설을 기각할 수 있다.</li>
+</ul>
+</section>
+<section id="회귀계수의-신뢰구간" class="level4">
+<h4 class="anchored" data-anchor-id="회귀계수의-신뢰구간">회귀계수의 신뢰구간</h4>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">confint</span>(model1, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope="col">2.5 %</th><th scope="col">97.5 %</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">(Intercept)</th><td>9779.6119</td><td>27358.4399</td></tr>
+    <tr><th scope="row">GrLivArea</th><td> 101.6504</td><td>  112.6103</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="평균반응-추정" class="level4">
+<h4 class="anchored" data-anchor-id="평균반응-추정">평균반응 추정</h4>
+<blockquote class="blockquote">
+<p><span class="math inline">\(1\tt{sqft} \to 0.028\)</span>평</p>
+</blockquote>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>new_dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">GrLivArea =</span> <span class="dv">1500</span>) <span class="do">## 42.15평 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">predict</span>(model1,</span>
+<span id="cb36-2"><a href="#cb36-2"></a>        <span class="at">newdata =</span> new_dt,</span>
+<span id="cb36-3"><a href="#cb36-3"></a>        <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">"confidence"</span>), <span class="do">## 구간추정, confidence option (평균반응)</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a>        <span class="at">level =</span> <span class="fl">0.95</span>) <span class="do">## 평균반응</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 1 × 3 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope="col">fit</th><th scope="col">lwr</th><th scope="col">upr</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">1</th><td>179264.6</td><td>176384.7</td><td>182144.4</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li>실거주면적이 <span class="math inline">\(1500\)</span>sqft 일 때 집값이 평균적으로 <span class="math inline">\(179264.6\)</span> 달러로 추정된다.</li>
+<li>42평에 한화로 약 2억 3521만원</li>
+</ul>
+</section>
+<section id="개별-y-추정" class="level4">
+<h4 class="anchored" data-anchor-id="개별-y-추정">개별 <span class="math inline">\(y\)</span> 추정</h4>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">predict</span>(model1,</span>
+<span id="cb37-2"><a href="#cb37-2"></a>        <span class="at">newdata =</span> new_dt,</span>
+<span id="cb37-3"><a href="#cb37-3"></a>        <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">"prediction"</span>),  <span class="do">## prediction option (개별 y)</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a>        <span class="at">level =</span> <span class="fl">0.95</span>) <span class="do">## 개별 y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 1 × 3 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope="col">fit</th><th scope="col">lwr</th><th scope="col">upr</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">1</th><td>179264.6</td><td>69235.04</td><td>289294.1</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>평균반응과 개별 <span class="math inline">\(y\)</span> 추정 결과 점 추정값은 <span class="math inline">\(179264.6\)</span> 으로 동일한데 개별 <span class="math inline">\(y\)</span> 추정했을 경우 신뢰구간의 폭이 더 넓어진다. (불확실성 증가)</p>
+</section>
+<section id="신뢰대" class="level4">
+<h4 class="anchored" data-anchor-id="신뢰대">신뢰대</h4>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>dt_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb38-2"><a href="#cb38-2"></a>  <span class="at">GrLivArea =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(df1)[<span class="dv">1</span>]),</span>
+<span id="cb38-3"><a href="#cb38-3"></a>  <span class="fu">predict</span>(model1,</span>
+<span id="cb38-4"><a href="#cb38-4"></a>          <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">GrLivArea=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(df1)[<span class="dv">1</span>])),</span>
+<span id="cb38-5"><a href="#cb38-5"></a>          <span class="at">interval=</span><span class="st">'confidence'</span>, <span class="at">level =</span> <span class="fl">0.95</span>), <span class="do">## 평균반응</span></span>
+<span id="cb38-6"><a href="#cb38-6"></a>  <span class="fu">predict</span>(model1,</span>
+<span id="cb38-7"><a href="#cb38-7"></a>          <span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">GrLivArea=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(df1)[<span class="dv">1</span>])),</span>
+<span id="cb38-8"><a href="#cb38-8"></a>          <span class="at">interval=</span><span class="st">'prediction'</span>,<span class="at">level =</span> <span class="fl">0.95</span>)[,<span class="sc">-</span><span class="dv">1</span>]) <span class="do">## 개별 y</span></span>
+<span id="cb38-9"><a href="#cb38-9"></a></span>
+<span id="cb38-10"><a href="#cb38-10"></a><span class="fu">names</span>(dt_pred)[<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'plwr'</span>, <span class="st">'pupr'</span>)</span>
+<span id="cb38-11"><a href="#cb38-11"></a><span class="fu">head</span>(dt_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A data.frame: 6 × 6</caption>
+<thead>
+    <tr><th></th><th scope="col">GrLivArea</th><th scope="col">fit</th><th scope="col">lwr</th><th scope="col">upr</th><th scope="col">plwr</th><th scope="col">pupr</th></tr>
+    <tr><th></th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">1</th><td>1</td><td>18676.16</td><td> 9891.92</td><td>27460.39</td><td>-91665.88</td><td>129018.2</td></tr>
+    <tr><th scope="row">2</th><td>2</td><td>18783.29</td><td>10004.23</td><td>27562.35</td><td>-91558.34</td><td>129124.9</td></tr>
+    <tr><th scope="row">3</th><td>3</td><td>18890.42</td><td>10116.53</td><td>27664.30</td><td>-91450.79</td><td>129231.6</td></tr>
+    <tr><th scope="row">4</th><td>4</td><td>18997.55</td><td>10228.84</td><td>27766.25</td><td>-91343.25</td><td>129338.3</td></tr>
+    <tr><th scope="row">5</th><td>5</td><td>19104.68</td><td>10341.15</td><td>27868.21</td><td>-91235.71</td><td>129445.1</td></tr>
+    <tr><th scope="row">6</th><td>6</td><td>19211.81</td><td>10453.45</td><td>27970.16</td><td>-91128.17</td><td>129551.8</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="283">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>barx <span class="ot">&lt;-</span> <span class="fu">mean</span>(df1<span class="sc">$</span>GrLivArea)</span>
+<span id="cb39-2"><a href="#cb39-2"></a>bary <span class="ot">&lt;-</span> <span class="fu">mean</span>(df1<span class="sc">$</span>SalePrice)</span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="fu">cat</span>(<span class="st">'barx: '</span>, barx, <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb39-4"><a href="#cb39-4"></a><span class="fu">cat</span>(<span class="st">'bary: '</span>, bary, <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>barx:  1515.464 
+bary:  180921.2 </code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="284">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="do">## 신뢰대 </span></span>
+<span id="cb41-2"><a href="#cb41-2"></a><span class="fu">plot</span>(SalePrice<span class="sc">~</span>GrLivArea, <span class="at">data =</span> df1,</span>
+<span id="cb41-3"><a href="#cb41-3"></a>     <span class="at">xlab =</span> <span class="st">"실거주면적"</span>,</span>
+<span id="cb41-4"><a href="#cb41-4"></a>     <span class="at">ylab =</span> <span class="st">"집값"</span>,</span>
+<span id="cb41-5"><a href="#cb41-5"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">min</span>(dt_pred<span class="sc">$</span>plwr), <span class="fu">max</span>(dt_pred<span class="sc">$</span>pupr)),</span>
+<span id="cb41-6"><a href="#cb41-6"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fu">min</span>(dt_pred<span class="sc">$</span>GrLivArea)<span class="sc">+</span><span class="dv">500</span>, <span class="fu">max</span>(dt_pred<span class="sc">$</span>GrLivArea)),</span>
+<span id="cb41-7"><a href="#cb41-7"></a>     <span class="at">pch  =</span> <span class="dv">20</span>, <span class="co"># plot character (기호 모양)</span></span>
+<span id="cb41-8"><a href="#cb41-8"></a>     <span class="at">cex  =</span> <span class="dv">2</span>, <span class="co"># size</span></span>
+<span id="cb41-9"><a href="#cb41-9"></a>     <span class="at">col  =</span> <span class="st">"grey"</span></span>
+<span id="cb41-10"><a href="#cb41-10"></a>     )</span>
+<span id="cb41-11"><a href="#cb41-11"></a><span class="fu">abline</span>(model1, <span class="at">lwd =</span> <span class="dv">5</span>, <span class="at">col =</span> <span class="st">"darkorange"</span>)</span>
+<span id="cb41-12"><a href="#cb41-12"></a></span>
+<span id="cb41-13"><a href="#cb41-13"></a><span class="fu">lines</span>(dt_pred<span class="sc">$</span>GrLivArea, dt_pred<span class="sc">$</span>lwr, <span class="at">col =</span> <span class="st">"dodgerblue"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb41-14"><a href="#cb41-14"></a><span class="fu">lines</span>(dt_pred<span class="sc">$</span>GrLivArea, dt_pred<span class="sc">$</span>upr, <span class="at">col =</span> <span class="st">"dodgerblue"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb41-15"><a href="#cb41-15"></a><span class="fu">lines</span>(dt_pred<span class="sc">$</span>GrLivArea, dt_pred<span class="sc">$</span>plwr, <span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb41-16"><a href="#cb41-16"></a><span class="fu">lines</span>(dt_pred<span class="sc">$</span>GrLivArea, dt_pred<span class="sc">$</span>pupr, <span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb41-17"><a href="#cb41-17"></a></span>
+<span id="cb41-18"><a href="#cb41-18"></a><span class="fu">abline</span>(<span class="at">v=</span>barx, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.2</span>, <span class="at">col=</span><span class="st">'dark grey'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-04-lr-hw1_files/figure-html/cell-31-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="잔차분석1" class="level3">
+<h3 class="anchored" data-anchor-id="잔차분석1">잔차분석1</h3>
+<section id="잔차에-대한-산점도" class="level4">
+<h4 class="anchored" data-anchor-id="잔차에-대한-산점도">잔차에 대한 산점도</h4>
+<div class="cell" data-execution_count="285">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="do">## Model1 residual plot</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(model1),<span class="fu">resid</span>(model1), <span class="at">col =</span> <span class="st">'grey'</span>, <span class="at">pch=</span><span class="dv">16</span>, </span>
+<span id="cb42-3"><a href="#cb42-3"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(<span class="fu">hat</span>(y)),</span>
+<span id="cb42-4"><a href="#cb42-4"></a>     <span class="at">ylab =</span> <span class="st">"Residual"</span>,</span>
+<span id="cb42-5"><a href="#cb42-5"></a>     <span class="at">main =</span> <span class="st">"Residual plot in Model1"</span>)</span>
+<span id="cb42-6"><a href="#cb42-6"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">col=</span><span class="st">'darkorange'</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-04-lr-hw1_files/figure-html/cell-32-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="등분산-검정" class="level4">
+<h4 class="anchored" data-anchor-id="등분산-검정">등분산 검정</h4>
+<div class="cell" data-execution_count="290">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">bptest</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  model1
+BP = 318.13, df = 1, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="정규성-검정" class="level4">
+<h4 class="anchored" data-anchor-id="정규성-검정">정규성 검정</h4>
+<div class="cell" data-execution_count="289">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>df1<span class="sc">$</span>yhat <span class="ot">&lt;-</span> model1<span class="sc">$</span>fitted</span>
+<span id="cb45-2"><a href="#cb45-2"></a>df1<span class="sc">$</span>resid <span class="ot">&lt;-</span> model1<span class="sc">$</span>residuals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="291">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="do">## 잔차의 QQ plot</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a><span class="fu">qqnorm</span>(df1<span class="sc">$</span>resid, <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb46-3"><a href="#cb46-3"></a><span class="fu">qqline</span>(df1<span class="sc">$</span>resid, <span class="at">col =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-04-lr-hw1_files/figure-html/cell-35-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="293">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="do">## Shapiro-Wilk Test</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a><span class="do">## H0 : normal distribution  vs. H1 : not H0</span></span>
+<span id="cb47-3"><a href="#cb47-3"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(model1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  resid(model1)
+W = 0.90957, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="294">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">hist</span>(df1<span class="sc">$</span>resid,</span>
+<span id="cb49-2"><a href="#cb49-2"></a>     <span class="at">xlab =</span> <span class="st">"Residuals"</span>,</span>
+<span id="cb49-3"><a href="#cb49-3"></a>     <span class="at">main =</span> <span class="st">"Histogram of Residuals, model1"</span>,</span>
+<span id="cb49-4"><a href="#cb49-4"></a>     <span class="at">col =</span> <span class="st">"darkgreen"</span>,</span>
+<span id="cb49-5"><a href="#cb49-5"></a>     <span class="at">border =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-04-lr-hw1_files/figure-html/cell-37-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="독립성" class="level4">
+<h4 class="anchored" data-anchor-id="독립성">독립성</h4>
+<div class="cell" data-execution_count="295">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="co"># 독립성검정 : DW test</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a><span class="co">#H0 : uncorrelated vs H1 : rho != 0</span></span>
+<span id="cb50-3"><a href="#cb50-3"></a><span class="fu">dwtest</span>(model1, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+    Durbin-Watson test
+
+data:  model1
+DW = 2.0247, p-value = 0.6374
+alternative hypothesis: true autocorrelation is not 0</code></pre>
+</div>
+</div>
+<ul>
+<li>유의수준 <span class="math inline">\(5\%\)</span> 하에서 등분산성, 정규성 가정을 만족하지 않는다. 따라서 위에서 적합한 모델은 사용할 수 없다..</li>
+</ul>
+</section>
+</section>
+<section id="적합2-절편이-없는-회귀모형" class="level3">
+<h3 class="anchored" data-anchor-id="적합2-절편이-없는-회귀모형">적합2: 절편이 없는 회귀모형</h3>
+<p><span class="math display">\[y = \beta_1x + \epsilon\]</span></p>
+<div class="cell" data-execution_count="188">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(SalePrice <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> GrLivArea, df1)</span>
+<span id="cb52-2"><a href="#cb52-2"></a>model2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+Call:
+lm(formula = SalePrice ~ 0 + GrLivArea, data = df1)
+
+Coefficients:
+GrLivArea  
+    118.1  </code></pre>
+</div>
+</div>
+<section id="회귀모형의-유의성-검정-1" class="level4">
+<h4 class="anchored" data-anchor-id="회귀모형의-유의성-검정-1">회귀모형의 유의성 검정</h4>
+<blockquote class="blockquote">
+<p><span class="math inline">\(H_0 : \beta_1 = 0 \text{ vs. } \beta_1 \neq 0\)</span></p>
+</blockquote>
+<div class="cell" data-execution_count="189">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">anova</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A anova: 2 × 5</caption>
+<thead>
+    <tr><th></th><th scope="col">Df</th><th scope="col">Sum Sq</th><th scope="col">Mean Sq</th><th scope="col">F value</th><th scope="col">Pr(&gt;F)</th></tr>
+    <tr><th></th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">GrLivArea</th><td>   1</td><td>5.235916e+13</td><td>5.235916e+13</td><td>16470.3</td><td> 0</td></tr>
+    <tr><th scope="row">Residuals</th><td>1459</td><td>4.638169e+12</td><td>3.179006e+09</td><td>     NA</td><td>NA</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="회귀계수의-유의성-검정-1" class="level4">
+<h4 class="anchored" data-anchor-id="회귀계수의-유의성-검정-1">회귀계수의 유의성 검정</h4>
+<div class="cell" data-execution_count="190">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">summary</span>(model2)<span class="sc">$</span>coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 1 × 4 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope="col">Estimate</th><th scope="col">Std. Error</th><th scope="col">t value</th><th scope="col">Pr(&gt;|t|)</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">GrLivArea</th><td>118.0691</td><td>0.9199952</td><td>128.3366</td><td>0</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="191">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="fu">summary</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+Call:
+lm(formula = SalePrice ~ 0 + GrLivArea, data = df1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-506146  -28044    2922   26479  332542 
+
+Coefficients:
+          Estimate Std. Error t value Pr(&gt;|t|)    
+GrLivArea   118.07       0.92   128.3   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 56380 on 1459 degrees of freedom
+Multiple R-squared:  0.9186,    Adjusted R-squared:  0.9186 
+F-statistic: 1.647e+04 on 1 and 1459 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="회귀계수의-신뢰구간-1" class="level4">
+<h4 class="anchored" data-anchor-id="회귀계수의-신뢰구간-1">회귀계수의 신뢰구간</h4>
+<div class="cell" data-execution_count="253">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">confint</span>(model2, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 1 × 2 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope="col">2.5 %</th><th scope="col">97.5 %</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">GrLivArea</th><td>116.2644</td><td>119.8738</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="평균반응-추정-1" class="level4">
+<h4 class="anchored" data-anchor-id="평균반응-추정-1">평균반응 추정</h4>
+<div class="cell" data-execution_count="251">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="fu">predict</span>(model2,</span>
+<span id="cb59-2"><a href="#cb59-2"></a>        <span class="at">newdata =</span> new_dt,</span>
+<span id="cb59-3"><a href="#cb59-3"></a>        <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">"confidence"</span>), <span class="do">## 구간추정, confidence option (평균반응)</span></span>
+<span id="cb59-4"><a href="#cb59-4"></a>        <span class="at">level =</span> <span class="fl">0.95</span>) <span class="do">## 평균반응</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 1 × 3 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope="col">fit</th><th scope="col">lwr</th><th scope="col">upr</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">1</th><td>177103.6</td><td>174396.7</td><td>179810.6</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li>실거주면적이 1500sqft 일 때 집값이 평균적으로 177103.6 달러로 추정된다.</li>
+<li>42평에 한화로 약 2억 3237만원</li>
+</ul>
+</section>
+<section id="개별-y-추정-1" class="level4">
+<h4 class="anchored" data-anchor-id="개별-y-추정-1">개별 <span class="math inline">\(y\)</span> 추정</h4>
+<div class="cell" data-execution_count="252">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">predict</span>(model2,</span>
+<span id="cb60-2"><a href="#cb60-2"></a>        <span class="at">newdata =</span> new_dt,</span>
+<span id="cb60-3"><a href="#cb60-3"></a>        <span class="at">interval =</span> <span class="fu">c</span>(<span class="st">"prediction"</span>),  <span class="do">## prediction option (개별 y)</span></span>
+<span id="cb60-4"><a href="#cb60-4"></a>        <span class="at">level =</span> <span class="fl">0.95</span>) <span class="do">## 개별 y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<table class="dataframe table table-sm table-striped">
+<caption>A matrix: 1 × 3 of type dbl</caption>
+<thead>
+    <tr><th></th><th scope="col">fit</th><th scope="col">lwr</th><th scope="col">upr</th></tr>
+</thead>
+<tbody>
+    <tr><th scope="row">1</th><td>177103.6</td><td>66470.77</td><td>287736.5</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell" data-execution_count="296">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="do">## Model2 residual plot</span></span>
+<span id="cb61-2"><a href="#cb61-2"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(model2),<span class="fu">resid</span>(model1), <span class="at">col =</span> <span class="st">'grey'</span>, <span class="at">pch=</span><span class="dv">16</span>, </span>
+<span id="cb61-3"><a href="#cb61-3"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(<span class="fu">hat</span>(y)),</span>
+<span id="cb61-4"><a href="#cb61-4"></a>     <span class="at">ylab =</span> <span class="st">"Residual"</span>,</span>
+<span id="cb61-5"><a href="#cb61-5"></a>     <span class="at">main =</span> <span class="st">"Residual plot in Model2"</span>)</span>
+<span id="cb61-6"><a href="#cb61-6"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">col=</span><span class="st">'darkorange'</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-04-lr-hw1_files/figure-html/cell-46-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>model2의 residual plot을 보면 model1과 유사한 양상을 띈다.</li>
+<li><span class="math inline">\(\hat{y}\)</span>가 커질수록 점점 산포가 증가하는 형태로 등분산성에 위배되는 형태이다.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="두-회귀모형-비교" class="level2">
+<h2 class="anchored" data-anchor-id="두-회귀모형-비교">두 회귀모형 비교</h2>
+<div class="cell" data-execution_count="192">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>df1 <span class="sc">%&gt;%</span> <span class="fu">colnames</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>'SalePrice'</li><li>'GrLivArea'</li></ol>
+</div>
+</div>
+<div class="cell" data-execution_count="193">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="do">## basic</span></span>
+<span id="cb63-2"><a href="#cb63-2"></a><span class="fu">plot</span>(SalePrice<span class="sc">~</span>GrLivArea, <span class="at">data =</span> df1,</span>
+<span id="cb63-3"><a href="#cb63-3"></a>     <span class="at">xlab =</span> <span class="st">"생활면적 (sqft)"</span>,</span>
+<span id="cb63-4"><a href="#cb63-4"></a>     <span class="at">ylab =</span> <span class="st">"집값"</span>,</span>
+<span id="cb63-5"><a href="#cb63-5"></a>     <span class="at">pch  =</span> <span class="dv">20</span>,</span>
+<span id="cb63-6"><a href="#cb63-6"></a>     <span class="at">cex  =</span> <span class="dv">2</span>,</span>
+<span id="cb63-7"><a href="#cb63-7"></a>     <span class="at">col  =</span> <span class="st">"darkorange"</span>)</span>
+<span id="cb63-8"><a href="#cb63-8"></a>     <span class="co">#ylim = c(0,35),</span></span>
+<span id="cb63-9"><a href="#cb63-9"></a>     <span class="co">#xlim = c(0, 12))</span></span>
+<span id="cb63-10"><a href="#cb63-10"></a><span class="fu">abline</span>(model1, <span class="at">col=</span><span class="st">'steelblue'</span>, <span class="at">lwd=</span><span class="dv">2</span>) <span class="do">## model1</span></span>
+<span id="cb63-11"><a href="#cb63-11"></a><span class="fu">abline</span>(model2, <span class="at">col=</span><span class="st">'violet'</span>, <span class="at">lwd=</span><span class="dv">2</span>)  <span class="do">## model2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-04-lr-hw1_files/figure-html/cell-48-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="208">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="do">## using ggplot2</span></span>
+<span id="cb64-2"><a href="#cb64-2"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df[<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>SalePrice), ], </span>
+<span id="cb64-3"><a href="#cb64-3"></a>           <span class="fu">aes</span>(<span class="at">x =</span> GrLivArea, <span class="at">y =</span> SalePrice)) <span class="sc">+</span></span>
+<span id="cb64-4"><a href="#cb64-4"></a>              <span class="fu">geom_point</span>(<span class="at">col=</span><span class="st">'orange'</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb64-5"><a href="#cb64-5"></a>              <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span> <span class="do">## model1 (절편O)</span></span>
+<span id="cb64-6"><a href="#cb64-6"></a>              <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">800000</span>, <span class="at">by=</span><span class="dv">100000</span>), <span class="at">labels =</span> comma) <span class="sc">+</span></span>
+<span id="cb64-7"><a href="#cb64-7"></a>              <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>GrLivArea[<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>SalePrice)] <span class="sc">&gt;</span> <span class="dv">4500</span>,</span>
+<span id="cb64-8"><a href="#cb64-8"></a>                                                 <span class="fu">rownames</span>(df), <span class="st">''</span>)))</span>
+<span id="cb64-9"><a href="#cb64-9"></a></span>
+<span id="cb64-10"><a href="#cb64-10"></a>g1 <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> model2<span class="sc">$</span>coef, <span class="at">col =</span> <span class="st">'violet'</span> , <span class="at">lwd =</span> <span class="dv">1</span>) <span class="do">## model2 (절편X)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-04-lr-hw1_files/figure-html/cell-49-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
