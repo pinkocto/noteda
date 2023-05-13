@@ -1,0 +1,127 @@
+---
+title: 06. 변수선택 추가 실습
+author: JiyunLim
+date: "05/12/2023"
+---
+
+```{r}
+library(leaps)
+```
+
+```{r}
+dt <- data.frame(
+ x1 = c(7,1,11,11,7,11,3,1,2,21,1,11,10),
+ x2 = c(26,29,56,31,52,55,71,31,54,47,40,66,68),
+ x3 = c(6,15,8,8,6,9,17,22,18,4,23,9,8),
+ x4 = c(60,52,20,47,33,22,6,44,22,26,34,12,12),
+ y = c(78.5,74.3,104.3,87.6,95.9,109.2,102.7,72.5,93.1,115.9,83.8,113.3,109.4)
+)
+```
+
+```{r}
+m_full <- lm(y~., dt)
+summary(m_full)
+```
+
+```{r}
+fit <- regsubsets(y ~., data=dt, nbest=1, nvmax=9,
+                 # method = c('exhaustive','backward','forward','seqrep')
+                 method = 'exhaustive'
+)
+summary(fit)
+```
+
+::: {.callout-note appearance="simple"}
+## nbest
+
+`nbest=1` 위의 예제로 예시를 들자면 변수를 1개, 2개, 3개, 4개 썼을 때 제일 좋은 모델을 하나씩 불러오라는 옵션.
+:::
+
+```{r}
+fit <- regsubsets(y ~., data=dt, nbest=6, nvmax=9,
+                 # method = c('exhaustive','backward','forward','seqrep')
+                 method = 'exhaustive'
+)
+summary(fit)
+```
+
+::: {.callout-note appearance="simple"}
+## nvmax
+
+설명변수의 최대개수를 지정해주는 것. (복잡한 모형이 싫을 때 사용)
+:::
+
+```{r}
+fit <- regsubsets(y ~., data=dt, nbest=6, nvmax=2,
+                 # method = c('exhaustive','backward','forward','seqrep')
+                 method = 'exhaustive'
+)
+summary(fit)
+```
+
+```{r}
+fit <- regsubsets(y ~., data=dt, nbest=1, nvmax=9,
+                 # method = c('exhaustive','backward','forward','seqrep')
+                 method = 'exhaustive'
+)
+
+with(summary(fit),
+      round(cbind(which, rss, rsq, adjr2, cp, bic),3))
+```
+
+-   `which` : 어떤 변수가 선택되었는지 알려주는 옵션.
+
+### method='backward'
+
+```{r}
+fit <- regsubsets(y ~., data=dt, nbest=1, ## 모든 변수 다 사용시 nvmax 생략가능
+                 # method = c('exhaustive','backward','forward','seqrep')
+                 method = 'backward'
+)
+
+with(summary(fit),
+      round(cbind(which, rss, rsq, adjr2, cp, bic),3))
+
+```
+
+cp를 기준으로 2번, 3번, 4번 중에 하나 선택하면 된다. 그 중 adjusted R2가 제일 큰 모형을 쓰거나, bic가 제일 작은 모형을 쓰거나 선택을 해서 사용하면 된다.
+
+::: {.callout-tip appearance="simple"}
+## 답안작성 예시
+
+-   adjusted R2기준으로는 3번 모형이 좋고 bic 기준으로는 2번 모형이 좋다. 나는 모형의 적합도 보다는 설명력이 더 필요하다고 생각하기 때문에 3번 모형을 쓰겠다.
+
+-   or 나는 예측의 정확도를 중요시 하기 때문에 2번 모형을 쓰겠다.
+:::
+
+### method ='forward'
+
+```{r}
+fit <- regsubsets(y ~., data=dt, nbest=1, ## 모든 변수 다 사용시 nvmax 생략가능능
+                 # method = c('exhaustive','backward','forward','seqrep')
+                 method = 'forward'
+)
+
+with(summary(fit),
+      round(cbind(which, rss, rsq, adjr2, cp, bic),3))
+```
+
+변수가 3개인 $x_1, x_2, x_4$ 모형이 best model. (cp만족, adjusted R2 제일크고, bic제일 작음.)
+
+## 설명변수가 많은 경우: `mtcars`
+
+```{r}
+str(mtcars)
+```
+
+```{r}
+m_full <- lm(mpg ~., data= mtcars)
+summary(m_full)
+```
+
+```{r}
+fit <- regsubsets(mpg~., data=mtcars, nbest=45, nvmax=9, # total case: (10*9)/2
+                  method = 'exhaustive', really.big=T)
+
+summary(fit)
+```

@@ -79,6 +79,8 @@ class PLNR_STGCN(PLNR):
         self.save()
 
 
+        
+        
 class PLNR2():
     def __init__(self,plans, data_dict ,dataset_name=None,simulation_results=None):
         self.plans = plans

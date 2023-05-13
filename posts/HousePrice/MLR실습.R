@@ -39,6 +39,8 @@ pairs(Boston[,which(names(Boston) %in%
 cor(Boston[,which(names(Boston) %in% 
                     c('medv', 'rm', 'lstat'))])
 
+
+# 회귀모형 적합
 fit_Boston<-lm(medv~rm+lstat, data=Boston)
 summary(fit_Boston)
 
@@ -46,7 +48,7 @@ summary(fit_Boston)
 ## matrix
 
 n = nrow(Boston)
-X = cbind(rep(1,n), Boston$rm, Boston$lstat)
+X = cbind(rep(1,n), Boston$rm, Boston$lstat) # 506x3
 y = Boston$medv
 
 beta_hat = solve(t(X)%*%X) %*% t(X) %*% y
