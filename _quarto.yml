@@ -1,0 +1,25 @@
+project:
+  type: website
+
+website:
+  title: "noteda"
+  sidebar:
+    style: "docked"
+    search: true
+    contents: auto
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/pinkocto/noteda
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    code-fold: false
+    code-line-numbers: true
+    code-copy: true
+
+
+
