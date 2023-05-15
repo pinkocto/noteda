@@ -1,0 +1,2209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>noteda</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      page: 30,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      searchColumns: ["listing-date","listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">noteda</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./about.html" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/pinkocto/noteda"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">noteda</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">noteda</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/2023-03-23-read-list.html" class="sidebar-item-text sidebar-link">Lists to read</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/post-with-code/index.html" class="sidebar-item-text sidebar-link">Post With Code</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/welcome/index.html" class="sidebar-item-text sidebar-link">Welcome To My Blog</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">DataHandling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/DataHandling/2023-04-02-assign.html" class="sidebar-item-text sidebar-link">[Python] 새로운 열 할당(.assign) 및 특정 열 선택</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/DataHandling/2023-04-02-hanling-index.html" class="sidebar-item-text sidebar-link">[Python] 중첩인덱스 깨는 법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/DataHandling/2023-04-06-pivot-wider-error.html" class="sidebar-item-text sidebar-link">[R] pivot_wider Error</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/DataHandling/2023-04-06-assign-r.html" class="sidebar-item-text sidebar-link">[R] 문자열을 변수명으로 &amp; assign</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Etc</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/etc/2023-05-08-에러모음.html" class="sidebar-item-text sidebar-link"><strong>에러 모음</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/etc/2023-03-21-dv.html" class="sidebar-item-text sidebar-link">data visualization</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/etc/2023-03-21-downcasting.html" class="sidebar-item-text sidebar-link">downcasting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/etc/2023-04-11-git-error.html" class="sidebar-item-text sidebar-link">Github remote: error: this exceeds GitHub’s file size limit of 100.00 MB</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/etc/2023-02-24-tips.html" class="sidebar-item-text sidebar-link">Julia 설치 및 실행</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/etc/2023-03-21-lib.html" class="sidebar-item-text sidebar-link">Libraries for DA</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/etc/2023-04-05-ppt.html" class="sidebar-item-text sidebar-link">ppt 폰트</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/etc/2023-04-23-r-python-same-jupyter.html" class="sidebar-item-text sidebar-link">R/Python jupyter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/etc/2023-03-21-resumetable.html" class="sidebar-item-text sidebar-link">resumetable</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/etc/2023-03-21-scorecard.html" class="sidebar-item-text sidebar-link">Scorecard</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/etc/2023-04-01-연구생신규등록.html" class="sidebar-item-text sidebar-link">연구참여 확약서</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/etc/2023-04-02-abstract.html" class="sidebar-item-text sidebar-link">초록 작성법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/etc/2023-04-20-학회.html" class="sidebar-item-text sidebar-link">학회</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">HousePrice</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-04-26-lr-회귀진단.html" class="sidebar-item-text sidebar-link">04. 가변수(Indicator Variable) 실습</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-04-05-5wk.html" class="sidebar-item-text sidebar-link">5wk: 측도론 (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-04-11-6wk.html" class="sidebar-item-text sidebar-link">6wk: 측도론 (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-04-18-7wk.html" class="sidebar-item-text sidebar-link">7wk: 측도론 (3)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-04-25-8wk.html" class="sidebar-item-text sidebar-link">8wk: 측도론 (4)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-04-20-ts-이산형확률분포.html" class="sidebar-item-text sidebar-link">Discrete Probability Distribution (추가중)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-04-04-lr-hw1-project.html" class="sidebar-item-text sidebar-link">House Price</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-04-05-lr-hw1-feedback.html" class="sidebar-item-text sidebar-link">House Price feedback</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-03-30-lr-hw1.html" class="sidebar-item-text sidebar-link">HW1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-04-18-mlr-보스턴집값.html" class="sidebar-item-text sidebar-link">MLR prac1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-04-19-lr-hw2.html" class="sidebar-item-text sidebar-link">MLR_hw2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-04-11-ts-hw4.html" class="sidebar-item-text sidebar-link">TS HW4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-04-19-ts-hw5.html" class="sidebar-item-text sidebar-link">TS HW5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/HousePrice/2023-05-02-TS-hw6.html" class="sidebar-item-text sidebar-link">TS HW6</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">Seminar</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Seminar/2023-03-21-gpt3-nsmc.html" class="sidebar-item-text sidebar-link">Few-shot learning using GPT3</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">SOLAR</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-03-30-correlation.html" class="sidebar-item-text sidebar-link">[R]Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-03-30-restructure-data.html" class="sidebar-item-text sidebar-link">[R]데이터 재구조화</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-05-07-정리.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR] 0508 정리중</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-05-06-정리중.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-24-정규화제거-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (-N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-23-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (+N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-06-corr.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-12-데이터수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (22/06~22/09/15)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-14-데이터수정2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (data2: 22/06~22/09/15) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-20-데이터수정3.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Create Dataset (data3: 0815/0910) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-06-stgcn-data-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-07-stcgn-data-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-04-EPT.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-06-ept-by-region.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-10-lstm.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> LSTM</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver1--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (+N +S) (MSE: 0.1864) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-23-스케일링-stgcn-ver1-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-25-s-stgcn-ver1-100에폭--이게진짜.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-28-s-stgcn-ver1-100에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-26-s-stgcn-ver1-150에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 150epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-27-s-stgcn-ver1-50에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 50epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-05-03-s-stgcn-ver1-시뮬레이션-10iter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-29-s-stgcn-ver1-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-05-02-s-stgcn-ver1-정규화-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-17-정규화-stgcn-ver1-.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N) (MSE: 0.1705)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (Full: 08/15~09/10 data3) (MSE: 0.1523)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-12-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (MSE: 0.1899)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-12-stgcn-ver1-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 90% (MSE: 0.1206)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-09-soloar-stgcn-ver1-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-07-soloar-stgcn-ver1-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-15-stgcn-ver1-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 수정본 (MSE: 0.1674)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver2--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (+N +S) (MSE: 0.1801) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-23-스케일링-stgcn-ver2-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-25-s-stgcn-ver2-100에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 100 epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-26-s-stgcn-ver2-150에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 150 epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-27-s-stgcn-ver2-50에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 50 epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-29-s-stgcn-ver2-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-05-03-s-stgcn-ver2-시뮬레이션-10iter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-05-02-s-stgcn-ver2-정규화-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-17-정규화-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N) (MSE: 0.1834)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (Full: 08/15~09/10 data3) (MSE: 0.1927)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-12-stgcn-ver2-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (MSE: 0.2019)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-12-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 90% (MSE: 0.1635)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-09-solar-stgcn-ver2-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-08-solar-stgcn-ver2-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-15-stgcn-ver2-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 수정본 (MSE: 0.2000)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-03-01-todolist.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> To do list</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-06-solar-class.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> WindmillOutputLargeDatasetLoader</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-07-yu.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> yU</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-19-데이터탐색용.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 데이터 탐색용</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-05-03-시뮬결과.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 시뮬레이션 결과정리 1-iter (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-22-시각화코드수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 연습용 (시각화 코드 수정)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-05-01-차원조사.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 차원조사</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2099.html" class="sidebar-item-text sidebar-link">2099</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-06-stgcn.html" class="sidebar-item-text sidebar-link">ChikenpoxDataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-03-29-data0.html" class="sidebar-item-text sidebar-link">Data preprocessing</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-09-lstm-prac.html" class="sidebar-item-text sidebar-link">LSTM for Time Series Prediction (연습)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-06-windmill.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDataset 분석 (실패)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/SOLAR/2023-04-09-ft.html" class="sidebar-item-text sidebar-link">푸리에 변환</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">Study</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/2023-04-24-베르누이.html" class="sidebar-item-text sidebar-link">[SC2022] 포아송분포, 지수분포</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/2023-03-05-기하학적딥러닝-survey-review.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> A Comprehensive Survey on Geometric Deep Learning (+++)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/2023-05-06-ept-논문리뷰.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> Ensemble patch transformation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/2023-05-07-stgcn논문리뷰.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> Spatio-Temporal Graph Convolutional Networks (+++)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/2023-04-11-arima-hour-data-fill.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SARIMA (MSE: 0.478)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/2023-04-10-arima-ex-day.html" class="sidebar-item-text sidebar-link">ARIMA (Day)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/2023-04-10-arima-ex.html" class="sidebar-item-text sidebar-link">ARIMA (시간별 예측안됨, 에러)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/2023-05-08-gcrn리뷰.html" class="sidebar-item-text sidebar-link">GCRN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/2023-02-21-gcn-이해용정리.html" class="sidebar-item-text sidebar-link">Graph Convolutional Network (이해용)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/python-midterm.html" class="sidebar-item-text sidebar-link">Python Midterm</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/2023-04-13-windmill-스몰버전.html" class="sidebar-item-text sidebar-link">WindmillOutput (Small)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/python_7장.html" class="sidebar-item-text sidebar-link">스타벅스 주가예측</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/2023-04-10-ex.html" class="sidebar-item-text sidebar-link">연습장</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리(수정 for ARIMA)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/Study/2023-02-21-STGCN-tutorial1.html" class="sidebar-item-text sidebar-link">튜토리얼 따라가기1</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(112)</span></div><div class="category" data-category="AP2023">AP2023 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ARIMA">ARIMA <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Appendix">Appendix <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Applied LR">Applied LR <span class="quarto-category-count">(1)</span></div><div class="category" data-category="BASIC">BASIC <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Chikenpox">Chikenpox <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Data">Data <span class="quarto-category-count">(12)</span></div><div class="category" data-category="EPT">EPT <span class="quarto-category-count">(2)</span></div><div class="category" data-category="FT">FT <span class="quarto-category-count">(1)</span></div><div class="category" data-category="GCN">GCN <span class="quarto-category-count">(1)</span></div><div class="category" data-category="House Price">House Price <span class="quarto-category-count">(1)</span></div><div class="category" data-category="LR2023">LR2023 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="LSTM">LSTM <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Linear Regression">Linear Regression <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Model">Model <span class="quarto-category-count">(4)</span></div><div class="category" data-category="PAPER REVIEW">PAPER REVIEW <span class="quarto-category-count">(4)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Research">Research <span class="quarto-category-count">(47)</span></div><div class="category" data-category="SC2022">SC2022 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SOLAR">SOLAR <span class="quarto-category-count">(56)</span></div><div class="category" data-category="ST">ST <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ST2023">ST2023 <span class="quarto-category-count">(4)</span></div><div class="category" data-category="STGCN">STGCN <span class="quarto-category-count">(43)</span></div><div class="category" data-category="Score">Score <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Study">Study <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Tip">Tip <span class="quarto-category-count">(9)</span></div><div class="category" data-category="To read">To read <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Windmill">Windmill <span class="quarto-category-count">(1)</span></div><div class="category" data-category="WindmillOutput">WindmillOutput <span class="quarto-category-count">(2)</span></div><div class="category" data-category="analysis">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="code">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="data handling">data handling <span class="quarto-category-count">(2)</span></div><div class="category" data-category="news">news <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ppt">ppt <span class="quarto-category-count">(1)</span></div><div class="category" data-category="seminar">seminar <span class="quarto-category-count">(1)</span></div><div class="category" data-category="논문">논문 <span class="quarto-category-count">(1)</span></div></div></div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-body" id="quarto-document-content">
+
+
+
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+Date
+</th>
+<th>
+Title
+</th>
+<th>
+Author
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-listing-file-modified-sort="1684137219476" data-listing-reading-time-sort="0" data-listing-filename-sort="python-midterm.ipynb">
+<td class="listing-date">
+</td>
+<td class="listing-title">
+</td>
+<td class="listing-author">
+</td>
+</tr>
+<tr data-index="1" data-listing-file-modified-sort="1684137218344" data-listing-reading-time-sort="0" data-listing-filename-sort="2099.ipynb">
+<td class="listing-date">
+</td>
+<td class="listing-title">
+</td>
+<td class="listing-author">
+</td>
+</tr>
+<tr data-index="2" data-categories="news,code,analysis" data-listing-date-sort="1683990000000" data-listing-file-modified-sort="1684137219564" data-listing-reading-time-sort="0.035" data-listing-title-sort="Post With Code" data-listing-filename-sort="index.qmd">
+<td class="listing-date">
+May 14, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/post-with-code/index.html" class="title">Post With Code</a>
+</td>
+<td class="listing-author">
+Harlow Malloc
+</td>
+</tr>
+<tr data-index="3" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1683471600000" data-listing-file-modified-sort="1684137218344" data-listing-reading-time-sort="2.63" data-listing-title-sort="**[SOLAR] 0508 정리중**" data-listing-filename-sort="2023-05-07-정리.ipynb">
+<td class="listing-date">
+May 8, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-05-07-정리.html" class="title"><strong>[SOLAR] 0508 정리중</strong></a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="4" data-categories="Research,STGCN,PAPER REVIEW" data-listing-date-sort="1683471600000" data-listing-file-modified-sort="1684137219476" data-listing-reading-time-sort="11.04" data-listing-title-sort="GCRN" data-listing-filename-sort="2023-05-08-gcrn리뷰.ipynb">
+<td class="listing-date">
+May 8, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/2023-05-08-gcrn리뷰.html" class="title">GCRN</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="5" data-categories="Research,EPT,PAPER REVIEW" data-listing-date-sort="1683298800000" data-listing-file-modified-sort="1684137219464" data-listing-reading-time-sort="0.78" data-listing-title-sort="**[PAPER]** Ensemble patch transformation" data-listing-filename-sort="2023-05-06-ept-논문리뷰.ipynb">
+<td class="listing-date">
+May 6, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/2023-05-06-ept-논문리뷰.html" class="title"><strong>[PAPER]</strong> Ensemble patch transformation</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="6" data-categories="Research,STGCN,PAPER REVIEW" data-listing-date-sort="1683298800000" data-listing-file-modified-sort="1684137219476" data-listing-reading-time-sort="2.635" data-listing-title-sort="**[PAPER]** Spatio-Temporal Graph Convolutional Networks (+++)" data-listing-filename-sort="2023-05-07-stgcn논문리뷰.ipynb">
+<td class="listing-date">
+May 6, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/2023-05-07-stgcn논문리뷰.html" class="title"><strong>[PAPER]</strong> Spatio-Temporal Graph Convolutional Networks (+++)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="7" data-categories="Research,STGCN,SOLAR,논문" data-listing-date-sort="1683298800000" data-listing-file-modified-sort="1684137218344" data-listing-reading-time-sort="0.005" data-listing-title-sort="**[SOLAR]**" data-listing-filename-sort="2023-05-06-정리중.ipynb">
+<td class="listing-date">
+May 6, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-05-06-정리중.html" class="title"><strong>[SOLAR]</strong></a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="8" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1683039600000" data-listing-file-modified-sort="1684137218344" data-listing-reading-time-sort="0.675" data-listing-title-sort="**[SOLAR]** STGCN Ver2 (data2, -N +S) 시뮬레이션 (epoch, filter, lag)" data-listing-filename-sort="2023-05-03-s-stgcn-ver2-시뮬레이션-10iter.ipynb">
+<td class="listing-date">
+May 3, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-05-03-s-stgcn-ver2-시뮬레이션-10iter.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 시뮬레이션 (epoch, filter, lag)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="9" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1683039600000" data-listing-file-modified-sort="1684137218344" data-listing-reading-time-sort="0.575" data-listing-title-sort="**[SOLAR]** 시뮬레이션 결과정리 1-iter (epoch, filter, lag)" data-listing-filename-sort="2023-05-03-시뮬결과.ipynb">
+<td class="listing-date">
+May 3, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-05-03-시뮬결과.html" class="title"><strong>[SOLAR]</strong> 시뮬레이션 결과정리 1-iter (epoch, filter, lag)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="10" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682953200000" data-listing-file-modified-sort="1684137218344" data-listing-reading-time-sort="0.13" data-listing-title-sort="**[SOLAR]** STGCN Ver1 (data2, +N +S) 시뮬레이션(epoch, filter, lag)" data-listing-filename-sort="2023-05-02-s-stgcn-ver1-정규화-시뮬레이션.ipynb">
+<td class="listing-date">
+May 2, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-05-02-s-stgcn-ver1-정규화-시뮬레이션.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 시뮬레이션(epoch, filter, lag)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="11" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682953200000" data-listing-file-modified-sort="1684137218344" data-listing-reading-time-sort="0.12" data-listing-title-sort="**[SOLAR]** STGCN Ver2 (data2, +N +S) 시뮬레이션 (epoch, filter, lag)" data-listing-filename-sort="2023-05-02-s-stgcn-ver2-정규화-시뮬레이션.ipynb">
+<td class="listing-date">
+May 2, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-05-02-s-stgcn-ver2-정규화-시뮬레이션.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 시뮬레이션 (epoch, filter, lag)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="12" data-categories="ST2023" data-listing-date-sort="1682953200000" data-listing-file-modified-sort="1684137217768" data-listing-reading-time-sort="4.185" data-listing-title-sort="TS HW6" data-listing-filename-sort="2023-05-02-TS-hw6.ipynb">
+<td class="listing-date">
+May 2, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-05-02-TS-hw6.html" class="title">TS HW6</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="13" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682694000000" data-listing-file-modified-sort="1684137218344" data-listing-reading-time-sort="0.765" data-listing-title-sort="**[SOLAR]** STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)" data-listing-filename-sort="2023-05-03-s-stgcn-ver1-시뮬레이션-10iter.ipynb">
+<td class="listing-date">
+Apr 29, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-05-03-s-stgcn-ver1-시뮬레이션-10iter.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="14" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682694000000" data-listing-file-modified-sort="1684137218344" data-listing-reading-time-sort="0.155" data-listing-title-sort="**[SOLAR]** STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)" data-listing-filename-sort="2023-04-29-s-stgcn-ver1-시뮬레이션.ipynb">
+<td class="listing-date">
+Apr 29, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-29-s-stgcn-ver1-시뮬레이션.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="15" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682694000000" data-listing-file-modified-sort="1684137218344" data-listing-reading-time-sort="0.24" data-listing-title-sort="**[SOLAR]** STGCN Ver2 (data2, -N +S) 30회 시뮬레이션 (epoch, filter, lag)" data-listing-filename-sort="2023-04-29-s-stgcn-ver2-시뮬레이션.ipynb">
+<td class="listing-date">
+Apr 29, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-29-s-stgcn-ver2-시뮬레이션.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 시뮬레이션 (epoch, filter, lag)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="16" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682694000000" data-listing-file-modified-sort="1684137218344" data-listing-reading-time-sort="3.77" data-listing-title-sort="**[SOLAR]** 차원조사" data-listing-filename-sort="2023-05-01-차원조사.ipynb">
+<td class="listing-date">
+Apr 29, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-05-01-차원조사.html" class="title"><strong>[SOLAR]</strong> 차원조사</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="17" data-categories="Tip" data-listing-date-sort="1682694000000" data-listing-file-modified-sort="1684137219564" data-listing-reading-time-sort="0.355" data-listing-title-sort="**에러 모음**" data-listing-filename-sort="2023-05-08-에러모음.ipynb">
+<td class="listing-date">
+Apr 29, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/etc/2023-05-08-에러모음.html" class="title"><strong>에러 모음</strong></a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="18" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682521200000" data-listing-file-modified-sort="1684137218340" data-listing-reading-time-sort="0.135" data-listing-title-sort="**[SOLAR]** STGCN Ver1 (data2, -N +S) 30회 100epoch 64filter" data-listing-filename-sort="2023-04-28-s-stgcn-ver1-100에폭-64필터.ipynb">
+<td class="listing-date">
+Apr 27, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-28-s-stgcn-ver1-100에폭-64필터.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch 64filter</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="19" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682521200000" data-listing-file-modified-sort="1684137218324" data-listing-reading-time-sort="0.135" data-listing-title-sort="**[SOLAR]** STGCN Ver1 (data2, -N +S) 30회 50epoch 64filter" data-listing-filename-sort="2023-04-27-s-stgcn-ver1-50에폭-64필터.ipynb">
+<td class="listing-date">
+Apr 27, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-27-s-stgcn-ver1-50에폭-64필터.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 50epoch 64filter</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="20" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682521200000" data-listing-file-modified-sort="1684137218332" data-listing-reading-time-sort="0.145" data-listing-title-sort="**[SOLAR]** STGCN Ver2 (data2, -N +S) 30회 50 epoch 64filter" data-listing-filename-sort="2023-04-27-s-stgcn-ver2-50에폭-64필터.ipynb">
+<td class="listing-date">
+Apr 27, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-27-s-stgcn-ver2-50에폭-64필터.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 50 epoch 64filter</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="21" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682434800000" data-listing-file-modified-sort="1684137218308" data-listing-reading-time-sort="0.135" data-listing-title-sort="**[SOLAR]** STGCN Ver1 (data2, -N +S) 30회 150epoch" data-listing-filename-sort="2023-04-26-s-stgcn-ver1-150에폭.ipynb">
+<td class="listing-date">
+Apr 26, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-26-s-stgcn-ver1-150에폭.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 150epoch</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="22" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682434800000" data-listing-file-modified-sort="1684137218316" data-listing-reading-time-sort="0.145" data-listing-title-sort="**[SOLAR]** STGCN Ver2 (data2, -N +S) 30회 150 epoch" data-listing-filename-sort="2023-04-26-s-stgcn-ver2-150에폭.ipynb">
+<td class="listing-date">
+Apr 26, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-26-s-stgcn-ver2-150에폭.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 150 epoch</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="23" data-categories="Research,Score" data-listing-date-sort="1682434800000" data-listing-file-modified-sort="1684137218104" data-listing-reading-time-sort="0.84" data-listing-title-sort="**[SOLAR]** To do list" data-listing-filename-sort="2023-03-01-todolist.ipynb">
+<td class="listing-date">
+Apr 26, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-03-01-todolist.html" class="title"><strong>[SOLAR]</strong> To do list</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="24" data-categories="LR2023" data-listing-date-sort="1682434800000" data-listing-file-modified-sort="1684137217768" data-listing-reading-time-sort="4.06" data-listing-title-sort="04. 가변수(Indicator Variable) 실습" data-listing-filename-sort="2023-04-26-lr-회귀진단.ipynb">
+<td class="listing-date">
+Apr 26, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-04-26-lr-회귀진단.html" class="title">04. 가변수(Indicator Variable) 실습</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="25" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682348400000" data-listing-file-modified-sort="1684137218288" data-listing-reading-time-sort="0.135" data-listing-title-sort="**[SOLAR]** STGCN Ver1 (data2, -N +S) 30회 100epoch" data-listing-filename-sort="2023-04-25-s-stgcn-ver1-100에폭--이게진짜.ipynb">
+<td class="listing-date">
+Apr 25, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-25-s-stgcn-ver1-100에폭--이게진짜.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="26" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682348400000" data-listing-file-modified-sort="1684137218300" data-listing-reading-time-sort="0.145" data-listing-title-sort="**[SOLAR]** STGCN Ver2 (data2, -N +S) 30회 100 epoch" data-listing-filename-sort="2023-04-25-s-stgcn-ver2-100에폭.ipynb">
+<td class="listing-date">
+Apr 25, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-25-s-stgcn-ver2-100에폭.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 100 epoch</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="27" data-listing-date-sort="1682348400000" data-listing-file-modified-sort="1684137217756" data-listing-reading-time-sort="9.355" data-listing-title-sort="8wk: 측도론 (4)" data-listing-filename-sort="2023-04-25-8wk.ipynb">
+<td class="listing-date">
+Apr 25, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-04-25-8wk.html" class="title">8wk: 측도론 (4)</a>
+</td>
+<td class="listing-author">
+최규빈
+</td>
+</tr>
+<tr data-index="28" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682262000000" data-listing-file-modified-sort="1684137218280" data-listing-reading-time-sort="0.235" data-listing-title-sort="**[SOLAR]** Comparison of 30 simulation results (-N)" data-listing-filename-sort="2023-04-24-정규화제거-결과비교.ipynb">
+<td class="listing-date">
+Apr 24, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-24-정규화제거-결과비교.html" class="title"><strong>[SOLAR]</strong> Comparison of 30 simulation results (-N)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="29" data-categories="SC2022" data-listing-date-sort="1682262000000" data-listing-file-modified-sort="1684137219464" data-listing-reading-time-sort="1.5" data-listing-title-sort="[SC2022] 포아송분포, 지수분포" data-listing-filename-sort="2023-04-24-베르누이.ipynb">
+<td class="listing-date">
+Apr 24, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/2023-04-24-베르누이.html" class="title">[SC2022] 포아송분포, 지수분포</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="30" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682175600000" data-listing-file-modified-sort="1684137218268" data-listing-reading-time-sort="0.145" data-listing-title-sort="**[SOLAR]** Comparison of 30 simulation results (+N)" data-listing-filename-sort="2023-04-23-결과비교.ipynb">
+<td class="listing-date">
+Apr 23, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-23-결과비교.html" class="title"><strong>[SOLAR]</strong> Comparison of 30 simulation results (+N)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="31" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682175600000" data-listing-file-modified-sort="1684137218268" data-listing-reading-time-sort="0.135" data-listing-title-sort="**[SOLAR]** STGCN Ver1 (data2, -N +S) 30회" data-listing-filename-sort="2023-04-23-스케일링-stgcn-ver1-정규화취소.ipynb">
+<td class="listing-date">
+Apr 23, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-23-스케일링-stgcn-ver1-정규화취소.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="32" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682175600000" data-listing-file-modified-sort="1684137218276" data-listing-reading-time-sort="0.145" data-listing-title-sort="**[SOLAR]** STGCN Ver2 (data2, -N +S) 30회" data-listing-filename-sort="2023-04-23-스케일링-stgcn-ver2-정규화취소.ipynb">
+<td class="listing-date">
+Apr 23, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-23-스케일링-stgcn-ver2-정규화취소.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="33" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682089200000" data-listing-file-modified-sort="1684137218256" data-listing-reading-time-sort="0.135" data-listing-title-sort="**[SOLAR]** STGCN Ver1 (data2, +N +S) 30회" data-listing-filename-sort="2023-04-22-정규화-스케일링-stgcn-ver1.ipynb">
+<td class="listing-date">
+Apr 22, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver1.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 30회</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="34" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682089200000" data-listing-file-modified-sort="1684137218264" data-listing-reading-time-sort="0.145" data-listing-title-sort="**[SOLAR]** STGCN Ver2 (data2, +N +S) 30회" data-listing-filename-sort="2023-04-22-정규화-스케일링-stgcn-ver2.ipynb">
+<td class="listing-date">
+Apr 22, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver2.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 30회</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="35" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682089200000" data-listing-file-modified-sort="1684137218252" data-listing-reading-time-sort="0.005" data-listing-title-sort="**[SOLAR]** 연습용 (시각화 코드 수정)" data-listing-filename-sort="2023-04-22-시각화코드수정.ipynb">
+<td class="listing-date">
+Apr 22, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-22-시각화코드수정.html" class="title"><strong>[SOLAR]</strong> 연습용 (시각화 코드 수정)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="36" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682002800000" data-listing-file-modified-sort="1684137218244" data-listing-reading-time-sort="0.14" data-listing-title-sort="**[SOLAR]** STGCN Ver1 (+N +S) (MSE: 0.1864) -- guebin" data-listing-filename-sort="2023-04-21-정규화-스케일링-stgcn-ver1--guebin.ipynb">
+<td class="listing-date">
+Apr 21, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver1--guebin.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 (+N +S) (MSE: 0.1864) – guebin</a>
+</td>
+<td class="listing-author">
+GuebinChoi
+</td>
+</tr>
+<tr data-index="37" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1682002800000" data-listing-file-modified-sort="1684137218244" data-listing-reading-time-sort="0.14" data-listing-title-sort="**[SOLAR]** STGCN Ver2 (+N +S) (MSE: 0.1801) -- guebin" data-listing-filename-sort="2023-04-21-정규화-스케일링-stgcn-ver2--guebin.ipynb">
+<td class="listing-date">
+Apr 21, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver2--guebin.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 (+N +S) (MSE: 0.1801) – guebin</a>
+</td>
+<td class="listing-author">
+GuebinChoi
+</td>
+</tr>
+<tr data-index="38" data-categories="Research,Data,SOLAR" data-listing-date-sort="1681916400000" data-listing-file-modified-sort="1684137218232" data-listing-reading-time-sort="0.335" data-listing-title-sort="**[SOLAR]** Create Dataset (data3: 0815/0910) 재수정" data-listing-filename-sort="2023-04-20-데이터수정3.ipynb">
+<td class="listing-date">
+Apr 20, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-20-데이터수정3.html" class="title"><strong>[SOLAR]</strong> Create Dataset (data3: 0815/0910) 재수정</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="39" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1681916400000" data-listing-file-modified-sort="1684137218236" data-listing-reading-time-sort="0.11" data-listing-title-sort="**[SOLAR]** STGCN Ver1 (Full: 08/15~09/10 data3) (MSE: 0.1523)" data-listing-filename-sort="2023-04-20-정규화-데이터3-stgcn-ver1.ipynb">
+<td class="listing-date">
+Apr 20, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver1.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 (Full: 08/15~09/10 data3) (MSE: 0.1523)</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="40" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1681916400000" data-listing-file-modified-sort="1684137218244" data-listing-reading-time-sort="0.75" data-listing-title-sort="**[SOLAR]** STGCN Ver2 (Full: 08/15~09/10 data3) (MSE: 0.1927)" data-listing-filename-sort="2023-04-20-정규화-데이터3-stgcn-ver2.ipynb">
+<td class="listing-date">
+Apr 20, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver2.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 (Full: 08/15~09/10 data3) (MSE: 0.1927)</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="41" data-categories="Study,ST" data-listing-date-sort="1681916400000" data-listing-file-modified-sort="1684137217756" data-listing-reading-time-sort="1.05" data-listing-title-sort="Discrete Probability Distribution (추가중)" data-listing-filename-sort="2023-04-20-ts-이산형확률분포.ipynb">
+<td class="listing-date">
+Apr 20, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-04-20-ts-이산형확률분포.html" class="title">Discrete Probability Distribution (추가중)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="42" data-listing-date-sort="1681916400000" data-listing-file-modified-sort="1684137219564" data-listing-reading-time-sort="0.91" data-listing-title-sort="학회" data-listing-filename-sort="2023-04-20-학회.ipynb">
+<td class="listing-date">
+Apr 20, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/etc/2023-04-20-학회.html" class="title">학회</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="43" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1681830000000" data-listing-file-modified-sort="1684137218220" data-listing-reading-time-sort="0.14" data-listing-title-sort="**[SOLAR]** 데이터 탐색용" data-listing-filename-sort="2023-04-19-데이터탐색용.ipynb">
+<td class="listing-date">
+Apr 19, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-19-데이터탐색용.html" class="title"><strong>[SOLAR]</strong> 데이터 탐색용</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="44" data-categories="ST2023" data-listing-date-sort="1681830000000" data-listing-file-modified-sort="1684137217744" data-listing-reading-time-sort="1.59" data-listing-title-sort="MLR_hw2" data-listing-filename-sort="2023-04-19-lr-hw2.ipynb">
+<td class="listing-date">
+Apr 19, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-04-19-lr-hw2.html" class="title">MLR_hw2</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="45" data-categories="ST2023" data-listing-date-sort="1681830000000" data-listing-file-modified-sort="1684137217744" data-listing-reading-time-sort="4.91" data-listing-title-sort="TS HW5" data-listing-filename-sort="2023-04-19-ts-hw5.ipynb">
+<td class="listing-date">
+Apr 19, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-04-19-ts-hw5.html" class="title">TS HW5</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="46" data-categories="AP2023" data-listing-date-sort="1681743600000" data-listing-file-modified-sort="1684137217744" data-listing-reading-time-sort="8.225" data-listing-title-sort="7wk: 측도론 (3)" data-listing-filename-sort="2023-04-18-7wk.ipynb">
+<td class="listing-date">
+Apr 18, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-04-18-7wk.html" class="title">7wk: 측도론 (3)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="47" data-listing-date-sort="1681743600000" data-listing-file-modified-sort="1684137217744" data-listing-reading-time-sort="5.885" data-listing-title-sort="MLR prac1" data-listing-filename-sort="2023-04-18-mlr-보스턴집값.qmd">
+<td class="listing-date">
+Apr 18, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-04-18-mlr-보스턴집값.html" class="title">MLR prac1</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="48" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1681657200000" data-listing-file-modified-sort="1684137218216" data-listing-reading-time-sort="0.205" data-listing-title-sort="**[SOLAR]** STGCN Ver1 (data2, +N) (MSE: 0.1705)" data-listing-filename-sort="2023-04-17-정규화-stgcn-ver1-.ipynb">
+<td class="listing-date">
+Apr 17, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-17-정규화-stgcn-ver1-.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N) (MSE: 0.1705)</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="49" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1681657200000" data-listing-file-modified-sort="1684137218220" data-listing-reading-time-sort="0.515" data-listing-title-sort="**[SOLAR]** STGCN Ver2 (data2, +N) (MSE: 0.1834)" data-listing-filename-sort="2023-04-17-정규화-stgcn-ver2.ipynb">
+<td class="listing-date">
+Apr 17, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-17-정규화-stgcn-ver2.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N) (MSE: 0.1834)</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="50" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1681484400000" data-listing-file-modified-sort="1684137218208" data-listing-reading-time-sort="0.12" data-listing-title-sort="**[SOLAR]** STGCN Ver1 수정본 (MSE: 0.1674)" data-listing-filename-sort="2023-04-15-stgcn-ver1-수정본.ipynb">
+<td class="listing-date">
+Apr 15, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-15-stgcn-ver1-수정본.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 수정본 (MSE: 0.1674)</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="51" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1681484400000" data-listing-file-modified-sort="1684137218212" data-listing-reading-time-sort="0.22" data-listing-title-sort="**[SOLAR]** STGCN Ver2 수정본 (MSE: 0.2000)" data-listing-filename-sort="2023-04-15-stgcn-ver2-수정본.ipynb">
+<td class="listing-date">
+Apr 15, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-15-stgcn-ver2-수정본.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 수정본 (MSE: 0.2000)</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="52" data-categories="Research,Data,SOLAR" data-listing-date-sort="1681398000000" data-listing-file-modified-sort="1684137218204" data-listing-reading-time-sort="0.305" data-listing-title-sort="**[SOLAR]** Crate Dataset (data2: 22/06~22/09/15) 재수정" data-listing-filename-sort="2023-04-14-데이터수정2.ipynb">
+<td class="listing-date">
+Apr 14, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-14-데이터수정2.html" class="title"><strong>[SOLAR]</strong> Crate Dataset (data2: 22/06~22/09/15) 재수정</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="53" data-categories="Research,Data,SOLAR" data-listing-date-sort="1681225200000" data-listing-file-modified-sort="1684137218168" data-listing-reading-time-sort="0.205" data-listing-title-sort="**[SOLAR]** Crate Dataset (22/06~22/09/15)" data-listing-filename-sort="2023-04-12-데이터수정.ipynb">
+<td class="listing-date">
+Apr 12, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-12-데이터수정.html" class="title"><strong>[SOLAR]</strong> Crate Dataset (22/06~22/09/15)</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="54" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1681225200000" data-listing-file-modified-sort="1684137218156" data-listing-reading-time-sort="0.11" data-listing-title-sort="**[SOLAR]** STGCN Ver1 (MSE: 0.1899)" data-listing-filename-sort="2023-04-12-stgcn-ver1.ipynb">
+<td class="listing-date">
+Apr 12, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-12-stgcn-ver1.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 (MSE: 0.1899)</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="55" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1681225200000" data-listing-file-modified-sort="1684137218152" data-listing-reading-time-sort="0.15" data-listing-title-sort="**[SOLAR]** STGCN Ver1 90% (MSE: 0.1206)" data-listing-filename-sort="2023-04-12-stgcn-ver1-train90.ipynb">
+<td class="listing-date">
+Apr 12, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-12-stgcn-ver1-train90.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 90% (MSE: 0.1206)</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="56" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1681225200000" data-listing-file-modified-sort="1684137218156" data-listing-reading-time-sort="0.145" data-listing-title-sort="**[SOLAR]** STGCN Ver2 (MSE: 0.2019)" data-listing-filename-sort="2023-04-12-stgcn-ver2-train90.ipynb">
+<td class="listing-date">
+Apr 12, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-12-stgcn-ver2-train90.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 (MSE: 0.2019)</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="57" data-categories="Research,STGCN,SOLAR" data-listing-date-sort="1681225200000" data-listing-file-modified-sort="1684137218156" data-listing-reading-time-sort="0.285" data-listing-title-sort="**[SOLAR]** STGCN Ver2 90% (MSE: 0.1635)" data-listing-filename-sort="2023-04-12-stgcn-ver2.ipynb">
+<td class="listing-date">
+Apr 12, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-12-stgcn-ver2.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 90% (MSE: 0.1635)</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="58" data-categories="Tip" data-listing-date-sort="1681225200000" data-listing-file-modified-sort="1684137219564" data-listing-reading-time-sort="0.02" data-listing-title-sort="R/Python jupyter" data-listing-filename-sort="2023-04-23-r-python-same-jupyter.ipynb">
+<td class="listing-date">
+Apr 12, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/etc/2023-04-23-r-python-same-jupyter.html" class="title">R/Python jupyter</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="59" data-categories="Windmill" data-listing-date-sort="1681225200000" data-listing-file-modified-sort="1684137219464" data-listing-reading-time-sort="0.185" data-listing-title-sort="WindmillOutput (Small)" data-listing-filename-sort="2023-04-13-windmill-스몰버전.ipynb">
+<td class="listing-date">
+Apr 12, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/2023-04-13-windmill-스몰버전.html" class="title">WindmillOutput (Small)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="60" data-categories="ARIMA,SOLAR" data-listing-date-sort="1681138800000" data-listing-file-modified-sort="1684137219464" data-listing-reading-time-sort="0.29" data-listing-title-sort="**[SOLAR]** SARIMA (MSE: 0.478)" data-listing-filename-sort="2023-04-11-arima-hour-data-fill.ipynb">
+<td class="listing-date">
+Apr 11, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/2023-04-11-arima-hour-data-fill.html" class="title"><strong>[SOLAR]</strong> SARIMA (MSE: 0.478)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="61" data-categories="AP2023" data-listing-date-sort="1681138800000" data-listing-file-modified-sort="1684137217744" data-listing-reading-time-sort="10.705" data-listing-title-sort="6wk: 측도론 (2)" data-listing-filename-sort="2023-04-11-6wk.ipynb">
+<td class="listing-date">
+Apr 11, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-04-11-6wk.html" class="title">6wk: 측도론 (2)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="62" data-categories="Tip" data-listing-date-sort="1681138800000" data-listing-file-modified-sort="1684137219556" data-listing-reading-time-sort="1.005" data-listing-title-sort="Github remote: error: this exceeds GitHub's file size limit of 100.00 MB" data-listing-filename-sort="2023-04-11-git-error.ipynb">
+<td class="listing-date">
+Apr 11, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/etc/2023-04-11-git-error.html" class="title">Github remote: error: this exceeds GitHub’s file size limit of 100.00 MB</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="63" data-categories="ST2023" data-listing-date-sort="1681138800000" data-listing-file-modified-sort="1684137217744" data-listing-reading-time-sort="0.56" data-listing-title-sort="TS HW4" data-listing-filename-sort="2023-04-11-ts-hw4.ipynb">
+<td class="listing-date">
+Apr 11, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-04-11-ts-hw4.html" class="title">TS HW4</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="64" data-categories="SOLAR,Model" data-listing-date-sort="1681052400000" data-listing-file-modified-sort="1684137218152" data-listing-reading-time-sort="0.015" data-listing-title-sort="**[SOLAR]** LSTM" data-listing-filename-sort="2023-04-10-lstm.ipynb">
+<td class="listing-date">
+Apr 10, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-10-lstm.html" class="title"><strong>[SOLAR]</strong> LSTM</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="65" data-categories="ARIMA,SOLAR" data-listing-date-sort="1681052400000" data-listing-file-modified-sort="1684137219456" data-listing-reading-time-sort="0.195" data-listing-title-sort="ARIMA (Day)" data-listing-filename-sort="2023-04-10-arima-ex-day.ipynb">
+<td class="listing-date">
+Apr 10, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/2023-04-10-arima-ex-day.html" class="title">ARIMA (Day)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="66" data-categories="SOLAR,Model" data-listing-date-sort="1681052400000" data-listing-file-modified-sort="1684137218148" data-listing-reading-time-sort="3.975" data-listing-title-sort="LSTM for Time Series Prediction (연습)" data-listing-filename-sort="2023-04-09-lstm-prac.ipynb">
+<td class="listing-date">
+Apr 10, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-09-lstm-prac.html" class="title">LSTM for Time Series Prediction (연습)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="67" data-categories="LSTM" data-listing-date-sort="1681052400000" data-listing-file-modified-sort="1684137219476" data-listing-reading-time-sort="0.165" data-listing-title-sort="스타벅스 주가예측" data-listing-filename-sort="python_7장.ipynb">
+<td class="listing-date">
+Apr 10, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/python_7장.html" class="title">스타벅스 주가예측</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="68" data-categories="LSTM" data-listing-date-sort="1681052400000" data-listing-file-modified-sort="1684137219456" data-listing-reading-time-sort="0.01" data-listing-title-sort="연습장" data-listing-filename-sort="2023-04-10-ex.ipynb">
+<td class="listing-date">
+Apr 10, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/2023-04-10-ex.html" class="title">연습장</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="69" data-categories="SOLAR,Model" data-listing-date-sort="1680966000000" data-listing-file-modified-sort="1684137218152" data-listing-reading-time-sort="0.02" data-listing-title-sort="**[SOLAR]** STGCN Ver1 lag1" data-listing-filename-sort="2023-04-09-soloar-stgcn-ver1-lag1.ipynb">
+<td class="listing-date">
+Apr 9, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-09-soloar-stgcn-ver1-lag1.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 lag1</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="70" data-categories="SOLAR,Model" data-listing-date-sort="1680966000000" data-listing-file-modified-sort="1684137218152" data-listing-reading-time-sort="0.035" data-listing-title-sort="**[SOLAR]** STGCN Ver2 lag1" data-listing-filename-sort="2023-04-09-solar-stgcn-ver2-lag1.ipynb">
+<td class="listing-date">
+Apr 9, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-09-solar-stgcn-ver2-lag1.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 lag1</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="71" data-categories="ARIMA,SOLAR" data-listing-date-sort="1680966000000" data-listing-file-modified-sort="1684137219456" data-listing-reading-time-sort="0.19" data-listing-title-sort="ARIMA (시간별 예측안됨, 에러)" data-listing-filename-sort="2023-04-10-arima-ex.ipynb">
+<td class="listing-date">
+Apr 9, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/2023-04-10-arima-ex.html" class="title">ARIMA (시간별 예측안됨, 에러)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="72" data-categories="FT" data-listing-date-sort="1680966000000" data-listing-file-modified-sort="1684137218148" data-listing-reading-time-sort="3.745" data-listing-title-sort="푸리에 변환" data-listing-filename-sort="2023-04-09-ft.ipynb">
+<td class="listing-date">
+Apr 9, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-09-ft.html" class="title">푸리에 변환</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="73" data-categories="SOLAR" data-listing-date-sort="1680879600000" data-listing-file-modified-sort="1684137218144" data-listing-reading-time-sort="0.06" data-listing-title-sort="**[SOLAR]** STGCN Ver2 lag4" data-listing-filename-sort="2023-04-08-solar-stgcn-ver2-lag4.ipynb">
+<td class="listing-date">
+Apr 8, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-08-solar-stgcn-ver2-lag4.html" class="title"><strong>[SOLAR]</strong> STGCN Ver2 lag4</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="74" data-categories="SOLAR,EPT,Data" data-listing-date-sort="1680793200000" data-listing-file-modified-sort="1684137218136" data-listing-reading-time-sort="0.045" data-listing-title-sort="**[SOLAR]** Dataset for STGCN Ver2" data-listing-filename-sort="2023-04-07-stcgn-data-ver2.ipynb">
+<td class="listing-date">
+Apr 7, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-07-stcgn-data-ver2.html" class="title"><strong>[SOLAR]</strong> Dataset for STGCN Ver2</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="75" data-categories="SOLAR,Data" data-listing-date-sort="1680793200000" data-listing-file-modified-sort="1684137218136" data-listing-reading-time-sort="0.015" data-listing-title-sort="**[SOLAR]** STGCN Ver1 lag4" data-listing-filename-sort="2023-04-07-soloar-stgcn-ver1-lag4.ipynb">
+<td class="listing-date">
+Apr 7, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-07-soloar-stgcn-ver1-lag4.html" class="title"><strong>[SOLAR]</strong> STGCN Ver1 lag4</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="76" data-categories="SOLAR,Data" data-listing-date-sort="1680706800000" data-listing-file-modified-sort="1684137218116" data-listing-reading-time-sort="0.01" data-listing-title-sort="**[SOLAR]** Correlation coefficient by region" data-listing-filename-sort="2023-04-06-corr.ipynb">
+<td class="listing-date">
+Apr 6, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-06-corr.html" class="title"><strong>[SOLAR]</strong> Correlation coefficient by region</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="77" data-categories="SOLAR,Data" data-listing-date-sort="1680706800000" data-listing-file-modified-sort="1684137218124" data-listing-reading-time-sort="0.56" data-listing-title-sort="**[SOLAR]** Dataset for STGCN Ver1" data-listing-filename-sort="2023-04-06-stgcn-data-ver1.ipynb">
+<td class="listing-date">
+Apr 6, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-06-stgcn-data-ver1.html" class="title"><strong>[SOLAR]</strong> Dataset for STGCN Ver1</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="78" data-categories="SOLAR,Data" data-listing-date-sort="1680706800000" data-listing-file-modified-sort="1684137218124" data-listing-reading-time-sort="0.08" data-listing-title-sort="**[SOLAR]** EPT by region" data-listing-filename-sort="2023-04-06-ept-by-region.ipynb">
+<td class="listing-date">
+Apr 6, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-06-ept-by-region.html" class="title"><strong>[SOLAR]</strong> EPT by region</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="79" data-categories="STGCN,WindmillOutput" data-listing-date-sort="1680706800000" data-listing-file-modified-sort="1684137218124" data-listing-reading-time-sort="2.295" data-listing-title-sort="**[SOLAR]** WindmillOutputLargeDatasetLoader" data-listing-filename-sort="2023-04-06-solar-class.ipynb">
+<td class="listing-date">
+Apr 6, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-06-solar-class.html" class="title"><strong>[SOLAR]</strong> WindmillOutputLargeDatasetLoader</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="80" data-categories="SOLAR,Data" data-listing-date-sort="1680706800000" data-listing-file-modified-sort="1684137218144" data-listing-reading-time-sort="0.11" data-listing-title-sort="**[SOLAR]** yU" data-listing-filename-sort="2023-04-07-yu.ipynb">
+<td class="listing-date">
+Apr 6, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-07-yu.html" class="title"><strong>[SOLAR]</strong> yU</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="81" data-categories="STGCN,Chikenpox" data-listing-date-sort="1680706800000" data-listing-file-modified-sort="1684137218132" data-listing-reading-time-sort="1.845" data-listing-title-sort="ChikenpoxDataset" data-listing-filename-sort="2023-04-06-stgcn.ipynb">
+<td class="listing-date">
+Apr 6, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-06-stgcn.html" class="title">ChikenpoxDataset</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="82" data-categories="STGCN,WindmillOutput" data-listing-date-sort="1680706800000" data-listing-file-modified-sort="1684137218132" data-listing-reading-time-sort="0.625" data-listing-title-sort="WindmillOutputLargeDataset 분석 (실패)" data-listing-filename-sort="2023-04-06-windmill.ipynb">
+<td class="listing-date">
+Apr 6, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-06-windmill.html" class="title">WindmillOutputLargeDataset 분석 (실패)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="83" data-categories="R" data-listing-date-sort="1680706800000" data-listing-file-modified-sort="1684137217696" data-listing-reading-time-sort="0.24" data-listing-title-sort="[R] pivot_wider Error" data-listing-filename-sort="2023-04-06-pivot-wider-error.ipynb">
+<td class="listing-date">
+Apr 6, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/DataHandling/2023-04-06-pivot-wider-error.html" class="title">[R] pivot_wider Error</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="84" data-categories="R" data-listing-date-sort="1680706800000" data-listing-file-modified-sort="1684137217692" data-listing-reading-time-sort="0.195" data-listing-title-sort="[R] 문자열을 변수명으로 &amp; assign" data-listing-filename-sort="2023-04-06-assign-r.ipynb">
+<td class="listing-date">
+Apr 6, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/DataHandling/2023-04-06-assign-r.html" class="title">[R] 문자열을 변수명으로 &amp; assign</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="85" data-categories="Linear Regression,House Price" data-listing-date-sort="1680620400000" data-listing-file-modified-sort="1684137217740" data-listing-reading-time-sort="0.755" data-listing-title-sort="House Price feedback" data-listing-filename-sort="2023-04-05-lr-hw1-feedback.ipynb">
+<td class="listing-date">
+Apr 5, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-04-05-lr-hw1-feedback.html" class="title">House Price feedback</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="86" data-categories="ppt" data-listing-date-sort="1680620400000" data-listing-file-modified-sort="1684137219556" data-listing-reading-time-sort="0.005" data-listing-title-sort="ppt 폰트" data-listing-filename-sort="2023-04-05-ppt.ipynb">
+<td class="listing-date">
+Apr 5, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/etc/2023-04-05-ppt.html" class="title">ppt 폰트</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="87" data-listing-date-sort="1680534000000" data-listing-file-modified-sort="1684137218104" data-listing-reading-time-sort="0.09" data-listing-title-sort="**[SOLAR]** EPT" data-listing-filename-sort="2023-04-04-EPT.ipynb">
+<td class="listing-date">
+Apr 4, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-04-EPT.html" class="title"><strong>[SOLAR]</strong> EPT</a>
+</td>
+<td class="listing-author">
+신록예찬
+</td>
+</tr>
+<tr data-index="88" data-categories="AP2023" data-listing-date-sort="1680534000000" data-listing-file-modified-sort="1684137217740" data-listing-reading-time-sort="14.415" data-listing-title-sort="5wk: 측도론 (1)" data-listing-filename-sort="2023-04-05-5wk.ipynb">
+<td class="listing-date">
+Apr 4, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-04-05-5wk.html" class="title">5wk: 측도론 (1)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="89" data-categories="Linear Regression" data-listing-date-sort="1680534000000" data-listing-file-modified-sort="1684137217740" data-listing-reading-time-sort="3.385" data-listing-title-sort="House Price" data-listing-filename-sort="2023-04-04-lr-hw1-project.ipynb">
+<td class="listing-date">
+Apr 4, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-04-04-lr-hw1-project.html" class="title">House Price</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="90" data-categories="SOLAR,Data" data-listing-date-sort="1680447600000" data-listing-file-modified-sort="1684137218104" data-listing-reading-time-sort="0.125" data-listing-title-sort="일사량자료정리" data-listing-filename-sort="2023-04-03-일사량.ipynb">
+<td class="listing-date">
+Apr 3, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-04-03-일사량.html" class="title">일사량자료정리</a>
+</td>
+<td class="listing-author">
+임지윤, 신록예찬
+</td>
+</tr>
+<tr data-index="91" data-categories="SOLAR,Data" data-listing-date-sort="1680447600000" data-listing-file-modified-sort="1684137219456" data-listing-reading-time-sort="0.125" data-listing-title-sort="일사량자료정리(수정 for ARIMA)" data-listing-filename-sort="2023-04-03-일사량.ipynb">
+<td class="listing-date">
+Apr 3, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/2023-04-03-일사량.html" class="title">일사량자료정리(수정 for ARIMA)</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="92" data-categories="data handling" data-listing-date-sort="1680361200000" data-listing-file-modified-sort="1684137217688" data-listing-reading-time-sort="0.445" data-listing-title-sort="[Python] 새로운 열 할당(.assign) 및 특정 열 선택" data-listing-filename-sort="2023-04-02-assign.ipynb">
+<td class="listing-date">
+Apr 2, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/DataHandling/2023-04-02-assign.html" class="title">[Python] 새로운 열 할당(.assign) 및 특정 열 선택</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="93" data-categories="Tip" data-listing-date-sort="1680361200000" data-listing-file-modified-sort="1684137219556" data-listing-reading-time-sort="2.315" data-listing-title-sort="초록 작성법" data-listing-filename-sort="2023-04-02-abstract.ipynb">
+<td class="listing-date">
+Apr 2, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/etc/2023-04-02-abstract.html" class="title">초록 작성법</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="94" data-categories="data handling" data-listing-date-sort="1680274800000" data-listing-file-modified-sort="1684137217688" data-listing-reading-time-sort="0.045" data-listing-title-sort="[Python] 중첩인덱스 깨는 법" data-listing-filename-sort="2023-04-02-hanling-index.ipynb">
+<td class="listing-date">
+Apr 1, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/DataHandling/2023-04-02-hanling-index.html" class="title">[Python] 중첩인덱스 깨는 법</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="95" data-categories="Tip" data-listing-date-sort="1680274800000" data-listing-file-modified-sort="1684137219556" data-listing-reading-time-sort="0.515" data-listing-title-sort="연구참여 확약서" data-listing-filename-sort="2023-04-01-연구생신규등록.ipynb">
+<td class="listing-date">
+Apr 1, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/etc/2023-04-01-연구생신규등록.html" class="title">연구참여 확약서</a>
+</td>
+<td class="listing-author">
+JiyunLim
+</td>
+</tr>
+<tr data-index="96" data-categories="Research" data-listing-date-sort="1680102000000" data-listing-file-modified-sort="1684137218104" data-listing-reading-time-sort="1.11" data-listing-title-sort="[R]Correlation coefficient by region" data-listing-filename-sort="2023-03-30-correlation.qmd">
+<td class="listing-date">
+Mar 30, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-03-30-correlation.html" class="title">[R]Correlation coefficient by region</a>
+</td>
+<td class="listing-author">
+jiyun Lim
+</td>
+</tr>
+<tr data-index="97" data-categories="Research" data-listing-date-sort="1680102000000" data-listing-file-modified-sort="1684137218104" data-listing-reading-time-sort="0.105" data-listing-title-sort="[R]데이터 재구조화" data-listing-filename-sort="2023-03-30-restructure-data.qmd">
+<td class="listing-date">
+Mar 30, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-03-30-restructure-data.html" class="title">[R]데이터 재구조화</a>
+</td>
+<td class="listing-author">
+jiyun Lim
+</td>
+</tr>
+<tr data-index="98" data-categories="Data" data-listing-date-sort="1680015600000" data-listing-file-modified-sort="1684137218104" data-listing-reading-time-sort="1.435" data-listing-title-sort="Data preprocessing" data-listing-filename-sort="2023-03-29-data0.ipynb">
+<td class="listing-date">
+Mar 29, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/SOLAR/2023-03-29-data0.html" class="title">Data preprocessing</a>
+</td>
+<td class="listing-author">
+jiyun Lim
+</td>
+</tr>
+<tr data-index="99" data-categories="seminar" data-listing-date-sort="1679324400000" data-listing-file-modified-sort="1684137219412" data-listing-reading-time-sort="0.155" data-listing-title-sort="Few-shot learning using GPT3" data-listing-filename-sort="2023-03-21-gpt3-nsmc.ipynb">
+<td class="listing-date">
+Mar 21, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Seminar/2023-03-21-gpt3-nsmc.html" class="title">Few-shot learning using GPT3</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="100" data-categories="BASIC" data-listing-date-sort="1679324400000" data-listing-file-modified-sort="1684137219556" data-listing-reading-time-sort="0.64" data-listing-title-sort="Libraries for DA" data-listing-filename-sort="2023-03-21-lib.ipynb">
+<td class="listing-date">
+Mar 21, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/etc/2023-03-21-lib.html" class="title">Libraries for DA</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="101" data-categories="Appendix,Tip" data-listing-date-sort="1679324400000" data-listing-file-modified-sort="1684137219556" data-listing-reading-time-sort="0.045" data-listing-title-sort="Scorecard" data-listing-filename-sort="2023-03-21-scorecard.ipynb">
+<td class="listing-date">
+Mar 21, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/etc/2023-03-21-scorecard.html" class="title">Scorecard</a>
+</td>
+<td class="listing-author">
+jiyun Lim
+</td>
+</tr>
+<tr data-index="102" data-categories="Appendix" data-listing-date-sort="1679324400000" data-listing-file-modified-sort="1684137219556" data-listing-reading-time-sort="1.225" data-listing-title-sort="data visualization" data-listing-filename-sort="2023-03-21-dv.ipynb">
+<td class="listing-date">
+Mar 21, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/etc/2023-03-21-dv.html" class="title">data visualization</a>
+</td>
+<td class="listing-author">
+jiyun Lim
+</td>
+</tr>
+<tr data-index="103" data-categories="Appendix,Tip" data-listing-date-sort="1679324400000" data-listing-file-modified-sort="1684137219556" data-listing-reading-time-sort="1.155" data-listing-title-sort="downcasting" data-listing-filename-sort="2023-03-21-downcasting.ipynb">
+<td class="listing-date">
+Mar 21, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/etc/2023-03-21-downcasting.html" class="title">downcasting</a>
+</td>
+<td class="listing-author">
+jiyun Lim
+</td>
+</tr>
+
+<tr data-index="104" data-categories="Appendix,Tip" data-listing-date-sort="1679324400000" data-listing-file-modified-sort="1684137219556" data-listing-reading-time-sort="0.45" data-listing-title-sort="resumetable" data-listing-filename-sort="2023-03-21-resumetable.ipynb">
+<td class="listing-date">
+Mar 21, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/etc/2023-03-21-resumetable.html" class="title">resumetable</a>
+</td>
+<td class="listing-author">
+jiyun Lim
+</td>
+</tr>
+<tr data-index="105" data-categories="news" data-listing-date-sort="1679065200000" data-listing-file-modified-sort="1684137219564" data-listing-reading-time-sort="0.185" data-listing-title-sort="Welcome To My Blog" data-listing-filename-sort="index.qmd">
+<td class="listing-date">
+Mar 18, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/welcome/index.html" class="title">Welcome To My Blog</a>
+</td>
+<td class="listing-author">
+Tristan O’Malley
+</td>
+</tr>
+<tr data-index="106" data-categories="To read" data-listing-date-sort="1678719600000" data-listing-file-modified-sort="1684137217648" data-listing-reading-time-sort="0.32" data-listing-title-sort="Lists to read" data-listing-filename-sort="2023-03-23-read-list.ipynb">
+<td class="listing-date">
+Mar 14, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/2023-03-23-read-list.html" class="title">Lists to read</a>
+</td>
+<td class="listing-author">
+jiyun Lim
+</td>
+</tr>
+<tr data-index="107" data-categories="Applied LR" data-listing-date-sort="1678633200000" data-listing-file-modified-sort="1684137217732" data-listing-reading-time-sort="4.535" data-listing-title-sort="HW1" data-listing-filename-sort="2023-03-30-lr-hw1.ipynb">
+<td class="listing-date">
+Mar 13, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/HousePrice/2023-03-30-lr-hw1.html" class="title">HW1</a>
+</td>
+<td class="listing-author">
+jiyun Lim
+</td>
+</tr>
+<tr data-index="108" data-categories="Research,Study,PAPER REVIEW" data-listing-date-sort="1677942000000" data-listing-file-modified-sort="1684137219456" data-listing-reading-time-sort="8.735" data-listing-title-sort="**[PAPER]** A Comprehensive Survey on Geometric Deep Learning (+++)" data-listing-filename-sort="2023-03-05-기하학적딥러닝-survey-review.ipynb">
+<td class="listing-date">
+Mar 5, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/2023-03-05-기하학적딥러닝-survey-review.html" class="title"><strong>[PAPER]</strong> A Comprehensive Survey on Geometric Deep Learning (+++)</a>
+</td>
+<td class="listing-author">
+jiyunLim
+</td>
+</tr>
+<tr data-index="109" data-categories="Tip" data-listing-date-sort="1677164400000" data-listing-file-modified-sort="1684137219556" data-listing-reading-time-sort="0.37" data-listing-title-sort="Julia 설치 및 실행" data-listing-filename-sort="2023-02-24-tips.ipynb">
+<td class="listing-date">
+Feb 24, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/etc/2023-02-24-tips.html" class="title">Julia 설치 및 실행</a>
+</td>
+<td class="listing-author">
+jiyun Lim
+</td>
+</tr>
+<tr data-index="110" data-categories="GCN,Study" data-listing-date-sort="1676905200000" data-listing-file-modified-sort="1684137219456" data-listing-reading-time-sort="7.485" data-listing-title-sort="Graph Convolutional Network (이해용)" data-listing-filename-sort="2023-02-21-gcn-이해용정리.ipynb">
+<td class="listing-date">
+Feb 21, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/2023-02-21-gcn-이해용정리.html" class="title">Graph Convolutional Network (이해용)</a>
+</td>
+<td class="listing-author">
+jiyun Lim
+</td>
+</tr>
+<tr data-index="111" data-categories="STGCN,BASIC" data-listing-date-sort="1676818800000" data-listing-file-modified-sort="1684137219448" data-listing-reading-time-sort="2.94" data-listing-title-sort="튜토리얼 따라가기1" data-listing-filename-sort="2023-02-21-STGCN-tutorial1.ipynb">
+<td class="listing-date">
+Feb 20, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/Study/2023-02-21-STGCN-tutorial1.html" class="title">튜토리얼 따라가기1</a>
+</td>
+<td class="listing-author">
+jiyun Lim
+</td>
+</tr>
+</tbody>
+
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
+</div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

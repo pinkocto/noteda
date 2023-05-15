@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="jiyunLim">
+<meta name="dcterms.date" content="2023-04-12">
+
+<title>noteda - [SOLAR] STGCN Ver2 (MSE: 0.2019)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">noteda</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/pinkocto/noteda"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><strong>[SOLAR]</strong> STGCN Ver2 (MSE: 0.2019)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block"><strong>[SOLAR]</strong> STGCN Ver2 (MSE: 0.2019)</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Research</div>
+                <div class="quarto-category">STGCN</div>
+                <div class="quarto-category">SOLAR</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>jiyunLim </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 12, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/2023-03-23-read-list.html" class="sidebar-item-text sidebar-link">Lists to read</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/post-with-code/index.html" class="sidebar-item-text sidebar-link">Post With Code</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/welcome/index.html" class="sidebar-item-text sidebar-link">Welcome To My Blog</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">DataHandling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-assign.html" class="sidebar-item-text sidebar-link">[Python] 새로운 열 할당(.assign) 및 특정 열 선택</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-hanling-index.html" class="sidebar-item-text sidebar-link">[Python] 중첩인덱스 깨는 법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-pivot-wider-error.html" class="sidebar-item-text sidebar-link">[R] pivot_wider Error</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-assign-r.html" class="sidebar-item-text sidebar-link">[R] 문자열을 변수명으로 &amp; assign</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Etc</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-05-08-에러모음.html" class="sidebar-item-text sidebar-link"><strong>에러 모음</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-dv.html" class="sidebar-item-text sidebar-link">data visualization</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-downcasting.html" class="sidebar-item-text sidebar-link">downcasting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-11-git-error.html" class="sidebar-item-text sidebar-link">Github remote: error: this exceeds GitHub’s file size limit of 100.00 MB</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-02-24-tips.html" class="sidebar-item-text sidebar-link">Julia 설치 및 실행</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-lib.html" class="sidebar-item-text sidebar-link">Libraries for DA</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-05-ppt.html" class="sidebar-item-text sidebar-link">ppt 폰트</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-23-r-python-same-jupyter.html" class="sidebar-item-text sidebar-link">R/Python jupyter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-resumetable.html" class="sidebar-item-text sidebar-link">resumetable</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-scorecard.html" class="sidebar-item-text sidebar-link">Scorecard</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-01-연구생신규등록.html" class="sidebar-item-text sidebar-link">연구참여 확약서</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-02-abstract.html" class="sidebar-item-text sidebar-link">초록 작성법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-20-학회.html" class="sidebar-item-text sidebar-link">학회</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">HousePrice</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-26-lr-회귀진단.html" class="sidebar-item-text sidebar-link">04. 가변수(Indicator Variable) 실습</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-5wk.html" class="sidebar-item-text sidebar-link">5wk: 측도론 (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-11-6wk.html" class="sidebar-item-text sidebar-link">6wk: 측도론 (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-18-7wk.html" class="sidebar-item-text sidebar-link">7wk: 측도론 (3)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-25-8wk.html" class="sidebar-item-text sidebar-link">8wk: 측도론 (4)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-20-ts-이산형확률분포.html" class="sidebar-item-text sidebar-link">Discrete Probability Distribution (추가중)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-04-lr-hw1-project.html" class="sidebar-item-text sidebar-link">House Price</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-lr-hw1-feedback.html" class="sidebar-item-text sidebar-link">House Price feedback</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-03-30-lr-hw1.html" class="sidebar-item-text sidebar-link">HW1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-18-mlr-보스턴집값.html" class="sidebar-item-text sidebar-link">MLR prac1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-19-lr-hw2.html" class="sidebar-item-text sidebar-link">MLR_hw2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-11-ts-hw4.html" class="sidebar-item-text sidebar-link">TS HW4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-19-ts-hw5.html" class="sidebar-item-text sidebar-link">TS HW5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-05-02-TS-hw6.html" class="sidebar-item-text sidebar-link">TS HW6</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">Seminar</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Seminar/2023-03-21-gpt3-nsmc.html" class="sidebar-item-text sidebar-link">Few-shot learning using GPT3</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">SOLAR</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-correlation.html" class="sidebar-item-text sidebar-link">[R]Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-restructure-data.html" class="sidebar-item-text sidebar-link">[R]데이터 재구조화</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-07-정리.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR] 0508 정리중</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-06-정리중.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-24-정규화제거-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (-N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (+N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-corr.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-데이터수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (22/06~22/09/15)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-14-데이터수정2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (data2: 22/06~22/09/15) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-데이터수정3.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Create Dataset (data3: 0815/0910) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-stgcn-data-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-stcgn-data-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-04-EPT.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-ept-by-region.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-10-lstm.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> LSTM</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver1--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (+N +S) (MSE: 0.1864) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-스케일링-stgcn-ver1-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-25-s-stgcn-ver1-100에폭--이게진짜.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-28-s-stgcn-ver1-100에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-26-s-stgcn-ver1-150에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 150epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-27-s-stgcn-ver1-50에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 50epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-03-s-stgcn-ver1-시뮬레이션-10iter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-29-s-stgcn-ver1-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-02-s-stgcn-ver1-정규화-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver1-.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N) (MSE: 0.1705)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (Full: 08/15~09/10 data3) (MSE: 0.1523)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (MSE: 0.1899)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver1-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 90% (MSE: 0.1206)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-soloar-stgcn-ver1-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-soloar-stgcn-ver1-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-15-stgcn-ver1-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 수정본 (MSE: 0.1674)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver2--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (+N +S) (MSE: 0.1801) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-스케일링-stgcn-ver2-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-25-s-stgcn-ver2-100에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 100 epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-26-s-stgcn-ver2-150에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 150 epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-27-s-stgcn-ver2-50에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 50 epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-29-s-stgcn-ver2-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-03-s-stgcn-ver2-시뮬레이션-10iter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-02-s-stgcn-ver2-정규화-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N) (MSE: 0.1834)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (Full: 08/15~09/10 data3) (MSE: 0.1927)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver2-train90.html" class="sidebar-item-text sidebar-link active"><strong>[SOLAR]</strong> STGCN Ver2 (MSE: 0.2019)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 90% (MSE: 0.1635)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-solar-stgcn-ver2-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-08-solar-stgcn-ver2-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-15-stgcn-ver2-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 수정본 (MSE: 0.2000)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-01-todolist.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> To do list</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-solar-class.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> WindmillOutputLargeDatasetLoader</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-yu.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> yU</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-19-데이터탐색용.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 데이터 탐색용</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-03-시뮬결과.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 시뮬레이션 결과정리 1-iter (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-시각화코드수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 연습용 (시각화 코드 수정)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-01-차원조사.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 차원조사</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2099.html" class="sidebar-item-text sidebar-link">2099</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-stgcn.html" class="sidebar-item-text sidebar-link">ChikenpoxDataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-29-data0.html" class="sidebar-item-text sidebar-link">Data preprocessing</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-lstm-prac.html" class="sidebar-item-text sidebar-link">LSTM for Time Series Prediction (연습)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-windmill.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDataset 분석 (실패)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-ft.html" class="sidebar-item-text sidebar-link">푸리에 변환</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">Study</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-24-베르누이.html" class="sidebar-item-text sidebar-link">[SC2022] 포아송분포, 지수분포</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-03-05-기하학적딥러닝-survey-review.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> A Comprehensive Survey on Geometric Deep Learning (+++)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-06-ept-논문리뷰.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> Ensemble patch transformation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-07-stgcn논문리뷰.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> Spatio-Temporal Graph Convolutional Networks (+++)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-11-arima-hour-data-fill.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SARIMA (MSE: 0.478)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex-day.html" class="sidebar-item-text sidebar-link">ARIMA (Day)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex.html" class="sidebar-item-text sidebar-link">ARIMA (시간별 예측안됨, 에러)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-08-gcrn리뷰.html" class="sidebar-item-text sidebar-link">GCRN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-21-gcn-이해용정리.html" class="sidebar-item-text sidebar-link">Graph Convolutional Network (이해용)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/python-midterm.html" class="sidebar-item-text sidebar-link">Python Midterm</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-13-windmill-스몰버전.html" class="sidebar-item-text sidebar-link">WindmillOutput (Small)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/python_7장.html" class="sidebar-item-text sidebar-link">스타벅스 주가예측</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-ex.html" class="sidebar-item-text sidebar-link">연습장</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리(수정 for ARIMA)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-21-STGCN-tutorial1.html" class="sidebar-item-text sidebar-link">튜토리얼 따라가기1</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">import</a></li>
+  <li><a href="#learn" id="toc-learn" class="nav-link" data-scroll-target="#learn">Learn</a></li>
+  <li><a href="#모델평가" id="toc-모델평가" class="nav-link" data-scroll-target="#모델평가">모델평가</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="import" class="level2">
+<h2 class="anchored" data-anchor-id="import">import</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> json</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> urllib</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 일반적인 모듈 </span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="im">import</span> networkx <span class="im">as</span> nx </span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm </span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># 파이토치 관련 </span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="im">import</span> torch</span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># PyG 관련 </span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="im">from</span> torch_geometric.data <span class="im">import</span> Data <span class="co">## Data: 그래프자료형을 만드는 클래스</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co"># STGCN 관련 </span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="im">import</span> torch_geometric_temporal</span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="im">from</span> torch_geometric_temporal.nn.recurrent <span class="im">import</span> GConvGRU</span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">class</span> RecurrentGCN(torch.nn.Module):</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, node_features, filters):</span>
+<span id="cb3-3"><a href="#cb3-3"></a>        <span class="bu">super</span>(RecurrentGCN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb3-4"><a href="#cb3-4"></a>        <span class="va">self</span>.recurrent <span class="op">=</span> GConvGRU(node_features, filters, <span class="dv">2</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="va">self</span>.linear <span class="op">=</span> torch.nn.Linear(filters, <span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, edge_index, edge_weight):</span>
+<span id="cb3-8"><a href="#cb3-8"></a>        h <span class="op">=</span> <span class="va">self</span>.recurrent(x, edge_index, edge_weight)</span>
+<span id="cb3-9"><a href="#cb3-9"></a>        h <span class="op">=</span> F.relu(h)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>        h <span class="op">=</span> <span class="va">self</span>.linear(h)</span>
+<span id="cb3-11"><a href="#cb3-11"></a>        <span class="cf">return</span> h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> mysolar <span class="im">import</span> SolarEPTDatasetLoader</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>loader <span class="op">=</span> SolarEPTDatasetLoader()</span>
+<span id="cb5-2"><a href="#cb5-2"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="bu">print</span>(np.array(train_dataset.targets).shape)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="bu">print</span>(np.array(test_dataset.targets).shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(1645, 44)
+(705, 44)</code></pre>
+</div>
+</div>
+<ul>
+<li>train: 2022-06-01 00:00:00 ~ 2022-08-14 17:00:00</li>
+<li>test: 2022-08-14 18:00:00 ~ 2022-09-15 21:00:00</li>
+</ul>
+</section>
+<section id="learn" class="level2">
+<h2 class="anchored" data-anchor-id="learn">Learn</h2>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">4</span>, filters<span class="op">=</span><span class="dv">32</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a>model.train()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>RecurrentGCN(
+  (recurrent): GConvGRU(
+    (conv_x_z): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_z): ChebConv(32, 32, K=2, normalization=sym)
+    (conv_x_r): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_r): ChebConv(32, 32, K=2, normalization=sym)
+    (conv_x_h): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_h): ChebConv(32, 32, K=2, normalization=sym)
+  )
+  (linear): Linear(in_features=32, out_features=1, bias=True)
+)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>start <span class="op">=</span> time.time()</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="cf">for</span> epoch <span class="kw">in</span> tqdm(<span class="bu">range</span>(<span class="dv">50</span>)):</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    <span class="cf">for</span> t, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb10-4"><a href="#cb10-4"></a>        yt_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb10-5"><a href="#cb10-5"></a>        cost <span class="op">=</span> torch.mean((yt_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb10-6"><a href="#cb10-6"></a>        cost.backward()</span>
+<span id="cb10-7"><a href="#cb10-7"></a>        optimizer.step()</span>
+<span id="cb10-8"><a href="#cb10-8"></a>        optimizer.zero_grad()</span>
+<span id="cb10-9"><a href="#cb10-9"></a>end <span class="op">=</span> time.time()</span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>end<span class="op">-</span>start<span class="sc">:.5f}</span><span class="ss"> sec"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 50/50 [04:28&lt;00:00,  5.37s/it]</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>268.36397 sec</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="bu">print</span>(<span class="fl">268.36397</span><span class="op">/</span><span class="dv">60</span>, <span class="st">'분'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4.472732833333334 분</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">import</span> pickle </span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'./model/stgcn2_lag4_new.pickle'</span>,<span class="st">'wb'</span>) <span class="im">as</span> fw:</span>
+<span id="cb16-3"><a href="#cb16-3"></a>    pickle.dump(model, fw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="im">import</span> pickle </span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'./model/stgcn2_lag4_new.pickle'</span>, <span class="st">'rb'</span>) <span class="im">as</span> f: </span>
+<span id="cb17-3"><a href="#cb17-3"></a>    model <span class="op">=</span> pickle.load(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>RecurrentGCN(
+  (recurrent): GConvGRU(
+    (conv_x_z): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_z): ChebConv(32, 32, K=2, normalization=sym)
+    (conv_x_r): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_r): ChebConv(32, 32, K=2, normalization=sym)
+    (conv_x_h): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_h): ChebConv(32, 32, K=2, normalization=sym)
+  )
+  (linear): Linear(in_features=32, out_features=1, bias=True)
+)</code></pre>
+</div>
+</div>
+</section>
+<section id="모델평가" class="level2">
+<h2 class="anchored" data-anchor-id="모델평가">모델평가</h2>
+<p><code>-</code> train</p>
+<ul>
+<li>STGCN Ver1 <span class="math inline">\(\to\)</span> <code>MSE</code>: 0.2102</li>
+</ul>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb20-2"><a href="#cb20-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb20-4"><a href="#cb20-4"></a>    y_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb20-5"><a href="#cb20-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb20-6"><a href="#cb20-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb20-7"><a href="#cb20-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.2181</code></pre>
+</div>
+</div>
+<p><code>-</code> test</p>
+<ul>
+<li>STGCN Ver1 <span class="math inline">\(\to\)</span> <code>MSE</code> : 0.1899</li>
+</ul>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb22-2"><a href="#cb22-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset):</span>
+<span id="cb22-4"><a href="#cb22-4"></a>    y_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb22-5"><a href="#cb22-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb22-6"><a href="#cb22-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb22-7"><a href="#cb22-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.2019</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
