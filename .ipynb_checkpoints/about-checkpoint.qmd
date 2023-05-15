@@ -15,3 +15,15 @@ This blog was created for my personal research, study.
 
 - <https://miruetoto.github.io/yechan3/>
 - <https://github.com/guebin>
+
+
+
+**2023-1**
+
+- [AP2023](https://guebin.github.io/AP2023/)
+
+
+**etc**
+
+- vertical bar: <https://tex.stackexchange.com/questions/40160/math-symbol-question-vertical-bar-for-evaluated-at>
+- <https://wandb.ai/authors/One-Shot-3D-Photography/reports/-Machine-Learning-With-Graphs---Vmlldzo0MTY1MzY>
