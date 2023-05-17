@@ -2685,21 +2685,42 @@
     "href": "posts/HousePrice/2023-05-17-ts-hw7.html",
     "title": "[TS] HW7",
     "section": "",
-    "text": "\\(Z\\sim N(0,1)\\) 이면 \\(Z^2\\sim \\chi_1^2\\)\n랜덤표본 \\(X_1, \\dots, X_n\\) 에 대하여 \\(Cov(\\bar{X}_n, X_k-\\bar{X}_n)=0\\)"
+    "text": "5월 22일 12까지 제출"
   },
   {
-    "objectID": "posts/HousePrice/2023-05-17-ts-hw7.html#q2.-gamalpha-beta-분포로부터-랜덤표본-x_1-dots-x_n-에-대하여-barx_n의-분포를-구하시오.",
-    "href": "posts/HousePrice/2023-05-17-ts-hw7.html#q2.-gamalpha-beta-분포로부터-랜덤표본-x_1-dots-x_n-에-대하여-barx_n의-분포를-구하시오.",
+    "objectID": "posts/HousePrice/2023-05-17-ts-hw7.html#q1.-다음을-증명하시오.",
+    "href": "posts/HousePrice/2023-05-17-ts-hw7.html#q1.-다음을-증명하시오.",
     "title": "[TS] HW7",
-    "section": "Q2. \\(GAM(\\alpha, \\beta)\\) 분포로부터 랜덤표본 \\(X_1, \\dots, X_n\\) 에 대하여 \\(\\bar{X}_n\\)의 분포를 구하시오.",
-    "text": "Q2. \\(GAM(\\alpha, \\beta)\\) 분포로부터 랜덤표본 \\(X_1, \\dots, X_n\\) 에 대하여 \\(\\bar{X}_n\\)의 분포를 구하시오."
+    "section": "Q1. 다음을 증명하시오.",
+    "text": "Q1. 다음을 증명하시오.\n\n\\(Z\\sim N(0,1)\\) 이면 \\(Z^2\\sim \\chi_1^2\\)\n랜덤표본 \\(X_1, \\dots, X_n\\) 에 대하여 \\(Cov(\\bar{X}_n, X_k-\\bar{X}_n)=0\\)"
   },
   {
-    "objectID": "posts/HousePrice/2023-05-17-ts-hw7.html#q3.-nmusigma2",
-    "href": "posts/HousePrice/2023-05-17-ts-hw7.html#q3.-nmusigma2",
+    "objectID": "posts/HousePrice/2023-05-17-ts-hw7.html#q2.",
+    "href": "posts/HousePrice/2023-05-17-ts-hw7.html#q2.",
     "title": "[TS] HW7",
-    "section": "Q3. \\(N(\\mu,\\sigma^2)\\)",
-    "text": "Q3. \\(N(\\mu,\\sigma^2)\\)"
+    "section": "Q2.",
+    "text": "Q2.\n\\(GAM(\\alpha, \\beta)\\) 분포로부터 랜덤표본 \\(X_1, \\dots, X_n\\) 에 대하여 \\(\\bar{X}_n\\)의 분포를 구하시오."
+  },
+  {
+    "objectID": "posts/HousePrice/2023-05-17-ts-hw7.html#q3.",
+    "href": "posts/HousePrice/2023-05-17-ts-hw7.html#q3.",
+    "title": "[TS] HW7",
+    "section": "Q3.",
+    "text": "Q3.\n\\(N(\\mu,\\sigma^2)\\) 분포로부터의 랜덤표본 Suppose that \\(X_1, \\dots, X_n\\) 에 대하여 \\(\\sum_{i=1}^n(X_i-\\bar{X}_n)^2/n\\)의 분산을 구하시오."
+  },
+  {
+    "objectID": "posts/HousePrice/2023-05-17-ts-hw7.html#q4.",
+    "href": "posts/HousePrice/2023-05-17-ts-hw7.html#q4.",
+    "title": "[TS] HW7",
+    "section": "Q4.",
+    "text": "Q4.\n\\(X_1, \\dots, X_{16}\\) 과 \\(Y_1, \\dots, Y_{25}\\)은 각각 \\(N(0,9)\\)과 \\(N(2,16)\\)로부터의 서로 독립인 랜덤표본이라고 할 때\n\n\\(\\bar{X}_{16} - \\bar{Y}_{25}\\)의 분포를 구하시오.\n\\(\\frac{24\\sum_{i=1}^{16}X_i^2}{9\\sum_{i=1}^{25}(Y_i-\\bar{Y})^2}\\)"
+  },
+  {
+    "objectID": "posts/HousePrice/2023-05-17-ts-hw7.html#q5.",
+    "href": "posts/HousePrice/2023-05-17-ts-hw7.html#q5.",
+    "title": "[TS] HW7",
+    "section": "Q5.",
+    "text": "Q5.\n\\(X_1,X_2,\\dots\\)은 평균이 \\(\\mu\\)이고 분산이 \\(\\sigma^2\\)인 동일한 분포를 따르고 독립이다.\n\\(\\sqrt{n} \\left(\\frac{1}{\\bar{X}_n} - \\frac{1}{\\mu} \\right) \\overset{d}{\\to}\\) ?"
   },
   {
     "objectID": "posts/Seminar/2023-03-21-gpt3-nsmc.html",
