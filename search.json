@@ -2688,11 +2688,11 @@
     "text": "5월 22일 12까지 제출"
   },
   {
-    "objectID": "posts/HousePrice/2023-05-17-ts-hw7.html#q1.-다음을-증명하시오.",
-    "href": "posts/HousePrice/2023-05-17-ts-hw7.html#q1.-다음을-증명하시오.",
+    "objectID": "posts/HousePrice/2023-05-17-ts-hw7.html#q1.",
+    "href": "posts/HousePrice/2023-05-17-ts-hw7.html#q1.",
     "title": "[TS] HW7",
-    "section": "Q1. 다음을 증명하시오.",
-    "text": "Q1. 다음을 증명하시오.\n\n\\(Z\\sim N(0,1)\\) 이면 \\(Z^2\\sim \\chi_1^2\\)\n랜덤표본 \\(X_1, \\dots, X_n\\) 에 대하여 \\(Cov(\\bar{X}_n, X_k-\\bar{X}_n)=0\\)"
+    "section": "Q1.",
+    "text": "Q1.\n다음을 증명하시오.\n\n(1) \\(Z\\sim N(0,1)\\) 이면 \\(Z^2\\sim \\chi_1^2\\)\n\n\n(2) 랜덤표본 \\(X_1, \\dots, X_n\\) 에 대하여 \\(Cov(\\bar{X}_n, X_k-\\bar{X}_n)=0\\)"
   },
   {
     "objectID": "posts/HousePrice/2023-05-17-ts-hw7.html#q2.",
@@ -2713,7 +2713,7 @@
     "href": "posts/HousePrice/2023-05-17-ts-hw7.html#q4.",
     "title": "[TS] HW7",
     "section": "Q4.",
-    "text": "Q4.\n\\(X_1, \\dots, X_{16}\\) 과 \\(Y_1, \\dots, Y_{25}\\)은 각각 \\(N(0,9)\\)과 \\(N(2,16)\\)로부터의 서로 독립인 랜덤표본이라고 할 때\n\n\\(\\bar{X}_{16} - \\bar{Y}_{25}\\)의 분포를 구하시오.\n\\(\\frac{24\\sum_{i=1}^{16}X_i^2}{9\\sum_{i=1}^{25}(Y_i-\\bar{Y})^2}\\)"
+    "text": "Q4.\n\\(X_1, \\dots, X_{16}\\) 과 \\(Y_1, \\dots, Y_{25}\\)은 각각 \\(N(0,9)\\)과 \\(N(2,16)\\)로부터의 서로 독립인 랜덤표본이라고 할 때\n\n(1) \\(\\bar{X}_{16} - \\bar{Y}_{25}\\)의 분포를 구하시오.\n\n\n(2) \\(\\frac{24\\sum_{i=1}^{16}X_i^2}{9\\sum_{i=1}^{25}(Y_i-\\bar{Y})^2}\\)"
   },
   {
     "objectID": "posts/HousePrice/2023-05-17-ts-hw7.html#q5.",
