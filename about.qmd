@@ -15,9 +15,14 @@ This blog was created for my personal research, study.
 
 - <https://miruetoto.github.io/yechan3/>
 - <https://github.com/guebin>
-- <https://wandb.ai/authors/One-Shot-3D-Photography/reports/-Machine-Learning-With-Graphs---Vmlldzo0MTY1MzY>
 
 
 **2023-1**
 
 - [AP2023](https://guebin.github.io/AP2023/)
+
+
+*Some link for study*
+
+- <https://wandb.ai/authors/One-Shot-3D-Photography/reports/-Machine-Learning-With-Graphs---Vmlldzo0MTY1MzY>
+- [R](https://bookdown.org/ndphillips/YaRrr/saving-plots-to-a-file-with-pdf-jpeg-and-png.html)

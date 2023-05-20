@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="JiyunLim">
+<meta name="dcterms.date" content="2023-04-08">
+
+<title>noteda - [SOLAR] STGCN Ver2 lag4</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">noteda</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/pinkocto/noteda"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><strong>[SOLAR]</strong> STGCN Ver2 lag4</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block"><strong>[SOLAR]</strong> STGCN Ver2 lag4</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">SOLAR</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>JiyunLim </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 8, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/2023-03-23-read-list.html" class="sidebar-item-text sidebar-link">Lists to read</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/post-with-code/index.html" class="sidebar-item-text sidebar-link">Post With Code</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/welcome/index.html" class="sidebar-item-text sidebar-link">Welcome To My Blog</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">DataHandling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-assign.html" class="sidebar-item-text sidebar-link">[Python] 새로운 열 할당(.assign) 및 특정 열 선택</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-hanling-index.html" class="sidebar-item-text sidebar-link">[Python] 중첩인덱스 깨는 법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-pivot-wider-error.html" class="sidebar-item-text sidebar-link">[R] pivot_wider Error</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-assign-r.html" class="sidebar-item-text sidebar-link">[R] 문자열을 변수명으로 &amp; assign</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Etc</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-05-08-에러모음.html" class="sidebar-item-text sidebar-link"><strong>에러 모음</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-dv.html" class="sidebar-item-text sidebar-link">data visualization</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-downcasting.html" class="sidebar-item-text sidebar-link">downcasting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-11-git-error.html" class="sidebar-item-text sidebar-link">Github remote: error: this exceeds GitHub’s file size limit of 100.00 MB</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-02-24-tips.html" class="sidebar-item-text sidebar-link">Julia 설치 및 실행</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-lib.html" class="sidebar-item-text sidebar-link">Libraries for DA</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-05-ppt.html" class="sidebar-item-text sidebar-link">ppt 폰트</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-23-r-python-same-jupyter.html" class="sidebar-item-text sidebar-link">R/Python jupyter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-resumetable.html" class="sidebar-item-text sidebar-link">resumetable</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-scorecard.html" class="sidebar-item-text sidebar-link">Scorecard</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-01-연구생신규등록.html" class="sidebar-item-text sidebar-link">연구참여 확약서</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-02-abstract.html" class="sidebar-item-text sidebar-link">초록 작성법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-20-학회.html" class="sidebar-item-text sidebar-link">학회</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">HousePrice</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-05-17-ts-hw7.html" class="sidebar-item-text sidebar-link"><strong>[TS]</strong> HW7</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-26-lr-회귀진단.html" class="sidebar-item-text sidebar-link">04. 가변수(Indicator Variable) 실습</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-5wk.html" class="sidebar-item-text sidebar-link">5wk: 측도론 (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-11-6wk.html" class="sidebar-item-text sidebar-link">6wk: 측도론 (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-18-7wk.html" class="sidebar-item-text sidebar-link">7wk: 측도론 (3)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-25-8wk.html" class="sidebar-item-text sidebar-link">8wk: 측도론 (4)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-20-ts-이산형확률분포.html" class="sidebar-item-text sidebar-link">Discrete Probability Distribution (추가중)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-04-lr-hw1-project.html" class="sidebar-item-text sidebar-link">House Price</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-lr-hw1-feedback.html" class="sidebar-item-text sidebar-link">House Price feedback</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-03-30-lr-hw1.html" class="sidebar-item-text sidebar-link">HW1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-18-mlr-보스턴집값.html" class="sidebar-item-text sidebar-link">MLR prac1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-19-lr-hw2.html" class="sidebar-item-text sidebar-link">MLR_hw2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-11-ts-hw4.html" class="sidebar-item-text sidebar-link">TS HW4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-19-ts-hw5.html" class="sidebar-item-text sidebar-link">TS HW5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-05-02-TS-hw6.html" class="sidebar-item-text sidebar-link">TS HW6</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">Seminar</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Seminar/2023-03-21-gpt3-nsmc.html" class="sidebar-item-text sidebar-link">Few-shot learning using GPT3</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">SOLAR</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-correlation.html" class="sidebar-item-text sidebar-link">[R]Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-restructure-data.html" class="sidebar-item-text sidebar-link">[R]데이터 재구조화</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-07-정리.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR] 0508 정리중</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-06-정리중.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-24-정규화제거-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (-N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (+N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-corr.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-데이터수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (22/06~22/09/15)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-14-데이터수정2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (data2: 22/06~22/09/15) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-데이터수정3.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Create Dataset (data3: 0815/0910) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-stgcn-data-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-stcgn-data-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-04-EPT.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-ept-by-region.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-18-ept-plot.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT plot</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/Untitled.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT plot</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-10-lstm.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> LSTM</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver1--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (+N +S) (MSE: 0.1864) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-스케일링-stgcn-ver1-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-25-s-stgcn-ver1-100에폭--이게진짜.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-28-s-stgcn-ver1-100에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-26-s-stgcn-ver1-150에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 150epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-27-s-stgcn-ver1-50에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 50epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-03-s-stgcn-ver1-시뮬레이션-10iter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-29-s-stgcn-ver1-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-02-s-stgcn-ver1-정규화-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver1-.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N) (MSE: 0.1705)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (Full: 08/15~09/10 data3) (MSE: 0.1523)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (MSE: 0.1899)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver1-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 90% (MSE: 0.1206)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-soloar-stgcn-ver1-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-soloar-stgcn-ver1-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-15-stgcn-ver1-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 수정본 (MSE: 0.1674)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver2--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (+N +S) (MSE: 0.1801) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-23-스케일링-stgcn-ver2-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-25-s-stgcn-ver2-100에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 100 epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-26-s-stgcn-ver2-150에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 150 epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-27-s-stgcn-ver2-50에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 50 epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-29-s-stgcn-ver2-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-03-s-stgcn-ver2-시뮬레이션-10iter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-02-s-stgcn-ver2-정규화-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-17-정규화-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N) (MSE: 0.1834)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (Full: 08/15~09/10 data3) (MSE: 0.1927)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver2-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (MSE: 0.2019)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-12-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 90% (MSE: 0.1635)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-solar-stgcn-ver2-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-08-solar-stgcn-ver2-lag4.html" class="sidebar-item-text sidebar-link active"><strong>[SOLAR]</strong> STGCN Ver2 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-15-stgcn-ver2-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 수정본 (MSE: 0.2000)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-01-todolist.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> To do list</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-solar-class.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> WindmillOutputLargeDatasetLoader</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-07-yu.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> yU</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-19-데이터탐색용.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 데이터 탐색용</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-03-시뮬결과.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 시뮬레이션 결과정리 1-iter (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-22-시각화코드수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 연습용 (시각화 코드 수정)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-01-차원조사.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 차원조사</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2099.html" class="sidebar-item-text sidebar-link">2099</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-stgcn.html" class="sidebar-item-text sidebar-link">ChikenpoxDataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-29-data0.html" class="sidebar-item-text sidebar-link">Data preprocessing</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-lstm-prac.html" class="sidebar-item-text sidebar-link">LSTM for Time Series Prediction (연습)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-06-windmill.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDataset 분석 (실패)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-04-09-ft.html" class="sidebar-item-text sidebar-link">푸리에 변환</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">Study</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-24-베르누이.html" class="sidebar-item-text sidebar-link">[SC2022] 포아송분포, 지수분포</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-03-05-기하학적딥러닝-survey-review.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> A Comprehensive Survey on Geometric Deep Learning (+++)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-06-ept-논문리뷰.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> Ensemble patch transformation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-07-stgcn논문리뷰.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> Spatio-Temporal Graph Convolutional Networks (+++)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-11-arima-hour-data-fill.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SARIMA (MSE: 0.478)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex-day.html" class="sidebar-item-text sidebar-link">ARIMA (Day)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex.html" class="sidebar-item-text sidebar-link">ARIMA (시간별 예측안됨, 에러)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-08-gcrn리뷰.html" class="sidebar-item-text sidebar-link">GCRN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-21-gcn-이해용정리.html" class="sidebar-item-text sidebar-link">Graph Convolutional Network (이해용)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/python-midterm.html" class="sidebar-item-text sidebar-link">Python Midterm</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-13-windmill-스몰버전.html" class="sidebar-item-text sidebar-link">WindmillOutput (Small)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/python_7장.html" class="sidebar-item-text sidebar-link">스타벅스 주가예측</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-ex.html" class="sidebar-item-text sidebar-link">연습장</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리(수정 for ARIMA)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-21-STGCN-tutorial1.html" class="sidebar-item-text sidebar-link">튜토리얼 따라가기1</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">import</a></li>
+  <li><a href="#learn" id="toc-learn" class="nav-link" data-scroll-target="#learn">Learn</a></li>
+  <li><a href="#모델평가" id="toc-모델평가" class="nav-link" data-scroll-target="#모델평가">모델평가</a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
+  <li><a href="#월-8월15-8월15-9월15" id="toc-월-8월15-8월15-9월15" class="nav-link" data-scroll-target="#월-8월15-8월15-9월15">6월-8월15 // 8월15 ~9월15</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="import" class="level2">
+<h2 class="anchored" data-anchor-id="import">import</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> json</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> urllib</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="im">import</span> time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 일반적인 모듈 </span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="im">import</span> networkx <span class="im">as</span> nx </span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm </span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co"># 파이토치 관련 </span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="im">import</span> torch</span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># PyG 관련 </span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="im">from</span> torch_geometric.data <span class="im">import</span> Data <span class="co">## Data: 그래프자료형을 만드는 클래스</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co"># STGCN 관련 </span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="im">import</span> torch_geometric_temporal</span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="im">from</span> torch_geometric_temporal.nn.recurrent <span class="im">import</span> GConvGRU</span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">class</span> RecurrentGCN(torch.nn.Module):</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, node_features, filters):</span>
+<span id="cb3-3"><a href="#cb3-3"></a>        <span class="bu">super</span>(RecurrentGCN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb3-4"><a href="#cb3-4"></a>        <span class="va">self</span>.recurrent <span class="op">=</span> GConvGRU(node_features, filters, <span class="dv">2</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="va">self</span>.linear <span class="op">=</span> torch.nn.Linear(filters, <span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, edge_index, edge_weight):</span>
+<span id="cb3-8"><a href="#cb3-8"></a>        h <span class="op">=</span> <span class="va">self</span>.recurrent(x, edge_index, edge_weight)</span>
+<span id="cb3-9"><a href="#cb3-9"></a>        h <span class="op">=</span> F.relu(h)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>        h <span class="op">=</span> <span class="va">self</span>.linear(h)</span>
+<span id="cb3-11"><a href="#cb3-11"></a>        <span class="cf">return</span> h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> mysolar <span class="im">import</span> SolarEPTDatasetLoader</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>loader <span class="op">=</span> SolarEPTDatasetLoader()</span>
+<span id="cb5-2"><a href="#cb5-2"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="120">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>dataset.edge_index.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="120">
+<pre><code>(2, 1892)</code></pre>
+</div>
+</div>
+</section>
+<section id="learn" class="level2">
+<h2 class="anchored" data-anchor-id="learn">Learn</h2>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">4</span>, filters<span class="op">=</span><span class="dv">32</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a>model.train()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>RecurrentGCN(
+  (recurrent): GConvGRU(
+    (conv_x_z): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_z): ChebConv(32, 32, K=2, normalization=sym)
+    (conv_x_r): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_r): ChebConv(32, 32, K=2, normalization=sym)
+    (conv_x_h): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_h): ChebConv(32, 32, K=2, normalization=sym)
+  )
+  (linear): Linear(in_features=32, out_features=1, bias=True)
+)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># start = time.time()</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="co"># for epoch in tqdm(range(50)):</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="co">#     for t, snapshot in enumerate(train_dataset):</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="co">#         yt_hat = model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="co">#         cost = torch.mean((yt_hat-snapshot.y)**2)</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co">#         cost.backward()</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="co">#         optimizer.step()</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="co">#         optimizer.zero_grad()</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="co"># end = time.time()</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="co"># print(f"{end-start:.5f} sec")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|█████████████████████████████████████████████████████████████████| 50/50 [40:30&lt;00:00, 48.61s/it]</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2430.25206 sec</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">import</span> pickle </span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'stgcn2.pickle'</span>,<span class="st">'wb'</span>) <span class="im">as</span> fw:</span>
+<span id="cb14-3"><a href="#cb14-3"></a>    pickle.dump(model, fw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">import</span> pickle </span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'stgcn2.pickle'</span>, <span class="st">'rb'</span>) <span class="im">as</span> f: </span>
+<span id="cb15-3"><a href="#cb15-3"></a>    model <span class="op">=</span> pickle.load(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>RecurrentGCN(
+  (recurrent): GConvGRU(
+    (conv_x_z): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_z): ChebConv(32, 32, K=2, normalization=sym)
+    (conv_x_r): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_r): ChebConv(32, 32, K=2, normalization=sym)
+    (conv_x_h): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_h): ChebConv(32, 32, K=2, normalization=sym)
+  )
+  (linear): Linear(in_features=32, out_features=1, bias=True)
+)</code></pre>
+</div>
+</div>
+</section>
+<section id="모델평가" class="level2">
+<h2 class="anchored" data-anchor-id="모델평가">모델평가</h2>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb18-2"><a href="#cb18-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    y_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb18-6"><a href="#cb18-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb18-7"><a href="#cb18-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.1069</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb20-2"><a href="#cb20-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset):</span>
+<span id="cb20-4"><a href="#cb20-4"></a>    y_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb20-5"><a href="#cb20-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb20-6"><a href="#cb20-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb20-7"><a href="#cb20-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0938</code></pre>
+</div>
+</div>
+</section>
+<section id="visualization" class="level2">
+<h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>yhat_train <span class="op">=</span> torch.stack([model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> train_dataset]).detach().numpy()</span>
+<span id="cb22-2"><a href="#cb22-2"></a>yhat_test <span class="op">=</span> torch.stack([model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset]).detach().numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>yhat_train.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>(14596, 44, 1)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>f.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>(18250, 44)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>14595</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"./data/solar_radiation.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>df[<span class="st">'date'</span>][<span class="dv">0</span>]<span class="op">&gt;=</span> <span class="st">'2021-01-01-00:00'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>df.region.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="72">
+<pre><code>array(['북춘천', '철원', '대관령', '춘천', '백령도', '북강릉', '강릉', '서울', '인천', '원주',
+       '울릉도', '수원', '서산', '청주', '대전', '추풍령', '안동', '포항', '대구', '전주', '창원',
+       '광주', '부산', '목포', '여수', '흑산도', '고창', '홍성', '제주', '고산', '진주', '고창군',
+       '영광군', '김해시', '순창군', '북창원', '양산시', '보성군', '강진군', '의령군', '함양군',
+       '광양시', '청송군', '경주시'], dtype=object)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="110">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>reg<span class="op">=</span>[<span class="st">'부산'</span>,<span class="st">'창원'</span>,<span class="st">'김해시'</span>,<span class="st">'서울'</span>,<span class="st">'인천'</span>,<span class="st">'울릉도'</span>,<span class="st">'고창'</span>,<span class="st">'포항'</span>,<span class="st">'대구'</span>,<span class="st">'창원'</span>,<span class="st">'북창원'</span>]</span>
+<span id="cb34-2"><a href="#cb34-2"></a>reg2<span class="op">=</span>[<span class="st">'부산'</span>,<span class="st">'김해시'</span>,<span class="st">'서울'</span>,<span class="st">'인천'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="117">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>df.query(<span class="st">"date &gt;= '2022-07-01-01:00' and date &lt;= '2022-07-20-23:00' and region in @reg2"</span>).drop_duplicates()<span class="op">\</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>.plot(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'date'</span>,y<span class="op">=</span><span class="st">'solar_radiation'</span>,color<span class="op">=</span><span class="st">'region'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<div>                            <div id="90d1c0dc-beec-48f5-b460-f2f67c07b73f" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("90d1c0dc-beec-48f5-b460-f2f67c07b73f")) {                    Plotly.newPlot(                        "90d1c0dc-beec-48f5-b460-f2f67c07b73f",                        [{"hovertemplate":"region=\uc11c\uc6b8<br>date=%{x}<br>solar_radiation=%{y}<extra></extra>","legendgroup":"\uc11c\uc6b8","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"\uc11c\uc6b8","showlegend":true,"x":["2022-07-01-01:00","2022-07-01-02:00","2022-07-01-03:00","2022-07-01-04:00","2022-07-01-05:00","2022-07-01-06:00","2022-07-01-07:00","2022-07-01-08:00","2022-07-01-09:00","2022-07-01-10:00","2022-07-01-11:00","2022-07-01-12:00","2022-07-01-13:00","2022-07-01-14:00","2022-07-01-15:00","2022-07-01-16:00","2022-07-01-17:00","2022-07-01-18:00","2022-07-01-19:00","2022-07-01-20:00","2022-07-01-21:00","2022-07-02-00:00","2022-07-02-01:00","2022-07-02-02:00","2022-07-02-03:00","2022-07-02-04:00","2022-07-02-05:00","2022-07-02-06:00","2022-07-02-07:00","2022-07-02-08:00","2022-07-02-09:00","2022-07-02-10:00","2022-07-02-11:00","2022-07-02-12:00","2022-07-02-13:00","2022-07-02-14:00","2022-07-02-15:00","2022-07-02-16:00","2022-07-02-17:00","2022-07-02-18:00","2022-07-02-19:00","2022-07-02-20:00","2022-07-02-21:00","2022-07-03-00:00","2022-07-03-01:00","2022-07-03-02:00","2022-07-03-03:00","2022-07-03-04:00","2022-07-03-05:00","2022-07-03-06:00","2022-07-03-07:00","2022-07-03-08:00","2022-07-03-09:00","2022-07-03-10:00","2022-07-03-11:00","2022-07-03-12:00","2022-07-03-13:00","2022-07-03-14:00","2022-07-03-15:00","2022-07-03-16:00","2022-07-03-17:00","2022-07-03-18:00","2022-07-03-19:00","2022-07-03-20:00","2022-07-03-21:00","2022-07-04-00:00","2022-07-04-01:00","2022-07-04-02:00","2022-07-04-03:00","2022-07-04-04:00","2022-07-04-05:00","2022-07-04-06:00","2022-07-04-07:00","2022-07-04-08:00","2022-07-04-09:00","2022-07-04-10:00","2022-07-04-11:00","2022-07-04-12:00","2022-07-04-13:00","2022-07-04-14:00","2022-07-04-15:00","2022-07-04-16:00","2022-07-04-17:00","2022-07-04-18:00","2022-07-04-19:00","2022-07-04-20:00","2022-07-04-21:00","2022-07-05-00:00","2022-07-05-01:00","2022-07-05-02:00","2022-07-05-03:00","2022-07-05-04:00","2022-07-05-05:00","2022-07-05-06:00","2022-07-05-07:00","2022-07-05-08:00","2022-07-05-09:00","2022-07-05-10:00","2022-07-05-11:00","2022-07-05-12:00","2022-07-05-13:00","2022-07-05-14:00","2022-07-05-15:00","2022-07-05-16:00","2022-07-05-17:00","2022-07-05-18:00","2022-07-05-19:00","2022-07-05-20:00","2022-07-05-21:00","2022-07-06-00:00","2022-07-06-01:00","2022-07-06-02:00","2022-07-06-03:00","2022-07-06-04:00","2022-07-06-05:00","2022-07-06-06:00","2022-07-06-07:00","2022-07-06-08:00","2022-07-06-09:00","2022-07-06-10:00","2022-07-06-11:00","2022-07-06-12:00","2022-07-06-13:00","2022-07-06-14:00","2022-07-06-15:00","2022-07-06-16:00","2022-07-06-17:00","2022-07-06-18:00","2022-07-06-19:00","2022-07-06-20:00","2022-07-06-21:00","2022-07-07-00:00","2022-07-07-01:00","2022-07-07-02:00","2022-07-07-03:00","2022-07-07-04:00","2022-07-07-05:00","2022-07-07-06:00","2022-07-07-07:00","2022-07-07-08:00","2022-07-07-09:00","2022-07-07-10:00","2022-07-07-11:00","2022-07-07-12:00","2022-07-07-13:00","2022-07-07-14:00","2022-07-07-15:00","2022-07-07-16:00","2022-07-07-17:00","2022-07-07-18:00","2022-07-07-19:00","2022-07-07-20:00","2022-07-07-21:00","2022-07-08-00:00","2022-07-08-01:00","2022-07-08-02:00","2022-07-08-03:00","2022-07-08-04:00","2022-07-08-05:00","2022-07-08-06:00","2022-07-08-07:00","2022-07-08-08:00","2022-07-08-09:00","2022-07-08-10:00","2022-07-08-11:00","2022-07-08-12:00","2022-07-08-13:00","2022-07-08-14:00","2022-07-08-15:00","2022-07-08-16:00","2022-07-08-17:00","2022-07-08-18:00","2022-07-08-19:00","2022-07-08-20:00","2022-07-08-21:00","2022-07-09-00:00","2022-07-09-01:00","2022-07-09-02:00","2022-07-09-03:00","2022-07-09-04:00","2022-07-09-05:00","2022-07-09-06:00","2022-07-09-07:00","2022-07-09-08:00","2022-07-09-09:00","2022-07-09-10:00","2022-07-09-11:00","2022-07-09-12:00","2022-07-09-13:00","2022-07-09-14:00","2022-07-09-15:00","2022-07-09-16:00","2022-07-09-17:00","2022-07-09-18:00","2022-07-09-19:00","2022-07-09-20:00","2022-07-09-21:00","2022-07-10-00:00","2022-07-10-01:00","2022-07-10-02:00","2022-07-10-03:00","2022-07-10-04:00","2022-07-10-05:00","2022-07-10-06:00","2022-07-10-07:00","2022-07-10-08:00","2022-07-10-09:00","2022-07-10-10:00","2022-07-10-11:00","2022-07-10-12:00","2022-07-10-13:00","2022-07-10-14:00","2022-07-10-15:00","2022-07-10-16:00","2022-07-10-17:00","2022-07-10-18:00","2022-07-10-19:00","2022-07-10-20:00","2022-07-10-21:00","2022-07-11-00:00","2022-07-11-01:00","2022-07-11-02:00","2022-07-11-03:00","2022-07-11-04:00","2022-07-11-05:00","2022-07-11-06:00","2022-07-11-07:00","2022-07-11-08:00","2022-07-11-09:00","2022-07-11-10:00","2022-07-11-11:00","2022-07-11-12:00","2022-07-11-13:00","2022-07-11-14:00","2022-07-11-15:00","2022-07-11-16:00","2022-07-11-17:00","2022-07-11-18:00","2022-07-11-19:00","2022-07-11-20:00","2022-07-11-21:00","2022-07-12-00:00","2022-07-12-01:00","2022-07-12-02:00","2022-07-12-03:00","2022-07-12-04:00","2022-07-12-05:00","2022-07-12-06:00","2022-07-12-07:00","2022-07-12-08:00","2022-07-12-09:00","2022-07-12-10:00","2022-07-12-11:00","2022-07-12-12:00","2022-07-12-13:00","2022-07-12-14:00","2022-07-12-15:00","2022-07-12-16:00","2022-07-12-17:00","2022-07-12-18:00","2022-07-12-19:00","2022-07-12-20:00","2022-07-12-21:00","2022-07-13-00:00","2022-07-13-01:00","2022-07-13-02:00","2022-07-13-03:00","2022-07-13-04:00","2022-07-13-05:00","2022-07-13-06:00","2022-07-13-07:00","2022-07-13-08:00","2022-07-13-09:00","2022-07-13-10:00","2022-07-13-11:00","2022-07-13-12:00","2022-07-13-13:00","2022-07-13-14:00","2022-07-13-15:00","2022-07-13-16:00","2022-07-13-17:00","2022-07-13-18:00","2022-07-13-19:00","2022-07-13-20:00","2022-07-13-21:00","2022-07-14-00:00","2022-07-14-01:00","2022-07-14-02:00","2022-07-14-03:00","2022-07-14-04:00","2022-07-14-05:00","2022-07-14-06:00","2022-07-14-07:00","2022-07-14-08:00","2022-07-14-09:00","2022-07-14-10:00","2022-07-14-11:00","2022-07-14-12:00","2022-07-14-13:00","2022-07-14-14:00","2022-07-14-15:00","2022-07-14-16:00","2022-07-14-17:00","2022-07-14-18:00","2022-07-14-19:00","2022-07-14-20:00","2022-07-14-21:00","2022-07-15-00:00","2022-07-15-01:00","2022-07-15-02:00","2022-07-15-03:00","2022-07-15-04:00","2022-07-15-05:00","2022-07-15-06:00","2022-07-15-07:00","2022-07-15-08:00","2022-07-15-09:00","2022-07-15-10:00","2022-07-15-11:00","2022-07-15-12:00","2022-07-15-13:00","2022-07-15-14:00","2022-07-15-15:00","2022-07-15-16:00","2022-07-15-17:00","2022-07-15-18:00","2022-07-15-19:00","2022-07-15-20:00","2022-07-15-21:00","2022-07-16-00:00","2022-07-16-01:00","2022-07-16-02:00","2022-07-16-03:00","2022-07-16-04:00","2022-07-16-05:00","2022-07-16-06:00","2022-07-16-07:00","2022-07-16-08:00","2022-07-16-09:00","2022-07-16-10:00","2022-07-16-11:00","2022-07-16-12:00","2022-07-16-13:00","2022-07-16-14:00","2022-07-16-15:00","2022-07-16-16:00","2022-07-16-17:00","2022-07-16-18:00","2022-07-16-19:00","2022-07-16-20:00","2022-07-16-21:00","2022-07-17-00:00","2022-07-17-01:00","2022-07-17-02:00","2022-07-17-03:00","2022-07-17-04:00","2022-07-17-05:00","2022-07-17-06:00","2022-07-17-07:00","2022-07-17-08:00","2022-07-17-09:00","2022-07-17-10:00","2022-07-17-11:00","2022-07-17-12:00","2022-07-17-13:00","2022-07-17-14:00","2022-07-17-15:00","2022-07-17-16:00","2022-07-17-17:00","2022-07-17-18:00","2022-07-17-19:00","2022-07-17-20:00","2022-07-17-21:00","2022-07-18-00:00","2022-07-18-01:00","2022-07-18-02:00","2022-07-18-03:00","2022-07-18-04:00","2022-07-18-05:00","2022-07-18-06:00","2022-07-18-07:00","2022-07-18-08:00","2022-07-18-09:00","2022-07-18-10:00","2022-07-18-11:00","2022-07-18-12:00","2022-07-18-13:00","2022-07-18-14:00","2022-07-18-15:00","2022-07-18-16:00","2022-07-18-17:00","2022-07-18-18:00","2022-07-18-19:00","2022-07-18-20:00","2022-07-18-21:00","2022-07-19-00:00","2022-07-19-01:00","2022-07-19-02:00","2022-07-19-03:00","2022-07-19-04:00","2022-07-19-05:00","2022-07-19-06:00","2022-07-19-07:00","2022-07-19-08:00","2022-07-19-09:00","2022-07-19-10:00","2022-07-19-11:00","2022-07-19-12:00","2022-07-19-13:00","2022-07-19-14:00","2022-07-19-15:00","2022-07-19-16:00","2022-07-19-17:00","2022-07-19-18:00","2022-07-19-19:00","2022-07-19-20:00","2022-07-19-21:00","2022-07-20-00:00","2022-07-20-01:00","2022-07-20-02:00","2022-07-20-03:00","2022-07-20-04:00","2022-07-20-05:00","2022-07-20-06:00","2022-07-20-07:00","2022-07-20-08:00","2022-07-20-09:00","2022-07-20-10:00","2022-07-20-11:00","2022-07-20-12:00","2022-07-20-13:00","2022-07-20-14:00","2022-07-20-15:00","2022-07-20-16:00","2022-07-20-17:00","2022-07-20-18:00","2022-07-20-19:00","2022-07-20-20:00","2022-07-20-21:00"],"xaxis":"x","y":[0.0,0.0,0.0,0.0,0.0,0.03,0.21,0.38,1.36,2.0,1.48,2.4,2.78,2.43,2.36,2.51,1.73,1.28,0.43,0.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.07,0.42,1.0,1.75,2.52,2.51,3.04,3.5,1.67,2.76,2.66,1.64,1.45,0.69,0.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.34,0.97,1.82,2.52,3.12,2.21,3.41,3.09,2.5,2.27,2.05,1.28,0.54,0.1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.23,0.78,1.33,1.35,1.38,0.91,0.62,1.24,1.63,2.5,1.68,0.9,0.28,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.13,0.26,0.62,1.59,1.83,2.08,1.38,1.41,2.62,2.31,0.67,0.55,0.4,0.12,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.05,0.37,0.58,0.96,1.01,1.23,1.36,1.22,1.28,2.19,1.57,1.49,0.76,0.36,0.06,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.16,0.45,0.62,1.41,0.75,0.6,0.63,0.62,0.82,1.46,0.5,0.13,0.11,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.15,0.23,0.25,0.42,0.88,0.71,0.63,0.73,0.5,0.69,0.96,0.51,0.19,0.07,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.08,0.21,0.31,0.79,1.33,1.58,1.9,2.72,1.79,0.85,0.8,0.63,0.53,0.11,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.38,0.91,1.5,2.09,2.58,2.7,2.25,2.9,2.99,2.56,1.16,0.77,0.22,0.03,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.09,0.45,1.24,1.89,1.93,1.63,2.08,1.55,1.47,0.26,0.36,0.5,0.31,0.07,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.43,0.53,1.09,1.15,1.65,1.5,1.33,1.48,1.1,0.67,0.47,0.29,0.07,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.08,0.13,0.13,0.09,0.22,0.22,0.03,0.04,0.06,0.07,0.12,0.03,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.19,0.36,0.47,1.39,1.91,1.13,1.44,2.66,2.32,2.27,1.25,1.22,0.51,0.08,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.17,0.85,1.43,2.18,2.39,2.83,3.14,2.88,2.25,2.17,2.12,1.11,0.75,0.18,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.3,0.39,0.81,1.28,1.28,1.76,1.28,1.32,0.98,0.73,0.17,0.1,0.3,0.06,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.2,0.27,0.47,0.95,1.16,0.93,2.19,2.75,2.83,2.08,1.37,0.99,0.5,0.1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.24,0.48,0.98,2.27,2.53,3.29,3.09,1.43,1.83,1.79,1.9,0.67,0.46,0.03,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.3,0.84,1.56,2.19,2.29,3.26,2.61,1.84,3.16,2.56,1.66,0.72,0.37,0.06,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.14,0.67,1.13,1.0,1.8,2.54,2.26,2.56,2.61,1.48,0.79,0.52,0.16,0.01,0.0],"yaxis":"y","type":"scattergl"},{"hovertemplate":"region=\uc778\ucc9c<br>date=%{x}<br>solar_radiation=%{y}<extra></extra>","legendgroup":"\uc778\ucc9c","line":{"color":"#EF553B","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"\uc778\ucc9c","showlegend":true,"x":["2022-07-01-01:00","2022-07-01-02:00","2022-07-01-03:00","2022-07-01-04:00","2022-07-01-05:00","2022-07-01-06:00","2022-07-01-07:00","2022-07-01-08:00","2022-07-01-09:00","2022-07-01-10:00","2022-07-01-11:00","2022-07-01-12:00","2022-07-01-13:00","2022-07-01-14:00","2022-07-01-15:00","2022-07-01-16:00","2022-07-01-17:00","2022-07-01-18:00","2022-07-01-19:00","2022-07-01-20:00","2022-07-01-21:00","2022-07-02-00:00","2022-07-02-01:00","2022-07-02-02:00","2022-07-02-03:00","2022-07-02-04:00","2022-07-02-05:00","2022-07-02-06:00","2022-07-02-07:00","2022-07-02-08:00","2022-07-02-09:00","2022-07-02-10:00","2022-07-02-11:00","2022-07-02-12:00","2022-07-02-13:00","2022-07-02-14:00","2022-07-02-15:00","2022-07-02-16:00","2022-07-02-17:00","2022-07-02-18:00","2022-07-02-19:00","2022-07-02-20:00","2022-07-02-21:00","2022-07-03-00:00","2022-07-03-01:00","2022-07-03-02:00","2022-07-03-03:00","2022-07-03-04:00","2022-07-03-05:00","2022-07-03-06:00","2022-07-03-07:00","2022-07-03-08:00","2022-07-03-09:00","2022-07-03-10:00","2022-07-03-11:00","2022-07-03-12:00","2022-07-03-13:00","2022-07-03-14:00","2022-07-03-15:00","2022-07-03-16:00","2022-07-03-17:00","2022-07-03-18:00","2022-07-03-19:00","2022-07-03-20:00","2022-07-03-21:00","2022-07-04-00:00","2022-07-04-01:00","2022-07-04-02:00","2022-07-04-03:00","2022-07-04-04:00","2022-07-04-05:00","2022-07-04-06:00","2022-07-04-07:00","2022-07-04-08:00","2022-07-04-09:00","2022-07-04-10:00","2022-07-04-11:00","2022-07-04-12:00","2022-07-04-13:00","2022-07-04-14:00","2022-07-04-15:00","2022-07-04-16:00","2022-07-04-17:00","2022-07-04-18:00","2022-07-04-19:00","2022-07-04-20:00","2022-07-04-21:00","2022-07-05-00:00","2022-07-05-01:00","2022-07-05-02:00","2022-07-05-03:00","2022-07-05-04:00","2022-07-05-05:00","2022-07-05-06:00","2022-07-05-07:00","2022-07-05-08:00","2022-07-05-09:00","2022-07-05-10:00","2022-07-05-11:00","2022-07-05-12:00","2022-07-05-13:00","2022-07-05-14:00","2022-07-05-15:00","2022-07-05-16:00","2022-07-05-17:00","2022-07-05-18:00","2022-07-05-19:00","2022-07-05-20:00","2022-07-05-21:00","2022-07-06-00:00","2022-07-06-01:00","2022-07-06-02:00","2022-07-06-03:00","2022-07-06-04:00","2022-07-06-05:00","2022-07-06-06:00","2022-07-06-07:00","2022-07-06-08:00","2022-07-06-09:00","2022-07-06-10:00","2022-07-06-11:00","2022-07-06-12:00","2022-07-06-13:00","2022-07-06-14:00","2022-07-06-15:00","2022-07-06-16:00","2022-07-06-17:00","2022-07-06-18:00","2022-07-06-19:00","2022-07-06-20:00","2022-07-06-21:00","2022-07-07-00:00","2022-07-07-01:00","2022-07-07-02:00","2022-07-07-03:00","2022-07-07-04:00","2022-07-07-05:00","2022-07-07-06:00","2022-07-07-07:00","2022-07-07-08:00","2022-07-07-09:00","2022-07-07-10:00","2022-07-07-11:00","2022-07-07-12:00","2022-07-07-13:00","2022-07-07-14:00","2022-07-07-15:00","2022-07-07-16:00","2022-07-07-17:00","2022-07-07-18:00","2022-07-07-19:00","2022-07-07-20:00","2022-07-07-21:00","2022-07-08-00:00","2022-07-08-01:00","2022-07-08-02:00","2022-07-08-03:00","2022-07-08-04:00","2022-07-08-05:00","2022-07-08-06:00","2022-07-08-07:00","2022-07-08-08:00","2022-07-08-09:00","2022-07-08-10:00","2022-07-08-11:00","2022-07-08-12:00","2022-07-08-13:00","2022-07-08-14:00","2022-07-08-15:00","2022-07-08-16:00","2022-07-08-17:00","2022-07-08-18:00","2022-07-08-19:00","2022-07-08-20:00","2022-07-08-21:00","2022-07-09-00:00","2022-07-09-01:00","2022-07-09-02:00","2022-07-09-03:00","2022-07-09-04:00","2022-07-09-05:00","2022-07-09-06:00","2022-07-09-07:00","2022-07-09-08:00","2022-07-09-09:00","2022-07-09-10:00","2022-07-09-11:00","2022-07-09-12:00","2022-07-09-13:00","2022-07-09-14:00","2022-07-09-15:00","2022-07-09-16:00","2022-07-09-17:00","2022-07-09-18:00","2022-07-09-19:00","2022-07-09-20:00","2022-07-09-21:00","2022-07-10-00:00","2022-07-10-01:00","2022-07-10-02:00","2022-07-10-03:00","2022-07-10-04:00","2022-07-10-05:00","2022-07-10-06:00","2022-07-10-07:00","2022-07-10-08:00","2022-07-10-09:00","2022-07-10-10:00","2022-07-10-11:00","2022-07-10-12:00","2022-07-10-13:00","2022-07-10-14:00","2022-07-10-15:00","2022-07-10-16:00","2022-07-10-17:00","2022-07-10-18:00","2022-07-10-19:00","2022-07-10-20:00","2022-07-10-21:00","2022-07-11-00:00","2022-07-11-01:00","2022-07-11-02:00","2022-07-11-03:00","2022-07-11-04:00","2022-07-11-05:00","2022-07-11-06:00","2022-07-11-07:00","2022-07-11-08:00","2022-07-11-09:00","2022-07-11-10:00","2022-07-11-11:00","2022-07-11-12:00","2022-07-11-13:00","2022-07-11-14:00","2022-07-11-15:00","2022-07-11-16:00","2022-07-11-17:00","2022-07-11-18:00","2022-07-11-19:00","2022-07-11-20:00","2022-07-11-21:00","2022-07-12-00:00","2022-07-12-01:00","2022-07-12-02:00","2022-07-12-03:00","2022-07-12-04:00","2022-07-12-05:00","2022-07-12-06:00","2022-07-12-07:00","2022-07-12-08:00","2022-07-12-09:00","2022-07-12-10:00","2022-07-12-11:00","2022-07-12-12:00","2022-07-12-13:00","2022-07-12-14:00","2022-07-12-15:00","2022-07-12-16:00","2022-07-12-17:00","2022-07-12-18:00","2022-07-12-19:00","2022-07-12-20:00","2022-07-12-21:00","2022-07-13-00:00","2022-07-13-01:00","2022-07-13-02:00","2022-07-13-03:00","2022-07-13-04:00","2022-07-13-05:00","2022-07-13-06:00","2022-07-13-07:00","2022-07-13-08:00","2022-07-13-09:00","2022-07-13-10:00","2022-07-13-11:00","2022-07-13-12:00","2022-07-13-13:00","2022-07-13-14:00","2022-07-13-15:00","2022-07-13-16:00","2022-07-13-17:00","2022-07-13-18:00","2022-07-13-19:00","2022-07-13-20:00","2022-07-13-21:00","2022-07-14-00:00","2022-07-14-01:00","2022-07-14-02:00","2022-07-14-03:00","2022-07-14-04:00","2022-07-14-05:00","2022-07-14-06:00","2022-07-14-07:00","2022-07-14-08:00","2022-07-14-09:00","2022-07-14-10:00","2022-07-14-11:00","2022-07-14-12:00","2022-07-14-13:00","2022-07-14-14:00","2022-07-14-15:00","2022-07-14-16:00","2022-07-14-17:00","2022-07-14-18:00","2022-07-14-19:00","2022-07-14-20:00","2022-07-14-21:00","2022-07-15-00:00","2022-07-15-01:00","2022-07-15-02:00","2022-07-15-03:00","2022-07-15-04:00","2022-07-15-05:00","2022-07-15-06:00","2022-07-15-07:00","2022-07-15-08:00","2022-07-15-09:00","2022-07-15-10:00","2022-07-15-11:00","2022-07-15-12:00","2022-07-15-13:00","2022-07-15-14:00","2022-07-15-15:00","2022-07-15-16:00","2022-07-15-17:00","2022-07-15-18:00","2022-07-15-19:00","2022-07-15-20:00","2022-07-15-21:00","2022-07-16-00:00","2022-07-16-01:00","2022-07-16-02:00","2022-07-16-03:00","2022-07-16-04:00","2022-07-16-05:00","2022-07-16-06:00","2022-07-16-07:00","2022-07-16-08:00","2022-07-16-09:00","2022-07-16-10:00","2022-07-16-11:00","2022-07-16-12:00","2022-07-16-13:00","2022-07-16-14:00","2022-07-16-15:00","2022-07-16-16:00","2022-07-16-17:00","2022-07-16-18:00","2022-07-16-19:00","2022-07-16-20:00","2022-07-16-21:00","2022-07-17-00:00","2022-07-17-01:00","2022-07-17-02:00","2022-07-17-03:00","2022-07-17-04:00","2022-07-17-05:00","2022-07-17-06:00","2022-07-17-07:00","2022-07-17-08:00","2022-07-17-09:00","2022-07-17-10:00","2022-07-17-11:00","2022-07-17-12:00","2022-07-17-13:00","2022-07-17-14:00","2022-07-17-15:00","2022-07-17-16:00","2022-07-17-17:00","2022-07-17-18:00","2022-07-17-19:00","2022-07-17-20:00","2022-07-17-21:00","2022-07-18-00:00","2022-07-18-01:00","2022-07-18-02:00","2022-07-18-03:00","2022-07-18-04:00","2022-07-18-05:00","2022-07-18-06:00","2022-07-18-07:00","2022-07-18-08:00","2022-07-18-09:00","2022-07-18-10:00","2022-07-18-11:00","2022-07-18-12:00","2022-07-18-13:00","2022-07-18-14:00","2022-07-18-15:00","2022-07-18-16:00","2022-07-18-17:00","2022-07-18-18:00","2022-07-18-19:00","2022-07-18-20:00","2022-07-18-21:00","2022-07-19-00:00","2022-07-19-01:00","2022-07-19-02:00","2022-07-19-03:00","2022-07-19-04:00","2022-07-19-05:00","2022-07-19-06:00","2022-07-19-07:00","2022-07-19-08:00","2022-07-19-09:00","2022-07-19-10:00","2022-07-19-11:00","2022-07-19-12:00","2022-07-19-13:00","2022-07-19-14:00","2022-07-19-15:00","2022-07-19-16:00","2022-07-19-17:00","2022-07-19-18:00","2022-07-19-19:00","2022-07-19-20:00","2022-07-19-21:00","2022-07-20-00:00","2022-07-20-01:00","2022-07-20-02:00","2022-07-20-03:00","2022-07-20-04:00","2022-07-20-05:00","2022-07-20-06:00","2022-07-20-07:00","2022-07-20-08:00","2022-07-20-09:00","2022-07-20-10:00","2022-07-20-11:00","2022-07-20-12:00","2022-07-20-13:00","2022-07-20-14:00","2022-07-20-15:00","2022-07-20-16:00","2022-07-20-17:00","2022-07-20-18:00","2022-07-20-19:00","2022-07-20-20:00","2022-07-20-21:00"],"xaxis":"x","y":[0.0,0.0,0.0,0.0,0.0,0.03,0.17,0.77,1.82,2.44,2.61,3.17,3.43,3.31,3.13,2.51,2.09,1.43,0.72,0.12,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.06,0.36,1.17,1.29,1.85,2.62,3.34,3.4,3.36,2.95,2.59,1.98,1.38,0.7,0.14,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.42,1.0,1.67,1.98,2.72,3.14,3.28,3.32,2.88,2.58,1.98,1.43,0.43,0.12,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.27,0.63,0.74,1.7,2.13,2.78,2.75,2.19,1.9,1.79,1.43,0.46,0.31,0.05,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.12,0.26,0.6,2.09,2.75,3.06,3.1,2.97,2.79,2.44,1.86,1.17,0.65,0.13,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.16,0.52,1.32,1.56,1.72,1.9,2.22,2.53,1.93,2.94,1.85,1.52,0.49,0.07,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.15,0.32,0.66,1.37,1.26,1.16,0.52,0.81,1.15,0.74,0.26,0.2,0.05,0.01,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.09,0.12,0.3,0.71,0.78,1.16,1.71,1.65,0.91,1.42,2.4,0.88,0.35,0.14,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.08,0.2,0.76,2.37,2.91,3.27,3.25,3.26,2.35,2.43,1.79,1.07,0.56,0.13,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.26,0.77,1.17,2.19,2.65,2.94,3.23,3.2,2.94,1.95,1.47,0.67,0.21,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.1,0.5,1.69,2.33,2.8,2.97,3.23,2.95,2.85,2.43,1.94,1.16,0.53,0.12,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.06,0.31,0.47,1.04,1.2,1.41,1.72,1.41,1.17,0.99,0.93,0.74,0.5,0.14,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.05,0.06,0.12,0.08,0.25,0.3,0.15,0.05,0.09,0.23,0.1,0.07,0.04,0.01,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.23,0.7,0.65,1.86,1.86,2.86,3.74,3.23,3.29,2.55,1.99,1.09,0.48,0.14,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.18,0.43,1.3,2.21,2.95,3.01,3.45,3.4,3.14,2.67,2.08,1.4,0.7,0.13,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.17,0.52,0.8,1.27,2.9,2.92,2.81,3.45,3.14,2.7,1.63,1.31,0.35,0.05,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.13,0.47,1.19,1.48,1.99,2.84,2.91,3.32,2.84,2.29,1.5,0.74,0.44,0.12,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.22,0.44,0.97,2.04,2.41,2.39,2.96,0.68,0.69,1.11,0.91,0.61,0.46,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.27,0.86,1.55,2.1,2.9,3.19,3.41,3.34,3.03,2.55,1.8,0.75,0.34,0.07,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.19,0.71,1.02,1.17,1.9,2.91,2.52,2.9,2.47,1.17,0.84,0.44,0.12,0.01,0.0],"yaxis":"y","type":"scattergl"},{"hovertemplate":"region=\ubd80\uc0b0<br>date=%{x}<br>solar_radiation=%{y}<extra></extra>","legendgroup":"\ubd80\uc0b0","line":{"color":"#00cc96","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"\ubd80\uc0b0","showlegend":true,"x":["2022-07-01-01:00","2022-07-01-02:00","2022-07-01-03:00","2022-07-01-04:00","2022-07-01-05:00","2022-07-01-06:00","2022-07-01-07:00","2022-07-01-08:00","2022-07-01-09:00","2022-07-01-10:00","2022-07-01-11:00","2022-07-01-12:00","2022-07-01-13:00","2022-07-01-14:00","2022-07-01-15:00","2022-07-01-16:00","2022-07-01-17:00","2022-07-01-18:00","2022-07-01-19:00","2022-07-01-20:00","2022-07-01-21:00","2022-07-02-00:00","2022-07-02-01:00","2022-07-02-02:00","2022-07-02-03:00","2022-07-02-04:00","2022-07-02-05:00","2022-07-02-06:00","2022-07-02-07:00","2022-07-02-08:00","2022-07-02-09:00","2022-07-02-10:00","2022-07-02-11:00","2022-07-02-12:00","2022-07-02-13:00","2022-07-02-14:00","2022-07-02-15:00","2022-07-02-16:00","2022-07-02-17:00","2022-07-02-18:00","2022-07-02-19:00","2022-07-02-20:00","2022-07-02-21:00","2022-07-03-00:00","2022-07-03-01:00","2022-07-03-02:00","2022-07-03-03:00","2022-07-03-04:00","2022-07-03-05:00","2022-07-03-06:00","2022-07-03-07:00","2022-07-03-08:00","2022-07-03-09:00","2022-07-03-10:00","2022-07-03-11:00","2022-07-03-12:00","2022-07-03-13:00","2022-07-03-14:00","2022-07-03-15:00","2022-07-03-16:00","2022-07-03-17:00","2022-07-03-18:00","2022-07-03-19:00","2022-07-03-20:00","2022-07-03-21:00","2022-07-04-00:00","2022-07-04-01:00","2022-07-04-02:00","2022-07-04-03:00","2022-07-04-04:00","2022-07-04-05:00","2022-07-04-06:00","2022-07-04-07:00","2022-07-04-08:00","2022-07-04-09:00","2022-07-04-10:00","2022-07-04-11:00","2022-07-04-12:00","2022-07-04-13:00","2022-07-04-14:00","2022-07-04-15:00","2022-07-04-16:00","2022-07-04-17:00","2022-07-04-18:00","2022-07-04-19:00","2022-07-04-20:00","2022-07-04-21:00","2022-07-05-00:00","2022-07-05-01:00","2022-07-05-02:00","2022-07-05-03:00","2022-07-05-04:00","2022-07-05-05:00","2022-07-05-06:00","2022-07-05-07:00","2022-07-05-08:00","2022-07-05-09:00","2022-07-05-10:00","2022-07-05-11:00","2022-07-05-12:00","2022-07-05-13:00","2022-07-05-14:00","2022-07-05-15:00","2022-07-05-16:00","2022-07-05-17:00","2022-07-05-18:00","2022-07-05-19:00","2022-07-05-20:00","2022-07-05-21:00","2022-07-06-00:00","2022-07-06-01:00","2022-07-06-02:00","2022-07-06-03:00","2022-07-06-04:00","2022-07-06-05:00","2022-07-06-06:00","2022-07-06-07:00","2022-07-06-08:00","2022-07-06-09:00","2022-07-06-10:00","2022-07-06-11:00","2022-07-06-12:00","2022-07-06-13:00","2022-07-06-14:00","2022-07-06-15:00","2022-07-06-16:00","2022-07-06-17:00","2022-07-06-18:00","2022-07-06-19:00","2022-07-06-20:00","2022-07-06-21:00","2022-07-07-00:00","2022-07-07-01:00","2022-07-07-02:00","2022-07-07-03:00","2022-07-07-04:00","2022-07-07-05:00","2022-07-07-06:00","2022-07-07-07:00","2022-07-07-08:00","2022-07-07-09:00","2022-07-07-10:00","2022-07-07-11:00","2022-07-07-12:00","2022-07-07-13:00","2022-07-07-14:00","2022-07-07-15:00","2022-07-07-16:00","2022-07-07-17:00","2022-07-07-18:00","2022-07-07-19:00","2022-07-07-20:00","2022-07-07-21:00","2022-07-08-00:00","2022-07-08-01:00","2022-07-08-02:00","2022-07-08-03:00","2022-07-08-04:00","2022-07-08-05:00","2022-07-08-06:00","2022-07-08-07:00","2022-07-08-08:00","2022-07-08-09:00","2022-07-08-10:00","2022-07-08-11:00","2022-07-08-12:00","2022-07-08-13:00","2022-07-08-14:00","2022-07-08-15:00","2022-07-08-16:00","2022-07-08-17:00","2022-07-08-18:00","2022-07-08-19:00","2022-07-08-20:00","2022-07-08-21:00","2022-07-09-00:00","2022-07-09-01:00","2022-07-09-02:00","2022-07-09-03:00","2022-07-09-04:00","2022-07-09-05:00","2022-07-09-06:00","2022-07-09-07:00","2022-07-09-08:00","2022-07-09-09:00","2022-07-09-10:00","2022-07-09-11:00","2022-07-09-12:00","2022-07-09-13:00","2022-07-09-14:00","2022-07-09-15:00","2022-07-09-16:00","2022-07-09-17:00","2022-07-09-18:00","2022-07-09-19:00","2022-07-09-20:00","2022-07-09-21:00","2022-07-10-00:00","2022-07-10-01:00","2022-07-10-02:00","2022-07-10-03:00","2022-07-10-04:00","2022-07-10-05:00","2022-07-10-06:00","2022-07-10-07:00","2022-07-10-08:00","2022-07-10-09:00","2022-07-10-10:00","2022-07-10-11:00","2022-07-10-12:00","2022-07-10-13:00","2022-07-10-14:00","2022-07-10-15:00","2022-07-10-16:00","2022-07-10-17:00","2022-07-10-18:00","2022-07-10-19:00","2022-07-10-20:00","2022-07-10-21:00","2022-07-11-00:00","2022-07-11-01:00","2022-07-11-02:00","2022-07-11-03:00","2022-07-11-04:00","2022-07-11-05:00","2022-07-11-06:00","2022-07-11-07:00","2022-07-11-08:00","2022-07-11-09:00","2022-07-11-10:00","2022-07-11-11:00","2022-07-11-12:00","2022-07-11-13:00","2022-07-11-14:00","2022-07-11-15:00","2022-07-11-16:00","2022-07-11-17:00","2022-07-11-18:00","2022-07-11-19:00","2022-07-11-20:00","2022-07-11-21:00","2022-07-12-00:00","2022-07-12-01:00","2022-07-12-02:00","2022-07-12-03:00","2022-07-12-04:00","2022-07-12-05:00","2022-07-12-06:00","2022-07-12-07:00","2022-07-12-08:00","2022-07-12-09:00","2022-07-12-10:00","2022-07-12-11:00","2022-07-12-12:00","2022-07-12-13:00","2022-07-12-14:00","2022-07-12-15:00","2022-07-12-16:00","2022-07-12-17:00","2022-07-12-18:00","2022-07-12-19:00","2022-07-12-20:00","2022-07-12-21:00","2022-07-13-00:00","2022-07-13-01:00","2022-07-13-02:00","2022-07-13-03:00","2022-07-13-04:00","2022-07-13-05:00","2022-07-13-06:00","2022-07-13-07:00","2022-07-13-08:00","2022-07-13-09:00","2022-07-13-10:00","2022-07-13-11:00","2022-07-13-12:00","2022-07-13-13:00","2022-07-13-14:00","2022-07-13-15:00","2022-07-13-16:00","2022-07-13-17:00","2022-07-13-18:00","2022-07-13-19:00","2022-07-13-20:00","2022-07-13-21:00","2022-07-14-00:00","2022-07-14-01:00","2022-07-14-02:00","2022-07-14-03:00","2022-07-14-04:00","2022-07-14-05:00","2022-07-14-06:00","2022-07-14-07:00","2022-07-14-08:00","2022-07-14-09:00","2022-07-14-10:00","2022-07-14-11:00","2022-07-14-12:00","2022-07-14-13:00","2022-07-14-14:00","2022-07-14-15:00","2022-07-14-16:00","2022-07-14-17:00","2022-07-14-18:00","2022-07-14-19:00","2022-07-14-20:00","2022-07-14-21:00","2022-07-15-00:00","2022-07-15-01:00","2022-07-15-02:00","2022-07-15-03:00","2022-07-15-04:00","2022-07-15-05:00","2022-07-15-06:00","2022-07-15-07:00","2022-07-15-08:00","2022-07-15-09:00","2022-07-15-10:00","2022-07-15-11:00","2022-07-15-12:00","2022-07-15-13:00","2022-07-15-14:00","2022-07-15-15:00","2022-07-15-16:00","2022-07-15-17:00","2022-07-15-18:00","2022-07-15-19:00","2022-07-15-20:00","2022-07-15-21:00","2022-07-16-00:00","2022-07-16-01:00","2022-07-16-02:00","2022-07-16-03:00","2022-07-16-04:00","2022-07-16-05:00","2022-07-16-06:00","2022-07-16-07:00","2022-07-16-08:00","2022-07-16-09:00","2022-07-16-10:00","2022-07-16-11:00","2022-07-16-12:00","2022-07-16-13:00","2022-07-16-14:00","2022-07-16-15:00","2022-07-16-16:00","2022-07-16-17:00","2022-07-16-18:00","2022-07-16-19:00","2022-07-16-20:00","2022-07-16-21:00","2022-07-17-00:00","2022-07-17-01:00","2022-07-17-02:00","2022-07-17-03:00","2022-07-17-04:00","2022-07-17-05:00","2022-07-17-06:00","2022-07-17-07:00","2022-07-17-08:00","2022-07-17-09:00","2022-07-17-10:00","2022-07-17-11:00","2022-07-17-12:00","2022-07-17-13:00","2022-07-17-14:00","2022-07-17-15:00","2022-07-17-16:00","2022-07-17-17:00","2022-07-17-18:00","2022-07-17-19:00","2022-07-17-20:00","2022-07-17-21:00","2022-07-18-00:00","2022-07-18-01:00","2022-07-18-02:00","2022-07-18-03:00","2022-07-18-04:00","2022-07-18-05:00","2022-07-18-06:00","2022-07-18-07:00","2022-07-18-08:00","2022-07-18-09:00","2022-07-18-10:00","2022-07-18-11:00","2022-07-18-12:00","2022-07-18-13:00","2022-07-18-14:00","2022-07-18-15:00","2022-07-18-16:00","2022-07-18-17:00","2022-07-18-18:00","2022-07-18-19:00","2022-07-18-20:00","2022-07-18-21:00","2022-07-19-00:00","2022-07-19-01:00","2022-07-19-02:00","2022-07-19-03:00","2022-07-19-04:00","2022-07-19-05:00","2022-07-19-06:00","2022-07-19-07:00","2022-07-19-08:00","2022-07-19-09:00","2022-07-19-10:00","2022-07-19-11:00","2022-07-19-12:00","2022-07-19-13:00","2022-07-19-14:00","2022-07-19-15:00","2022-07-19-16:00","2022-07-19-17:00","2022-07-19-18:00","2022-07-19-19:00","2022-07-19-20:00","2022-07-19-21:00","2022-07-20-00:00","2022-07-20-01:00","2022-07-20-02:00","2022-07-20-03:00","2022-07-20-04:00","2022-07-20-05:00","2022-07-20-06:00","2022-07-20-07:00","2022-07-20-08:00","2022-07-20-09:00","2022-07-20-10:00","2022-07-20-11:00","2022-07-20-12:00","2022-07-20-13:00","2022-07-20-14:00","2022-07-20-15:00","2022-07-20-16:00","2022-07-20-17:00","2022-07-20-18:00","2022-07-20-19:00","2022-07-20-20:00","2022-07-20-21:00"],"xaxis":"x","y":[0.0,0.0,0.0,0.0,0.0,0.08,0.53,1.17,1.69,2.65,3.2,3.53,3.65,3.54,3.23,2.74,2.09,1.34,0.6,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.51,1.28,1.82,2.6,3.04,3.05,3.17,3.44,2.68,2.54,1.93,1.01,0.74,0.1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.26,0.63,1.23,2.65,3.15,3.44,2.94,3.48,3.08,2.59,1.58,1.27,0.44,0.03,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.37,1.28,1.75,1.96,2.38,2.07,3.67,3.37,3.18,2.72,1.97,1.22,0.58,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.37,0.8,0.82,1.88,1.99,3.0,1.63,0.42,0.31,0.45,0.35,0.43,0.31,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.31,0.53,1.16,1.98,2.71,2.0,2.2,2.67,3.29,2.05,1.95,1.17,0.18,0.05,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.21,0.46,1.14,1.87,1.51,2.23,3.23,2.78,3.07,2.79,1.25,0.71,0.44,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.29,0.55,0.31,0.37,0.56,0.63,1.02,1.99,2.53,1.36,0.65,0.35,0.12,0.01,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.5,1.25,1.75,2.46,3.06,3.06,3.16,3.06,2.91,1.95,1.41,0.64,0.22,0.03,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.16,0.58,1.2,1.39,2.29,2.36,2.59,2.7,2.51,2.07,1.54,0.89,0.32,0.03,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.2,0.33,0.29,0.54,0.57,0.38,0.23,0.52,1.22,0.58,0.45,0.34,0.21,0.05,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.17,1.14,1.59,2.24,2.12,2.71,3.62,3.19,2.66,1.54,0.82,0.42,0.16,0.03,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.15,0.33,0.66,0.98,1.42,1.18,1.31,1.67,1.26,0.55,0.41,0.32,0.08,0.01,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.06,0.19,0.45,0.46,0.6,1.75,2.96,3.35,3.11,2.56,2.03,1.02,0.34,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.43,1.11,1.72,2.6,2.99,3.3,3.2,2.79,2.86,2.28,1.81,1.1,0.54,0.06,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.4,1.22,1.86,2.4,2.75,3.38,3.52,3.48,3.16,2.66,2.0,1.26,0.49,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.06,0.45,0.46,1.01,2.17,2.71,2.85,3.31,3.57,2.55,1.04,0.72,0.68,0.2,0.01,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.02,0.04,0.12,0.19,0.31,0.16,0.17,0.32,0.21,0.21,0.18,0.18,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.09,0.25,0.45,0.53,0.83,1.57,0.92,2.42,2.63,2.18,1.74,1.08,0.45,0.02,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.41,1.17,1.71,2.51,2.76,3.11,2.93,3.08,2.47,2.37,1.38,1.16,0.48,0.02,0.0],"yaxis":"y","type":"scattergl"},{"hovertemplate":"region=\uae40\ud574\uc2dc<br>date=%{x}<br>solar_radiation=%{y}<extra></extra>","legendgroup":"\uae40\ud574\uc2dc","line":{"color":"#ab63fa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"\uae40\ud574\uc2dc","showlegend":true,"x":["2022-07-01-01:00","2022-07-01-02:00","2022-07-01-03:00","2022-07-01-04:00","2022-07-01-05:00","2022-07-01-06:00","2022-07-01-07:00","2022-07-01-08:00","2022-07-01-09:00","2022-07-01-10:00","2022-07-01-11:00","2022-07-01-12:00","2022-07-01-13:00","2022-07-01-14:00","2022-07-01-15:00","2022-07-01-16:00","2022-07-01-17:00","2022-07-01-18:00","2022-07-01-19:00","2022-07-01-20:00","2022-07-01-21:00","2022-07-02-00:00","2022-07-02-01:00","2022-07-02-02:00","2022-07-02-03:00","2022-07-02-04:00","2022-07-02-05:00","2022-07-02-06:00","2022-07-02-07:00","2022-07-02-08:00","2022-07-02-09:00","2022-07-02-10:00","2022-07-02-11:00","2022-07-02-12:00","2022-07-02-13:00","2022-07-02-14:00","2022-07-02-15:00","2022-07-02-16:00","2022-07-02-17:00","2022-07-02-18:00","2022-07-02-19:00","2022-07-02-20:00","2022-07-02-21:00","2022-07-03-00:00","2022-07-03-01:00","2022-07-03-02:00","2022-07-03-03:00","2022-07-03-04:00","2022-07-03-05:00","2022-07-03-06:00","2022-07-03-07:00","2022-07-03-08:00","2022-07-03-09:00","2022-07-03-10:00","2022-07-03-11:00","2022-07-03-12:00","2022-07-03-13:00","2022-07-03-14:00","2022-07-03-15:00","2022-07-03-16:00","2022-07-03-17:00","2022-07-03-18:00","2022-07-03-19:00","2022-07-03-20:00","2022-07-03-21:00","2022-07-04-00:00","2022-07-04-01:00","2022-07-04-02:00","2022-07-04-03:00","2022-07-04-04:00","2022-07-04-05:00","2022-07-04-06:00","2022-07-04-07:00","2022-07-04-08:00","2022-07-04-09:00","2022-07-04-10:00","2022-07-04-11:00","2022-07-04-12:00","2022-07-04-13:00","2022-07-04-14:00","2022-07-04-15:00","2022-07-04-16:00","2022-07-04-17:00","2022-07-04-18:00","2022-07-04-19:00","2022-07-04-20:00","2022-07-04-21:00","2022-07-05-00:00","2022-07-05-01:00","2022-07-05-02:00","2022-07-05-03:00","2022-07-05-04:00","2022-07-05-05:00","2022-07-05-06:00","2022-07-05-07:00","2022-07-05-08:00","2022-07-05-09:00","2022-07-05-10:00","2022-07-05-11:00","2022-07-05-12:00","2022-07-05-13:00","2022-07-05-14:00","2022-07-05-15:00","2022-07-05-16:00","2022-07-05-17:00","2022-07-05-18:00","2022-07-05-19:00","2022-07-05-20:00","2022-07-05-21:00","2022-07-06-00:00","2022-07-06-01:00","2022-07-06-02:00","2022-07-06-03:00","2022-07-06-04:00","2022-07-06-05:00","2022-07-06-06:00","2022-07-06-07:00","2022-07-06-08:00","2022-07-06-09:00","2022-07-06-10:00","2022-07-06-11:00","2022-07-06-12:00","2022-07-06-13:00","2022-07-06-14:00","2022-07-06-15:00","2022-07-06-16:00","2022-07-06-17:00","2022-07-06-18:00","2022-07-06-19:00","2022-07-06-20:00","2022-07-06-21:00","2022-07-07-00:00","2022-07-07-01:00","2022-07-07-02:00","2022-07-07-03:00","2022-07-07-04:00","2022-07-07-05:00","2022-07-07-06:00","2022-07-07-07:00","2022-07-07-08:00","2022-07-07-09:00","2022-07-07-10:00","2022-07-07-11:00","2022-07-07-12:00","2022-07-07-13:00","2022-07-07-14:00","2022-07-07-15:00","2022-07-07-16:00","2022-07-07-17:00","2022-07-07-18:00","2022-07-07-19:00","2022-07-07-20:00","2022-07-07-21:00","2022-07-08-00:00","2022-07-08-01:00","2022-07-08-02:00","2022-07-08-03:00","2022-07-08-04:00","2022-07-08-05:00","2022-07-08-06:00","2022-07-08-07:00","2022-07-08-08:00","2022-07-08-09:00","2022-07-08-10:00","2022-07-08-11:00","2022-07-08-12:00","2022-07-08-13:00","2022-07-08-14:00","2022-07-08-15:00","2022-07-08-16:00","2022-07-08-17:00","2022-07-08-18:00","2022-07-08-19:00","2022-07-08-20:00","2022-07-08-21:00","2022-07-09-00:00","2022-07-09-01:00","2022-07-09-02:00","2022-07-09-03:00","2022-07-09-04:00","2022-07-09-05:00","2022-07-09-06:00","2022-07-09-07:00","2022-07-09-08:00","2022-07-09-09:00","2022-07-09-10:00","2022-07-09-11:00","2022-07-09-12:00","2022-07-09-13:00","2022-07-09-14:00","2022-07-09-15:00","2022-07-09-16:00","2022-07-09-17:00","2022-07-09-18:00","2022-07-09-19:00","2022-07-09-20:00","2022-07-09-21:00","2022-07-10-00:00","2022-07-10-01:00","2022-07-10-02:00","2022-07-10-03:00","2022-07-10-04:00","2022-07-10-05:00","2022-07-10-06:00","2022-07-10-07:00","2022-07-10-08:00","2022-07-10-09:00","2022-07-10-10:00","2022-07-10-11:00","2022-07-10-12:00","2022-07-10-13:00","2022-07-10-14:00","2022-07-10-15:00","2022-07-10-16:00","2022-07-10-17:00","2022-07-10-18:00","2022-07-10-19:00","2022-07-10-20:00","2022-07-10-21:00","2022-07-11-00:00","2022-07-11-01:00","2022-07-11-02:00","2022-07-11-03:00","2022-07-11-04:00","2022-07-11-05:00","2022-07-11-06:00","2022-07-11-07:00","2022-07-11-08:00","2022-07-11-09:00","2022-07-11-10:00","2022-07-11-11:00","2022-07-11-12:00","2022-07-11-13:00","2022-07-11-14:00","2022-07-11-15:00","2022-07-11-16:00","2022-07-11-17:00","2022-07-11-18:00","2022-07-11-19:00","2022-07-11-20:00","2022-07-11-21:00","2022-07-12-00:00","2022-07-12-01:00","2022-07-12-02:00","2022-07-12-03:00","2022-07-12-04:00","2022-07-12-05:00","2022-07-12-06:00","2022-07-12-07:00","2022-07-12-08:00","2022-07-12-09:00","2022-07-12-10:00","2022-07-12-11:00","2022-07-12-12:00","2022-07-12-13:00","2022-07-12-14:00","2022-07-12-15:00","2022-07-12-16:00","2022-07-12-17:00","2022-07-12-18:00","2022-07-12-19:00","2022-07-12-20:00","2022-07-12-21:00","2022-07-13-00:00","2022-07-13-01:00","2022-07-13-02:00","2022-07-13-03:00","2022-07-13-04:00","2022-07-13-05:00","2022-07-13-06:00","2022-07-13-07:00","2022-07-13-08:00","2022-07-13-09:00","2022-07-13-10:00","2022-07-13-11:00","2022-07-13-12:00","2022-07-13-13:00","2022-07-13-14:00","2022-07-13-15:00","2022-07-13-16:00","2022-07-13-17:00","2022-07-13-18:00","2022-07-13-19:00","2022-07-13-20:00","2022-07-13-21:00","2022-07-14-00:00","2022-07-14-01:00","2022-07-14-02:00","2022-07-14-03:00","2022-07-14-04:00","2022-07-14-05:00","2022-07-14-06:00","2022-07-14-07:00","2022-07-14-08:00","2022-07-14-09:00","2022-07-14-10:00","2022-07-14-11:00","2022-07-14-12:00","2022-07-14-13:00","2022-07-14-14:00","2022-07-14-15:00","2022-07-14-16:00","2022-07-14-17:00","2022-07-14-18:00","2022-07-14-19:00","2022-07-14-20:00","2022-07-14-21:00","2022-07-15-00:00","2022-07-15-01:00","2022-07-15-02:00","2022-07-15-03:00","2022-07-15-04:00","2022-07-15-05:00","2022-07-15-06:00","2022-07-15-07:00","2022-07-15-08:00","2022-07-15-09:00","2022-07-15-10:00","2022-07-15-11:00","2022-07-15-12:00","2022-07-15-13:00","2022-07-15-14:00","2022-07-15-15:00","2022-07-15-16:00","2022-07-15-17:00","2022-07-15-18:00","2022-07-15-19:00","2022-07-15-20:00","2022-07-15-21:00","2022-07-16-00:00","2022-07-16-01:00","2022-07-16-02:00","2022-07-16-03:00","2022-07-16-04:00","2022-07-16-05:00","2022-07-16-06:00","2022-07-16-07:00","2022-07-16-08:00","2022-07-16-09:00","2022-07-16-10:00","2022-07-16-11:00","2022-07-16-12:00","2022-07-16-13:00","2022-07-16-14:00","2022-07-16-15:00","2022-07-16-16:00","2022-07-16-17:00","2022-07-16-18:00","2022-07-16-19:00","2022-07-16-20:00","2022-07-16-21:00","2022-07-17-00:00","2022-07-17-01:00","2022-07-17-02:00","2022-07-17-03:00","2022-07-17-04:00","2022-07-17-05:00","2022-07-17-06:00","2022-07-17-07:00","2022-07-17-08:00","2022-07-17-09:00","2022-07-17-10:00","2022-07-17-11:00","2022-07-17-12:00","2022-07-17-13:00","2022-07-17-14:00","2022-07-17-15:00","2022-07-17-16:00","2022-07-17-17:00","2022-07-17-18:00","2022-07-17-19:00","2022-07-17-20:00","2022-07-17-21:00","2022-07-18-00:00","2022-07-18-01:00","2022-07-18-02:00","2022-07-18-03:00","2022-07-18-04:00","2022-07-18-05:00","2022-07-18-06:00","2022-07-18-07:00","2022-07-18-08:00","2022-07-18-09:00","2022-07-18-10:00","2022-07-18-11:00","2022-07-18-12:00","2022-07-18-13:00","2022-07-18-14:00","2022-07-18-15:00","2022-07-18-16:00","2022-07-18-17:00","2022-07-18-18:00","2022-07-18-19:00","2022-07-18-20:00","2022-07-18-21:00","2022-07-19-00:00","2022-07-19-01:00","2022-07-19-02:00","2022-07-19-03:00","2022-07-19-04:00","2022-07-19-05:00","2022-07-19-06:00","2022-07-19-07:00","2022-07-19-08:00","2022-07-19-09:00","2022-07-19-10:00","2022-07-19-11:00","2022-07-19-12:00","2022-07-19-13:00","2022-07-19-14:00","2022-07-19-15:00","2022-07-19-16:00","2022-07-19-17:00","2022-07-19-18:00","2022-07-19-19:00","2022-07-19-20:00","2022-07-19-21:00","2022-07-20-00:00","2022-07-20-01:00","2022-07-20-02:00","2022-07-20-03:00","2022-07-20-04:00","2022-07-20-05:00","2022-07-20-06:00","2022-07-20-07:00","2022-07-20-08:00","2022-07-20-09:00","2022-07-20-10:00","2022-07-20-11:00","2022-07-20-12:00","2022-07-20-13:00","2022-07-20-14:00","2022-07-20-15:00","2022-07-20-16:00","2022-07-20-17:00","2022-07-20-18:00","2022-07-20-19:00","2022-07-20-20:00","2022-07-20-21:00"],"xaxis":"x","y":[0.0,0.0,0.0,0.0,0.0,0.01,0.43,1.31,1.93,2.63,3.14,3.48,3.61,3.55,3.15,2.67,1.99,1.25,0.55,0.05,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.52,1.21,1.96,2.56,2.97,2.78,2.91,2.78,3.02,2.74,1.76,1.32,0.69,0.09,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.38,0.64,1.79,2.54,3.03,2.94,3.12,2.09,2.55,2.56,1.96,1.33,0.46,0.03,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.27,0.64,1.15,1.63,1.69,2.34,3.15,2.7,2.76,2.74,1.9,0.99,0.44,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.36,0.78,1.08,1.73,1.91,2.02,1.96,0.68,1.72,1.01,0.24,0.59,0.27,0.01,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.27,0.53,1.07,1.69,1.95,2.09,1.67,3.2,2.44,2.19,2.1,1.16,0.22,0.01,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.18,0.58,1.87,2.87,2.23,2.26,2.52,1.64,2.15,1.88,1.17,0.85,0.56,0.03,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.19,0.22,0.1,0.31,1.05,1.09,1.27,2.35,2.04,0.68,0.19,0.13,0.22,0.03,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.48,1.16,1.86,2.45,2.64,3.05,1.67,1.29,3.07,2.08,1.15,0.8,0.43,0.03,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.21,0.92,0.93,1.26,1.87,1.86,2.54,2.35,2.92,1.5,0.67,0.9,0.14,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.17,0.2,0.28,0.46,0.18,0.3,0.71,1.09,1.22,0.39,0.16,0.22,0.28,0.03,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.2,0.99,1.92,2.03,2.06,3.33,1.78,1.08,1.13,1.2,0.7,0.38,0.16,0.01,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.13,0.31,0.6,1.01,1.25,1.04,1.45,1.14,0.93,0.44,0.46,0.24,0.07,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.03,0.24,0.41,0.91,0.93,2.48,2.54,2.8,2.19,2.39,1.92,0.7,0.29,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.02,0.32,1.11,1.93,2.47,3.0,3.38,3.12,2.83,2.85,1.95,1.46,0.98,0.6,0.07,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.45,1.19,2.06,2.59,3.05,3.22,3.48,3.49,2.74,2.09,1.95,0.93,0.28,0.01,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.05,0.28,0.49,1.19,1.94,2.45,2.69,2.75,3.37,1.87,1.14,0.66,0.62,0.27,0.01,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.06,0.1,0.42,0.36,0.19,0.38,0.42,0.26,0.21,0.17,0.1,0.01,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.05,0.17,0.53,0.9,1.53,1.27,3.08,2.32,2.61,2.49,1.79,1.01,0.4,0.01,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.01,0.41,1.14,1.9,2.5,3.09,3.16,2.57,2.69,2.44,1.31,1.51,1.04,0.35,0.0,0.0],"yaxis":"y","type":"scattergl"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"date"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"solar_radiation"}},"legend":{"title":{"text":"region"},"tracegroupgap":0},"margin":{"t":60}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('90d1c0dc-beec-48f5-b460-f2f67c07b73f');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+</section>
+<section id="월-8월15-8월15-9월15" class="level2">
+<h2 class="anchored" data-anchor-id="월-8월15-8월15-9월15">6월-8월15 // 8월15 ~9월15</h2>
+<div class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>df.query(<span class="st">"date &gt;= '2022-09-01-01:00' and date &lt;= '2022-09-01-23:00' and ( region=='부산')"</span>).drop_duplicates()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="100">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>region</th>
+      <th>solar_radiation</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>416701</th>
+      <td>부산</td>
+      <td>0.00</td>
+      <td>2022-09-01-01:00</td>
+    </tr>
+    <tr>
+      <th>416702</th>
+      <td>부산</td>
+      <td>0.00</td>
+      <td>2022-09-01-02:00</td>
+    </tr>
+    <tr>
+      <th>416703</th>
+      <td>부산</td>
+      <td>0.00</td>
+      <td>2022-09-01-03:00</td>
+    </tr>
+    <tr>
+      <th>416704</th>
+      <td>부산</td>
+      <td>0.00</td>
+      <td>2022-09-01-04:00</td>
+    </tr>
+    <tr>
+      <th>416705</th>
+      <td>부산</td>
+      <td>0.00</td>
+      <td>2022-09-01-05:00</td>
+    </tr>
+    <tr>
+      <th>416706</th>
+      <td>부산</td>
+      <td>0.00</td>
+      <td>2022-09-01-06:00</td>
+    </tr>
+    <tr>
+      <th>416707</th>
+      <td>부산</td>
+      <td>0.11</td>
+      <td>2022-09-01-07:00</td>
+    </tr>
+    <tr>
+      <th>416708</th>
+      <td>부산</td>
+      <td>0.44</td>
+      <td>2022-09-01-08:00</td>
+    </tr>
+    <tr>
+      <th>416709</th>
+      <td>부산</td>
+      <td>0.48</td>
+      <td>2022-09-01-09:00</td>
+    </tr>
+    <tr>
+      <th>416710</th>
+      <td>부산</td>
+      <td>0.29</td>
+      <td>2022-09-01-10:00</td>
+    </tr>
+    <tr>
+      <th>416711</th>
+      <td>부산</td>
+      <td>0.50</td>
+      <td>2022-09-01-11:00</td>
+    </tr>
+    <tr>
+      <th>416712</th>
+      <td>부산</td>
+      <td>0.35</td>
+      <td>2022-09-01-12:00</td>
+    </tr>
+    <tr>
+      <th>416713</th>
+      <td>부산</td>
+      <td>0.35</td>
+      <td>2022-09-01-13:00</td>
+    </tr>
+    <tr>
+      <th>416714</th>
+      <td>부산</td>
+      <td>0.46</td>
+      <td>2022-09-01-14:00</td>
+    </tr>
+    <tr>
+      <th>416715</th>
+      <td>부산</td>
+      <td>0.64</td>
+      <td>2022-09-01-15:00</td>
+    </tr>
+    <tr>
+      <th>416716</th>
+      <td>부산</td>
+      <td>0.59</td>
+      <td>2022-09-01-16:00</td>
+    </tr>
+    <tr>
+      <th>416717</th>
+      <td>부산</td>
+      <td>0.30</td>
+      <td>2022-09-01-17:00</td>
+    </tr>
+    <tr>
+      <th>416718</th>
+      <td>부산</td>
+      <td>0.18</td>
+      <td>2022-09-01-18:00</td>
+    </tr>
+    <tr>
+      <th>416719</th>
+      <td>부산</td>
+      <td>0.02</td>
+      <td>2022-09-01-19:00</td>
+    </tr>
+    <tr>
+      <th>416721</th>
+      <td>부산</td>
+      <td>0.00</td>
+      <td>2022-09-01-20:00</td>
+    </tr>
+    <tr>
+      <th>416723</th>
+      <td>부산</td>
+      <td>0.00</td>
+      <td>2022-09-01-21:00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data/solar2.json'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>data_dict <span class="op">=</span> json.loads(urllib.request.urlopen(url).read())</span>
+<span id="cb38-2"><a href="#cb38-2"></a>V <span class="op">=</span> <span class="bu">list</span>(data_dict[<span class="st">'node_ids'</span>].keys())</span>
+<span id="cb38-3"><a href="#cb38-3"></a>f <span class="op">=</span> np.array(data_dict[<span class="st">"FX"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb39-2"><a href="#cb39-2"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> <span class="st">'NanumGothic'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">44</span>,<span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">50</span>))</span>
+<span id="cb40-2"><a href="#cb40-2"></a>lag<span class="op">=</span> <span class="dv">4</span> </span>
+<span id="cb40-3"><a href="#cb40-3"></a>T <span class="op">=</span> <span class="dv">100</span> </span>
+<span id="cb40-4"><a href="#cb40-4"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">44</span>):</span>
+<span id="cb40-5"><a href="#cb40-5"></a>    ax[k].plot(f[lag:(lag<span class="op">+</span>T),k],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>)</span>
+<span id="cb40-6"><a href="#cb40-6"></a><span class="co">#    ax[k].set_title('node: {}'.format(V[k]))</span></span>
+<span id="cb40-7"><a href="#cb40-7"></a>    ax[k].plot(yhat_train[:T,k],label<span class="op">=</span><span class="st">'predicted (tr)'</span>)</span>
+<span id="cb40-8"><a href="#cb40-8"></a><span class="co">#    ax[k].plot(range(yhat_train.shape[0],yhat_train.shape[0]+yhat_test.shape[0]),yhat_test[:,k],label='predicted (test)')</span></span>
+<span id="cb40-9"><a href="#cb40-9"></a>    ax[k].legend()</span>
+<span id="cb40-10"><a href="#cb40-10"></a>fig.tight_layout()</span>
+<span id="cb40-11"><a href="#cb40-11"></a></span>
+<span id="cb40-12"><a href="#cb40-12"></a><span class="co"># plt.savefig('stgcn-ver2-lag4-vis.png')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-08-solar-stgcn-ver2-lag4_files/figure-html/cell-28-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>깃헙 메모리문제(100MB 초과)</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
