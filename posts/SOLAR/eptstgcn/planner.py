@@ -12,14 +12,14 @@ class PLNR():
     def __init__(self,plans,loader,dataset_name=None,simulation_results=None):
         self.plans = plans
         # col = ['dataset', 'method', 'lags', 'nof_filters', 'epoch', 'mse','calculation_time']
-        col = ['dataset', 'method', 'normal','lags', 'nof_filters', 'epoch', 'mse(train)','mse(test)','calculation_time']
+        col = ['dataset', 'method', 'lags', 'nof_filters', 'epoch', 'mse(train)','mse(test)','calculation_time']
         self.loader = loader
         self.dataset_name = dataset_name
         self.simulation_results = pd.DataFrame(columns=col) if simulation_results is None else simulation_results 
     def record(self,method,lags,nof_filters,epoch,mse_tr, mse_test, calculation_time):
         dct = {'dataset': self.dataset_name,
                'method': method, 
-               'normal': 'X',
+               # 'normal': 'X',
                'lags': lags,
                'nof_filters': nof_filters,
                'epoch': epoch,
@@ -31,11 +31,11 @@ class PLNR():
         simulation_result_new = pd.Series(dct).to_frame().transpose()
         self.simulation_results = pd.concat([self.simulation_results,simulation_result_new]).reset_index(drop=True)
     def save(self):
-        if 'simulation_results' not in os.listdir(): 
-            os.mkdir('simulation_results')
+        if 'simulation_results2' not in os.listdir(): 
+            os.mkdir('simulation_results2')
         fname = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S.csv")
-        self.simulation_results.to_csv('./simulation_results/'+fname,index=False)    
-        print("All results are stored in ./simulation_results/"+fname)
+        self.simulation_results.to_csv('./simulation_results2/'+fname,index=False)    
+        print("All results are stored in ./simulation_results2/"+fname)
         
         
     
