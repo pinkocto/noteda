@@ -153,7 +153,75 @@ class DatasetLoader(object):
         )
         return dataset
     
+    
 
+class DatasetLoader0(object):
+    """Hourly solar radiation of observatories from South Korean  for 2 years. 
+    Vertices represent 44 cities and the weighted edges represent the strength of the relationship. 
+    The target variable allows regression operations. 
+    (The weight is the correlation coefficient of solar radiation by region.)
+    """
+
+    def __init__(self, url):
+        self.url = url
+        self._read_web_data()
+        
+    def _read_web_data(self):
+        self._dataset = json.loads(urllib.request.urlopen(self.url).read().decode())
+    
+    def _get_edges(self):
+        self._edges = np.array(self._dataset["edges"]).T
+
+    def _get_edge_weights(self):
+        # self._edge_weights = np.array(self._dataset["weights"]).T
+        self._edge_weights = np.array(self._dataset["weights"]).T
+        
+        # scaled_edge_weights = minmaxscaler(edge_weights)
+        # self._edge_weights = scaled_edge_weights
+    """
+    def _get_targets_and_features(self):
+        stacked_target = np.stack(self._dataset["FX"])
+        standardized_target = (stacked_target - np.mean(stacked_target, axis=0)) / (
+            np.std(stacked_target, axis=0) + 10 ** -10
+        )
+        self.features = [
+            standardized_target[i : i + self.lags, :].T
+            for i in range(standardized_target.shape[0] - self.lags)
+        ]
+        self.targets = [
+            standardized_target[i + self.lags, :].T
+            for i in range(standardized_target.shape[0] - self.lags)
+        ]
+        """
+    def _get_targets_and_features(self):
+        stacked_target = np.array(self._dataset["FX"])
+        self.features = [
+            stacked_target[i : i + self.lags, :].T
+            for i in range(stacked_target.shape[0] - self.lags)
+        ]
+        self.targets = [
+            stacked_target[i + self.lags, :].T
+            for i in range(stacked_target.shape[0] - self.lags)
+        ]
+
+
+    def get_dataset(self, lags: int = 4) -> StaticGraphTemporalSignal:
+        """Returning the Solar radiation Output data iterator.
+        Args types:
+            * **lags** *(int)* - The number of time lags.
+        Return types:
+            * **dataset** *(StaticGraphTemporalSignal)* - The Solar radiation Output dataset.
+        """
+        self.lags = lags
+        self._get_edges()
+        self._get_edge_weights()
+        self._get_targets_and_features()
+        dataset = StaticGraphTemporalSignal(
+            self._edges, self._edge_weights, self.features, self.targets
+        )
+        return dataset
+
+    
     
 class Evaluator():
     def __init__(self,learner,train_dataset,test_dataset):
@@ -245,7 +313,7 @@ class Evaluator():
     def _plot2(self,*args,t=None,h=2.5,max_node=44,**kwargs):
         T,N = self.f_tr.shape
         # if t is None: t = range(T)
-        if t is None: t = 150
+        if t is None: t = 30
         fig = plt.figure()
         nof_axs = max(min(N,max_node),2)
         if min(N,max_node)<2: 
@@ -305,7 +373,7 @@ class Evaluator():
     def _plot3(self,*args,t=None,h=2.5,max_node=44,**kwargs):
         T,N = self.f_tr.shape
         # if t is None: t = range(T)
-        if t is None: t = 150
+        if t is None: t = 30
         fig = plt.figure()
         nof_axs = max(min(N,max_node),2)
         if min(N,max_node)<2: 
