@@ -723,6 +723,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-26-toy-example2-self-loop.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Toy Example2 (self-loop)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-04-06-solar-class.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> WindmillOutputLargeDatasetLoader</a>
   </div>
 </li>
@@ -1230,87 +1235,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote class="blockquote">
 <p>자기자신과 연결 (가중치를 1로)</p>
 </blockquote>
-<div class="cell" data-execution_count="21">
+<div class="cell" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>weights_ <span class="op">=</span> []</span>
 <span id="cb28-2"><a href="#cb28-2"></a></span>
 <span id="cb28-3"><a href="#cb28-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
 <span id="cb28-4"><a href="#cb28-4"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
-<span id="cb28-5"><a href="#cb28-5"></a>            weights_.append(cor1.iloc[i,j])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-5"><a href="#cb28-5"></a>        <span class="cf">if</span> i<span class="op">!=</span>j:</span>
+<span id="cb28-6"><a href="#cb28-6"></a>            weights_.append(cor1.iloc[i,j])</span>
+<span id="cb28-7"><a href="#cb28-7"></a>        <span class="cf">else</span>:</span>
+<span id="cb28-8"><a href="#cb28-8"></a>            weights_.append(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>weights_2 <span class="op">=</span> []</span>
-<span id="cb29-2"><a href="#cb29-2"></a></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
-<span id="cb29-4"><a href="#cb29-4"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
-<span id="cb29-5"><a href="#cb29-5"></a>        weights_2.append(cor2.iloc[i,j])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>np.array(weights_).reshape(<span class="dv">4</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="76">
+<pre><code>array([[ 1.    ,  0.9318,  0.    , -0.0938],
+       [ 0.9318,  1.    ,  0.    ,  0.2739],
+       [ 0.    ,  0.    ,  1.    ,  0.    ],
+       [-0.0938,  0.2739,  0.    ,  1.    ]])</code></pre>
 </div>
-<div class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>data_dict_ <span class="op">=</span> {<span class="st">'edges'</span>:edges, <span class="st">'node_ids'</span>:node_ids, <span class="st">'weights'</span>:weights_, <span class="st">'FX'</span>: FX}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>data_dict2_ <span class="op">=</span> data_dict_.copy()</span>
-<span id="cb31-2"><a href="#cb31-2"></a>data_dict2_[<span class="st">'weights'</span>] <span class="op">=</span> weights_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>weights_2 <span class="op">=</span> []</span>
+<span id="cb31-2"><a href="#cb31-2"></a></span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb31-4"><a href="#cb31-4"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb31-5"><a href="#cb31-5"></a>        <span class="cf">if</span> i<span class="op">!=</span>j:</span>
+<span id="cb31-6"><a href="#cb31-6"></a>            weights_2.append(cor2.iloc[i,j])</span>
+<span id="cb31-7"><a href="#cb31-7"></a>        <span class="cf">else</span>:</span>
+<span id="cb31-8"><a href="#cb31-8"></a>            weights_2.append(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="bu">len</span>(data_dict_[<span class="st">'weights'</span>]), <span class="bu">len</span>(data_dict2_[<span class="st">'weights'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>np.array(weights_2).reshape(<span class="dv">4</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="80">
+<pre><code>array([[ 1.    ,  0.    ,  0.9318, -0.0938],
+       [ 0.    ,  1.    , -0.0087,  0.9318],
+       [ 0.9318, -0.0087,  1.    ,  0.    ],
+       [-0.0938,  0.9318,  0.    ,  1.    ]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>data_dict_ <span class="op">=</span> {<span class="st">'edges'</span>:edges, <span class="st">'node_ids'</span>:node_ids, <span class="st">'weights'</span>:weights_, <span class="st">'FX'</span>: FX}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>data_dict2_ <span class="op">=</span> data_dict_.copy()</span>
+<span id="cb35-2"><a href="#cb35-2"></a>data_dict2_[<span class="st">'weights'</span>] <span class="op">=</span> weights_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="bu">len</span>(data_dict_[<span class="st">'weights'</span>]), <span class="bu">len</span>(data_dict2_[<span class="st">'weights'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="83">
 <pre><code>(16, 16)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># with open('./toy_example/data/self_loop/normal.json', 'w') as f:</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a><span class="co">#     json.dump(data_dict_, f)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># with open('./toy_example2/data/self_loop/normal.json', 'w') as f:</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="co">#     json.dump(data_dict_, f)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># with open('./toy_example/data/self_loop/abnormal.json', 'w') as f:</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a><span class="co">#     json.dump(data_dict2_, f)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a><span class="co"># with open('./toy_example2/data/self_loop/abnormal.json', 'w') as f:</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a><span class="co">#     json.dump(data_dict2_, f)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 <section id="lrnr" class="level1">
 <h1>LRNR</h1>
 <div class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="im">import</span> eptstgcn</span>
-<span id="cb36-2"><a href="#cb36-2"></a><span class="im">import</span> torch</span>
-<span id="cb36-3"><a href="#cb36-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb36-4"><a href="#cb36-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb36-5"><a href="#cb36-5"></a><span class="im">import</span> gc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="im">import</span> eptstgcn</span>
+<span id="cb40-2"><a href="#cb40-2"></a><span class="im">import</span> torch</span>
+<span id="cb40-3"><a href="#cb40-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb40-4"><a href="#cb40-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb40-5"><a href="#cb40-5"></a><span class="im">import</span> gc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a><span class="im">import</span> importlib</span>
-<span id="cb37-2"><a href="#cb37-2"></a>importlib.<span class="bu">reload</span>(eptstgcn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a><span class="im">import</span> importlib</span>
+<span id="cb41-2"><a href="#cb41-2"></a>importlib.<span class="bu">reload</span>(eptstgcn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>&lt;module 'eptstgcn' from '/home/jy/Dropbox/noteda/posts/SOLAR/eptstgcn/__init__.py'&gt;</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>url1 <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/toy_example2/data/normal.json'</span></span>
-<span id="cb39-2"><a href="#cb39-2"></a>loader1 <span class="op">=</span> eptstgcn.DatasetLoader(url1)</span>
-<span id="cb39-3"><a href="#cb39-3"></a>dataset1 <span class="op">=</span> loader1.get_dataset(lags<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb39-4"><a href="#cb39-4"></a>train_dataset, test_dataset <span class="op">=</span> eptstgcn.utils.temporal_signal_split(dataset1, train_ratio <span class="op">=</span> <span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>url1 <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/toy_example2/data/normal.json'</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a>loader1 <span class="op">=</span> eptstgcn.DatasetLoader(url1)</span>
+<span id="cb43-3"><a href="#cb43-3"></a>dataset1 <span class="op">=</span> loader1.get_dataset(lags<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb43-4"><a href="#cb43-4"></a>train_dataset, test_dataset <span class="op">=</span> eptstgcn.utils.temporal_signal_split(dataset1, train_ratio <span class="op">=</span> <span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>url2 <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/toy_example2/data/abnormal.json'</span></span>
-<span id="cb40-2"><a href="#cb40-2"></a>loader2 <span class="op">=</span> eptstgcn.DatasetLoader(url2)</span>
-<span id="cb40-3"><a href="#cb40-3"></a>dataset2 <span class="op">=</span> loader2.get_dataset(lags<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb40-4"><a href="#cb40-4"></a>train_dataset2, test_dataset2 <span class="op">=</span> eptstgcn.utils.temporal_signal_split(dataset2, train_ratio <span class="op">=</span> <span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>url2 <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/toy_example2/data/abnormal.json'</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>loader2 <span class="op">=</span> eptstgcn.DatasetLoader(url2)</span>
+<span id="cb44-3"><a href="#cb44-3"></a>dataset2 <span class="op">=</span> loader2.get_dataset(lags<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb44-4"><a href="#cb44-4"></a>train_dataset2, test_dataset2 <span class="op">=</span> eptstgcn.utils.temporal_signal_split(dataset2, train_ratio <span class="op">=</span> <span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="55">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>lrnr <span class="op">=</span> eptstgcn.StgcnLearner(train_dataset, dataset_name <span class="op">=</span> <span class="st">'ver1'</span>)</span>
-<span id="cb41-2"><a href="#cb41-2"></a>lrnr2 <span class="op">=</span> eptstgcn.StgcnLearner(train_dataset2, dataset_name <span class="op">=</span> <span class="st">'ver2'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>lrnr <span class="op">=</span> eptstgcn.StgcnLearner(train_dataset, dataset_name <span class="op">=</span> <span class="st">'ver1'</span>)</span>
+<span id="cb45-2"><a href="#cb45-2"></a>lrnr2 <span class="op">=</span> eptstgcn.StgcnLearner(train_dataset2, dataset_name <span class="op">=</span> <span class="st">'ver2'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/home/jy/Dropbox/noteda/posts/SOLAR/eptstgcn/learners.py:50: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /opt/conda/conda-bld/pytorch_1678402421473/work/torch/csrc/utils/tensor_new.cpp:245.)
   self.lags = torch.tensor(train_dataset.features).shape[-1]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="56">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>lrnr.learn(filters<span class="op">=</span><span class="dv">32</span>, epoch<span class="op">=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>lrnr.learn(filters<span class="op">=</span><span class="dv">32</span>, epoch<span class="op">=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>50/50</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="57">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>lrnr2.learn(filters<span class="op">=</span><span class="dv">32</span>, epoch<span class="op">=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>lrnr2.learn(filters<span class="op">=</span><span class="dv">32</span>, epoch<span class="op">=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>50/50</code></pre>
 </div>
@@ -1357,40 +1386,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="ver1.노드12-노드34" class="level3">
 <h3 class="anchored" data-anchor-id="ver1.노드12-노드34">VER1.노드1,2 // 노드3,4</h3>
 <div class="cell" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>evtor1 <span class="op">=</span> eptstgcn.ToyEvaluator(lrnr, train_dataset, test_dataset)</span>
-<span id="cb47-2"><a href="#cb47-2"></a>evtor2 <span class="op">=</span> eptstgcn.ToyEvaluator(lrnr2, train_dataset2, test_dataset2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>evtor1 <span class="op">=</span> eptstgcn.ToyEvaluator(lrnr, train_dataset, test_dataset)</span>
+<span id="cb51-2"><a href="#cb51-2"></a>evtor2 <span class="op">=</span> eptstgcn.ToyEvaluator(lrnr2, train_dataset2, test_dataset2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="59">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>evtor1.tr_plot(t<span class="op">=</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="59">
-<p><img src="2023-05-25-toy-example2_files/figure-html/cell-39-output-1.png" class="img-fluid"></p>
+<div class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>evtor1.tr_plot(t<span class="op">=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="65">
+<p><img src="2023-05-25-toy-example2_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>np.array(test_dataset.features).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a>np.array(test_dataset.features).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="60">
 <pre><code>(28, 4, 4)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>evtor1.test_plot(t<span class="op">=</span><span class="dv">28</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>evtor1.test_plot(t<span class="op">=</span><span class="dv">28</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="61">
-<p><img src="2023-05-25-toy-example2_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
+<p><img src="2023-05-25-toy-example2_files/figure-html/cell-43-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="ver2.-노드13-노드24" class="level3">
 <h3 class="anchored" data-anchor-id="ver2.-노드13-노드24">VER2. 노드1,3 // 노드2,4</h3>
-<div class="cell" data-execution_count="62">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>evtor2.tr_plot(t<span class="op">=</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="62">
-<p><img src="2023-05-25-toy-example2_files/figure-html/cell-42-output-1.png" class="img-fluid"></p>
+<div class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>evtor2.tr_plot(t<span class="op">=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="69">
+<p><img src="2023-05-25-toy-example2_files/figure-html/cell-44-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a>evtor2.test_plot(t<span class="op">=</span><span class="dv">28</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a>evtor2.test_plot(t<span class="op">=</span><span class="dv">28</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="64">
-<p><img src="2023-05-25-toy-example2_files/figure-html/cell-43-output-1.png" class="img-fluid"></p>
+<p><img src="2023-05-25-toy-example2_files/figure-html/cell-45-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 
