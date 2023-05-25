@@ -1211,18 +1211,18 @@
     "text": "Test\n\nNo weights\n\nevtor0.test_plot(t=150, label='observed data')\n\n\n\n\n\n\nCorrelation\n\nevtor.test_plot(t=150, label='observed data')\n\n\n\n\n\n\nEPT-Correlation\n\nevtor2.test_plot(t=150, label='observed data')\n\n\n\n\n뭐지………………."
   },
   {
-    "objectID": "posts/SOLAR/2023-05-24-정리-Copy1.html#lag4-filters32-epoch50",
-    "href": "posts/SOLAR/2023-05-24-정리-Copy1.html#lag4-filters32-epoch50",
+    "objectID": "posts/SOLAR/2023-05-24-정리-Copy1.html#lag4-filters32-epoch30",
+    "href": "posts/SOLAR/2023-05-24-정리-Copy1.html#lag4-filters32-epoch30",
     "title": "[SOLAR] 0524 뭔가이상해",
-    "section": "lag=4, filters=32, epoch=50",
-    "text": "lag=4, filters=32, epoch=50\n\nweight = correlation\n\nevtor1 = eptstgcn.Evaluator(lrnr, train_dataset, test_dataset)\n# evtor2 = eptstgcn.Evaluator(lrnr2, train_Dataset2, test_Dataset2)\n\n\nevtor1.test_plot(t=30)\n\n\n\n\n\n\nweight = EPT-corr\n\nevtor2 = eptstgcn.Evaluator(lrnr2, train_dataset2, test_dataset2)\n\n\nevtor2.test_plot(t=30)"
+    "section": "lag=4, filters=32, epoch=30",
+    "text": "lag=4, filters=32, epoch=30\n\nweight = correlation\n\nevtor1 = eptstgcn.Evaluator(lrnr, train_dataset, test_dataset)\n# evtor2 = eptstgcn.Evaluator(lrnr2, train_Dataset2, test_Dataset2)\n\n\nevtor1.test_plot(t=30)\n\n\n\n\n\n\nweight = EPT-corr\n\nevtor2 = eptstgcn.Evaluator(lrnr2, train_dataset2, test_dataset2)\n\n\nevtor2.test_plot(t=30)"
   },
   {
     "objectID": "posts/SOLAR/2023-05-24-정리-Copy1.html#lag24-filter4-epoch30",
     "href": "posts/SOLAR/2023-05-24-정리-Copy1.html#lag24-filter4-epoch30",
     "title": "[SOLAR] 0524 뭔가이상해",
     "section": "lag=24, filter=4, epoch=30",
-    "text": "lag=24, filter=4, epoch=30\n\nimport importlib\nimport eptstgcn\nimportlib.reload(eptstgcn)\n\n<module 'eptstgcn' from '/home/jy/Dropbox/noteda/posts/SOLAR/eptstgcn/__init__.py'>\n\n\n\nurl = \"https://rawEvaluatorthubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data5/stgcn_data1.json\"\n\n\nurl = \"https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data5/stgcn_data1.json\"\nurl2 = \"https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data5/stgcn_data2.json\"\n\nloader = eptstgcn.DatasetLoader(url)\nloader2 = eptstgcn.DatasetLoader(url2)\n\ndataset = loader.get_dataset(lags=24)\ndataset2 = loader2.get_dataset(lags=24)\n\n\ntrain_dataset, test_dataset = eptstgcn.utils.temporal_signal_split(dataset, train_ratio = 0.7)\ntrain_dataset2, test_dataset2 = eptstgcn.utils.temporal_signal_split(dataset2, train_ratio = 0.7)\n\n\nlrnr = eptstgcn.StgcnLearner(train_dataset, dataset_name = 'ver1')\nlrnr2 = eptstgcn.StgcnLearner(train_dataset2, dataset_name = 'ver2')\n\n\nlrnr.learn(filters=4, epoch=30)\n\n30/30\n\n\n\nlrnr2.learn(filters=4, epoch=30)\n\n30/30\n\n\n\nWeight = correlation\n\nevtor1 = eptstgcn.Evaluator(lrnr1, train_dataset, test_dataset)\n\n\nevtor1.test_plot(t=30)\n\n\n\n\n\n\nWeight = EPT-corr\n\nevtor2 = eptstgcn.Evaluator(lrnr2, train_dataset2, test_dataset2)\n\n\nevtor2.test_plot(t=30)"
+    "text": "lag=24, filter=4, epoch=30\n\nimport importlib\nimport eptstgcn\nimportlib.reload(eptstgcn)\n\n<module 'eptstgcn' from '/home/jy/Dropbox/noteda/posts/SOLAR/eptstgcn/__init__.py'>\n\n\n\n# url = \"https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data5/stgcn_data1.json\"\n# url2 = \"https://raw.githubusercontent.com/pinkocto/noteda/main/posts/SOLAR/data5/stgcn_data2.json\"\n\n# loader = eptstgcn.DatasetLoader(url)\n# loader2 = eptstgcn.DatasetLoader(url2)\n\ndataset_ = loader.get_dataset(lags=24)\ndataset2_ = loader2.get_dataset(lags=24)\n\n\ntrain_dataset_, test_dataset_ = eptstgcn.utils.temporal_signal_split(dataset_, train_ratio = 0.7)\ntrain_dataset2_, test_dataset2_ = eptstgcn.utils.temporal_signal_split(dataset2_, train_ratio = 0.7)\n\n\nlrnr_ = eptstgcn.StgcnLearner(train_dataset_, dataset_name = 'ver1')\nlrnr2_ = eptstgcn.StgcnLearner(train_dataset2_, dataset_name = 'ver2')\n\n\nlrnr_.learn(filters=4, epoch=30)\n\n30/30\n\n\n\nlrnr2_.learn(filters=4, epoch=30)\n\n30/30\n\n\n\nWeight = correlation\n\nevtor1_ = eptstgcn.Evaluator(lrnr_, train_dataset_, test_dataset_)\n\n\nevtor1_.test_plot(t=30)\n\n\n\n\n\n\nWeight = EPT-corr\n\nevtor2_ = eptstgcn.Evaluator(lrnr2_, train_dataset2_, test_dataset2_)\n\n\nevtor2_.test_plot(t=30)"
   },
   {
     "objectID": "posts/SOLAR/2023-04-27-s-stgcn-ver2-50에폭-64필터.html",
