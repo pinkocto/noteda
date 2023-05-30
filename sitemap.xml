@@ -2,498 +2,518 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pinkocto.github.io/noteda/about.html</loc>
-    <lastmod>2023-05-25T10:03:11.305Z</lastmod>
+    <lastmod>2023-05-30T16:02:36.355Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/etc/2023-03-21-scorecard.html</loc>
-    <lastmod>2023-05-25T10:03:11.569Z</lastmod>
+    <lastmod>2023-05-30T16:02:36.627Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/etc/2023-04-20-학회.html</loc>
-    <lastmod>2023-05-25T10:03:11.813Z</lastmod>
+    <lastmod>2023-05-30T16:02:36.883Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pinkocto.github.io/noteda/posts/etc/2023-05-30-conference-calender.html</loc>
+    <lastmod>2023-05-30T16:02:37.131Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/etc/2023-04-05-ppt.html</loc>
-    <lastmod>2023-05-25T10:03:12.021Z</lastmod>
+    <lastmod>2023-05-30T16:02:37.347Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/etc/2023-03-21-lib.html</loc>
-    <lastmod>2023-05-25T10:03:12.233Z</lastmod>
+    <lastmod>2023-05-30T16:02:37.575Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/etc/2023-04-02-abstract.html</loc>
-    <lastmod>2023-05-25T10:03:12.469Z</lastmod>
+    <lastmod>2023-05-30T16:02:37.815Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/etc/2023-03-21-resumetable.html</loc>
-    <lastmod>2023-05-25T10:03:12.689Z</lastmod>
+    <lastmod>2023-05-30T16:02:38.039Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/etc/2023-04-11-git-error.html</loc>
-    <lastmod>2023-05-25T10:03:12.909Z</lastmod>
+    <lastmod>2023-05-30T16:02:38.271Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/etc/2023-02-24-tips.html</loc>
-    <lastmod>2023-05-25T10:03:13.141Z</lastmod>
+    <lastmod>2023-05-30T16:02:38.511Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/etc/2023-04-01-연구생신규등록.html</loc>
-    <lastmod>2023-05-25T10:03:13.353Z</lastmod>
+    <lastmod>2023-05-30T16:02:38.747Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/etc/2023-04-23-r-python-same-jupyter.html</loc>
-    <lastmod>2023-05-25T10:03:13.581Z</lastmod>
+    <lastmod>2023-05-30T16:02:38.971Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/etc/2023-03-21-downcasting.html</loc>
-    <lastmod>2023-05-25T10:03:13.801Z</lastmod>
+    <lastmod>2023-05-30T16:02:39.199Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/etc/2023-03-21-dv.html</loc>
-    <lastmod>2023-05-25T10:03:14.029Z</lastmod>
+    <lastmod>2023-05-30T16:02:39.431Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/etc/2023-05-08-에러모음.html</loc>
-    <lastmod>2023-05-25T10:03:14.273Z</lastmod>
+    <lastmod>2023-05-30T16:02:39.675Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/DataHandling/2023-04-06-pivot-wider-error.html</loc>
-    <lastmod>2023-05-25T10:03:14.493Z</lastmod>
+    <lastmod>2023-05-30T16:02:39.899Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/DataHandling/2023-04-02-assign.html</loc>
-    <lastmod>2023-05-25T10:03:14.757Z</lastmod>
+    <lastmod>2023-05-30T16:02:40.171Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/DataHandling/2023-04-02-hanling-index.html</loc>
-    <lastmod>2023-05-25T10:03:14.985Z</lastmod>
+    <lastmod>2023-05-30T16:02:40.411Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/DataHandling/2023-04-06-assign-r.html</loc>
-    <lastmod>2023-05-25T10:03:15.393Z</lastmod>
+    <lastmod>2023-05-30T16:02:40.831Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/2023-03-23-read-list.html</loc>
-    <lastmod>2023-05-25T10:03:15.605Z</lastmod>
+    <lastmod>2023-05-30T16:02:41.051Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/welcome/index.html</loc>
-    <lastmod>2023-05-25T10:03:15.805Z</lastmod>
+    <lastmod>2023-05-30T16:02:41.263Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/2023-04-10-arima-ex-day.html</loc>
-    <lastmod>2023-05-25T10:03:16.077Z</lastmod>
+    <lastmod>2023-05-30T16:02:41.547Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/2023-04-10-arima-ex.html</loc>
-    <lastmod>2023-05-25T10:03:16.345Z</lastmod>
+    <lastmod>2023-05-30T16:02:41.831Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/2023-04-13-windmill-스몰버전.html</loc>
-    <lastmod>2023-05-25T10:03:16.553Z</lastmod>
+    <lastmod>2023-05-30T16:02:42.051Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/python-midterm.html</loc>
-    <lastmod>2023-05-25T10:03:16.757Z</lastmod>
+    <lastmod>2023-05-30T16:02:42.267Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/2023-04-10-ex.html</loc>
-    <lastmod>2023-05-25T10:03:16.969Z</lastmod>
+    <lastmod>2023-05-30T16:02:42.491Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/2023-05-07-stgcn논문리뷰.html</loc>
-    <lastmod>2023-05-25T10:03:17.241Z</lastmod>
+    <lastmod>2023-05-30T16:02:42.775Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/2023-02-21-gcn-이해용정리.html</loc>
-    <lastmod>2023-05-25T10:03:17.529Z</lastmod>
+    <lastmod>2023-05-30T16:02:43.075Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/2023-02-21-STGCN-tutorial1.html</loc>
-    <lastmod>2023-05-25T10:03:17.845Z</lastmod>
+    <lastmod>2023-05-30T16:02:43.391Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/python_7장.html</loc>
-    <lastmod>2023-05-25T10:03:18.161Z</lastmod>
+    <lastmod>2023-05-30T16:02:43.711Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/2023-05-06-ept-논문리뷰.html</loc>
-    <lastmod>2023-05-25T10:03:18.361Z</lastmod>
+    <lastmod>2023-05-30T16:02:43.931Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/2023-04-11-arima-hour-data-fill.html</loc>
-    <lastmod>2023-05-25T10:03:18.697Z</lastmod>
+    <lastmod>2023-05-30T16:02:44.255Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/2023-04-24-베르누이.html</loc>
-    <lastmod>2023-05-25T10:03:19.061Z</lastmod>
+    <lastmod>2023-05-30T16:02:44.631Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/2023-04-03-일사량.html</loc>
-    <lastmod>2023-05-25T10:03:19.321Z</lastmod>
+    <lastmod>2023-05-30T16:02:44.891Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/2023-05-08-gcrn리뷰.html</loc>
-    <lastmod>2023-05-25T10:03:19.585Z</lastmod>
+    <lastmod>2023-05-30T16:02:45.167Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Study/2023-03-05-기하학적딥러닝-survey-review.html</loc>
-    <lastmod>2023-05-25T10:03:19.881Z</lastmod>
+    <lastmod>2023-05-30T16:02:45.467Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-01-차원조사.html</loc>
-    <lastmod>2023-05-25T10:03:20.273Z</lastmod>
+    <lastmod>2023-05-30T16:02:45.891Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-25-s-stgcn-ver1-100에폭--이게진짜.html</loc>
-    <lastmod>2023-05-25T10:03:20.537Z</lastmod>
+    <lastmod>2023-05-30T16:02:46.179Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver2.html</loc>
-    <lastmod>2023-05-25T10:03:20.801Z</lastmod>
+    <lastmod>2023-05-30T16:02:46.463Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-03-s-stgcn-ver1-시뮬레이션-10iter.html</loc>
-    <lastmod>2023-05-25T10:03:21.073Z</lastmod>
+    <lastmod>2023-05-30T16:02:46.755Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-12-stgcn-ver2-train90.html</loc>
-    <lastmod>2023-05-25T10:03:21.317Z</lastmod>
+    <lastmod>2023-05-30T16:02:47.011Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-18-ept-plot.html</loc>
-    <lastmod>2023-05-25T10:03:21.605Z</lastmod>
+    <lastmod>2023-05-30T16:02:47.319Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-06-stgcn.html</loc>
-    <lastmod>2023-05-25T10:03:21.909Z</lastmod>
+    <lastmod>2023-05-30T16:02:47.651Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-29-s-stgcn-ver2-시뮬레이션.html</loc>
-    <lastmod>2023-05-25T10:03:22.173Z</lastmod>
+    <lastmod>2023-05-30T16:02:47.919Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-20-데이터수정3.html</loc>
-    <lastmod>2023-05-25T10:03:22.745Z</lastmod>
+    <lastmod>2023-05-30T16:02:48.519Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver1--guebin.html</loc>
-    <lastmod>2023-05-25T10:03:23.009Z</lastmod>
+    <lastmod>2023-05-30T16:02:48.807Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-26-try1.html</loc>
+    <lastmod>2023-05-30T16:02:49.099Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-24-정규화제거-결과비교.html</loc>
-    <lastmod>2023-05-25T10:03:23.313Z</lastmod>
+    <lastmod>2023-05-30T16:02:49.419Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-03-시뮬결과.html</loc>
-    <lastmod>2023-05-25T10:03:23.589Z</lastmod>
+    <lastmod>2023-05-30T16:02:49.715Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-25-toy-example.html</loc>
-    <lastmod>2023-05-25T10:03:23.937Z</lastmod>
+    <lastmod>2023-05-30T16:02:50.111Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-15-stgcn-ver2-수정본.html</loc>
-    <lastmod>2023-05-25T10:03:24.205Z</lastmod>
+    <lastmod>2023-05-30T16:02:50.383Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-09-soloar-stgcn-ver1-lag1.html</loc>
-    <lastmod>2023-05-25T10:03:24.449Z</lastmod>
+    <lastmod>2023-05-30T16:02:50.635Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-03-01-todolist.html</loc>
-    <lastmod>2023-05-25T10:03:24.693Z</lastmod>
+    <lastmod>2023-05-30T16:02:50.887Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-19-데이터탐색용.html</loc>
-    <lastmod>2023-05-25T10:03:24.921Z</lastmod>
+    <lastmod>2023-05-30T16:02:51.123Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-12-stgcn-ver2.html</loc>
-    <lastmod>2023-05-25T10:03:25.169Z</lastmod>
+    <lastmod>2023-05-30T16:02:51.371Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-06-ept-by-region.html</loc>
-    <lastmod>2023-05-25T10:03:25.645Z</lastmod>
+    <lastmod>2023-05-30T16:02:51.843Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-20-VER1-SIMUL.html</loc>
-    <lastmod>2023-05-25T10:03:25.893Z</lastmod>
+    <lastmod>2023-05-30T16:02:52.107Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-17-정규화-stgcn-ver2.html</loc>
-    <lastmod>2023-05-25T10:03:26.169Z</lastmod>
+    <lastmod>2023-05-30T16:02:52.383Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-22-시각화코드수정.html</loc>
-    <lastmod>2023-05-25T10:03:26.469Z</lastmod>
+    <lastmod>2023-05-30T16:02:52.687Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-20-VER2-SIMUL.html</loc>
-    <lastmod>2023-05-25T10:03:26.721Z</lastmod>
+    <lastmod>2023-05-30T16:02:52.955Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-07-stcgn-data-ver2.html</loc>
-    <lastmod>2023-05-25T10:03:26.969Z</lastmod>
+    <lastmod>2023-05-30T16:02:53.207Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver2.html</loc>
-    <lastmod>2023-05-25T10:03:27.269Z</lastmod>
+    <lastmod>2023-05-30T16:02:53.503Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-24-정리-Copy1.html</loc>
-    <lastmod>2023-05-25T10:03:27.657Z</lastmod>
+    <lastmod>2023-05-30T16:02:53.899Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-27-s-stgcn-ver2-50에폭-64필터.html</loc>
-    <lastmod>2023-05-25T10:03:27.921Z</lastmod>
+    <lastmod>2023-05-30T16:02:54.171Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-22-정규화-스케일링-stgcn-ver1.html</loc>
-    <lastmod>2023-05-25T10:03:28.181Z</lastmod>
+    <lastmod>2023-05-30T16:02:54.443Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-12-stgcn-ver1-train90.html</loc>
-    <lastmod>2023-05-25T10:03:28.421Z</lastmod>
+    <lastmod>2023-05-30T16:02:54.683Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-28-그래프비교.html</loc>
+    <lastmod>2023-05-30T16:02:54.983Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-15-stgcn-ver1-수정본.html</loc>
-    <lastmod>2023-05-25T10:03:28.694Z</lastmod>
+    <lastmod>2023-05-30T16:02:55.271Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-04-EPT.html</loc>
-    <lastmod>2023-05-25T10:03:29.018Z</lastmod>
+    <lastmod>2023-05-30T16:02:55.599Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-23-스케일링-stgcn-ver1-정규화취소.html</loc>
-    <lastmod>2023-05-25T10:03:29.286Z</lastmod>
+    <lastmod>2023-05-30T16:02:55.875Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-28-s-stgcn-ver1-100에폭-64필터.html</loc>
-    <lastmod>2023-05-25T10:03:29.554Z</lastmod>
+    <lastmod>2023-05-30T16:02:56.151Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-06-windmill.html</loc>
-    <lastmod>2023-05-25T10:03:29.810Z</lastmod>
+    <lastmod>2023-05-30T16:02:56.419Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-18-loss-problem.html</loc>
-    <lastmod>2023-05-25T10:03:30.026Z</lastmod>
+    <lastmod>2023-05-30T16:02:56.651Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-20-정규화-데이터3-stgcn-ver1.html</loc>
-    <lastmod>2023-05-25T10:03:30.310Z</lastmod>
+    <lastmod>2023-05-30T16:02:56.931Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-26-s-stgcn-ver1-150에폭.html</loc>
-    <lastmod>2023-05-25T10:03:30.578Z</lastmod>
+    <lastmod>2023-05-30T16:02:57.215Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-26-toy-example2-self-loop-1filter.html</loc>
-    <lastmod>2023-05-25T10:03:30.834Z</lastmod>
+    <lastmod>2023-05-30T16:02:57.487Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-20-VER0-SIMUL.html</loc>
-    <lastmod>2023-05-25T10:03:31.078Z</lastmod>
+    <lastmod>2023-05-30T16:02:57.755Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-26-guebin.html</loc>
+    <lastmod>2023-05-30T16:02:58.019Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-14-데이터수정2.html</loc>
-    <lastmod>2023-05-25T10:03:31.554Z</lastmod>
+    <lastmod>2023-05-30T16:02:58.519Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-03-s-stgcn-ver2-시뮬레이션-10iter.html</loc>
-    <lastmod>2023-05-25T10:03:31.838Z</lastmod>
+    <lastmod>2023-05-30T16:02:58.803Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-03-29-data0.html</loc>
-    <lastmod>2023-05-25T10:03:32.142Z</lastmod>
+    <lastmod>2023-05-30T16:02:59.115Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-19-windmill.html</loc>
-    <lastmod>2023-05-25T10:03:32.426Z</lastmod>
+    <lastmod>2023-05-30T16:02:59.403Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-21-정규화-스케일링-stgcn-ver2--guebin.html</loc>
-    <lastmod>2023-05-25T10:03:32.686Z</lastmod>
+    <lastmod>2023-05-30T16:02:59.675Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-17-정규화-stgcn-ver1-.html</loc>
-    <lastmod>2023-05-25T10:03:32.958Z</lastmod>
+    <lastmod>2023-05-30T16:02:59.951Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pinkocto.github.io/noteda/posts/SOLAR/9999.html</loc>
+    <lastmod>2023-05-30T16:03:00.187Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-07-soloar-stgcn-ver1-lag4.html</loc>
-    <lastmod>2023-05-25T10:03:33.186Z</lastmod>
+    <lastmod>2023-05-30T16:03:00.427Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-07-정리.html</loc>
-    <lastmod>2023-05-25T10:03:33.622Z</lastmod>
+    <lastmod>2023-05-30T16:03:00.867Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-12-stgcn-ver1.html</loc>
-    <lastmod>2023-05-25T10:03:33.886Z</lastmod>
+    <lastmod>2023-05-30T16:03:01.151Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-07-yu.html</loc>
-    <lastmod>2023-05-25T10:03:34.370Z</lastmod>
+    <lastmod>2023-05-30T16:03:01.647Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2099.html</loc>
-    <lastmod>2023-05-25T10:03:34.574Z</lastmod>
+    <lastmod>2023-05-30T16:03:01.859Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-06-corr.html</loc>
-    <lastmod>2023-05-25T10:03:34.926Z</lastmod>
+    <lastmod>2023-05-30T16:03:02.215Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-02-s-stgcn-ver1-정규화-시뮬레이션.html</loc>
-    <lastmod>2023-05-25T10:03:35.182Z</lastmod>
+    <lastmod>2023-05-30T16:03:02.471Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-26-s-stgcn-ver2-150에폭.html</loc>
-    <lastmod>2023-05-25T10:03:35.458Z</lastmod>
+    <lastmod>2023-05-30T16:03:02.747Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-29-s-stgcn-ver1-시뮬레이션.html</loc>
-    <lastmod>2023-05-25T10:03:35.706Z</lastmod>
+    <lastmod>2023-05-30T16:03:02.995Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-25-s-stgcn-ver2-100에폭.html</loc>
-    <lastmod>2023-05-25T10:03:35.966Z</lastmod>
+    <lastmod>2023-05-30T16:03:03.263Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-09-solar-stgcn-ver2-lag1.html</loc>
-    <lastmod>2023-05-25T10:03:36.226Z</lastmod>
+    <lastmod>2023-05-30T16:03:03.523Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-10-lstm.html</loc>
-    <lastmod>2023-05-25T10:03:36.430Z</lastmod>
+    <lastmod>2023-05-30T16:03:03.743Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-03-일사량.html</loc>
-    <lastmod>2023-05-25T10:03:36.678Z</lastmod>
+    <lastmod>2023-05-30T16:03:03.999Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-06-solar-class.html</loc>
-    <lastmod>2023-05-25T10:03:36.922Z</lastmod>
+    <lastmod>2023-05-30T16:03:04.251Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-19-ept-plot-edit.html</loc>
-    <lastmod>2023-05-25T10:03:37.270Z</lastmod>
+    <lastmod>2023-05-30T16:03:04.595Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-03-30-restructure-data.html</loc>
-    <lastmod>2023-05-25T10:03:37.590Z</lastmod>
+    <lastmod>2023-05-30T16:03:04.915Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-06-stgcn-data-ver1.html</loc>
-    <lastmod>2023-05-25T10:03:37.858Z</lastmod>
+    <lastmod>2023-05-30T16:03:05.195Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-09-ft.html</loc>
-    <lastmod>2023-05-25T10:03:38.142Z</lastmod>
+    <lastmod>2023-05-30T16:03:05.499Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-27-s-stgcn-ver1-50에폭-64필터.html</loc>
-    <lastmod>2023-05-25T10:03:38.406Z</lastmod>
+    <lastmod>2023-05-30T16:03:05.787Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-26-toy-example2-self-loop-1filter-Copy1.html</loc>
+    <lastmod>2023-05-30T16:03:06.087Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-23-스케일링-stgcn-ver2-정규화취소.html</loc>
-    <lastmod>2023-05-25T10:03:38.678Z</lastmod>
+    <lastmod>2023-05-30T16:03:06.359Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-25-toy-example2.html</loc>
-    <lastmod>2023-05-25T10:03:38.962Z</lastmod>
+    <lastmod>2023-05-30T16:03:06.663Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-23-결과비교.html</loc>
-    <lastmod>2023-05-25T10:03:39.266Z</lastmod>
+    <lastmod>2023-05-30T16:03:06.975Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-26-toy-example2-self-loop.html</loc>
-    <lastmod>2023-05-25T10:03:39.518Z</lastmod>
+    <lastmod>2023-05-30T16:03:07.239Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-03-30-correlation.html</loc>
-    <lastmod>2023-05-25T10:03:39.858Z</lastmod>
+    <lastmod>2023-05-30T16:03:07.579Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-08-solar-stgcn-ver2-lag4.html</loc>
-    <lastmod>2023-05-25T10:03:40.130Z</lastmod>
+    <lastmod>2023-05-30T16:03:07.863Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-02-s-stgcn-ver2-정규화-시뮬레이션.html</loc>
-    <lastmod>2023-05-25T10:03:40.386Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pinkocto.github.io/noteda/posts/SOLAR/Untitled.html</loc>
-    <lastmod>2023-05-25T10:03:40.570Z</lastmod>
+    <lastmod>2023-05-30T16:03:08.123Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-09-lstm-prac.html</loc>
-    <lastmod>2023-05-25T10:03:40.870Z</lastmod>
+    <lastmod>2023-05-30T16:03:08.431Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-04-12-데이터수정.html</loc>
-    <lastmod>2023-05-25T10:03:41.530Z</lastmod>
+    <lastmod>2023-05-30T16:03:09.115Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/SOLAR/2023-05-25-data-edit-5차수정.html</loc>
-    <lastmod>2023-05-25T10:03:41.874Z</lastmod>
+    <lastmod>2023-05-30T16:03:09.475Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/post-with-code/index.html</loc>
-    <lastmod>2023-05-25T10:03:42.074Z</lastmod>
+    <lastmod>2023-05-30T16:03:09.683Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/HousePrice/2023-04-20-ts-이산형확률분포.html</loc>
-    <lastmod>2023-05-25T10:03:42.314Z</lastmod>
+    <lastmod>2023-05-30T16:03:09.939Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/HousePrice/2023-04-26-lr-회귀진단.html</loc>
-    <lastmod>2023-05-25T10:03:42.750Z</lastmod>
+    <lastmod>2023-05-30T16:03:10.383Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/HousePrice/2023-04-11-6wk.html</loc>
-    <lastmod>2023-05-25T10:03:43.122Z</lastmod>
+    <lastmod>2023-05-30T16:03:10.767Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/HousePrice/2023-04-18-7wk.html</loc>
-    <lastmod>2023-05-25T10:03:43.470Z</lastmod>
+    <lastmod>2023-05-30T16:03:11.123Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/HousePrice/2023-04-19-lr-hw2.html</loc>
-    <lastmod>2023-05-25T10:03:43.794Z</lastmod>
+    <lastmod>2023-05-30T16:03:11.463Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/HousePrice/2023-04-18-mlr-보스턴집값.html</loc>
-    <lastmod>2023-05-25T10:03:44.290Z</lastmod>
+    <lastmod>2023-05-30T16:03:11.963Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/HousePrice/2023-04-25-8wk.html</loc>
-    <lastmod>2023-05-25T10:03:44.634Z</lastmod>
+    <lastmod>2023-05-30T16:03:12.299Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/HousePrice/2023-04-05-lr-hw1-feedback.html</loc>
-    <lastmod>2023-05-25T10:03:45.018Z</lastmod>
+    <lastmod>2023-05-30T16:03:12.671Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/HousePrice/2023-04-04-lr-hw1-project.html</loc>
-    <lastmod>2023-05-25T10:03:45.514Z</lastmod>
+    <lastmod>2023-05-30T16:03:13.163Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/HousePrice/2023-03-30-lr-hw1.html</loc>
-    <lastmod>2023-05-25T10:03:45.954Z</lastmod>
+    <lastmod>2023-05-30T16:03:13.583Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/HousePrice/2023-04-05-5wk.html</loc>
-    <lastmod>2023-05-25T10:03:46.498Z</lastmod>
+    <lastmod>2023-05-30T16:03:14.131Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/posts/Seminar/2023-03-21-gpt3-nsmc.html</loc>
-    <lastmod>2023-05-25T10:03:46.766Z</lastmod>
+    <lastmod>2023-05-30T16:03:14.399Z</lastmod>
   </url>
   <url>
     <loc>https://pinkocto.github.io/noteda/index.html</loc>
-    <lastmod>2023-05-25T10:03:47.406Z</lastmod>
+    <lastmod>2023-05-30T16:03:15.083Z</lastmod>
   </url>
 </urlset>

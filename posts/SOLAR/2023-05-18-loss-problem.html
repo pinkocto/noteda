@@ -280,6 +280,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-05-30-conference-calender.html" class="sidebar-item-text sidebar-link"><a href="https://londoninstitutesd.co.uk/aric-steme-2023-georgia/">Applied Research Int. Conference on Sciences,Technology,Engineering,Maths &amp; Education (ARIC-STEME) 2023 Tbilisi, Georgia</a></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/etc/2023-05-08-에러모음.html" class="sidebar-item-text sidebar-link"><strong>에러 모음</strong></a>
   </div>
 </li>
@@ -451,6 +456,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-05-24-정리-Copy1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 0524 뭔가이상해</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-26-try1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 0530</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -715,12 +725,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-26-guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Toy Example</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-05-25-toy-example2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Toy Example2</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-05-26-toy-example2-self-loop-1filter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Toy Example2 (self-loop) 1lag 1filter 50epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-26-toy-example2-self-loop-1filter-Copy1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Toy Example2 (self-loop) 1lag 1filter 50epoch</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -736,6 +756,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-04-07-yu.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> yU</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-28-그래프비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 그래프 비교</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -780,12 +805,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/SOLAR/2023-04-09-lstm-prac.html" class="sidebar-item-text sidebar-link">LSTM for Time Series Prediction (연습)</a>
+  <a href="../../posts/SOLAR/9999.html" class="sidebar-item-text sidebar-link">Import</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/SOLAR/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  <a href="../../posts/SOLAR/2023-04-09-lstm-prac.html" class="sidebar-item-text sidebar-link">LSTM for Time Series Prediction (연습)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -910,7 +935,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> ChickenpoxDatasetLoader</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
@@ -920,7 +945,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-7"><a href="#cb1-7"></a></span>
 <span id="cb1-8"><a href="#cb1-8"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> torch</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="im">from</span> torch_geometric_temporal.nn.recurrent <span class="im">import</span> DCRNN</span>
@@ -937,7 +962,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-14"><a href="#cb2-14"></a>        h <span class="op">=</span> <span class="va">self</span>.linear(h)</span>
 <span id="cb2-15"><a href="#cb2-15"></a>        <span class="cf">return</span> h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
 <span id="cb3-3"><a href="#cb3-3"></a>model <span class="op">=</span> RecurrentGCN(node_features <span class="op">=</span> <span class="dv">4</span>)</span>
@@ -946,7 +971,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-6"><a href="#cb3-6"></a></span>
 <span id="cb3-7"><a href="#cb3-7"></a>model.train()</span>
 <span id="cb3-8"><a href="#cb3-8"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>RecurrentGCN(
   (recurrent): DCRNN(
     (conv_x_z): DConv(36, 32)
@@ -960,19 +985,138 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>loss 계산시 dimension 문제가 있었음. 우리는 <span class="math inline">\(y_1\)</span> 과 <span class="math inline">\(\hat{y}_1\)</span>을 잘 맞추면되는 것이지 <span class="math inline">\(y_1\)</span>과 <span class="math inline">\(\hat{y}_2\)</span>를 잘 맞출필요는 없다..</li>
 </ul>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    y_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="bu">print</span>(y_hat.shape,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>          snapshot.y.shape,</span>
+<span id="cb5-6"><a href="#cb5-6"></a>          (y_hat<span class="op">-</span>snapshot.y).shape,</span>
+<span id="cb5-7"><a href="#cb5-7"></a>         torch.mean((y_hat<span class="op">-</span>snapshot.y)).shape)</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-9"><a href="#cb5-9"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb5-10"><a href="#cb5-10"></a>cost.backward()</span>
+<span id="cb5-11"><a href="#cb5-11"></a>optimizer.step()</span>
+<span id="cb5-12"><a href="#cb5-12"></a>optimizer.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])
+torch.Size([20, 1]) torch.Size([20]) torch.Size([20, 20]) torch.Size([])</code></pre>
+</div>
+</div>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2"></a>    cost <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
-<span id="cb5-4"><a href="#cb5-4"></a>        y_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
-<span id="cb5-5"><a href="#cb5-5"></a>        <span class="bu">print</span>(y_hat.reshape(<span class="op">-</span><span class="dv">1</span>).shape,</span>
-<span id="cb5-6"><a href="#cb5-6"></a>              snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>).shape,</span>
-<span id="cb5-7"><a href="#cb5-7"></a>              (y_hat.reshape(<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>)).shape)</span>
-<span id="cb5-8"><a href="#cb5-8"></a>        cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb5-9"><a href="#cb5-9"></a>    cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb5-10"><a href="#cb5-10"></a>    cost.backward()</span>
-<span id="cb5-11"><a href="#cb5-11"></a>    optimizer.step()</span>
-<span id="cb5-12"><a href="#cb5-12"></a>    optimizer.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2"></a>    cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb7-4"><a href="#cb7-4"></a>        y_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb7-5"><a href="#cb7-5"></a>        <span class="bu">print</span>(y_hat.reshape(<span class="op">-</span><span class="dv">1</span>).shape,</span>
+<span id="cb7-6"><a href="#cb7-6"></a>              snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>).shape,</span>
+<span id="cb7-7"><a href="#cb7-7"></a>              (y_hat.reshape(<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>)).shape)</span>
+<span id="cb7-8"><a href="#cb7-8"></a>        cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-9"><a href="#cb7-9"></a>    cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb7-10"><a href="#cb7-10"></a>    cost.backward()</span>
+<span id="cb7-11"><a href="#cb7-11"></a>    optimizer.step()</span>
+<span id="cb7-12"><a href="#cb7-12"></a>    optimizer.zero_grad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>torch.Size([20]) torch.Size([20]) torch.Size([20])
 torch.Size([20]) torch.Size([20]) torch.Size([20])
