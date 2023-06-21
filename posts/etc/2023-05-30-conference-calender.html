@@ -59,6 +59,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -129,12 +130,22 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/2023-06-15-2차수정.html" class="sidebar-item-text sidebar-link">0616 시계열 실습 (2차 수정본)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/2023-03-23-read-list.html" class="sidebar-item-text sidebar-link">Lists to read</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/post-with-code/index.html" class="sidebar-item-text sidebar-link">Post With Code</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -182,11 +193,6 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/etc/2023-05-30-conference-calender.html" class="sidebar-item-text sidebar-link active"><a href="https://londoninstitutesd.co.uk/aric-steme-2023-georgia/">Applied Research Int. Conference on Sciences,Technology,Engineering,Maths &amp; Education (ARIC-STEME) 2023 Tbilisi, Georgia</a></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/etc/2023-05-08-에러모음.html" class="sidebar-item-text sidebar-link"><strong>에러 모음</strong></a>
   </div>
 </li>
@@ -203,6 +209,11 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/etc/2023-04-11-git-error.html" class="sidebar-item-text sidebar-link">Github remote: error: this exceeds GitHub’s file size limit of 100.00 MB</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-05-30-conference-calender.html" class="sidebar-item-text sidebar-link active">January 2024</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -853,23 +864,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#applied-research-int.-conference-on-sciencestechnologyengineeringmaths-education-aric-steme-2023-tbilisi-georgia" id="toc-applied-research-int.-conference-on-sciencestechnologyengineeringmaths-education-aric-steme-2023-tbilisi-georgia" class="nav-link active" data-scroll-target="#applied-research-int.-conference-on-sciencestechnologyengineeringmaths-education-aric-steme-2023-tbilisi-georgia">Applied Research Int. Conference on Sciences,Technology,Engineering,Maths &amp; Education (ARIC-STEME) 2023 Tbilisi, Georgia</a></li>
-  <li><a href="#january-2024" id="toc-january-2024" class="nav-link" data-scroll-target="#january-2024">January 2024</a>
+  <li><a href="#january-2024" id="toc-january-2024" class="nav-link active" data-scroll-target="#january-2024">January 2024</a>
   <ul class="collapse">
-  <li><a href="#ims-asia-pacific-rim-meeting-마감" id="toc-ims-asia-pacific-rim-meeting-마감" class="nav-link" data-scroll-target="#ims-asia-pacific-rim-meeting-마감">IMS Asia Pacific Rim Meeting 마감?</a></li>
-  </ul></li>
-  <li><a href="#march-2024" id="toc-march-2024" class="nav-link" data-scroll-target="#march-2024">March 2024</a>
-  <ul class="collapse">
-  <li><a href="#enar-2024-spring-meeting" id="toc-enar-2024-spring-meeting" class="nav-link" data-scroll-target="#enar-2024-spring-meeting">ENAR 2024 Spring Meeting</a></li>
-  </ul></li>
-  <li><a href="#june-2024" id="toc-june-2024" class="nav-link" data-scroll-target="#june-2024">June 2024</a>
-  <ul class="collapse">
-  <li><a href="#th-international-conference-on-ordered-statistical-data-osd2024" id="toc-th-international-conference-on-ordered-statistical-data-osd2024" class="nav-link" data-scroll-target="#th-international-conference-on-ordered-statistical-data-osd2024">15th International Conference on Ordered Statistical Data (OSD2024)</a></li>
-  </ul></li>
-  <li><a href="#icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics" id="toc-icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics" class="nav-link" data-scroll-target="#icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics">ICMLC 2024: 18. International Conference on Machine Learning and Cybernetics</a>
-  <ul class="collapse">
-  <li><a href="#icspcn-2024-18.-international-conference-on-signal-processing-communications-and-networking" id="toc-icspcn-2024-18.-international-conference-on-signal-processing-communications-and-networking" class="nav-link" data-scroll-target="#icspcn-2024-18.-international-conference-on-signal-processing-communications-and-networking">ICSPCN 2024: 18. International Conference on Signal Processing, Communications and Networking</a></li>
+  <li><a href="#ims-asia-pacific-rim-meeting" id="toc-ims-asia-pacific-rim-meeting" class="nav-link" data-scroll-target="#ims-asia-pacific-rim-meeting">IMS Asia Pacific Rim Meeting</a></li>
+  <li><a href="#icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics-마감to변경" id="toc-icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics-마감to변경" class="nav-link" data-scroll-target="#icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics-마감to변경"><font color="blue">ICMLC 2024: 18. International Conference on Machine Learning and Cybernetics (마감<span class="math inline">\(\to\)</span>변경)</font></a></li>
+  <li><a href="#icspcn-2024-18.-international-conference-on-signal-processing-communications-and-networking-마감to-변경" id="toc-icspcn-2024-18.-international-conference-on-signal-processing-communications-and-networking-마감to-변경" class="nav-link" data-scroll-target="#icspcn-2024-18.-international-conference-on-signal-processing-communications-and-networking-마감to-변경"><font color="blue">ICSPCN 2024: 18. International Conference on Signal Processing, Communications and Networking (마감<span class="math inline">\(\to\)</span> 변경)</font></a></li>
   <li><a href="#th-international-conference-on-machine-learning-and-computing" id="toc-th-international-conference-on-machine-learning-and-computing" class="nav-link" data-scroll-target="#th-international-conference-on-machine-learning-and-computing">2024 16th International Conference on Machine Learning and Computing</a></li>
+  </ul></li>
+  <li><a href="#february-2024" id="toc-february-2024" class="nav-link" data-scroll-target="#february-2024">February 2024</a>
+  <ul class="collapse">
+  <li><a href="#icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics" id="toc-icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics" class="nav-link" data-scroll-target="#icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics">ICMLC 2024: 18. International Conference on Machine Learning and Cybernetics</a></li>
+  <li><a href="#icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics-1" id="toc-icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics-1" class="nav-link" data-scroll-target="#icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics-1">ICMLC 2024: 18. International Conference on Machine Learning and Cybernetics</a></li>
+  <li><a href="#icnmlkd-2024-18.-international-conference-on-network-machine-learning-and-knowledge-discovery" id="toc-icnmlkd-2024-18.-international-conference-on-network-machine-learning-and-knowledge-discovery" class="nav-link" data-scroll-target="#icnmlkd-2024-18.-international-conference-on-network-machine-learning-and-knowledge-discovery">ICNMLKD 2024: 18. International Conference on Network, Machine Learning and Knowledge Discovery</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -879,37 +885,10 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="applied-research-int.-conference-on-sciencestechnologyengineeringmaths-education-aric-steme-2023-tbilisi-georgia" class="level3">
-<h3 class="anchored" data-anchor-id="applied-research-int.-conference-on-sciencestechnologyengineeringmaths-education-aric-steme-2023-tbilisi-georgia"><a href="https://londoninstitutesd.co.uk/aric-steme-2023-georgia/">Applied Research Int. Conference on Sciences,Technology,Engineering,Maths &amp; Education (ARIC-STEME) 2023 Tbilisi, Georgia</a></h3>
-<ul>
-<li>학회 일정: 11th to 12th September 2023 London, Greater London, United Kingdom</li>
-<li>초록제출 : 2023년 8월 10일</li>
-<li>장소: Radisson Blu Iveria Hotel, Tbilisi, Georgia</li>
-</ul>
-<p>Conference Tracks The Conference includes all the sub-tracks of the following wide-range tracks for knowledge-sharing &amp; knowledge-exchange purposes:</p>
-<ul>
-<li>Life Sciences, Pharmacology &amp; Medicine</li>
-<li>Engineering &amp; Technology</li>
-<li>Mathematics &amp; Statistics</li>
-<li>STEM Education</li>
-</ul>
-<p><strong>주요 일정</strong></p>
-<ul>
-<li>Abstract submission deadline: 10th August 2023</li>
-<li>Abstract feedback: within 7 working days</li>
-<li>Early bird registration deadline 10th July 2023</li>
-<li>Regular registration deadline: 15th August 2023</li>
-<li>Late registration deadline: 10th September 2023</li>
-<li>On-spot Registration: 11th September 2023</li>
-<li>Conference dates: 11th – 12th September 2023</li>
-<li>Full-paper submission (Optional): 10th October 2023</li>
-<li>Proceedings Publication and Journal Recommendations: 20th October 2023</li>
-</ul>
-</section>
 <section id="january-2024" class="level1">
 <h1>January 2024</h1>
-<section id="ims-asia-pacific-rim-meeting-마감" class="level3">
-<h3 class="anchored" data-anchor-id="ims-asia-pacific-rim-meeting-마감"><a href="https://ims-aprm2024.com/">IMS Asia Pacific Rim Meeting</a> 마감?</h3>
+<section id="ims-asia-pacific-rim-meeting" class="level2">
+<h2 class="anchored" data-anchor-id="ims-asia-pacific-rim-meeting"><a href="https://ims-aprm2024.com/">IMS Asia Pacific Rim Meeting</a></h2>
 <p>January 4, 2024 - January 7, 2024 Melbourne, Australia</p>
 <section id="proposals-for-invited-sessions" class="level4">
 <h4 class="anchored" data-anchor-id="proposals-for-invited-sessions">Proposals for Invited Sessions</h4>
@@ -924,63 +903,26 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>We ask that you please complete the form in English.</p>
 </section>
-<section id="topics" class="level4">
-<h4 class="anchored" data-anchor-id="topics">Topics</h4>
-<p>The program covers a wide range of topics in statistics and probability, presenting recent developments and the state of the art in a variety of modern research topics and in applications. The program will include:</p>
-<ul>
-<li>Plenary Lectures presented by world-renowned scientists in statistics and probability</li>
-<li>Distinguished Lectures delivered by leading specialists</li>
-<li>Invited Paper sessions</li>
-<li>Contributed talks and posters</li>
-</ul>
 </section>
-<section id="the-conference-is-now-accepting-session-proposals" class="level4">
-<h4 class="anchored" data-anchor-id="the-conference-is-now-accepting-session-proposals">The conference is now accepting session proposals</h4>
-<p>Each Invited Paper session will consist of four speakers and one chair, with each speaker having 25 minutes. The proposals will be evaluated by the Scientific Program Committee on a competitive basis.</p>
-</section>
-</section>
-</section>
-<section id="march-2024" class="level1">
-<h1>March 2024</h1>
-<section id="enar-2024-spring-meeting" class="level3">
-<h3 class="anchored" data-anchor-id="enar-2024-spring-meeting"><a href="https://www.enar.org/meetings/future.cfm">ENAR 2024 Spring Meeting</a></h3>
-<p>March 10, 2024 - March 13, 2024, Baltimore, Maryland, USA</p>
-<ul>
-<li>세부일정은 아직 안나옴..</li>
-</ul>
-</section>
-</section>
-<section id="june-2024" class="level1">
-<h1>June 2024</h1>
-<section id="th-international-conference-on-ordered-statistical-data-osd2024" class="level3">
-<h3 class="anchored" data-anchor-id="th-international-conference-on-ordered-statistical-data-osd2024"><a href="http://www.mat.uc.pt/~osd2024/">15th International Conference on Ordered Statistical Data (OSD2024)</a></h3>
-<p>June 11, 2024 - June 14, 2024, Coimbra, Portugal</p>
-<ul>
-<li>30분 발표, 5분 질문</li>
-<li>초록제출: 2024년 3월 31일</li>
-<li>합격?통지: 2024년 4월 15일</li>
-</ul>
-<p>Contributions to the conference are given by oral presentations or posters. The official language is English. Each oral presentation will have a 30 minutes time slot, including 5 minutes for questions. The abstracts of all contributions (oral presentations and posters) are due before March 31st, 2024 .</p>
-<p>Abstracts should be prepared in LaTex according to the template available here, then sent to the Organizing Committee by e-mail at osd2024@mat.uc.pt. In submitting the abstract, please specify if it refers to a poster or to a talk (also write it in the abstract). Notification of acceptance will be sent to the authors before April 15th, 2024.</p>
-</section>
-</section>
-<section id="icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics" class="level1">
-<h1>ICMLC 2024: 18. International Conference on Machine Learning and Cybernetics</h1>
+<section id="icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics-마감to변경" class="level2">
+<h2 class="anchored" data-anchor-id="icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics-마감to변경"><font color="blue">ICMLC 2024: 18. International Conference on Machine Learning and Cybernetics (마감<span class="math inline">\(\to\)</span>변경)</font></h2>
 <p>January 11-12, 2024 in Singapore, Singapore</p>
 <ul>
 <li><p><a href="https://waset.org/signal-processing-communications-and-networking-conference-in-january-2024-in-singapore?utm_source=conferenceindex&amp;utm_medium=referral&amp;utm_campaign=listing">webpage</a></p></li>
 <li><p>Abstracts/Full-Text Paper Submission Deadline</p></li>
-<li><p>June 15, 2023</p></li>
-<li><p>Notification of Acceptance/Rejection June 30, 2023</p></li>
+<li><p>June 15, 2023 <span class="math inline">\(\to\)</span> <font color="blue"><strong>June 29, 2023</strong></font></p></li>
+<li><p>Notification of Acceptance/Rejection June 30, 2023 <span class="math inline">\(\to\)</span> <font color="blue"><strong>July 13, 2023</strong></font></p></li>
 <li><p>Final Paper (Camera Ready) Submission &amp; Early Bird Registration Deadline December 07, 2023</p></li>
 <li><p>Conference Dates January 11-12, 2024</p></li>
+<li><p>Student Oral/Poster Presenter Registration € 350</p></li>
 </ul>
-<section id="icspcn-2024-18.-international-conference-on-signal-processing-communications-and-networking" class="level2">
-<h2 class="anchored" data-anchor-id="icspcn-2024-18.-international-conference-on-signal-processing-communications-and-networking">ICSPCN 2024: 18. International Conference on Signal Processing, Communications and Networking</h2>
+</section>
+<section id="icspcn-2024-18.-international-conference-on-signal-processing-communications-and-networking-마감to-변경" class="level2">
+<h2 class="anchored" data-anchor-id="icspcn-2024-18.-international-conference-on-signal-processing-communications-and-networking-마감to-변경"><font color="blue">ICSPCN 2024: 18. International Conference on Signal Processing, Communications and Networking (마감<span class="math inline">\(\to\)</span> 변경)</font></h2>
 <p>January 07-08, 2024 in Tokyo, Japan</p>
 <ul>
-<li>Abstracts/Full-Text Paper Submission Deadline June 15, 2023</li>
-<li>Notification of Acceptance/Rejection June 30, 2023</li>
+<li>Abstracts/Full-Text Paper Submission Deadline June 15, 2023 <span class="math inline">\(\to\)</span> <font color="blue"><strong>June 29, 2023</strong></font></li>
+<li>Notification of Acceptance/Rejection June 30, 2023 <span class="math inline">\(\to\)</span> <font color="blue"><strong>July 13, 2023</strong></font></li>
 <li>Final Paper (Camera Ready) Submission &amp; Early Bird Registration Deadline November 30, 2023</li>
 <li>Conference Dates January 07-08, 2024</li>
 </ul>
@@ -994,6 +936,40 @@ ul.task-list li input[type="checkbox"] {
 <li><p>9월 20일: final review 통지</p></li>
 <li><p>10월 10일: 최종본을 포함한 registration file 제출</p></li>
 <li><p>10월 10일 : 얼리버드 마감</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="february-2024" class="level1">
+<h1>February 2024</h1>
+<section id="icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics" class="level2">
+<h2 class="anchored" data-anchor-id="icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics">ICMLC 2024: 18. International Conference on Machine Learning and Cybernetics</h2>
+<p>February 01-02, 2024 in Melbourne, Australia</p>
+<ul>
+<li>Abstracts/Full-Text Paper Submission Deadline <strong>June 29, 2023</strong></li>
+<li>Notification of Acceptance/Rejection <strong>July 13, 2023</strong></li>
+<li>Final Paper (Camera Ready) Submission &amp; Early Bird Registration Deadline December 17, 2023</li>
+<li>Conference Dates February 01-02, 2024</li>
+</ul>
+</section>
+<section id="icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics-1" class="level2">
+<h2 class="anchored" data-anchor-id="icmlc-2024-18.-international-conference-on-machine-learning-and-cybernetics-1">ICMLC 2024: 18. International Conference on Machine Learning and Cybernetics</h2>
+<p>February 04-05, 2024 in Guangzhou, China</p>
+<ul>
+<li>Abstracts/Full-Text Paper Submission Deadline June 29, 2023</li>
+<li>Notification of Acceptance/Rejection July 13, 2023</li>
+<li>Final Paper (Camera Ready) Submission &amp; Early Bird Registration Deadline January 04, 2024</li>
+<li>Conference Dates February 04-05, 2024</li>
+</ul>
+</section>
+<section id="icnmlkd-2024-18.-international-conference-on-network-machine-learning-and-knowledge-discovery" class="level2">
+<h2 class="anchored" data-anchor-id="icnmlkd-2024-18.-international-conference-on-network-machine-learning-and-knowledge-discovery">ICNMLKD 2024: 18. International Conference on Network, Machine Learning and Knowledge Discovery</h2>
+<p>February 04-05, 2024 in Bangkok, Thailand</p>
+<ul>
+<li>Abstracts/Full-Text Paper Submission Deadline June 29, 2023</li>
+<li>Notification of Acceptance/Rejection July 13, 2023</li>
+<li>Final Paper (Camera Ready) Submission &amp; Early Bird Registration Deadline January 04, 2024</li>
+<li>Conference Dates February 04-05, 2024</li>
 </ul>
 
 
