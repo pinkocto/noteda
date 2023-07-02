@@ -9,7 +9,7 @@
 <meta name="author" content="JiyunLim">
 <meta name="dcterms.date" content="2023-06-07">
 
-<title>noteda - [SOLAR] SIMUL</title>
+<title>noteda - [SOLAR] SIMUL Method1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -165,7 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><strong>[SOLAR]</strong> SIMUL</h1>
+      <h1 class="quarto-secondary-nav-title"><strong>[SOLAR]</strong> SIMUL Method1</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -176,7 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block"><strong>[SOLAR]</strong> SIMUL</h1>
+      <h1 class="title d-none d-lg-block"><strong>[SOLAR]</strong> SIMUL Method1</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Research</div>
                 <div class="quarto-category">SOLAR</div>
@@ -488,7 +488,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/SOLAR/2999-simul.html" class="sidebar-item-text sidebar-link active"><strong>[SOLAR]</strong> SIMUL</a>
+  <a href="../../posts/SOLAR/2999-simul-Copy1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SIMUL (테스트용 재수정)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2999-simul-Copy2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SIMUL (테스트용2 # node = 8)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2999-simul.html" class="sidebar-item-text sidebar-link active"><strong>[SOLAR]</strong> SIMUL Method1</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -964,7 +974,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#weighted-loss-y-hatytop-y-hatytop-odot-w" id="toc-weighted-loss-y-hatytop-y-hatytop-odot-w" class="nav-link active" data-scroll-target="#weighted-loss-y-hatytop-y-hatytop-odot-w">Weighted Loss : <span class="math inline">\((y-\hat{y})^\top (y-\hat{y})^\top \odot W\)</span></a>
+  <li><a href="#weighted-loss-y-haty-y-hatytop-odot-w" id="toc-weighted-loss-y-haty-y-hatytop-odot-w" class="nav-link active" data-scroll-target="#weighted-loss-y-haty-y-hatytop-odot-w">Weighted Loss : <span class="math inline">\((y-\hat{y}) (y-\hat{y})^\top \odot W\)</span></a>
   <ul class="collapse">
   <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">Import</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
@@ -979,8 +989,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="weighted-loss-y-hatytop-y-hatytop-odot-w" class="level1">
-<h1>Weighted Loss : <span class="math inline">\((y-\hat{y})^\top (y-\hat{y})^\top \odot W\)</span></h1>
+<section id="weighted-loss-y-haty-y-hatytop-odot-w" class="level1">
+<h1>Weighted Loss : <span class="math inline">\((y-\hat{y}) (y-\hat{y})^\top \odot W\)</span></h1>
+<p><span class="math inline">\(w=\begin{bmatrix} \end{bmatrix}\)</span></p>
 <section id="import" class="level2">
 <h2 class="anchored" data-anchor-id="import">Import</h2>
 <div class="cell" data-execution_count="1">
@@ -1043,43 +1054,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-17"><a href="#cb7-17"></a><span class="co">#     'FX':FX</span></span>
 <span id="cb7-18"><a href="#cb7-18"></a><span class="co"># }</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>W</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>array([[1., 1., 1., 1., 1., 0., 0., 0., 0., 0.],
+       [1., 1., 1., 1., 1., 0., 0., 0., 0., 0.],
+       [1., 1., 1., 1., 1., 0., 0., 0., 0., 0.],
+       [1., 1., 1., 1., 1., 0., 0., 0., 0., 0.],
+       [1., 1., 1., 1., 1., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 1., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 1., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 1., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 1., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 1.]])</code></pre>
+</div>
+</div>
 </section>
 <section id="loader---learn" class="level2">
 <h2 class="anchored" data-anchor-id="loader---learn">loader -&gt; learn</h2>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>loader <span class="op">=</span> Loader(data_dict1)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>loader2 <span class="op">=</span> Loader(data_dict2)</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co"># train_dataset1, test_dataset1 = eptstgcn.utils.temporal_signal_split(dataset1, train_ratio = 0.9)</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># train_dataset2, test_dataset2 = eptstgcn.utils.temporal_signal_split(dataset2, train_ratio = 0.9)</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co"># lrnr1 = eptstgcn.WeightedLossStgcnLeaner(train_dataset1, dataset_name = 'arbitarary weights')</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co"># lrnr2 = eptstgcn.WeightedLossStgcnLeaner(train_dataset2, dataset_name = 'Identity matrix')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>loader <span class="op">=</span> Loader(data_dict1)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>loader2 <span class="op">=</span> Loader(data_dict2)</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="co"># train_dataset1, test_dataset1 = eptstgcn.utils.temporal_signal_split(dataset1, train_ratio = 0.9)</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="co"># train_dataset2, test_dataset2 = eptstgcn.utils.temporal_signal_split(dataset2, train_ratio = 0.9)</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="co"># lrnr1 = eptstgcn.WeightedLossStgcnLeaner(train_dataset1, dataset_name = 'arbitarary weights')</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co"># lrnr2 = eptstgcn.WeightedLossStgcnLeaner(train_dataset2, dataset_name = 'Identity matrix')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>plans_stgcn <span class="op">=</span> {</span>
-<span id="cb9-2"><a href="#cb9-2"></a>    <span class="st">'max_iteration'</span>: <span class="dv">10</span>,  </span>
-<span id="cb9-3"><a href="#cb9-3"></a>    <span class="st">'method'</span>: [<span class="st">'Weighted Loss'</span>],</span>
-<span id="cb9-4"><a href="#cb9-4"></a>    <span class="st">'W'</span>:W,</span>
-<span id="cb9-5"><a href="#cb9-5"></a>    <span class="st">'lags'</span>: [<span class="dv">1</span>], </span>
-<span id="cb9-6"><a href="#cb9-6"></a>    <span class="st">'nof_filters'</span>:[<span class="dv">2</span>, <span class="dv">4</span>], </span>
-<span id="cb9-7"><a href="#cb9-7"></a>    <span class="st">'epoch'</span>: [<span class="dv">30</span>] </span>
-<span id="cb9-8"><a href="#cb9-8"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>plans_stgcn <span class="op">=</span> {</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="st">'max_iteration'</span>: <span class="dv">10</span>,  </span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="st">'method'</span>: [<span class="st">'Weighted Loss'</span>],</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="st">'W'</span>:W,</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="st">'lags'</span>: [<span class="dv">1</span>], </span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="st">'nof_filters'</span>:[<span class="dv">2</span>, <span class="dv">4</span>], </span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="st">'epoch'</span>: [<span class="dv">30</span>] </span>
+<span id="cb11-8"><a href="#cb11-8"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>plnr <span class="op">=</span> eptstgcn.planner.PLNR_STGCN2(plans_stgcn,loader,dataset_name<span class="op">=</span> <span class="st">'arbitrary weights'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>plans_stgcn2 <span class="op">=</span> {</span>
+<span id="cb12-2"><a href="#cb12-2"></a>    <span class="st">'max_iteration'</span>: <span class="dv">10</span>,  </span>
+<span id="cb12-3"><a href="#cb12-3"></a>    <span class="st">'method'</span>: [<span class="st">'Weighted Loss'</span>],</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    <span class="st">'W'</span>:W2,</span>
+<span id="cb12-5"><a href="#cb12-5"></a>    <span class="st">'lags'</span>: [<span class="dv">1</span>], </span>
+<span id="cb12-6"><a href="#cb12-6"></a>    <span class="st">'nof_filters'</span>:[<span class="dv">2</span>, <span class="dv">4</span>], </span>
+<span id="cb12-7"><a href="#cb12-7"></a>    <span class="st">'epoch'</span>: [<span class="dv">30</span>] </span>
+<span id="cb12-8"><a href="#cb12-8"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># plnr = eptstgcn.planner.PLNR_STGCN2(plans_stgcn,loader,dataset_name= 'arbitrary weights')</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="co"># plnr2 = eptstgcn.planner.PLNR_STGCN2(plans_stgcn2, loader2, dataset_name= 'identity matrix weights')</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co"># plnr1_2 = eptstgcn.planner.PLNR_STGCN2(plans_stgcn,loader,dataset_name= 'arbitrary weights')</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="co"># plnr2_2 = eptstgcn.planner.PLNR_STGCN2(plans_stgcn2, loader2, dataset_name= 'identity matrix weights') </span></span>
+<span id="cb13-6"><a href="#cb13-6"></a></span>
+<span id="cb13-7"><a href="#cb13-7"></a>plnr1_3 <span class="op">=</span> eptstgcn.planner.PLNR_STGCN2(plans_stgcn,loader,dataset_name<span class="op">=</span> <span class="st">'arbitrary weights'</span>)</span>
+<span id="cb13-8"><a href="#cb13-8"></a>plnr2_3 <span class="op">=</span> eptstgcn.planner.PLNR_STGCN2(plans_stgcn2, loader2, dataset_name<span class="op">=</span> <span class="st">'identity matrix weights'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>plnr.simulation_results <span class="op">=</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>TypeError: 'DataFrame' object is not callable</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>plnr.simulate()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/home/jy/Dropbox/noteda/posts/SOLAR/eptstgcn/learners.py:50: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /opt/conda/conda-bld/pytorch_1678402421473/work/torch/csrc/utils/tensor_new.cpp:245.)
-  self.lags = torch.tensor(train_dataset.features).shape[-1]</code></pre>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>plnr1_iter30 <span class="op">=</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>18/30</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>plnr.simulation_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>plnr.simulation_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="58">
 
 <div>
 
@@ -1099,150 +1141,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th>0</th>
-      <td>arbitrary weights</td>
-      <td>Weighted Loss</td>
-      <td>1</td>
-      <td>[1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, ...</td>
-      <td>2</td>
-      <td>30</td>
-      <td>0.195271</td>
-      <td>0.165109</td>
-      <td>135.336162</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>arbitrary weights</td>
-      <td>Weighted Loss</td>
-      <td>1</td>
-      <td>[1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, ...</td>
-      <td>4</td>
-      <td>30</td>
-      <td>0.237856</td>
-      <td>0.202913</td>
-      <td>136.452595</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>arbitrary weights</td>
-      <td>Weighted Loss</td>
-      <td>1</td>
-      <td>[1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, ...</td>
-      <td>2</td>
-      <td>30</td>
-      <td>0.185913</td>
-      <td>0.157302</td>
-      <td>135.455291</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>arbitrary weights</td>
-      <td>Weighted Loss</td>
-      <td>1</td>
-      <td>[1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, ...</td>
-      <td>4</td>
-      <td>30</td>
-      <td>0.195273</td>
-      <td>0.165106</td>
-      <td>138.155788</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>arbitrary weights</td>
-      <td>Weighted Loss</td>
-      <td>1</td>
-      <td>[1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, ...</td>
-      <td>2</td>
-      <td>30</td>
-      <td>0.195281</td>
-      <td>0.165114</td>
-      <td>135.79075</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>195</th>
-      <td>arbitrary weights</td>
-      <td>Weighted Loss</td>
-      <td>1</td>
-      <td>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, ...</td>
-      <td>4</td>
-      <td>30</td>
-      <td>1.05997</td>
-      <td>0.861197</td>
-      <td>136.744348</td>
-    </tr>
-    <tr>
-      <th>196</th>
-      <td>arbitrary weights</td>
-      <td>Weighted Loss</td>
-      <td>1</td>
-      <td>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, ...</td>
-      <td>2</td>
-      <td>30</td>
-      <td>0.340409</td>
-      <td>0.268334</td>
-      <td>136.649352</td>
-    </tr>
-    <tr>
-      <th>197</th>
-      <td>arbitrary weights</td>
-      <td>Weighted Loss</td>
-      <td>1</td>
-      <td>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, ...</td>
-      <td>4</td>
-      <td>30</td>
-      <td>0.328165</td>
-      <td>0.25017</td>
-      <td>136.671101</td>
-    </tr>
-    <tr>
-      <th>198</th>
-      <td>arbitrary weights</td>
-      <td>Weighted Loss</td>
-      <td>1</td>
-      <td>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, ...</td>
-      <td>2</td>
-      <td>30</td>
-      <td>0.197262</td>
-      <td>0.166188</td>
-      <td>135.807712</td>
-    </tr>
-    <tr>
-      <th>199</th>
-      <td>arbitrary weights</td>
-      <td>Weighted Loss</td>
-      <td>1</td>
-      <td>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, ...</td>
-      <td>4</td>
-      <td>30</td>
-      <td>0.197516</td>
-      <td>0.166188</td>
-      <td>137.013654</td>
-    </tr>
   </tbody>
 </table>
-<p>200 rows × 9 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>rslt <span class="op">=</span> plnr.simulation_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># plnr.simulate()</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="co"># plnr2.simulate()</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a></span>
+<span id="cb18-4"><a href="#cb18-4"></a>plnr1_3.simulate()</span>
+<span id="cb18-5"><a href="#cb18-5"></a>plnr2_3.simulate()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1/10 is done
+2/10 is done
+3/10 is done
+4/10 is done
+5/10 is done
+6/10 is done
+7/10 is done
+26/30</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>plnr1_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># plnr2.simulation_results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># plnr.simulation_results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>np.array(FX).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>(2568, 10)</code></pre>
+</div>
+</div>
+<ul>
+<li>lags와 W 바뀜..</li>
+</ul>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>rslt <span class="op">=</span> plnr.simulation_results</span>
+<span id="cb25-2"><a href="#cb25-2"></a>rslt2 <span class="op">=</span> plnr2.simulation_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>rslt.groupby([<span class="st">'nof_filters'</span>])<span class="op">\</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>             .agg({<span class="st">'mse(train)'</span>:[<span class="st">'mean'</span>, <span class="st">'var'</span>], <span class="st">'mse(test)'</span>:[<span class="st">'mean'</span>,<span class="st">'var'</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>rslt.groupby([<span class="st">'nof_filters'</span>])<span class="op">\</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>             .agg({<span class="st">'mse(train)'</span>:[<span class="st">'mean'</span>, <span class="st">'var'</span>], <span class="st">'mse(test)'</span>:[<span class="st">'mean'</span>,<span class="st">'var'</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 
 <div>
@@ -1283,6 +1228,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>0.027038</td>
       <td>0.209062</td>
       <td>0.018440</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>rslt2.groupby([<span class="st">'nof_filters'</span>])<span class="op">\</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>             .agg({<span class="st">'mse(train)'</span>:[<span class="st">'mean'</span>, <span class="st">'var'</span>], <span class="st">'mse(test)'</span>:[<span class="st">'mean'</span>,<span class="st">'var'</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">mse(train)</th>
+      <th colspan="2" halign="left">mse(test)</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>mean</th>
+      <th>var</th>
+      <th>mean</th>
+      <th>var</th>
+    </tr>
+    <tr>
+      <th>nof_filters</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>0.501088</td>
+      <td>0.138520</td>
+      <td>0.415330</td>
+      <td>0.096918</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.293864</td>
+      <td>0.048235</td>
+      <td>0.241179</td>
+      <td>0.033181</td>
     </tr>
   </tbody>
 </table>

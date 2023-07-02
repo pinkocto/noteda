@@ -485,7 +485,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/SOLAR/2999-simul.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SIMUL</a>
+  <a href="../../posts/SOLAR/2999-simul-Copy1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SIMUL (테스트용 재수정)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2999-simul-Copy2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SIMUL (테스트용2 # node = 8)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2999-simul.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SIMUL Method1</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1058,8 +1068,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-2"><a href="#cb13-2"></a>dataset2 <span class="op">=</span> Loader(data_dict2).get_dataset(lags<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb13-3"><a href="#cb13-3"></a>train_dataset1, test_dataset1 <span class="op">=</span> eptstgcn.utils.temporal_signal_split(dataset1, train_ratio <span class="op">=</span> <span class="fl">0.9</span>)</span>
 <span id="cb13-4"><a href="#cb13-4"></a>train_dataset2, test_dataset2 <span class="op">=</span> eptstgcn.utils.temporal_signal_split(dataset2, train_ratio <span class="op">=</span> <span class="fl">0.9</span>)</span>
-<span id="cb13-5"><a href="#cb13-5"></a>lrnr1 <span class="op">=</span> eptstgcn.WeightedLossStgcnLeaner(train_dataset1, dataset_name <span class="op">=</span> <span class="st">'ver1'</span>)</span>
-<span id="cb13-6"><a href="#cb13-6"></a>lrnr2 <span class="op">=</span> eptstgcn.WeightedLossStgcnLeaner(train_dataset2, dataset_name <span class="op">=</span> <span class="st">'ver1'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-5"><a href="#cb13-5"></a>lrnr1 <span class="op">=</span> eptstgcn.WeightedLossStgcnLeaner(train_dataset1, dataset_name <span class="op">=</span> <span class="st">'ver1'</span>) <span class="co"># 3</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>lrnr2 <span class="op">=</span> eptstgcn.WeightedLossStgcnLeaner(train_dataset2, dataset_name <span class="op">=</span> <span class="st">'ver1'</span>)  <span class="co"># 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>30/30</code></pre>
 </div>
