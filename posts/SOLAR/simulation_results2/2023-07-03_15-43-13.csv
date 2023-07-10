@@ -1,0 +1,2 @@
+dataset,method,lags,nof_filters,epoch,mse(train),mse(test),calculation_time
+identity matrix weights,original Loss,1,2,10,0.153269425034523,0.12351134419441223,44.64868402481079

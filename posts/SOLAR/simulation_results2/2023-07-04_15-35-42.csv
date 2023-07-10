@@ -1,0 +1,2 @@
+dataset,method,lags,nof_filters,epoch,mse(train),mse(test),calculation_time
+ept,original Loss,1,2,30,0.1479693204164505,0.12075718492269516,124.01779127120972
