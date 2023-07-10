@@ -1,0 +1,2275 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="JiyunLim">
+<meta name="dcterms.date" content="2023-07-10">
+
+<title>noteda - [SOLAR] 연습용 (코드) # node=8</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">noteda</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/pinkocto/noteda"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><strong>[SOLAR]</strong> 연습용 (코드) # node=8</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block"><strong>[SOLAR]</strong> 연습용 (코드) # node=8</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Research</div>
+                <div class="quarto-category">SOLAR</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>JiyunLim </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 10, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/2023-06-15-2차수정.html" class="sidebar-item-text sidebar-link">0616 시계열 실습 (2차 수정본)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/2023-03-23-read-list.html" class="sidebar-item-text sidebar-link">Lists to read</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/post-with-code/index.html" class="sidebar-item-text sidebar-link">Post With Code</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/welcome/index.html" class="sidebar-item-text sidebar-link">Welcome To My Blog</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">DataHandling</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-assign.html" class="sidebar-item-text sidebar-link">[Python] 새로운 열 할당(.assign) 및 특정 열 선택</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-02-hanling-index.html" class="sidebar-item-text sidebar-link">[Python] 중첩인덱스 깨는 법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-pivot-wider-error.html" class="sidebar-item-text sidebar-link">[R] pivot_wider Error</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/DataHandling/2023-04-06-assign-r.html" class="sidebar-item-text sidebar-link">[R] 문자열을 변수명으로 &amp; assign</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Etc</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-05-08-에러모음.html" class="sidebar-item-text sidebar-link"><strong>에러 모음</strong></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-dv.html" class="sidebar-item-text sidebar-link">data visualization</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-downcasting.html" class="sidebar-item-text sidebar-link">downcasting</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-11-git-error.html" class="sidebar-item-text sidebar-link">Github remote: error: this exceeds GitHub’s file size limit of 100.00 MB</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-05-30-conference-calender.html" class="sidebar-item-text sidebar-link">January 2024</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-02-24-tips.html" class="sidebar-item-text sidebar-link">Julia 설치 및 실행</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-lib.html" class="sidebar-item-text sidebar-link">Libraries for DA</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-05-ppt.html" class="sidebar-item-text sidebar-link">ppt 폰트</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-23-r-python-same-jupyter.html" class="sidebar-item-text sidebar-link">R/Python jupyter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-resumetable.html" class="sidebar-item-text sidebar-link">resumetable</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-03-21-scorecard.html" class="sidebar-item-text sidebar-link">Scorecard</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-01-연구생신규등록.html" class="sidebar-item-text sidebar-link">연구참여 확약서</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-02-abstract.html" class="sidebar-item-text sidebar-link">초록 작성법</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/etc/2023-04-20-학회.html" class="sidebar-item-text sidebar-link">학회</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">HousePrice</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-26-lr-회귀진단.html" class="sidebar-item-text sidebar-link">04. 가변수(Indicator Variable) 실습</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-05-5wk.html" class="sidebar-item-text sidebar-link">5wk: 측도론 (1)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-11-6wk.html" class="sidebar-item-text sidebar-link">6wk: 측도론 (2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-18-7wk.html" class="sidebar-item-text sidebar-link">7wk: 측도론 (3)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-25-8wk.html" class="sidebar-item-text sidebar-link">8wk: 측도론 (4)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-20-ts-이산형확률분포.html" class="sidebar-item-text sidebar-link">Discrete Probability Distribution (추가중)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-18-mlr-보스턴집값.html" class="sidebar-item-text sidebar-link">MLR prac1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/HousePrice/2023-04-19-lr-hw2.html" class="sidebar-item-text sidebar-link">MLR_hw2</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">Seminar</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Seminar/2023-03-21-gpt3-nsmc.html" class="sidebar-item-text sidebar-link">Few-shot learning using GPT3</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">SOLAR</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-correlation.html" class="sidebar-item-text sidebar-link">[R]Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-03-30-restructure-data.html" class="sidebar-item-text sidebar-link">[R]데이터 재구조화</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-24-정리-Copy1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 0524 뭔가이상해</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-26-try1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 0530</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/Untitled.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 0531</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2099.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 0607</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-19-ept-plot-edit.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT plot (edit)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2999-simul-Copy1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SIMUL (Weighted/original &amp; arbitrary/identity &amp; #node=10)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2999-simul-Copy2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SIMUL (테스트용2 # node = 8) (X)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2999-simul.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SIMUL Method1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-20-VER0-SIMUL.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver0 SIMULATION (data2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-20-VER1-SIMUL.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 SIMULATION (data2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-20-VER2-SIMUL.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 SIMULATION (data2)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-25-toy-example.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Toy Example</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-26-guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Toy Example</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-25-toy-example2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Toy Example2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-26-toy-example2-self-loop-1filter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Toy Example2 (self-loop) 1lag 1filter 50epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-26-toy-example2-self-loop-1filter-Copy1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Toy Example2 (self-loop) 1lag 1filter 50epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-26-toy-example2-self-loop.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Toy Example2 (self-loop) 4lag 32filter 50epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-28-그래프비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 그래프 비교</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-25-data-edit-5차수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 데이터 5차 수정 (edit)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-07-04-simul-데이터로더수정-Copy1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 로더 수정 , # node=8 (++결과비교중)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-07-04-simul-러너.html" class="sidebar-item-text sidebar-link active"><strong>[SOLAR]</strong> 연습용 (코드) # node=8</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-07-04.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 정리중…</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/9999.html" class="sidebar-item-text sidebar-link">Import</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-05-19-windmill.html" class="sidebar-item-text sidebar-link">Windmill Example</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">Old</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-05-07-정리.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 0508 정리중</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-24-정규화제거-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (-N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-23-결과비교.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Comparison of 30 simulation results (+N)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-06-corr.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Correlation coefficient by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-12-데이터수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (22/06~22/09/15)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-14-데이터수정2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Crate Dataset (data2: 22/06~22/09/15) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-20-데이터수정3.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Create Dataset (data3: 0815/0910) 재수정</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-06-stgcn-data-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-07-stcgn-data-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> Dataset for STGCN Ver2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-04-EPT.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-06-ept-by-region.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT by region</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-05-18-ept-plot.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> EPT plot</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-05-18-loss-problem.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> loss</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-10-lstm.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> LSTM</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-21-정규화-스케일링-stgcn-ver1--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (+N +S) (MSE: 0.1864) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-23-스케일링-stgcn-ver1-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-25-s-stgcn-ver1-100에폭--이게진짜.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-28-s-stgcn-ver1-100에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 100epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-26-s-stgcn-ver1-150에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 150epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-27-s-stgcn-ver1-50에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 30회 50epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-05-03-s-stgcn-ver1-시뮬레이션-10iter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-29-s-stgcn-ver1-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, -N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-22-정규화-스케일링-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-05-02-s-stgcn-ver1-정규화-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N +S) 시뮬레이션(epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-17-정규화-stgcn-ver1-.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (data2, +N) (MSE: 0.1705)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-20-정규화-데이터3-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (Full: 08/15~09/10 data3) (MSE: 0.1523)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-12-stgcn-ver1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 (MSE: 0.1899)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-12-stgcn-ver1-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 90% (MSE: 0.1206)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-09-soloar-stgcn-ver1-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-07-soloar-stgcn-ver1-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-15-stgcn-ver1-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver1 수정본 (MSE: 0.1674)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-21-정규화-스케일링-stgcn-ver2--guebin.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (+N +S) (MSE: 0.1801) – guebin</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-23-스케일링-stgcn-ver2-정규화취소.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-25-s-stgcn-ver2-100에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 100 epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-26-s-stgcn-ver2-150에폭.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 150 epoch</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-27-s-stgcn-ver2-50에폭-64필터.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 50 epoch 64filter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-29-s-stgcn-ver2-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 30회 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-05-03-s-stgcn-ver2-시뮬레이션-10iter.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, -N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-22-정규화-스케일링-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 30회</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-05-02-s-stgcn-ver2-정규화-시뮬레이션.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N +S) 시뮬레이션 (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-17-정규화-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (data2, +N) (MSE: 0.1834)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-20-정규화-데이터3-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (Full: 08/15~09/10 data3) (MSE: 0.1927)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-12-stgcn-ver2-train90.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 (MSE: 0.2019)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-12-stgcn-ver2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 90% (MSE: 0.1635)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-09-solar-stgcn-ver2-lag1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-08-solar-stgcn-ver2-lag4.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 lag4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-15-stgcn-ver2-수정본.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> STGCN Ver2 수정본 (MSE: 0.2000)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-03-01-todolist.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> To do list</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-06-solar-class.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> WindmillOutputLargeDatasetLoader</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-07-yu.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> yU</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-19-데이터탐색용.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 데이터 탐색용</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-05-03-시뮬결과.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 시뮬레이션 결과정리 1-iter (epoch, filter, lag)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-22-시각화코드수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 연습용 (시각화 코드 수정)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-05-01-차원조사.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 차원조사</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-06-stgcn.html" class="sidebar-item-text sidebar-link">ChikenpoxDataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-03-29-data0.html" class="sidebar-item-text sidebar-link">Data preprocessing</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-09-lstm-prac.html" class="sidebar-item-text sidebar-link">LSTM for Time Series Prediction (연습)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-06-windmill.html" class="sidebar-item-text sidebar-link">WindmillOutputLargeDataset 분석 (실패)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/old/2023-04-09-ft.html" class="sidebar-item-text sidebar-link">푸리에 변환</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">Study</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-24-베르누이.html" class="sidebar-item-text sidebar-link">[SC2022] 포아송분포, 지수분포</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-03-05-기하학적딥러닝-survey-review.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> A Comprehensive Survey on Geometric Deep Learning (+++)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-06-ept-논문리뷰.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> Ensemble patch transformation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-07-stgcn논문리뷰.html" class="sidebar-item-text sidebar-link"><strong>[PAPER]</strong> Spatio-Temporal Graph Convolutional Networks (+++)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-11-arima-hour-data-fill.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SARIMA (MSE: 0.478)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex-day.html" class="sidebar-item-text sidebar-link">ARIMA (Day)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-arima-ex.html" class="sidebar-item-text sidebar-link">ARIMA (시간별 예측안됨, 에러)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-08-gcrn리뷰.html" class="sidebar-item-text sidebar-link">GCRN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-21-gcn-이해용정리.html" class="sidebar-item-text sidebar-link">Graph Convolutional Network (이해용)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/python-midterm.html" class="sidebar-item-text sidebar-link">Python Midterm</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-13-windmill-스몰버전.html" class="sidebar-item-text sidebar-link">WindmillOutput (Small)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/python_7장.html" class="sidebar-item-text sidebar-link">스타벅스 주가예측</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-ex.html" class="sidebar-item-text sidebar-link">연습장</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-03-일사량.html" class="sidebar-item-text sidebar-link">일사량자료정리(수정 for ARIMA)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-21-STGCN-tutorial1.html" class="sidebar-item-text sidebar-link">튜토리얼 따라가기1</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#weighted-loss-y-haty-y-hatytop-odot-w" id="toc-weighted-loss-y-haty-y-hatytop-odot-w" class="nav-link active" data-scroll-target="#weighted-loss-y-haty-y-hatytop-odot-w">Weighted Loss : <span class="math inline">\((y-\hat{y}) (y-\hat{y})^\top \odot W\)</span></a>
+  <ul class="collapse">
+  <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">Import</a></li>
+  <li><a href="#creating-weights" id="toc-creating-weights" class="nav-link" data-scroll-target="#creating-weights">Creating weights</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#loader---learn" id="toc-loader---learn" class="nav-link" data-scroll-target="#loader---learn">loader -&gt; learn</a></li>
+  </ul></li>
+  <li><a href="#lag4-filters16-epoch30" id="toc-lag4-filters16-epoch30" class="nav-link" data-scroll-target="#lag4-filters16-epoch30"><font color="green">#1: lag=4, filters=16, epoch=30</font></a>
+  <ul class="collapse">
+  <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation">Evaluation</a></li>
+  <li><a href="#궁금한점-wgt-loss-eval-cost부분" id="toc-궁금한점-wgt-loss-eval-cost부분" class="nav-link" data-scroll-target="#궁금한점-wgt-loss-eval-cost부분">궁금한점? wgt loss &gt; eval &gt; cost부분</a>
+  <ul class="collapse">
+  <li><a href="#arbitrary-weights" id="toc-arbitrary-weights" class="nav-link" data-scroll-target="#arbitrary-weights">1. arbitrary weights</a></li>
+  <li><a href="#identity-matrix" id="toc-identity-matrix" class="nav-link" data-scroll-target="#identity-matrix">2. identity matrix</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation">3. correlation</a></li>
+  <li><a href="#ept" id="toc-ept" class="nav-link" data-scroll-target="#ept">4. EPT</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#filter8로-변경" id="toc-filter8로-변경" class="nav-link" data-scroll-target="#filter8로-변경"><font color="green">#2: filter=8로 변경</font></a>
+  <ul class="collapse">
+  <li><a href="#evaluation-1" id="toc-evaluation-1" class="nav-link" data-scroll-target="#evaluation-1">Evaluation</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>2023-07-04 : 로더 모듈안의 로더로 수정</li>
+<li>node수 8개로 조정 (창원, 청송군 제거 (창원 arbitrary weight 잘못줌.))</li>
+<li>train: 2022-06-01 00:00:00 2022-09-05 05:00:00</li>
+<li>test: 2022-09-05 06:00:00 2022-09-15 23:00:00</li>
+</ul>
+</div>
+</div>
+<section id="weighted-loss-y-haty-y-hatytop-odot-w" class="level1">
+<h1>Weighted Loss : <span class="math inline">\((y-\hat{y}) (y-\hat{y})^\top \odot W\)</span></h1>
+<section id="import" class="level2">
+<h2 class="anchored" data-anchor-id="import">Import</h2>
+<div class="cell" data-execution_count="329">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-6"><a href="#cb1-6"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> <span class="st">'NanumGothic'</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="im">import</span> rpy2</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="op">%</span>load_ext rpy2.ipython</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="im">import</span> torch</span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="im">import</span> eptstgcn</span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="im">import</span> eptstgcn.planner</span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="im">import</span> torch_geometric_temporal</span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="im">from</span> torch_geometric_temporal.signal.static_graph_temporal_signal <span class="im">import</span> StaticGraphTemporalSignal</span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co"># torch</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="im">import</span> torch</span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="co">#import torch_geometric_temporal</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="im">from</span> torch_geometric_temporal.nn.recurrent <span class="im">import</span> GConvGRU</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The rpy2.ipython extension is already loaded. To reload it, use:
+  %reload_ext rpy2.ipython</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="207">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># class Loader(eptstgcn.DatasetLoader):</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#     def __init__(self,data_dict):</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#          self._dataset = data_dict </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="208">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> minmaxscaler(arr):</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    arr <span class="op">=</span> (arr <span class="op">-</span> arr.<span class="bu">min</span>()) <span class="op">/</span> (arr.<span class="bu">max</span>() <span class="op">-</span> arr.<span class="bu">min</span>())</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="cf">return</span> arr </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="209">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span> Loader(<span class="bu">object</span>):</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="co">"""Hourly solar radiation of observatories from South Korean  for 2 years. </span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">    Vertices represent 44 cities and the weighted edges represent the strength of the relationship. </span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">    The target variable allows regression operations. </span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">    (The weight is the correlation coefficient of solar radiation by region.)</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">    """</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#     def __init__(self, url):</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#         self.url = url</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#         self._read_web_data()</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>        </span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#     def _read_web_data(self):</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#         self._dataset = json.loads(urllib.request.urlopen(self.url).read().decode())</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, data_dict):</span>
+<span id="cb5-16"><a href="#cb5-16"></a>        <span class="va">self</span>._dataset <span class="op">=</span> data_dict</span>
+<span id="cb5-17"><a href="#cb5-17"></a>    </span>
+<span id="cb5-18"><a href="#cb5-18"></a>    <span class="kw">def</span> _get_edges(<span class="va">self</span>):</span>
+<span id="cb5-19"><a href="#cb5-19"></a>        <span class="va">self</span>._edges <span class="op">=</span> np.array(<span class="va">self</span>._dataset[<span class="st">"edges"</span>]).T</span>
+<span id="cb5-20"><a href="#cb5-20"></a></span>
+<span id="cb5-21"><a href="#cb5-21"></a>    <span class="kw">def</span> _get_edge_weights(<span class="va">self</span>):</span>
+<span id="cb5-22"><a href="#cb5-22"></a>        <span class="co"># self._edge_weights = np.array(self._dataset["weights"]).T</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>        edge_weights <span class="op">=</span> np.array(<span class="va">self</span>._dataset[<span class="st">"weights"</span>]).T</span>
+<span id="cb5-24"><a href="#cb5-24"></a>        scaled_edge_weights <span class="op">=</span> minmaxscaler(edge_weights)</span>
+<span id="cb5-25"><a href="#cb5-25"></a>        <span class="va">self</span>._edge_weights <span class="op">=</span> scaled_edge_weights</span>
+<span id="cb5-26"><a href="#cb5-26"></a>    <span class="co">"""</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a><span class="co">    def _get_targets_and_features(self):</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a><span class="co">        stacked_target = np.stack(self._dataset["FX"])</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a><span class="co">        standardized_target = (stacked_target - np.mean(stacked_target, axis=0)) / (</span></span>
+<span id="cb5-30"><a href="#cb5-30"></a><span class="co">            np.std(stacked_target, axis=0) + 10 ** -10</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a><span class="co">        )</span></span>
+<span id="cb5-32"><a href="#cb5-32"></a><span class="co">        self.features = [</span></span>
+<span id="cb5-33"><a href="#cb5-33"></a><span class="co">            standardized_target[i : i + self.lags, :].T</span></span>
+<span id="cb5-34"><a href="#cb5-34"></a><span class="co">            for i in range(standardized_target.shape[0] - self.lags)</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a><span class="co">        ]</span></span>
+<span id="cb5-36"><a href="#cb5-36"></a><span class="co">        self.targets = [</span></span>
+<span id="cb5-37"><a href="#cb5-37"></a><span class="co">            standardized_target[i + self.lags, :].T</span></span>
+<span id="cb5-38"><a href="#cb5-38"></a><span class="co">            for i in range(standardized_target.shape[0] - self.lags)</span></span>
+<span id="cb5-39"><a href="#cb5-39"></a><span class="co">        ]</span></span>
+<span id="cb5-40"><a href="#cb5-40"></a><span class="co">        """</span></span>
+<span id="cb5-41"><a href="#cb5-41"></a>    <span class="kw">def</span> _get_targets_and_features(<span class="va">self</span>):</span>
+<span id="cb5-42"><a href="#cb5-42"></a>        stacked_target <span class="op">=</span> np.array(<span class="va">self</span>._dataset[<span class="st">"FX"</span>])</span>
+<span id="cb5-43"><a href="#cb5-43"></a>        <span class="va">self</span>.features <span class="op">=</span> [</span>
+<span id="cb5-44"><a href="#cb5-44"></a>            stacked_target[i : i <span class="op">+</span> <span class="va">self</span>.lags, :].T</span>
+<span id="cb5-45"><a href="#cb5-45"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(stacked_target.shape[<span class="dv">0</span>] <span class="op">-</span> <span class="va">self</span>.lags)</span>
+<span id="cb5-46"><a href="#cb5-46"></a>        ]</span>
+<span id="cb5-47"><a href="#cb5-47"></a>        <span class="va">self</span>.targets <span class="op">=</span> [</span>
+<span id="cb5-48"><a href="#cb5-48"></a>            stacked_target[i <span class="op">+</span> <span class="va">self</span>.lags, :].T</span>
+<span id="cb5-49"><a href="#cb5-49"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(stacked_target.shape[<span class="dv">0</span>] <span class="op">-</span> <span class="va">self</span>.lags)</span>
+<span id="cb5-50"><a href="#cb5-50"></a>        ]</span>
+<span id="cb5-51"><a href="#cb5-51"></a></span>
+<span id="cb5-52"><a href="#cb5-52"></a></span>
+<span id="cb5-53"><a href="#cb5-53"></a>    <span class="kw">def</span> get_dataset(<span class="va">self</span>, lags: <span class="bu">int</span> <span class="op">=</span> <span class="dv">4</span>) <span class="op">-&gt;</span> StaticGraphTemporalSignal:</span>
+<span id="cb5-54"><a href="#cb5-54"></a>        <span class="co">"""Returning the Solar radiation Output data iterator.</span></span>
+<span id="cb5-55"><a href="#cb5-55"></a><span class="co">        Args types:</span></span>
+<span id="cb5-56"><a href="#cb5-56"></a><span class="co">            * **lags** *(int)* - The number of time lags.</span></span>
+<span id="cb5-57"><a href="#cb5-57"></a><span class="co">        Return types:</span></span>
+<span id="cb5-58"><a href="#cb5-58"></a><span class="co">            * **dataset** *(StaticGraphTemporalSignal)* - The Solar radiation Output dataset.</span></span>
+<span id="cb5-59"><a href="#cb5-59"></a><span class="co">        """</span></span>
+<span id="cb5-60"><a href="#cb5-60"></a>        <span class="va">self</span>.lags <span class="op">=</span> lags</span>
+<span id="cb5-61"><a href="#cb5-61"></a>        <span class="va">self</span>._get_edges()</span>
+<span id="cb5-62"><a href="#cb5-62"></a>        <span class="va">self</span>._get_edge_weights()</span>
+<span id="cb5-63"><a href="#cb5-63"></a>        <span class="va">self</span>._get_targets_and_features()</span>
+<span id="cb5-64"><a href="#cb5-64"></a>        dataset <span class="op">=</span> StaticGraphTemporalSignal(</span>
+<span id="cb5-65"><a href="#cb5-65"></a>            <span class="va">self</span>._edges, <span class="va">self</span>._edge_weights, <span class="va">self</span>.features, <span class="va">self</span>.targets</span>
+<span id="cb5-66"><a href="#cb5-66"></a>        )</span>
+<span id="cb5-67"><a href="#cb5-67"></a>        <span class="cf">return</span> dataset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="creating-weights" class="level2">
+<h2 class="anchored" data-anchor-id="creating-weights">Creating weights</h2>
+<div class="cell" data-execution_count="210">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>solar.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="210">
+<pre><code>(2568, 8)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="211">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># solar dataset</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>solar_ <span class="op">=</span> pd.read_csv(<span class="st">'./data2/restructuring_data.csv'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a>solar <span class="op">=</span> solar_[[<span class="st">'포항'</span>,<span class="st">'대구'</span>,<span class="st">'부산'</span>,<span class="st">'경주시'</span>,<span class="st">'서울'</span>,<span class="st">'인천'</span>,<span class="st">'수원'</span>,<span class="st">'서산'</span>]]</span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># solar = solar.drop('date', axis=1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="212">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>weight <span class="op">=</span> solar.corr()</span>
+<span id="cb9-2"><a href="#cb9-2"></a>weight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="212">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>포항</th>
+      <th>대구</th>
+      <th>부산</th>
+      <th>경주시</th>
+      <th>서울</th>
+      <th>인천</th>
+      <th>수원</th>
+      <th>서산</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>포항</th>
+      <td>1.000000</td>
+      <td>0.912199</td>
+      <td>0.878110</td>
+      <td>0.941188</td>
+      <td>0.691843</td>
+      <td>0.740008</td>
+      <td>0.753658</td>
+      <td>0.774245</td>
+    </tr>
+    <tr>
+      <th>대구</th>
+      <td>0.912199</td>
+      <td>1.000000</td>
+      <td>0.895145</td>
+      <td>0.920223</td>
+      <td>0.732835</td>
+      <td>0.771984</td>
+      <td>0.794593</td>
+      <td>0.811146</td>
+    </tr>
+    <tr>
+      <th>부산</th>
+      <td>0.878110</td>
+      <td>0.895145</td>
+      <td>1.000000</td>
+      <td>0.896707</td>
+      <td>0.700521</td>
+      <td>0.752768</td>
+      <td>0.756312</td>
+      <td>0.771864</td>
+    </tr>
+    <tr>
+      <th>경주시</th>
+      <td>0.941188</td>
+      <td>0.920223</td>
+      <td>0.896707</td>
+      <td>1.000000</td>
+      <td>0.678602</td>
+      <td>0.729314</td>
+      <td>0.744895</td>
+      <td>0.763475</td>
+    </tr>
+    <tr>
+      <th>서울</th>
+      <td>0.691843</td>
+      <td>0.732835</td>
+      <td>0.700521</td>
+      <td>0.678602</td>
+      <td>1.000000</td>
+      <td>0.923705</td>
+      <td>0.929415</td>
+      <td>0.879286</td>
+    </tr>
+    <tr>
+      <th>인천</th>
+      <td>0.740008</td>
+      <td>0.771984</td>
+      <td>0.752768</td>
+      <td>0.729314</td>
+      <td>0.923705</td>
+      <td>1.000000</td>
+      <td>0.932411</td>
+      <td>0.911590</td>
+    </tr>
+    <tr>
+      <th>수원</th>
+      <td>0.753658</td>
+      <td>0.794593</td>
+      <td>0.756312</td>
+      <td>0.744895</td>
+      <td>0.929415</td>
+      <td>0.932411</td>
+      <td>1.000000</td>
+      <td>0.926437</td>
+    </tr>
+    <tr>
+      <th>서산</th>
+      <td>0.774245</td>
+      <td>0.811146</td>
+      <td>0.771864</td>
+      <td>0.763475</td>
+      <td>0.879286</td>
+      <td>0.911590</td>
+      <td>0.926437</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="213">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="op">%%</span>R</span>
+<span id="cb10-2"><a href="#cb10-2"></a>library(data.table)</span>
+<span id="cb10-3"><a href="#cb10-3"></a>library(tidyverse)</span>
+<span id="cb10-4"><a href="#cb10-4"></a>library(dplyr)</span>
+<span id="cb10-5"><a href="#cb10-5"></a>library(corrplot)</span>
+<span id="cb10-6"><a href="#cb10-6"></a>library(lubridate)</span>
+<span id="cb10-7"><a href="#cb10-7"></a>library(EPT)</span>
+<span id="cb10-8"><a href="#cb10-8"></a>library(tictoc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="214">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="op">%</span>R <span class="op">-</span>i solar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="215">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="op">%%</span>R</span>
+<span id="cb12-2"><a href="#cb12-2"></a>head(solar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  포항 대구 부산 경주시 서울 인천 수원 서산
+0    0    0    0      0    0    0    0    0
+1    0    0    0      0    0    0    0    0
+2    0    0    0      0    0    0    0    0
+3    0    0    0      0    0    0    0    0
+4    0    0    0      0    0    0    0    0
+5    0    0    0      0    0    0    0    0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="216">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="op">%%</span>R</span>
+<span id="cb14-2"><a href="#cb14-2"></a>ept <span class="op">=</span> function(y){</span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="co"># EpM = eptransf(signal=y,tau=24,process=c("envelope","average"))$EpM</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="co"># EpM*2</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>    Ep <span class="op">=</span> eptransf(signal<span class="op">=</span>y,tau<span class="op">=</span><span class="dv">24</span>,process<span class="op">=</span>c(<span class="st">"envelope"</span>,<span class="st">"average"</span>), <span class="bu">type</span><span class="op">=</span><span class="st">'rectangle'</span>)</span>
+<span id="cb14-6"><a href="#cb14-6"></a>    Ep$EpU <span class="op">+</span> Ep$EpL <span class="co">## EPU</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="217">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="op">%%</span>R</span>
+<span id="cb15-2"><a href="#cb15-2"></a>tic(<span class="st">'지역별 yU계산'</span>)</span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="cf">for</span> (i <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">8</span>){</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    assign(paste0(<span class="st">'yU'</span>,<span class="dv">1</span>:<span class="dv">44</span>)[i], ept(solar[,i]))</span>
+<span id="cb15-5"><a href="#cb15-5"></a>}</span>
+<span id="cb15-6"><a href="#cb15-6"></a>toc()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>지역별 yU계산: 9.678 sec elapsed</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="218">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="op">%%</span>R</span>
+<span id="cb17-2"><a href="#cb17-2"></a>df_yU <span class="op">=</span> do.call(cbind.data.frame, mget(paste0(<span class="st">'yU'</span>, <span class="dv">1</span>:<span class="dv">8</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="219">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="op">%%</span>R</span>
+<span id="cb18-2"><a href="#cb18-2"></a>dim(df_yU)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2568    8</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="220">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="op">%%</span>R</span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="co"># EPT weight</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>ept_weight <span class="op">=</span> cor(df_yU)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="221">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="op">%%</span>R</span>
+<span id="cb21-2"><a href="#cb21-2"></a>colnames(ept_weight) <span class="op">&lt;-</span> names(solar)</span>
+<span id="cb21-3"><a href="#cb21-3"></a>rownames(ept_weight) <span class="op">&lt;-</span> names(solar)</span>
+<span id="cb21-4"><a href="#cb21-4"></a>ept_weight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            포항      대구      부산    경주시      서울      인천      수원
+포항   1.0000000 0.8424895 0.6425640 0.9040996 0.1716328 0.3307638 0.3557177
+대구   0.8424895 1.0000000 0.7197786 0.8512829 0.2313584 0.3601384 0.4125374
+부산   0.6425640 0.7197786 1.0000000 0.7213258 0.1482832 0.2977739 0.2707934
+경주시 0.9040996 0.8512829 0.7213258 1.0000000 0.1328790 0.3023132 0.3141259
+서울   0.1716328 0.2313584 0.1482832 0.1328790 1.0000000 0.8747676 0.8865986
+인천   0.3307638 0.3601384 0.2977739 0.3023132 0.8747676 1.0000000 0.8817441
+수원   0.3557177 0.4125374 0.2707934 0.3141259 0.8865986 0.8817441 1.0000000
+서산   0.4348638 0.4949508 0.3490800 0.3859630 0.7646948 0.8549585 0.8852652
+            서산
+포항   0.4348638
+대구   0.4949508
+부산   0.3490800
+경주시 0.3859630
+서울   0.7646948
+인천   0.8549585
+수원   0.8852652
+서산   1.0000000</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="222">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="op">%</span>R <span class="op">-</span>o ept_weight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="223">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="op">%%</span>R</span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="co">## weight</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a>cor(solar)</span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="co"># heatmap(cor(solar), scale='none')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            포항      대구      부산    경주시      서울      인천      수원
+포항   1.0000000 0.9121993 0.8781102 0.9411877 0.6918432 0.7400082 0.7536582
+대구   0.9121993 1.0000000 0.8951451 0.9202234 0.7328353 0.7719844 0.7945932
+부산   0.8781102 0.8951451 1.0000000 0.8967065 0.7005214 0.7527684 0.7563125
+경주시 0.9411877 0.9202234 0.8967065 1.0000000 0.6786022 0.7293137 0.7448947
+서울   0.6918432 0.7328353 0.7005214 0.6786022 1.0000000 0.9237048 0.9294152
+인천   0.7400082 0.7719844 0.7527684 0.7293137 0.9237048 1.0000000 0.9324108
+수원   0.7536582 0.7945932 0.7563125 0.7448947 0.9294152 0.9324108 1.0000000
+서산   0.7742449 0.8111463 0.7718636 0.7634749 0.8792860 0.9115902 0.9264367
+            서산
+포항   0.7742449
+대구   0.8111463
+부산   0.7718636
+경주시 0.7634749
+서울   0.8792860
+인천   0.9115902
+수원   0.9264367
+서산   1.0000000</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="525">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>np.array(weight).mean(), np.array(ept_weight).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="525">
+<pre><code>(0.8410775319730317, 0.5882107444529969)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="537">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>plt.hist(data_dict3[<span class="st">'weights'</span>], alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">'corr'</span>)</span>
+<span id="cb28-2"><a href="#cb28-2"></a>plt.hist(data_dict4[<span class="st">'weights'</span>], alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">'ept'</span>)</span>
+<span id="cb28-3"><a href="#cb28-3"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb28-4"><a href="#cb28-4"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-07-04-simul-러너_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="542">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>plt.hist(minmaxscaler(np.array(data_dict3[<span class="st">'weights'</span>])), alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">'corr'</span>)</span>
+<span id="cb29-2"><a href="#cb29-2"></a>plt.hist(minmaxscaler(np.array(data_dict4[<span class="st">'weights'</span>])), alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">'ept'</span>)</span>
+<span id="cb29-3"><a href="#cb29-3"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb29-4"><a href="#cb29-4"></a>plt.title(<span class="st">'After scaling'</span>)</span>
+<span id="cb29-5"><a href="#cb29-5"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-07-04-simul-러너_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<ol type="1">
+<li><p><strong><font color="red">arbitrary weights</font></strong> – dict1</p></li>
+<li><p><strong><font color="red">identity matrix</font></strong> – dict2</p></li>
+<li><p>correlation – dict3</p></li>
+<li><p>EPT – dict4</p></li>
+</ol>
+<div class="cell" data-execution_count="224">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>N <span class="op">=</span> <span class="dv">8</span> <span class="co"># number of nodes</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>T <span class="op">=</span> solar.shape[<span class="dv">0</span>]</span>
+<span id="cb30-3"><a href="#cb30-3"></a>node_ids <span class="op">=</span> solar.columns.tolist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="225">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>FX_ <span class="op">=</span> [solar.iloc[i,:] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(T)]</span>
+<span id="cb31-2"><a href="#cb31-2"></a>FX <span class="op">=</span> np.stack(FX_).tolist()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="226">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># arbitrary weight</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>W <span class="op">=</span> np.eye(N)</span>
+<span id="cb32-3"><a href="#cb32-3"></a>W[:(N<span class="op">-</span><span class="dv">4</span>),:(N<span class="op">-</span><span class="dv">4</span>)] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>W[(N<span class="op">-</span><span class="dv">4</span>):, (N<span class="op">-</span><span class="dv">4</span>):] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a><span class="co"># identity matrix</span></span>
+<span id="cb32-6"><a href="#cb32-6"></a>W2 <span class="op">=</span> np.eye(N)</span>
+<span id="cb32-7"><a href="#cb32-7"></a><span class="co"># correlation</span></span>
+<span id="cb32-8"><a href="#cb32-8"></a>W3 <span class="op">=</span> np.array(weight)</span>
+<span id="cb32-9"><a href="#cb32-9"></a><span class="co"># ept</span></span>
+<span id="cb32-10"><a href="#cb32-10"></a>W4 <span class="op">=</span> np.array(ept_weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="479">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>data_dict1<span class="op">=</span>{</span>
+<span id="cb33-2"><a href="#cb33-2"></a>    <span class="st">'edges'</span>:[[i,j] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N)], </span>
+<span id="cb33-3"><a href="#cb33-3"></a>    <span class="st">'node_ids'</span>: {node_ids[i]: i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N)}, </span>
+<span id="cb33-4"><a href="#cb33-4"></a>    <span class="st">'weights'</span>:W.reshape(<span class="op">-</span><span class="dv">1</span>).tolist(),</span>
+<span id="cb33-5"><a href="#cb33-5"></a>    <span class="st">'FX'</span>:FX</span>
+<span id="cb33-6"><a href="#cb33-6"></a>}</span>
+<span id="cb33-7"><a href="#cb33-7"></a></span>
+<span id="cb33-8"><a href="#cb33-8"></a>data_dict2<span class="op">=</span>{</span>
+<span id="cb33-9"><a href="#cb33-9"></a>    <span class="st">'edges'</span>:[[i,j] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N)], </span>
+<span id="cb33-10"><a href="#cb33-10"></a>    <span class="st">'node_ids'</span>: {node_ids[i]: i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N)}, </span>
+<span id="cb33-11"><a href="#cb33-11"></a>    <span class="st">'weights'</span>:W2.reshape(<span class="op">-</span><span class="dv">1</span>).tolist(), </span>
+<span id="cb33-12"><a href="#cb33-12"></a>    <span class="st">'FX'</span>:FX</span>
+<span id="cb33-13"><a href="#cb33-13"></a>}</span>
+<span id="cb33-14"><a href="#cb33-14"></a></span>
+<span id="cb33-15"><a href="#cb33-15"></a>data_dict3<span class="op">=</span>{</span>
+<span id="cb33-16"><a href="#cb33-16"></a>    <span class="st">'edges'</span>:[[i,j] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N)], </span>
+<span id="cb33-17"><a href="#cb33-17"></a>    <span class="st">'node_ids'</span>: {node_ids[i]: i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N)}, </span>
+<span id="cb33-18"><a href="#cb33-18"></a>    <span class="st">'weights'</span>:W3.reshape(<span class="op">-</span><span class="dv">1</span>).tolist(), </span>
+<span id="cb33-19"><a href="#cb33-19"></a>    <span class="st">'FX'</span>:FX</span>
+<span id="cb33-20"><a href="#cb33-20"></a>}</span>
+<span id="cb33-21"><a href="#cb33-21"></a></span>
+<span id="cb33-22"><a href="#cb33-22"></a>data_dict4<span class="op">=</span>{</span>
+<span id="cb33-23"><a href="#cb33-23"></a>    <span class="st">'edges'</span>:[[i,j] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N)], </span>
+<span id="cb33-24"><a href="#cb33-24"></a>    <span class="st">'node_ids'</span>: {node_ids[i]: i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N)}, </span>
+<span id="cb33-25"><a href="#cb33-25"></a>    <span class="st">'weights'</span>:W4.reshape(<span class="op">-</span><span class="dv">1</span>).tolist(), </span>
+<span id="cb33-26"><a href="#cb33-26"></a>    <span class="st">'FX'</span>:FX</span>
+<span id="cb33-27"><a href="#cb33-27"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="loader---learn" class="level2">
+<h2 class="anchored" data-anchor-id="loader---learn">loader -&gt; learn</h2>
+</section>
+</section>
+<section id="lag4-filters16-epoch30" class="level1">
+<h1><font color="green">#1: lag=4, filters=16, epoch=30</font></h1>
+<div class="cell" data-execution_count="480">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>loader1 <span class="op">=</span> Loader(data_dict1) <span class="co"># arbitrary weights</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>loader2 <span class="op">=</span> Loader(data_dict2) <span class="co"># identity matrix</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a>loader3 <span class="op">=</span> Loader(data_dict3) <span class="co"># corr</span></span>
+<span id="cb34-4"><a href="#cb34-4"></a>loader4 <span class="op">=</span> Loader(data_dict4) <span class="co"># ept</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a></span>
+<span id="cb34-6"><a href="#cb34-6"></a>n_lag<span class="op">=</span><span class="dv">4</span></span>
+<span id="cb34-7"><a href="#cb34-7"></a>dataset1 <span class="op">=</span> loader1.get_dataset(lags<span class="op">=</span>n_lag)</span>
+<span id="cb34-8"><a href="#cb34-8"></a>dataset2 <span class="op">=</span> loader2.get_dataset(lags<span class="op">=</span>n_lag)</span>
+<span id="cb34-9"><a href="#cb34-9"></a>dataset3 <span class="op">=</span> loader3.get_dataset(lags<span class="op">=</span>n_lag)</span>
+<span id="cb34-10"><a href="#cb34-10"></a>dataset4 <span class="op">=</span> loader4.get_dataset(lags<span class="op">=</span>n_lag)</span>
+<span id="cb34-11"><a href="#cb34-11"></a></span>
+<span id="cb34-12"><a href="#cb34-12"></a>train_dataset1, test_dataset1 <span class="op">=</span> eptstgcn.utils.temporal_signal_split(dataset1, train_ratio <span class="op">=</span> <span class="fl">0.9</span>)</span>
+<span id="cb34-13"><a href="#cb34-13"></a>train_dataset2, test_dataset2 <span class="op">=</span> eptstgcn.utils.temporal_signal_split(dataset2, train_ratio <span class="op">=</span> <span class="fl">0.9</span>)</span>
+<span id="cb34-14"><a href="#cb34-14"></a>train_dataset3, test_dataset3 <span class="op">=</span> eptstgcn.utils.temporal_signal_split(dataset3, train_ratio <span class="op">=</span> <span class="fl">0.9</span>)</span>
+<span id="cb34-15"><a href="#cb34-15"></a>train_dataset4, test_dataset4 <span class="op">=</span> eptstgcn.utils.temporal_signal_split(dataset4, train_ratio <span class="op">=</span> <span class="fl">0.9</span>)</span>
+<span id="cb34-16"><a href="#cb34-16"></a></span>
+<span id="cb34-17"><a href="#cb34-17"></a><span class="co"># lrnr1 = eptstgcn.WeightedLossStgcnLeaner(train_dataset1, dataset_name = 'arbitarary weights')</span></span>
+<span id="cb34-18"><a href="#cb34-18"></a><span class="co"># lrnr2 = eptstgcn.WeightedLossStgcnLeaner(train_dataset2, dataset_name = 'Identity matrix')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="481">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="bu">print</span>(np.array(train_dataset1.targets).shape, np.array(test_dataset1.targets).shape)</span>
+<span id="cb35-2"><a href="#cb35-2"></a><span class="bu">print</span>(np.array(train_dataset2.targets).shape, np.array(test_dataset2.targets).shape)</span>
+<span id="cb35-3"><a href="#cb35-3"></a><span class="bu">print</span>(np.array(train_dataset3.targets).shape, np.array(test_dataset3.targets).shape)</span>
+<span id="cb35-4"><a href="#cb35-4"></a><span class="bu">print</span>(np.array(train_dataset4.targets).shape, np.array(test_dataset4.targets).shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(2307, 8) (257, 8)
+(2307, 8) (257, 8)
+(2307, 8) (257, 8)
+(2307, 8) (257, 8)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="482">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>df__ <span class="op">=</span> pd.read_csv(<span class="st">'data2/restructuring_data.csv'</span>)</span>
+<span id="cb37-2"><a href="#cb37-2"></a>df__.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="482">
+<pre><code>(2568, 45)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="483">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a><span class="bu">print</span>(<span class="st">'lag0(raw)'</span>, df__.shape[<span class="dv">0</span>])</span>
+<span id="cb39-2"><a href="#cb39-2"></a><span class="bu">print</span>(<span class="st">'lag1'</span>, <span class="dv">2310</span><span class="op">+</span><span class="dv">257</span>)</span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="bu">print</span>(<span class="st">'lag4'</span>, <span class="dv">2307</span><span class="op">+</span><span class="dv">257</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lag0(raw) 2568
+lag1 2567
+lag4 2564</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="484">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a><span class="bu">print</span>(<span class="st">'train: '</span>, df__.iloc[<span class="dv">0</span>][<span class="st">'date'</span>], df__.iloc[<span class="dv">2309</span>][<span class="st">'date'</span>],<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>,</span>
+<span id="cb41-2"><a href="#cb41-2"></a>      <span class="st">'test: '</span>, df__.iloc[<span class="dv">2310</span>][<span class="st">'date'</span>], df__.iloc[<span class="op">-</span><span class="dv">1</span>][<span class="st">'date'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>train:  2022-06-01 00:00:00 2022-09-05 05:00:00 
+ test:  2022-09-05 06:00:00 2022-09-15 23:00:00</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="485">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>torch.tensor(train_dataset1.features).shape[<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="485">
+<pre><code>4</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="486">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a><span class="bu">print</span>(torch.tensor(train_dataset1.features).shape)</span>
+<span id="cb45-2"><a href="#cb45-2"></a><span class="bu">print</span>(torch.tensor(train_dataset1.features).shape[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>torch.Size([2307, 8, 4])
+8</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="487">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a><span class="kw">class</span> RecurrentGCN(torch.nn.Module):</span>
+<span id="cb47-2"><a href="#cb47-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, node_features, filters):</span>
+<span id="cb47-3"><a href="#cb47-3"></a>        <span class="bu">super</span>(RecurrentGCN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb47-4"><a href="#cb47-4"></a>        <span class="va">self</span>.recurrent <span class="op">=</span> GConvGRU(node_features, filters, <span class="dv">2</span>)</span>
+<span id="cb47-5"><a href="#cb47-5"></a>        <span class="va">self</span>.linear <span class="op">=</span> torch.nn.Linear(filters, <span class="dv">1</span>)</span>
+<span id="cb47-6"><a href="#cb47-6"></a></span>
+<span id="cb47-7"><a href="#cb47-7"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, edge_index, edge_weight):</span>
+<span id="cb47-8"><a href="#cb47-8"></a>        h <span class="op">=</span> <span class="va">self</span>.recurrent(x, edge_index, edge_weight)</span>
+<span id="cb47-9"><a href="#cb47-9"></a>        h <span class="op">=</span> F.relu(h)</span>
+<span id="cb47-10"><a href="#cb47-10"></a>        h <span class="op">=</span> <span class="va">self</span>.linear(h)</span>
+<span id="cb47-11"><a href="#cb47-11"></a>        <span class="cf">return</span> h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="488">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a><span class="kw">class</span> StgcnLearner:</span>
+<span id="cb48-2"><a href="#cb48-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,train_dataset,dataset_name <span class="op">=</span> <span class="va">None</span>):</span>
+<span id="cb48-3"><a href="#cb48-3"></a>        <span class="va">self</span>.train_dataset <span class="op">=</span> train_dataset</span>
+<span id="cb48-4"><a href="#cb48-4"></a>        <span class="va">self</span>.lags <span class="op">=</span> torch.tensor(train_dataset.features).shape[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb48-5"><a href="#cb48-5"></a>        <span class="va">self</span>.dataset_name <span class="op">=</span> <span class="bu">str</span>(train_dataset) <span class="cf">if</span> dataset_name <span class="kw">is</span> <span class="va">None</span> <span class="cf">else</span> dataset_name</span>
+<span id="cb48-6"><a href="#cb48-6"></a>        <span class="va">self</span>.method <span class="op">=</span> <span class="st">'STGCN'</span></span>
+<span id="cb48-7"><a href="#cb48-7"></a>    <span class="kw">def</span> learn(<span class="va">self</span>,filters<span class="op">=</span><span class="dv">32</span>,epoch<span class="op">=</span><span class="dv">50</span>):</span>
+<span id="cb48-8"><a href="#cb48-8"></a>        <span class="va">self</span>.model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="va">self</span>.lags, filters<span class="op">=</span>filters)</span>
+<span id="cb48-9"><a href="#cb48-9"></a>        <span class="va">self</span>.optimizer <span class="op">=</span> torch.optim.Adam(<span class="va">self</span>.model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb48-10"><a href="#cb48-10"></a>        <span class="va">self</span>.model.train()</span>
+<span id="cb48-11"><a href="#cb48-11"></a>        <span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(epoch):</span>
+<span id="cb48-12"><a href="#cb48-12"></a>            <span class="cf">for</span> t, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.train_dataset):</span>
+<span id="cb48-13"><a href="#cb48-13"></a>                yt_hat <span class="op">=</span> <span class="va">self</span>.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb48-14"><a href="#cb48-14"></a>                cost <span class="op">=</span> torch.mean((yt_hat.reshape(<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb48-15"><a href="#cb48-15"></a>                cost.backward()</span>
+<span id="cb48-16"><a href="#cb48-16"></a>                <span class="va">self</span>.optimizer.step()</span>
+<span id="cb48-17"><a href="#cb48-17"></a>                <span class="va">self</span>.optimizer.zero_grad()</span>
+<span id="cb48-18"><a href="#cb48-18"></a>            <span class="bu">print</span>(<span class="st">'</span><span class="sc">{}</span><span class="st">/</span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(e<span class="op">+</span><span class="dv">1</span>,epoch),end<span class="op">=</span><span class="st">'</span><span class="ch">\r</span><span class="st">'</span>)</span>
+<span id="cb48-19"><a href="#cb48-19"></a>        <span class="co"># recording HP</span></span>
+<span id="cb48-20"><a href="#cb48-20"></a>        <span class="va">self</span>.nof_filters <span class="op">=</span> filters</span>
+<span id="cb48-21"><a href="#cb48-21"></a>        <span class="co"># self.epochs = epoch+1</span></span>
+<span id="cb48-22"><a href="#cb48-22"></a>        <span class="va">self</span>.epochs <span class="op">=</span> epoch</span>
+<span id="cb48-23"><a href="#cb48-23"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>,dataset):</span>
+<span id="cb48-24"><a href="#cb48-24"></a>        X <span class="op">=</span> torch.tensor(dataset.features).<span class="bu">float</span>()</span>
+<span id="cb48-25"><a href="#cb48-25"></a>        y <span class="op">=</span> torch.tensor(dataset.targets).<span class="bu">float</span>()</span>
+<span id="cb48-26"><a href="#cb48-26"></a>        yhat <span class="op">=</span> torch.stack([<span class="va">self</span>.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> dataset]).detach().squeeze().<span class="bu">float</span>()</span>
+<span id="cb48-27"><a href="#cb48-27"></a>        <span class="cf">return</span> {<span class="st">'X'</span>:X, <span class="st">'y'</span>:y, <span class="st">'yhat'</span>:yhat} </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="489">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a><span class="kw">class</span> WeightedLossStgcnLeaner(StgcnLearner):</span>
+<span id="cb49-2"><a href="#cb49-2"></a>    <span class="kw">def</span> learn(<span class="va">self</span>,W,filters<span class="op">=</span><span class="dv">32</span>,epoch<span class="op">=</span><span class="dv">50</span>):</span>
+<span id="cb49-3"><a href="#cb49-3"></a>        <span class="va">self</span>.model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="va">self</span>.lags, filters<span class="op">=</span>filters)</span>
+<span id="cb49-4"><a href="#cb49-4"></a>        <span class="va">self</span>.optimizer <span class="op">=</span> torch.optim.Adam(<span class="va">self</span>.model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb49-5"><a href="#cb49-5"></a>        <span class="va">self</span>.model.train()</span>
+<span id="cb49-6"><a href="#cb49-6"></a>        n_ <span class="op">=</span> np.array(train_dataset1.features).shape[<span class="dv">1</span>] <span class="co"># number of nodes</span></span>
+<span id="cb49-7"><a href="#cb49-7"></a>        <span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(epoch):</span>
+<span id="cb49-8"><a href="#cb49-8"></a>            <span class="cf">for</span> t, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.train_dataset):</span>
+<span id="cb49-9"><a href="#cb49-9"></a>                yt_hat <span class="op">=</span> <span class="va">self</span>.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb49-10"><a href="#cb49-10"></a>                <span class="co">#cost = torch.mean((yt_hat.reshape(-1)-snapshot.y.reshape(-1))**2)</span></span>
+<span id="cb49-11"><a href="#cb49-11"></a>                <span class="co"># cost = torch.mean((yt_hat-snapshot.y)**2*torch.tensor(W))</span></span>
+<span id="cb49-12"><a href="#cb49-12"></a>                cost <span class="op">=</span> torch.mean((yt_hat.reshape(n_,<span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="dv">1</span>,n_))<span class="op">**</span><span class="dv">2</span><span class="op">*</span>torch.tensor(W))</span>
+<span id="cb49-13"><a href="#cb49-13"></a>                cost.backward()</span>
+<span id="cb49-14"><a href="#cb49-14"></a>                <span class="va">self</span>.optimizer.step()</span>
+<span id="cb49-15"><a href="#cb49-15"></a>                <span class="va">self</span>.optimizer.zero_grad()</span>
+<span id="cb49-16"><a href="#cb49-16"></a>            <span class="bu">print</span>(<span class="st">'</span><span class="sc">{}</span><span class="st">/</span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(e<span class="op">+</span><span class="dv">1</span>,epoch),end<span class="op">=</span><span class="st">'</span><span class="ch">\r</span><span class="st">'</span>)</span>
+<span id="cb49-17"><a href="#cb49-17"></a>        <span class="co"># recording HP</span></span>
+<span id="cb49-18"><a href="#cb49-18"></a>        <span class="va">self</span>.nof_filters <span class="op">=</span> filters</span>
+<span id="cb49-19"><a href="#cb49-19"></a>        <span class="co"># self.epochs = epoch+1</span></span>
+<span id="cb49-20"><a href="#cb49-20"></a>        <span class="va">self</span>.epochs <span class="op">=</span> epoch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="490">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>lrnr1_wgt <span class="op">=</span> WeightedLossStgcnLeaner(train_dataset1, dataset_name <span class="op">=</span> <span class="st">'wgt &amp; arbitrary'</span>)</span>
+<span id="cb50-2"><a href="#cb50-2"></a>lrnr1_org <span class="op">=</span> StgcnLearner(train_dataset1, dataset_name <span class="op">=</span> <span class="st">'org &amp; arbitrary'</span>)</span>
+<span id="cb50-3"><a href="#cb50-3"></a></span>
+<span id="cb50-4"><a href="#cb50-4"></a>lrnr2_wgt <span class="op">=</span> WeightedLossStgcnLeaner(train_dataset2, dataset_name <span class="op">=</span> <span class="st">'wgt &amp; identity'</span>)</span>
+<span id="cb50-5"><a href="#cb50-5"></a>lrnr2_org <span class="op">=</span> StgcnLearner(train_dataset2, dataset_name <span class="op">=</span> <span class="st">'org &amp; identity'</span>)</span>
+<span id="cb50-6"><a href="#cb50-6"></a></span>
+<span id="cb50-7"><a href="#cb50-7"></a>lrnr3_wgt <span class="op">=</span> WeightedLossStgcnLeaner(train_dataset3, dataset_name <span class="op">=</span> <span class="st">'wgt &amp; corr'</span>)</span>
+<span id="cb50-8"><a href="#cb50-8"></a>lrnr3_org <span class="op">=</span> StgcnLearner(train_dataset3, dataset_name <span class="op">=</span> <span class="st">'org &amp; corr'</span>)</span>
+<span id="cb50-9"><a href="#cb50-9"></a></span>
+<span id="cb50-10"><a href="#cb50-10"></a>lrnr4_wgt <span class="op">=</span> WeightedLossStgcnLeaner(train_dataset4, dataset_name <span class="op">=</span> <span class="st">'wgt &amp; ept'</span>)</span>
+<span id="cb50-11"><a href="#cb50-11"></a>lrnr4_org <span class="op">=</span> StgcnLearner(train_dataset4, dataset_name <span class="op">=</span> <span class="st">'org &amp; ept'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="491">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>lrnr1_wgt.learn(W<span class="op">=</span>W, filters<span class="op">=</span><span class="dv">16</span>, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb51-2"><a href="#cb51-2"></a>lrnr1_org.learn(filters<span class="op">=</span><span class="dv">16</span>, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb51-3"><a href="#cb51-3"></a></span>
+<span id="cb51-4"><a href="#cb51-4"></a>lrnr2_wgt.learn(W<span class="op">=</span>W2, filters<span class="op">=</span><span class="dv">16</span>, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb51-5"><a href="#cb51-5"></a>lrnr2_org.learn(filters<span class="op">=</span><span class="dv">16</span>, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb51-6"><a href="#cb51-6"></a></span>
+<span id="cb51-7"><a href="#cb51-7"></a>lrnr3_wgt.learn(W<span class="op">=</span>W3, filters<span class="op">=</span><span class="dv">16</span>, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb51-8"><a href="#cb51-8"></a>lrnr3_org.learn(filters<span class="op">=</span><span class="dv">16</span>, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb51-9"><a href="#cb51-9"></a></span>
+<span id="cb51-10"><a href="#cb51-10"></a>lrnr4_wgt.learn(W<span class="op">=</span>W4, filters<span class="op">=</span><span class="dv">16</span>, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb51-11"><a href="#cb51-11"></a>lrnr4_org.learn(filters<span class="op">=</span><span class="dv">16</span>, epoch<span class="op">=</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>30/30</code></pre>
+</div>
+</div>
+<section id="evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="evaluation">Evaluation</h2>
+<p><code>-</code> Summary (MSE)</p>
+<p>lag=4, filter=16, epoch=30</p>
+<table class="table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 38%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>weights/loss</th>
+<th><font color="blue">Original Loss</font></th>
+<th><font color="red">Weighted Loss</font></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1.arbitrary</strong></td>
+<td>0.0555</td>
+<td>0.0578</td>
+</tr>
+<tr class="even">
+<td><strong>2.identity</strong></td>
+<td>0.0644</td>
+<td>0.0616</td>
+</tr>
+<tr class="odd">
+<td><strong>3.correlation</strong></td>
+<td>0.0466</td>
+<td>0.1451</td>
+</tr>
+<tr class="even">
+<td><strong>4.ept</strong></td>
+<td>0.0467</td>
+<td>0.0943</td>
+</tr>
+</tbody>
+</table>
+<p><code>-</code> weighted loss</p>
+<div class="cell" data-execution_count="493">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a>lrnr1_wgt.model.<span class="bu">eval</span>()</span>
+<span id="cb53-2"><a href="#cb53-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb53-3"><a href="#cb53-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset1):</span>
+<span id="cb53-4"><a href="#cb53-4"></a>    y_hat <span class="op">=</span> lrnr1_wgt.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb53-5"><a href="#cb53-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat.reshape(<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb53-6"><a href="#cb53-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb53-7"><a href="#cb53-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb53-8"><a href="#cb53-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0578</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="494">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>lrnr2_wgt.model.<span class="bu">eval</span>()</span>
+<span id="cb55-2"><a href="#cb55-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb55-3"><a href="#cb55-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset2):</span>
+<span id="cb55-4"><a href="#cb55-4"></a>    y_hat <span class="op">=</span> lrnr2_wgt.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb55-5"><a href="#cb55-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat.reshape(<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb55-6"><a href="#cb55-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb55-7"><a href="#cb55-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb55-8"><a href="#cb55-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0616</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="495">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a>lrnr3_wgt.model.<span class="bu">eval</span>()</span>
+<span id="cb57-2"><a href="#cb57-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb57-3"><a href="#cb57-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset3):</span>
+<span id="cb57-4"><a href="#cb57-4"></a>    y_hat <span class="op">=</span> lrnr3_wgt.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb57-5"><a href="#cb57-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat.reshape(<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb57-6"><a href="#cb57-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb57-7"><a href="#cb57-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb57-8"><a href="#cb57-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.1451</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="496">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a>lrnr4_wgt.model.<span class="bu">eval</span>()</span>
+<span id="cb59-2"><a href="#cb59-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb59-3"><a href="#cb59-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset4):</span>
+<span id="cb59-4"><a href="#cb59-4"></a>    y_hat <span class="op">=</span> lrnr4_wgt.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb59-5"><a href="#cb59-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat.reshape(<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb59-6"><a href="#cb59-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb59-7"><a href="#cb59-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb59-8"><a href="#cb59-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0943</code></pre>
+</div>
+</div>
+</section>
+<section id="궁금한점-wgt-loss-eval-cost부분" class="level2">
+<h2 class="anchored" data-anchor-id="궁금한점-wgt-loss-eval-cost부분">궁금한점? wgt loss &gt; eval &gt; cost부분</h2>
+<p><code>-</code> original loss</p>
+<div class="cell" data-execution_count="497">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a>lrnr1_org.model.<span class="bu">eval</span>()</span>
+<span id="cb61-2"><a href="#cb61-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb61-3"><a href="#cb61-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset1):</span>
+<span id="cb61-4"><a href="#cb61-4"></a>    y_hat <span class="op">=</span> lrnr1_org.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb61-5"><a href="#cb61-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb61-6"><a href="#cb61-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb61-7"><a href="#cb61-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb61-8"><a href="#cb61-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0555</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="498">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a>lrnr2_org.model.<span class="bu">eval</span>()</span>
+<span id="cb63-2"><a href="#cb63-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb63-3"><a href="#cb63-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset2):</span>
+<span id="cb63-4"><a href="#cb63-4"></a>    y_hat <span class="op">=</span> lrnr2_org.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb63-5"><a href="#cb63-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb63-6"><a href="#cb63-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb63-7"><a href="#cb63-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb63-8"><a href="#cb63-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0644</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="499">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a>lrnr3_org.model.<span class="bu">eval</span>()</span>
+<span id="cb65-2"><a href="#cb65-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb65-3"><a href="#cb65-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset3):</span>
+<span id="cb65-4"><a href="#cb65-4"></a>    y_hat <span class="op">=</span> lrnr3_org.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb65-5"><a href="#cb65-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb65-6"><a href="#cb65-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb65-7"><a href="#cb65-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb65-8"><a href="#cb65-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0466</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="500">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a>lrnr4_org.model.<span class="bu">eval</span>()</span>
+<span id="cb67-2"><a href="#cb67-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb67-3"><a href="#cb67-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset4):</span>
+<span id="cb67-4"><a href="#cb67-4"></a>    y_hat <span class="op">=</span> lrnr4_org.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb67-5"><a href="#cb67-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb67-6"><a href="#cb67-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb67-7"><a href="#cb67-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb67-8"><a href="#cb67-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0467</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="501">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1"></a>yhat_test_org <span class="op">=</span> torch.stack([lrnr1_org.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset1]).detach().numpy()</span>
+<span id="cb69-2"><a href="#cb69-2"></a>yhat_test_wgt <span class="op">=</span> torch.stack([lrnr1_wgt.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset1]).detach().numpy()</span>
+<span id="cb69-3"><a href="#cb69-3"></a></span>
+<span id="cb69-4"><a href="#cb69-4"></a>yhat_test_org2 <span class="op">=</span> torch.stack([lrnr2_org.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset2]).detach().numpy()</span>
+<span id="cb69-5"><a href="#cb69-5"></a>yhat_test_wgt2 <span class="op">=</span> torch.stack([lrnr2_wgt.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset2]).detach().numpy()</span>
+<span id="cb69-6"><a href="#cb69-6"></a></span>
+<span id="cb69-7"><a href="#cb69-7"></a>yhat_test_org3 <span class="op">=</span> torch.stack([lrnr3_org.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset3]).detach().numpy()</span>
+<span id="cb69-8"><a href="#cb69-8"></a>yhat_test_wgt3 <span class="op">=</span> torch.stack([lrnr3_wgt.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset3]).detach().numpy()</span>
+<span id="cb69-9"><a href="#cb69-9"></a></span>
+<span id="cb69-10"><a href="#cb69-10"></a>yhat_test_org4 <span class="op">=</span> torch.stack([lrnr4_org.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset4]).detach().numpy()</span>
+<span id="cb69-11"><a href="#cb69-11"></a>yhat_test_wgt4 <span class="op">=</span> torch.stack([lrnr4_wgt.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset4]).detach().numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="423">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1"></a>yhat_test_org.shape, yhat_test_wgt.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="423">
+<pre><code>((257, 8, 1), (257, 8, 1))</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="502">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1"></a>yhat_test_org2.shape, yhat_test_wgt2.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="502">
+<pre><code>((257, 8, 1), (257, 8, 1))</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="424">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb74-2"><a href="#cb74-2"></a>plt.rcParams[<span class="st">'font.family'</span>] <span class="op">=</span> <span class="st">'NanumGothic'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="444">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1"></a>V <span class="op">=</span> <span class="bu">list</span>(data_dict1[<span class="st">'node_ids'</span>].keys())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="arbitrary-weights" class="level3">
+<h3 class="anchored" data-anchor-id="arbitrary-weights">1. arbitrary weights</h3>
+<div class="cell" data-execution_count="513">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1"></a>fig,axes <span class="op">=</span> plt.subplots(N,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,N<span class="op">*</span><span class="dv">2</span>))</span>
+<span id="cb76-2"><a href="#cb76-2"></a>T <span class="op">=</span> <span class="dv">50</span> </span>
+<span id="cb76-3"><a href="#cb76-3"></a><span class="cf">for</span> i,ax <span class="kw">in</span> <span class="bu">enumerate</span>(axes):</span>
+<span id="cb76-4"><a href="#cb76-4"></a>    ax[<span class="dv">0</span>].plot(np.array(test_dataset1.targets)[<span class="op">-</span>T:,i],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>)</span>
+<span id="cb76-5"><a href="#cb76-5"></a>    ax[<span class="dv">1</span>].plot(np.array(test_dataset1.targets)[<span class="op">-</span>T:,i],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>)</span>
+<span id="cb76-6"><a href="#cb76-6"></a>    ax[<span class="dv">0</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb76-7"><a href="#cb76-7"></a>    ax[<span class="dv">1</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb76-8"><a href="#cb76-8"></a>    ax[<span class="dv">0</span>].plot(yhat_test_org[<span class="op">-</span>T:,i],label<span class="op">=</span><span class="st">'predicted (test)'</span>)</span>
+<span id="cb76-9"><a href="#cb76-9"></a>    ax[<span class="dv">1</span>].plot(yhat_test_wgt[<span class="op">-</span>T:,i],label<span class="op">=</span><span class="st">'predicted (test)'</span>)</span>
+<span id="cb76-10"><a href="#cb76-10"></a>    ax[<span class="dv">0</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb76-11"><a href="#cb76-11"></a>    plt.tight_layout()</span>
+<span id="cb76-12"><a href="#cb76-12"></a>plt.title(<span class="st">'original loss vs. weighted loss // Arbitrary weights'</span>)</span>
+<span id="cb76-13"><a href="#cb76-13"></a><span class="co"># plt.savefig('stgcn-ver2-lag4-vis.png')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="513">
+<pre><code>Text(0.5, 1.0, 'original loss vs. weighted loss // Arbitrary weights')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-07-04-simul-러너_files/figure-html/cell-52-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="identity-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="identity-matrix">2. identity matrix</h3>
+<div class="cell" data-execution_count="514">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1"></a>fig,axes <span class="op">=</span> plt.subplots(N,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,N<span class="op">*</span><span class="dv">2</span>))</span>
+<span id="cb78-2"><a href="#cb78-2"></a>T <span class="op">=</span> <span class="dv">50</span> </span>
+<span id="cb78-3"><a href="#cb78-3"></a><span class="cf">for</span> i,ax <span class="kw">in</span> <span class="bu">enumerate</span>(axes):</span>
+<span id="cb78-4"><a href="#cb78-4"></a>    ax[<span class="dv">0</span>].plot(np.array(test_dataset2.targets)[<span class="op">-</span>T:,i],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>)</span>
+<span id="cb78-5"><a href="#cb78-5"></a>    ax[<span class="dv">1</span>].plot(np.array(test_dataset2.targets)[<span class="op">-</span>T:,i],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>)</span>
+<span id="cb78-6"><a href="#cb78-6"></a>    ax[<span class="dv">0</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb78-7"><a href="#cb78-7"></a>    ax[<span class="dv">1</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb78-8"><a href="#cb78-8"></a>    ax[<span class="dv">0</span>].plot(yhat_test_org2[<span class="op">-</span>T:,i],label<span class="op">=</span><span class="st">'predicted (test)'</span>)</span>
+<span id="cb78-9"><a href="#cb78-9"></a>    ax[<span class="dv">1</span>].plot(yhat_test_wgt2[<span class="op">-</span>T:,i],label<span class="op">=</span><span class="st">'predicted (test)'</span>)</span>
+<span id="cb78-10"><a href="#cb78-10"></a>    ax[<span class="dv">0</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb78-11"><a href="#cb78-11"></a>    plt.tight_layout()</span>
+<span id="cb78-12"><a href="#cb78-12"></a>plt.title(<span class="st">'original loss vs. weighted loss // identity weights'</span>)</span>
+<span id="cb78-13"><a href="#cb78-13"></a><span class="co"># plt.savefig('stgcn-ver2-lag4-vis.png')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="514">
+<pre><code>Text(0.5, 1.0, 'original loss vs. weighted loss // identity weights')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-07-04-simul-러너_files/figure-html/cell-53-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="correlation" class="level3">
+<h3 class="anchored" data-anchor-id="correlation">3. correlation</h3>
+<div class="cell" data-execution_count="515">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1"></a>fig,axes <span class="op">=</span> plt.subplots(N,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,N<span class="op">*</span><span class="dv">2</span>))</span>
+<span id="cb80-2"><a href="#cb80-2"></a>T <span class="op">=</span> <span class="dv">50</span> </span>
+<span id="cb80-3"><a href="#cb80-3"></a><span class="cf">for</span> i,ax <span class="kw">in</span> <span class="bu">enumerate</span>(axes):</span>
+<span id="cb80-4"><a href="#cb80-4"></a>    ax[<span class="dv">0</span>].plot(np.array(test_dataset3.targets)[<span class="op">-</span>T:,i],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>)</span>
+<span id="cb80-5"><a href="#cb80-5"></a>    ax[<span class="dv">1</span>].plot(np.array(test_dataset3.targets)[<span class="op">-</span>T:,i],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>)</span>
+<span id="cb80-6"><a href="#cb80-6"></a>    ax[<span class="dv">0</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb80-7"><a href="#cb80-7"></a>    ax[<span class="dv">1</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb80-8"><a href="#cb80-8"></a>    ax[<span class="dv">0</span>].plot(yhat_test_org3[<span class="op">-</span>T:,i],label<span class="op">=</span><span class="st">'predicted (test)'</span>)</span>
+<span id="cb80-9"><a href="#cb80-9"></a>    ax[<span class="dv">1</span>].plot(yhat_test_wgt3[<span class="op">-</span>T:,i],label<span class="op">=</span><span class="st">'predicted (test)'</span>)</span>
+<span id="cb80-10"><a href="#cb80-10"></a>    ax[<span class="dv">0</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb80-11"><a href="#cb80-11"></a>    plt.tight_layout()</span>
+<span id="cb80-12"><a href="#cb80-12"></a>plt.title(<span class="st">'original loss vs. weighted loss // correlation'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="515">
+<pre><code>Text(0.5, 1.0, 'original loss vs. weighted loss // correlation')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-07-04-simul-러너_files/figure-html/cell-54-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="ept" class="level3">
+<h3 class="anchored" data-anchor-id="ept">4. EPT</h3>
+<div class="cell" data-execution_count="516">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1"></a>fig,axes <span class="op">=</span> plt.subplots(N,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,N<span class="op">*</span><span class="dv">2</span>))</span>
+<span id="cb82-2"><a href="#cb82-2"></a>T <span class="op">=</span> <span class="dv">50</span> </span>
+<span id="cb82-3"><a href="#cb82-3"></a><span class="cf">for</span> i,ax <span class="kw">in</span> <span class="bu">enumerate</span>(axes):</span>
+<span id="cb82-4"><a href="#cb82-4"></a>    ax[<span class="dv">0</span>].plot(np.array(test_dataset4.targets)[<span class="op">-</span>T:,i],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>)</span>
+<span id="cb82-5"><a href="#cb82-5"></a>    ax[<span class="dv">1</span>].plot(np.array(test_dataset4.targets)[<span class="op">-</span>T:,i],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>)</span>
+<span id="cb82-6"><a href="#cb82-6"></a>    ax[<span class="dv">0</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb82-7"><a href="#cb82-7"></a>    ax[<span class="dv">1</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb82-8"><a href="#cb82-8"></a>    ax[<span class="dv">0</span>].plot(yhat_test_org4[<span class="op">-</span>T:,i],label<span class="op">=</span><span class="st">'predicted (test)'</span>)</span>
+<span id="cb82-9"><a href="#cb82-9"></a>    ax[<span class="dv">1</span>].plot(yhat_test_wgt4[<span class="op">-</span>T:,i],label<span class="op">=</span><span class="st">'predicted (test)'</span>)</span>
+<span id="cb82-10"><a href="#cb82-10"></a>    ax[<span class="dv">0</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb82-11"><a href="#cb82-11"></a>    plt.tight_layout()</span>
+<span id="cb82-12"><a href="#cb82-12"></a>plt.title(<span class="st">'original loss vs. weighted loss // EPT'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="516">
+<pre><code>Text(0.5, 1.0, 'original loss vs. weighted loss // EPT')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-07-04-simul-러너_files/figure-html/cell-55-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="filter8로-변경" class="level1">
+<h1><font color="green">#2: filter=8로 변경</font></h1>
+<div class="cell" data-execution_count="545">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1"></a>lrnr1_wgt_ <span class="op">=</span> WeightedLossStgcnLeaner(train_dataset1, dataset_name <span class="op">=</span> <span class="st">'wgt &amp; arbitrary'</span>)</span>
+<span id="cb84-2"><a href="#cb84-2"></a>lrnr1_org_ <span class="op">=</span> StgcnLearner(train_dataset1, dataset_name <span class="op">=</span> <span class="st">'org &amp; arbitrary'</span>)</span>
+<span id="cb84-3"><a href="#cb84-3"></a></span>
+<span id="cb84-4"><a href="#cb84-4"></a>lrnr2_wgt_ <span class="op">=</span> WeightedLossStgcnLeaner(train_dataset2, dataset_name <span class="op">=</span> <span class="st">'wgt &amp; identity'</span>)</span>
+<span id="cb84-5"><a href="#cb84-5"></a>lrnr2_org_ <span class="op">=</span> StgcnLearner(train_dataset2, dataset_name <span class="op">=</span> <span class="st">'org &amp; identity'</span>)</span>
+<span id="cb84-6"><a href="#cb84-6"></a></span>
+<span id="cb84-7"><a href="#cb84-7"></a>lrnr3_wgt_ <span class="op">=</span> WeightedLossStgcnLeaner(train_dataset3, dataset_name <span class="op">=</span> <span class="st">'wgt &amp; corr'</span>)</span>
+<span id="cb84-8"><a href="#cb84-8"></a>lrnr3_org_ <span class="op">=</span> StgcnLearner(train_dataset3, dataset_name <span class="op">=</span> <span class="st">'org &amp; corr'</span>)</span>
+<span id="cb84-9"><a href="#cb84-9"></a></span>
+<span id="cb84-10"><a href="#cb84-10"></a>lrnr4_wgt_ <span class="op">=</span> WeightedLossStgcnLeaner(train_dataset4, dataset_name <span class="op">=</span> <span class="st">'wgt &amp; ept'</span>)</span>
+<span id="cb84-11"><a href="#cb84-11"></a>lrnr4_org_ <span class="op">=</span> StgcnLearner(train_dataset4, dataset_name <span class="op">=</span> <span class="st">'org &amp; ept'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="546">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1"></a>n_filter <span class="op">=</span> <span class="dv">8</span></span>
+<span id="cb85-2"><a href="#cb85-2"></a>lrnr1_wgt_.learn(W<span class="op">=</span>W, filters<span class="op">=</span>n_filter, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb85-3"><a href="#cb85-3"></a>lrnr1_org_.learn(filters<span class="op">=</span>n_filter, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb85-4"><a href="#cb85-4"></a></span>
+<span id="cb85-5"><a href="#cb85-5"></a>lrnr2_wgt_.learn(W<span class="op">=</span>W2, filters<span class="op">=</span>n_filter, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb85-6"><a href="#cb85-6"></a>lrnr2_org_.learn(filters<span class="op">=</span>n_filter, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb85-7"><a href="#cb85-7"></a></span>
+<span id="cb85-8"><a href="#cb85-8"></a>lrnr3_wgt_.learn(W<span class="op">=</span>W3, filters<span class="op">=</span>n_filter, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb85-9"><a href="#cb85-9"></a>lrnr3_org_.learn(filters<span class="op">=</span>n_filter, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb85-10"><a href="#cb85-10"></a></span>
+<span id="cb85-11"><a href="#cb85-11"></a>lrnr4_wgt_.learn(W<span class="op">=</span>W4, filters<span class="op">=</span>n_filter, epoch<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb85-12"><a href="#cb85-12"></a>lrnr4_org_.learn(filters<span class="op">=</span>n_filter, epoch<span class="op">=</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>30/30</code></pre>
+</div>
+</div>
+<section id="evaluation-1" class="level2">
+<h2 class="anchored" data-anchor-id="evaluation-1">Evaluation</h2>
+<p><code>-</code> Summary (MSE)</p>
+<p>lag=4, filter=8, epoch=30</p>
+<p><strong>표 수정필요</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 38%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>weights/loss</th>
+<th><font color="blue">Original Loss</font></th>
+<th><font color="red">Weighted Loss</font></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1.arbitrary</strong></td>
+<td>0.0544</td>
+<td>0.0533</td>
+</tr>
+<tr class="even">
+<td><strong>2.identity</strong></td>
+<td>0.0649</td>
+<td>0.0627</td>
+</tr>
+<tr class="odd">
+<td><strong>3.correlation</strong></td>
+<td>0.0454</td>
+<td>0.1114</td>
+</tr>
+<tr class="even">
+<td><strong>4.ept</strong></td>
+<td>0.0539</td>
+<td>0.0927</td>
+</tr>
+</tbody>
+</table>
+<p><code>-</code> weighted loss</p>
+<div class="cell" data-execution_count="547">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1"></a>lrnr1_wgt_.model.<span class="bu">eval</span>()</span>
+<span id="cb87-2"><a href="#cb87-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb87-3"><a href="#cb87-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset1):</span>
+<span id="cb87-4"><a href="#cb87-4"></a>    y_hat <span class="op">=</span> lrnr1_wgt_.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb87-5"><a href="#cb87-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat.reshape(<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb87-6"><a href="#cb87-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb87-7"><a href="#cb87-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb87-8"><a href="#cb87-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0533</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="548">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1"></a>lrnr2_wgt_.model.<span class="bu">eval</span>()</span>
+<span id="cb89-2"><a href="#cb89-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb89-3"><a href="#cb89-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset2):</span>
+<span id="cb89-4"><a href="#cb89-4"></a>    y_hat <span class="op">=</span> lrnr2_wgt_.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb89-5"><a href="#cb89-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat.reshape(<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb89-6"><a href="#cb89-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb89-7"><a href="#cb89-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb89-8"><a href="#cb89-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0627</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="549">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1"></a>lrnr3_wgt_.model.<span class="bu">eval</span>()</span>
+<span id="cb91-2"><a href="#cb91-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb91-3"><a href="#cb91-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset3):</span>
+<span id="cb91-4"><a href="#cb91-4"></a>    y_hat <span class="op">=</span> lrnr3_wgt_.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb91-5"><a href="#cb91-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat.reshape(<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb91-6"><a href="#cb91-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb91-7"><a href="#cb91-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb91-8"><a href="#cb91-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.1114</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="550">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1"></a>lrnr4_wgt_.model.<span class="bu">eval</span>()</span>
+<span id="cb93-2"><a href="#cb93-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb93-3"><a href="#cb93-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset4):</span>
+<span id="cb93-4"><a href="#cb93-4"></a>    y_hat <span class="op">=</span> lrnr4_wgt_.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb93-5"><a href="#cb93-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat.reshape(<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb93-6"><a href="#cb93-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb93-7"><a href="#cb93-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb93-8"><a href="#cb93-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0927</code></pre>
+</div>
+</div>
+<p><code>-</code> original loss</p>
+<div class="cell" data-execution_count="551">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1"></a>lrnr1_org_.model.<span class="bu">eval</span>()</span>
+<span id="cb95-2"><a href="#cb95-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb95-3"><a href="#cb95-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset1):</span>
+<span id="cb95-4"><a href="#cb95-4"></a>    y_hat <span class="op">=</span> lrnr1_org_.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb95-5"><a href="#cb95-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb95-6"><a href="#cb95-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb95-7"><a href="#cb95-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb95-8"><a href="#cb95-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0544</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="552">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1"></a>lrnr2_org_.model.<span class="bu">eval</span>()</span>
+<span id="cb97-2"><a href="#cb97-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb97-3"><a href="#cb97-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset2):</span>
+<span id="cb97-4"><a href="#cb97-4"></a>    y_hat <span class="op">=</span> lrnr2_org_.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb97-5"><a href="#cb97-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb97-6"><a href="#cb97-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb97-7"><a href="#cb97-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb97-8"><a href="#cb97-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0649</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="553">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1"></a>lrnr3_org_.model.<span class="bu">eval</span>()</span>
+<span id="cb99-2"><a href="#cb99-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb99-3"><a href="#cb99-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset3):</span>
+<span id="cb99-4"><a href="#cb99-4"></a>    y_hat <span class="op">=</span> lrnr3_org_.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb99-5"><a href="#cb99-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb99-6"><a href="#cb99-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb99-7"><a href="#cb99-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb99-8"><a href="#cb99-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0454</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="554">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1"></a>lrnr4_org_.model.<span class="bu">eval</span>()</span>
+<span id="cb101-2"><a href="#cb101-2"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb101-3"><a href="#cb101-3"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(test_dataset4):</span>
+<span id="cb101-4"><a href="#cb101-4"></a>    y_hat <span class="op">=</span> lrnr4_org_.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb101-5"><a href="#cb101-5"></a>    cost <span class="op">=</span> cost <span class="op">+</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb101-6"><a href="#cb101-6"></a>cost <span class="op">=</span> cost <span class="op">/</span> (time<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb101-7"><a href="#cb101-7"></a>cost <span class="op">=</span> cost.item()</span>
+<span id="cb101-8"><a href="#cb101-8"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MSE: 0.0539</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="555">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1"></a>yhat_test_org_ <span class="op">=</span> torch.stack([lrnr1_org_.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset1]).detach().numpy()</span>
+<span id="cb103-2"><a href="#cb103-2"></a>yhat_test_wgt_ <span class="op">=</span> torch.stack([lrnr1_wgt_.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset1]).detach().numpy()</span>
+<span id="cb103-3"><a href="#cb103-3"></a></span>
+<span id="cb103-4"><a href="#cb103-4"></a>yhat_test_org2_ <span class="op">=</span> torch.stack([lrnr2_org_.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset2]).detach().numpy()</span>
+<span id="cb103-5"><a href="#cb103-5"></a>yhat_test_wgt2_ <span class="op">=</span> torch.stack([lrnr2_wgt_.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset2]).detach().numpy()</span>
+<span id="cb103-6"><a href="#cb103-6"></a></span>
+<span id="cb103-7"><a href="#cb103-7"></a>yhat_test_org3_ <span class="op">=</span> torch.stack([lrnr3_org_.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset3]).detach().numpy()</span>
+<span id="cb103-8"><a href="#cb103-8"></a>yhat_test_wgt3_ <span class="op">=</span> torch.stack([lrnr3_wgt_.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset3]).detach().numpy()</span>
+<span id="cb103-9"><a href="#cb103-9"></a></span>
+<span id="cb103-10"><a href="#cb103-10"></a>yhat_test_org4_ <span class="op">=</span> torch.stack([lrnr4_org_.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset4]).detach().numpy()</span>
+<span id="cb103-11"><a href="#cb103-11"></a>yhat_test_wgt4_ <span class="op">=</span> torch.stack([lrnr4_wgt_.model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset4]).detach().numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> original loss: Corr vs.&nbsp;EPT</p>
+<ul>
+<li>Corr(좌), EPT(우)</li>
+</ul>
+<div class="cell" data-execution_count="560">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1"></a>fig,axes <span class="op">=</span> plt.subplots(N,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,N<span class="op">*</span><span class="dv">2</span>))</span>
+<span id="cb104-2"><a href="#cb104-2"></a>T <span class="op">=</span> <span class="dv">50</span> </span>
+<span id="cb104-3"><a href="#cb104-3"></a><span class="cf">for</span> i,ax <span class="kw">in</span> <span class="bu">enumerate</span>(axes):</span>
+<span id="cb104-4"><a href="#cb104-4"></a>    ax[<span class="dv">0</span>].plot(np.array(test_dataset3.targets)[<span class="op">-</span>T:,i],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb104-5"><a href="#cb104-5"></a>    ax[<span class="dv">1</span>].plot(np.array(test_dataset4.targets)[<span class="op">-</span>T:,i],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb104-6"><a href="#cb104-6"></a>    ax[<span class="dv">0</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb104-7"><a href="#cb104-7"></a>    ax[<span class="dv">1</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb104-8"><a href="#cb104-8"></a>    ax[<span class="dv">0</span>].plot(yhat_test_org3_[<span class="op">-</span>T:,i],label<span class="op">=</span><span class="st">'predicted (test)'</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb104-9"><a href="#cb104-9"></a>    ax[<span class="dv">1</span>].plot(yhat_test_org4_[<span class="op">-</span>T:,i],label<span class="op">=</span><span class="st">'predicted (test)'</span>)</span>
+<span id="cb104-10"><a href="#cb104-10"></a>    ax[<span class="dv">0</span>].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[i]))</span>
+<span id="cb104-11"><a href="#cb104-11"></a>    plt.tight_layout()</span>
+<span id="cb104-12"><a href="#cb104-12"></a>plt.title(<span class="st">'original loss: Corr vs. EPT'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="560">
+<pre><code>Text(0.5, 1.0, 'original loss: Corr vs. EPT')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-07-04-simul-러너_files/figure-html/cell-67-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<hr>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

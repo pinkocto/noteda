@@ -403,21 +403,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/HousePrice/2023-04-04-lr-hw1-project.html" class="sidebar-item-text sidebar-link">House Price</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/HousePrice/2023-04-05-lr-hw1-feedback.html" class="sidebar-item-text sidebar-link">House Price feedback</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/HousePrice/2023-03-30-lr-hw1.html" class="sidebar-item-text sidebar-link">HW1</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/HousePrice/2023-04-18-mlr-보스턴집값.html" class="sidebar-item-text sidebar-link">MLR prac1</a>
   </div>
 </li>
@@ -488,12 +473,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/SOLAR/2999-simul-Copy1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SIMUL (테스트용 재수정)</a>
+  <a href="../../posts/SOLAR/2999-simul-Copy1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SIMUL (Weighted/original &amp; arbitrary/identity &amp; #node=10)</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/SOLAR/2999-simul-Copy2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SIMUL (테스트용2 # node = 8)</a>
+  <a href="../../posts/SOLAR/2999-simul-Copy2.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> SIMUL (테스트용2 # node = 8) (X)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -554,6 +539,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/SOLAR/2023-05-25-data-edit-5차수정.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 데이터 5차 수정 (edit)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-07-04-simul-데이터로더수정-Copy1.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 로더 수정 , # node=8 (++결과비교중)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-07-04-simul-러너.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 연습용 (코드) # node=8</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/SOLAR/2023-07-04.html" class="sidebar-item-text sidebar-link"><strong>[SOLAR]</strong> 정리중…</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1110,48 +1110,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-7"><a href="#cb13-7"></a>plnr1_3 <span class="op">=</span> eptstgcn.planner.PLNR_STGCN2(plans_stgcn,loader,dataset_name<span class="op">=</span> <span class="st">'arbitrary weights'</span>)</span>
 <span id="cb13-8"><a href="#cb13-8"></a>plnr2_3 <span class="op">=</span> eptstgcn.planner.PLNR_STGCN2(plans_stgcn2, loader2, dataset_name<span class="op">=</span> <span class="st">'identity matrix weights'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>plnr.simulation_results <span class="op">=</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>TypeError: 'DataFrame' object is not callable</code></pre>
-</div>
-</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>plnr1_iter30 <span class="op">=</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>plnr.simulation_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="58">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>dataset</th>
-      <th>method</th>
-      <th>W</th>
-      <th>lags</th>
-      <th>nof_filters</th>
-      <th>epoch</th>
-      <th>mse(train)</th>
-      <th>mse(test)</th>
-      <th>calculation_time</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># plnr.simulate()</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="co"># plnr2.simulate()</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a></span>
-<span id="cb18-4"><a href="#cb18-4"></a>plnr1_3.simulate()</span>
-<span id="cb18-5"><a href="#cb18-5"></a>plnr2_3.simulate()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># plnr.simulate()</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="co"># plnr2.simulate()</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a></span>
+<span id="cb14-4"><a href="#cb14-4"></a>plnr1_3.simulate()</span>
+<span id="cb14-5"><a href="#cb14-5"></a>plnr2_3.simulate()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1/10 is done
 2/10 is done
@@ -1164,16 +1128,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>plnr1_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>plnr1_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># plnr2.simulation_results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># plnr2.simulation_results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># plnr.simulation_results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># plnr.simulation_results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>np.array(FX).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>np.array(FX).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>(2568, 10)</code></pre>
 </div>
@@ -1182,12 +1146,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>lags와 W 바뀜..</li>
 </ul>
 <div class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>rslt <span class="op">=</span> plnr.simulation_results</span>
-<span id="cb25-2"><a href="#cb25-2"></a>rslt2 <span class="op">=</span> plnr2.simulation_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>rslt <span class="op">=</span> plnr.simulation_results</span>
+<span id="cb21-2"><a href="#cb21-2"></a>rslt2 <span class="op">=</span> plnr2.simulation_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>rslt.groupby([<span class="st">'nof_filters'</span>])<span class="op">\</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a>             .agg({<span class="st">'mse(train)'</span>:[<span class="st">'mean'</span>, <span class="st">'var'</span>], <span class="st">'mse(test)'</span>:[<span class="st">'mean'</span>,<span class="st">'var'</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>rslt.groupby([<span class="st">'nof_filters'</span>])<span class="op">\</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>             .agg({<span class="st">'mse(train)'</span>:[<span class="st">'mean'</span>, <span class="st">'var'</span>], <span class="st">'mse(test)'</span>:[<span class="st">'mean'</span>,<span class="st">'var'</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 
 <div>
@@ -1235,8 +1199,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>rslt2.groupby([<span class="st">'nof_filters'</span>])<span class="op">\</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>             .agg({<span class="st">'mse(train)'</span>:[<span class="st">'mean'</span>, <span class="st">'var'</span>], <span class="st">'mse(test)'</span>:[<span class="st">'mean'</span>,<span class="st">'var'</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>rslt2.groupby([<span class="st">'nof_filters'</span>])<span class="op">\</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>             .agg({<span class="st">'mse(train)'</span>:[<span class="st">'mean'</span>, <span class="st">'var'</span>], <span class="st">'mse(test)'</span>:[<span class="st">'mean'</span>,<span class="st">'var'</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
 
 <div>
